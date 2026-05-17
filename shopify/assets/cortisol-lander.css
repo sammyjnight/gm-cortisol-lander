@@ -1,0 +1,10 @@
+/* Cortisol Lander - Responsive Styles */
+@media (max-width: 768px) {
+  .cl-hero-grid { grid-template-columns: 1fr !important; }
+  .cl-hero-img-col { order: 2; }
+  .cl-two-col { grid-template-columns: 1fr !important; }
+  .cl-four-col { grid-template-columns: 1fr 1fr !important; }
+}
+@media (max-width: 480px) {
+  .cl-four-col { grid-template-columns: 1fr !important; }
+}

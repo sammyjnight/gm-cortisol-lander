@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "cortisol-lander": {
+      "type": "cortisol-lander",
+      "settings": {}
+    }
+  },
+  "order": ["cortisol-lander"]
+}

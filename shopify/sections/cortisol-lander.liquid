@@ -1,0 +1,230 @@
+{% comment %}
+  Genius Mind — Cortisol Angle Landing Page
+  Avatar: Chaos Operator
+  Upload via Shopify CLI: shopify theme push --path shopify/
+  Then create a page in Shopify admin and assign template "page.cortisol-lander"
+{% endcomment %}
+
+{{ 'cortisol-lander.css' | asset_url | stylesheet_tag }}
+
+{% assign shop_url = section.settings.product_url | default: '/products/genius-mind' %}
+{% assign cdn = 'https://cdn.shopify.com/s/files/1/0594/8892/7953/files' %}
+
+{%- style -%}
+  .cl-section { --brand: #00a6d2; --accent: #ff5600; --bg: #0a0a0a; --surface: #141414; --surface2: #1a1a1a; --border: #262626; --muted: #737373; --text2: #a3a3a3; }
+{%- endstyle -%}
+
+<div class="cl-section" style="background:#0a0a0a;color:#ededed;font-family:system-ui,-apple-system,sans-serif;">
+
+  <!-- Announcement Bar -->
+  <div style="background:#054b65;color:#fff;text-align:center;font-size:12px;padding:8px 16px;letter-spacing:0.5px;">
+    <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-right:8px;"></span>
+    Free UK Shipping Over &pound;40
+    <span style="margin:0 8px;opacity:0.3;">|</span>
+    90-Day Money Back Guarantee
+    <span style="margin:0 8px;opacity:0.3;">|</span>
+    Subscribe &amp; Save
+  </div>
+
+  <!-- Hero Section -->
+  <section style="position:relative;overflow:hidden;padding:64px 0 80px;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 16px;position:relative;z-index:1;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="cl-hero-grid">
+
+        <!-- Left: Image -->
+        <div class="cl-hero-img-col">
+          <div style="background:#141414;border-radius:16px;overflow:hidden;border:1px solid #262626;aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:32px;">
+            <img src="{{ cdn }}/hero-bundle.png" alt="Genius Mind 3-bottle bundle" style="max-width:100%;max-height:100%;object-fit:contain;" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Right: Offer -->
+        <div>
+          <!-- Reviews -->
+          <div style="display:flex;align-items:center;gap:8px;font-size:14px;margin-bottom:16px;">
+            <span style="color:#facc15;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span style="color:#a3a3a3;">4.6 from 673 Reviews</span>
+            <span style="color:#404040;">|</span>
+            <span style="color:#a3a3a3;">100K+ customers</span>
+          </div>
+
+          <!-- CORTISOL HOOK -->
+          <h1 style="font-size:clamp(28px,4vw,42px);font-weight:800;line-height:1.15;letter-spacing:-0.5px;margin:0 0 20px;">
+            Every High-Pressure Year You've Run This Business,
+            <span style="color:#ff5600;">Cortisol Has Been Shrinking Your Brain.</span>
+          </h1>
+
+          <p style="color:#a3a3a3;font-size:clamp(15px,1.5vw,18px);line-height:1.65;margin-bottom:24px;">
+            It's been shrinking the hippocampus &mdash; the region responsible for pattern recognition, fast recall, and the sharp instinct that tells you which hires are wrong, which pivots are right, which opportunities are real before anyone else sees them.
+            <span style="color:#fff;font-weight:500;">16 clinically-dosed ingredients designed to protect it.</span>
+          </p>
+
+          <!-- Tags -->
+          <div style="display:flex;gap:12px;margin-bottom:24px;">
+            <span style="background:#1a1a1a;border:1px solid #262626;padding:6px 12px;border-radius:100px;font-size:12px;color:#a3a3a3;">16-Ingredient Nootropic Stack</span>
+            <span style="background:#1a1a1a;border:1px solid #262626;padding:6px 12px;border-radius:100px;font-size:12px;color:#a3a3a3;">60 Capsules per Bottle</span>
+          </div>
+
+          <!-- CTA -->
+          <a href="{{ shop_url }}" style="display:block;width:100%;text-align:center;background:#00a6d2;color:#fff;font-weight:700;padding:16px;border-radius:12px;font-size:16px;text-decoration:none;margin-bottom:16px;transition:background 0.2s;">
+            Add to Cart &mdash; &pound;19.99/mo
+          </a>
+
+          <!-- Trust -->
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;font-size:12px;color:#737373;margin-bottom:24px;">
+            <span>&#x1F6E1;&#xFE0F; 90-Day Money Back</span>
+            <span>&#x1F69A; Free UK Shipping over &pound;40</span>
+            <span>&#x26A1; Same-Day Dispatch</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Bar -->
+  <section style="background:#141414;border-top:1px solid #262626;border-bottom:1px solid #262626;padding:20px 0;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 16px;display:flex;flex-wrap:wrap;justify-content:center;gap:16px 32px;font-size:14px;color:#a3a3a3;">
+      <span>&#x1F1EC;&#x1F1E7; Made in UK</span>
+      <span>&#x1F33F; 100% Natural</span>
+      <span>&#x1F52C; Nutritionist Formulated</span>
+      <span>&#x2705; Non-GMO</span>
+      <span>&#x1F6E1;&#xFE0F; 90-Day Guarantee</span>
+      <span>&#x1F331; Vegan</span>
+    </div>
+  </section>
+
+  <!-- Cortisol Science Section -->
+  <section style="position:relative;padding:80px 0;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,#0a0a0a,#0f1a1e,#0a0a0a);pointer-events:none;"></div>
+    <div style="max-width:900px;margin:0 auto;padding:0 16px;position:relative;z-index:1;">
+      <div style="text-align:center;margin-bottom:64px;">
+        <span style="display:inline-block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:#00a6d2;margin-bottom:16px;">The Cortisol Problem</span>
+        <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:800;margin:0 0 24px;">
+          Your Brain Is Paying the Price for <span style="color:#ff5600;">Every Year of Pressure.</span>
+        </h2>
+        <p style="color:#a3a3a3;font-size:18px;max-width:640px;margin:0 auto;line-height:1.65;">
+          Chronic high-stakes decision making floods your system with cortisol. Over time, it physically shrinks the hippocampus &mdash; the brain region that gives you your edge.
+        </p>
+      </div>
+
+      <!-- What cortisol takes vs protects -->
+      <div style="background:#141414;border:1px solid #262626;border-radius:16px;padding:40px;">
+        <div style="text-align:center;margin-bottom:32px;">
+          <h3 style="font-size:24px;font-weight:700;margin:0 0 12px;">
+            The More Cortisol You've Endured, <span style="color:#ff5600;">The More Your Hippocampus Shrinks.</span>
+          </h3>
+          <p style="color:#a3a3a3;max-width:560px;margin:0 auto;">
+            Leading to your business mind becoming slower, less capable, and less motivated. You didn't build a business that's outgrowing you.
+          </p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" class="cl-two-col">
+          <div style="background:#1a1a1a;border-radius:12px;padding:24px;border:1px solid #262626;">
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#ff5600;font-weight:600;margin-bottom:12px;">What Cortisol Takes</div>
+            <ul style="list-style:none;padding:0;margin:0;font-size:14px;color:#a3a3a3;">
+              <li style="display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;"><span style="color:#ff5600;">&#x2715;</span> Afternoon decision quality collapses</li>
+              <li style="display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;"><span style="color:#ff5600;">&#x2715;</span> Sprint-crash cycle repeats daily</li>
+              <li style="display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;"><span style="color:#ff5600;">&#x2715;</span> The sharp instinct that built your business &mdash; dulling</li>
+              <li style="display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;"><span style="color:#ff5600;">&#x2715;</span> Memory gaps in high-stakes conversations</li>
+              <li style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#ff5600;">&#x2715;</span> Caffeine dependency just to maintain baseline</li>
+            </ul>
+          </div>
+          <div style="background:#1a1a1a;border-radius:12px;padding:24px;border:1px solid #262626;">
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#00a6d2;font-weight:600;margin-bottom:12px;">What Genius Mind Protects</div>
+            <ul style="list-style:none;padding:0;margin:0;font-size:14px;color:#a3a3a3;">
+              <li style="display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;"><span style="color:#00a6d2;">&#x2713;</span> Cerebral blood flow &mdash; Ginkgo Biloba 50:1</li>
+              <li style="display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;"><span style="color:#00a6d2;">&#x2713;</span> Dopamine precursors &mdash; L-Tyrosine replenishment</li>
+              <li style="display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;"><span style="color:#00a6d2;">&#x2713;</span> Cortisol reduction &mdash; Phosphatidylserine</li>
+              <li style="display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;"><span style="color:#00a6d2;">&#x2713;</span> Stress resilience &mdash; Panax Ginseng 20:1 adaptogen</li>
+              <li style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#00a6d2;">&#x2713;</span> Neural pathway growth &mdash; Lion's Mane 4:1</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section style="padding:80px 0;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 16px;">
+      <div style="text-align:center;margin-bottom:56px;">
+        <span style="display:inline-block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:#00a6d2;margin-bottom:16px;">Cognitive Infrastructure</span>
+        <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:800;margin:0;">
+          4 Reasons Operators <span style="color:#00a6d2;">Switch to Genius Mind</span>
+        </h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;" class="cl-four-col">
+        <div style="background:#141414;border:1px solid #262626;border-radius:12px;padding:24px;">
+          <div style="font-size:28px;margin-bottom:16px;">&#x23F1;&#xFE0F;</div>
+          <h3 style="font-weight:700;margin:0 0 8px;font-size:18px;">Extends the Decision Window</h3>
+          <p style="font-size:14px;color:#a3a3a3;line-height:1.6;margin:0;">Ginkgo Biloba (50:1 extract) supports cerebral blood flow, helping maintain the sharp thinking you have at 9am deep into the afternoon.</p>
+        </div>
+        <div style="background:#141414;border:1px solid #262626;border-radius:12px;padding:24px;">
+          <div style="font-size:28px;margin-bottom:16px;">&#x1F9E0;</div>
+          <h3 style="font-weight:700;margin:0 0 8px;font-size:18px;">Infrastructure, Not a Patch</h3>
+          <p style="font-size:14px;color:#a3a3a3;line-height:1.6;margin:0;">16 ingredients across three mechanisms &mdash; blood flow, neurotransmitter precursors, and adaptogens. A system built for sustained cognitive output.</p>
+        </div>
+        <div style="background:#141414;border:1px solid #262626;border-radius:12px;padding:24px;">
+          <div style="font-size:28px;margin-bottom:16px;">&#x1F52C;</div>
+          <h3 style="font-weight:700;margin:0 0 8px;font-size:18px;">Every Dose Disclosed</h3>
+          <p style="font-size:14px;color:#a3a3a3;line-height:1.6;margin:0;">No proprietary blends. No hidden dosages. High-ratio extracts with extraction ratios printed on the label. You read labels &mdash; this one is worth reading.</p>
+        </div>
+        <div style="background:#141414;border:1px solid #262626;border-radius:12px;padding:24px;">
+          <div style="font-size:28px;margin-bottom:16px;">&#x26A1;</div>
+          <h3 style="font-weight:700;margin:0 0 8px;font-size:18px;">Replaces Caffeine Dependence</h3>
+          <p style="font-size:14px;color:#a3a3a3;line-height:1.6;margin:0;">Guarana provides sustained energy release without the spike-and-crash cycle. L-Tyrosine replenishes the dopamine precursors that chronic decision-making depletes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guarantee CTA -->
+  <section style="position:relative;padding:80px 0;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,#0a0a0a,#0f1a1e,#0a0a0a);pointer-events:none;"></div>
+    <div style="max-width:640px;margin:0 auto;padding:0 16px;text-align:center;position:relative;z-index:1;">
+      <div style="font-size:48px;margin-bottom:16px;">&#x1F6E1;&#xFE0F;</div>
+      <span style="display:inline-block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:#00a6d2;margin-bottom:16px;">Our Promise</span>
+      <div style="font-size:clamp(40px,6vw,64px);font-weight:800;margin-bottom:16px;">Risk-Free</div>
+      <h2 style="font-size:clamp(18px,2.5vw,24px);font-weight:600;color:#a3a3a3;margin:0 0 24px;">
+        Protect what you've built. Try it for 90 days.
+      </h2>
+      <p style="color:#737373;margin-bottom:32px;max-width:400px;margin-left:auto;margin-right:auto;">
+        Over 100,000 customers. 4.6/5 average rating. If the decision quality doesn't shift, you get your money back.
+      </p>
+      <a href="{{ shop_url }}" style="display:inline-block;background:#00a6d2;color:#fff;font-weight:700;padding:16px 40px;border-radius:12px;font-size:16px;text-decoration:none;">
+        Try Genius Mind Risk-Free
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="border-top:1px solid #1a1a1a;padding:40px 0;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 16px;text-align:center;">
+      <div style="font-size:12px;color:#404040;">
+        &copy; {{ 'now' | date: '%Y' }} JustFloow. All rights reserved.<br />
+        *These statements have not been evaluated by the MHRA. This product is not intended to diagnose, treat, cure or prevent any disease.
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+{% schema %}
+{
+  "name": "Cortisol Lander",
+  "tag": "section",
+  "class": "cortisol-lander",
+  "settings": [
+    {
+      "type": "url",
+      "id": "product_url",
+      "label": "Product URL",
+      "default": "/products/genius-mind"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cortisol Lander"
+    }
+  ]
+}
+{% endschema %}
