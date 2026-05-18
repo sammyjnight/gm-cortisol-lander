@@ -207,7 +207,7 @@ export default function CognitiveLander() {
 
       {/* ══════════════ §3 WHY EVERYTHING YOU'VE TRIED FAILED ══════════════ */}
       <Reveal>
-        <section className="bg-white text-black py-16 md:py-24">
+        <section className="bg-[#F5F7FA] text-black py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-black text-center mb-8">
               Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work
@@ -591,14 +591,14 @@ export default function CognitiveLander() {
         </section>
       </Reveal>
 
-      {/* ══════════════ §11 PRODUCT SECTION ══════════════ */}
+      {/* ══════════════ §11 PRODUCT SECTION (WHITE) ══════════════ */}
       <Reveal>
-        <section className="rock-bg py-16 md:py-24">
+        <section className="bg-[#F5F7FA] py-16 md:py-24">
           <div className="max-w-6xl mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               {/* Left: Product display */}
-              <div className="bg-[#0C2A3A] rounded-2xl border border-[#1A4459] p-8 flex flex-col items-center">
-                <div className="bg-[#0F3347] rounded-xl w-full aspect-square flex items-center justify-center mb-6">
+              <div className="bg-white rounded-2xl border border-[#E0E6EC] shadow-sm p-8 flex flex-col items-center">
+                <div className="bg-[#F0F4F6] rounded-xl w-full aspect-square flex items-center justify-center mb-6">
                   <div className="text-center text-[#7A9BAD]">
                     <div className="text-6xl mb-4">&#129514;</div>
                     <p className="text-sm">[Product image with benefits callouts]</p>
@@ -608,7 +608,7 @@ export default function CognitiveLander() {
                 <div className="text-center">
                   {/* <!-- TODO: Verify rating and count against Trustpilot/Amazon UK --> */}
                   <div className="text-[#FFD700] text-sm mb-1">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                  <p className="text-white text-sm font-bold">Verified Customer Reviews</p>
+                  <p className="text-[#0a0a0f] text-sm font-bold">Verified Customer Reviews</p>
                   <p className="text-[#7A9BAD] text-[10px]">
                     *Results may vary. Based on verified customer reviews.
                   </p>
@@ -617,8 +617,8 @@ export default function CognitiveLander() {
 
               {/* Right: Purchase info */}
               <div>
-                <h2 className="text-3xl font-black mb-4">Cognitive Infrastructure for Operators</h2>
-                <p className="text-white font-bold mb-4">
+                <h2 className="text-3xl font-black text-[#0a0a0f] mb-4">Cognitive Infrastructure for Operators</h2>
+                <p className="text-[#0a0a0f] font-bold mb-4">
                   Genius Mind is a complete cognitive stack engineered around the
                   Cognisync Tri-Factor &mdash; supporting dopamine pathways,
                   cerebral blood flow, and synaptic signalling with 16 clinically
@@ -627,15 +627,15 @@ export default function CognitiveLander() {
                 <ul className="space-y-2 mb-6">
                   {PRODUCT_BULLETS.map((b) => (
                     <li key={b} className="flex items-start gap-2 text-sm">
-                      <span className="text-green-500 mt-0.5">&#10004;</span>
-                      <span className="text-white">{b}</span>
+                      <span className="text-green-600 mt-0.5">&#10004;</span>
+                      <span className="text-[#333]">{b}</span>
                     </li>
                   ))}
                 </ul>
 
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-3xl font-black text-white">&pound;24.99</span>
-                  <span className="text-[#7A9BAD] line-through text-lg">&pound;34.99</span>
+                  <span className="text-3xl font-black text-[#0a0a0f]">&pound;24.99</span>
+                  <span className="text-[#999] line-through text-lg">&pound;34.99</span>
                   <span className="label-mono text-[#00A6D2] font-bold">Save 28%</span>
                 </div>
 
@@ -660,14 +660,14 @@ export default function CognitiveLander() {
 
                 <div className="text-center">
                   <p className="label-mono text-[#00A6D2] font-bold mb-3">Best Value: 3-Month Supply</p>
-                  <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] p-4">
+                  <div className="bg-white rounded-xl border border-[#E0E6EC] shadow-sm p-4">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-white font-bold">3 Bottles (90-Day Supply)</p>
+                        <p className="text-[#0a0a0f] font-bold">3 Bottles (90-Day Supply)</p>
                         <p className="text-[#7A9BAD] text-xs">Just &pound;0.48/serving</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-[#7A9BAD] line-through text-sm">&pound;74.97</p>
+                        <p className="text-[#999] line-through text-sm">&pound;74.97</p>
                         <p className="text-[#00A6D2] font-bold text-xl">&pound;42.99</p>
                       </div>
                     </div>
@@ -749,25 +749,24 @@ export default function CognitiveLander() {
         </section>
       </Reveal>
 
-      {/* ══════════════ §14 SURVEY OUTCOMES CHART ══════════════ */}
+      {/* ══════════════ §14 SURVEY OUTCOMES CHART (WHITE) ══════════════ */}
       <Reveal>
-        <section className="rock-bg py-16 md:py-24 border-t border-[#1A4459]">
+        <section className="bg-[#F5F7FA] py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-black mb-8">
+            <h2 className="text-3xl md:text-4xl font-black text-[#0a0a0f] mb-8">
               What Long-Term Customers Actually Report
             </h2>
 
-            {/* <!-- ASSET TODO: PPS survey outcome chart from 33-respondent data --> */}
-            <div className="max-w-2xl mx-auto space-y-4 mb-8">
+            <div className="max-w-2xl mx-auto space-y-5 mb-8">
               {SURVEY_OUTCOMES.map((item) => (
                 <div key={item.label}>
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-white text-sm font-semibold">{item.label}</span>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-[#0a0a0f] text-sm font-semibold">{item.label}</span>
                     <span className="text-[#00A6D2] text-sm font-bold">{item.count}/33</span>
                   </div>
-                  <div className="w-full bg-[#0C2A3A] rounded-full h-3">
+                  <div className="w-full bg-[#E0E6EC] rounded-full h-3">
                     <div
-                      className="bg-[#00A6D2] h-3 rounded-full"
+                      className="bg-[#00A6D2] h-3 rounded-full transition-all duration-700"
                       style={{ width: `${(item.count / 33) * 100}%` }}
                     />
                   </div>
@@ -825,8 +824,62 @@ export default function CognitiveLander() {
                     ))}
                   </ul>
                 </div>
-                <div className="bg-[#0F3347] rounded-xl flex items-center justify-center aspect-video">
-                  <p className="text-[#7A9BAD] text-sm">[{WEEKS[activeWeek].label} illustration]</p>
+
+                {/* Progress graph – line rises as weeks increase */}
+                <div className="bg-[#0F3347] rounded-xl p-6 flex flex-col justify-between aspect-video">
+                  <p className="text-[#7A9BAD] text-[10px] label-mono mb-2">Cognitive Output</p>
+                  <svg viewBox="0 0 300 140" className="w-full flex-1" preserveAspectRatio="none">
+                    {/* Grid lines */}
+                    {[0, 1, 2, 3, 4].map((i) => (
+                      <line key={i} x1="0" y1={i * 35} x2="300" y2={i * 35} stroke="#1A4459" strokeWidth="0.5" />
+                    ))}
+                    {/* Full curve (dim) */}
+                    <polyline
+                      fill="none"
+                      stroke="#1A4459"
+                      strokeWidth="1.5"
+                      points="0,130 43,120 86,105 129,85 172,62 215,38 258,20 300,15"
+                    />
+                    {/* Active curve (teal, clipped to active week) */}
+                    <polyline
+                      fill="none"
+                      stroke="#00A6D2"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      points={GRAPH_POINTS.slice(0, activeWeek + 2).join(" ")}
+                    />
+                    {/* Glow area under active curve */}
+                    <polygon
+                      fill="url(#graphGlow)"
+                      opacity="0.15"
+                      points={`${GRAPH_POINTS.slice(0, activeWeek + 2).join(" ")} ${GRAPH_POINTS[activeWeek + 1]?.split(",")[0] || "300"},140 0,140`}
+                    />
+                    {/* Active dot */}
+                    {(() => {
+                      const pt = GRAPH_POINTS[activeWeek + 1] || GRAPH_POINTS[GRAPH_POINTS.length - 1];
+                      const [cx, cy] = pt.split(",");
+                      return (
+                        <>
+                          <circle cx={cx} cy={cy} r="6" fill="#00A6D2" opacity="0.3" />
+                          <circle cx={cx} cy={cy} r="3.5" fill="#00A6D2" />
+                        </>
+                      );
+                    })()}
+                    <defs>
+                      <linearGradient id="graphGlow" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#00A6D2" />
+                        <stop offset="100%" stopColor="#00A6D2" stopOpacity="0" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div className="flex justify-between text-[#7A9BAD] text-[9px] label-mono mt-2">
+                    {WEEKS.map((w, i) => (
+                      <span key={w.label} className={i === activeWeek ? "text-[#00A6D2] font-bold" : ""}>
+                        {w.label.replace("Week ", "W").replace("Month ", "M")}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -936,22 +989,22 @@ export default function CognitiveLander() {
         </section>
       </Reveal>
 
-      {/* ══════════════ §18 BUILT BY OPERATORS ══════════════ */}
+      {/* ══════════════ §18 BUILT BY OPERATORS (WHITE) ══════════════ */}
       <Reveal>
-        <section className="rock-bg py-16 md:py-24">
+        <section className="bg-white py-16 md:py-24">
           <div className="max-w-5xl mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-black mb-12">
+            <h2 className="text-3xl md:text-4xl font-black text-[#0a0a0f] mb-12">
               Built by Operators, for Operators
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               {FORMULATION_POINTS.map((point) => (
                 <div key={point.title} className="text-center">
-                  <div className="advisory-circle flex items-center justify-center mx-auto">
+                  <div className="w-[140px] h-[140px] rounded-full border-3 border-[#00A6D2] bg-[#EDF3F7] flex items-center justify-center mx-auto mb-4">
                     <span className="text-3xl">{point.icon}</span>
                   </div>
-                  <h3 className="text-white font-bold text-lg mb-1">{point.title}</h3>
+                  <h3 className="text-[#0a0a0f] font-bold text-lg mb-1">{point.title}</h3>
                   <p className="label-mono text-[#00A6D2] text-[10px] mb-3">{point.subtitle}</p>
-                  <p className="text-[#7A9BAD] text-sm leading-relaxed">{point.desc}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">{point.desc}</p>
                 </div>
               ))}
             </div>
@@ -1207,6 +1260,18 @@ const SURVEY_OUTCOMES = [
   { label: "Mental Clarity", count: 22 },
   { label: "Easier to Take Action", count: 20 },
   { label: "Sharper Under Pressure", count: 17 },
+];
+
+/* §15 – GRAPH POINTS for weekly timeline (x,y – y decreases = higher output) */
+const GRAPH_POINTS = [
+  "0,130",    // baseline
+  "43,120",   // W1-2
+  "86,105",   // W3-4
+  "129,85",   // W5-6
+  "172,62",   // W7-8
+  "215,38",   // W9-10
+  "258,20",   // W11-12
+  "300,15",   // M6+
 ];
 
 /* §15 – WEEK-BY-WEEK (all hedged) */
