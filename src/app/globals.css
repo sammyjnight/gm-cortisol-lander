@@ -1,16 +1,36 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
 
 @theme inline {
-  --color-background: #041E2B;
+  /* ── Base canvas ── */
+  --color-background: #0a0a0f;
   --color-foreground: #ededed;
+  --color-surface: #111118;
+  --color-surface-2: #1a1a24;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.16);
+
+  /* ── Brand accent (teal/cyan) ── */
   --color-brand: #00A6D2;
   --color-brand-dark: #008AB0;
-  --color-surface: #0C2A3A;
-  --color-surface-2: #0F3347;
-  --color-border: #1A4459;
-  --color-muted: #7A9BAD;
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand-glow: rgba(0, 166, 210, 0.15);
+
+  /* ── Warning accent (coral) ── */
+  --color-warn: #D97757;
+  --color-warn-glow: rgba(217, 119, 87, 0.15);
+
+  /* ── Text tones ── */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: rgba(255, 255, 255, 0.65);
+  --color-text-tertiary: rgba(255, 255, 255, 0.35);
+
+  /* ── Star gold ── */
+  --color-gold: #FFD700;
+
+  /* ── Fonts ── */
+  --font-sans: 'Figtree', 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: 'EB Garamond', Garamond, 'Times New Roman', serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'Fira Mono', monospace;
 }
 
 html {
@@ -20,36 +40,43 @@ html {
 body {
   background: var(--color-background);
   color: var(--color-foreground);
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
 }
 
-/* Dark navy texture via gradient overlay */
-.rock-bg {
+/* ── Section backgrounds ── */
+.section-primary {
+  background: var(--color-background);
+}
+.section-elevated {
+  background: var(--color-surface);
+}
+.section-gradient {
   background:
-    linear-gradient(180deg, rgba(4,30,43,0.95) 0%, rgba(12,42,58,0.9) 50%, rgba(4,30,43,0.95) 100%),
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,166,210,0.04) 0%, transparent 70%),
+    var(--color-background);
 }
 
-/* Monospace uppercase label style */
+/* ── Monospace label ── */
 .label-mono {
-  font-family: var(--font-mono), monospace;
+  font-family: var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.15em;
   font-size: 0.75rem;
 }
 
-/* Countdown timer */
-.countdown-block {
-  background: rgba(0,166,210,0.15);
-  border: 1px solid rgba(0,166,210,0.3);
-  border-radius: 6px;
-  padding: 6px 12px;
-  min-width: 56px;
-  text-align: center;
-  font-variant-numeric: tabular-nums;
+/* ── Breakout line (cyan mono emphasis) ── */
+.breakout-line {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-brand);
+  font-weight: 900;
+  font-size: 1.15rem;
+  line-height: 1.3;
+  margin: 1.5rem 0;
 }
 
-/* Sticky bar */
+/* ── Sticky bar ── */
 .sticky-buy-bar {
   transform: translateY(100%);
   transition: transform 0.3s ease;
@@ -58,127 +85,136 @@ body {
   transform: translateY(0);
 }
 
-/* FAQ accordion */
+/* ── FAQ accordion ── */
 .faq-answer {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
+  transition: max-height 0.4s ease;
 }
 .faq-answer.open {
-  max-height: 500px;
+  max-height: 600px;
 }
 
-/* Scroll reveal */
-.animate-in {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.animate-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Warning box with amber border */
-.warning-box {
-  border: 1px solid rgba(245, 158, 11, 0.5);
-  border-radius: 4px;
-  padding: 12px 16px;
-  margin-bottom: 8px;
-}
-
-/* Comparison table */
-.compare-check {
-  color: #22c55e;
-}
-.compare-x {
-  color: #ef4444;
-}
-
-/* Teal CTA button */
+/* ── CTA primary ── */
 .cta-btn {
   display: block;
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
-  background: #00A6D2;
+  background: var(--color-brand);
   color: white;
+  font-family: var(--font-sans);
   font-weight: 800;
-  font-size: 1.125rem;
-  padding: 18px 32px;
-  border-radius: 12px;
+  font-size: 1rem;
+  padding: 16px 32px;
+  border-radius: 10px;
   text-align: center;
-  transition: background 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: all 0.15s ease;
   cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 166, 210, 0.2);
 }
 .cta-btn:hover {
-  background: #008AB0;
+  background: var(--color-brand-dark);
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(0, 166, 210, 0.3);
+}
+.cta-btn:active {
+  transform: scale(0.98);
 }
 
-/* Ingredient card */
+/* ── CTA secondary ── */
+.cta-btn-secondary {
+  display: inline-block;
+  background: transparent;
+  color: var(--color-brand);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px 28px;
+  border-radius: 10px;
+  border: 1.5px solid var(--color-brand);
+  text-align: center;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.cta-btn-secondary:hover {
+  background: rgba(0, 166, 210, 0.08);
+  transform: scale(1.02);
+}
+.cta-btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* ── Card system ── */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 24px;
+  transition: all 0.2s ease;
+}
+.card:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+.card-featured {
+  border-color: rgba(0, 166, 210, 0.3);
+}
+.card-featured:hover {
+  border-color: rgba(0, 166, 210, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 166, 210, 0.1);
+}
+.card-warn {
+  border-left: 3px solid var(--color-warn);
+}
+
+/* ── Ingredient card ── */
 .ingredient-card {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #0F3347;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
   padding: 20px;
   min-height: 180px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-}
-
-/* Tab selector */
-.tab-btn {
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.75rem;
-  font-weight: 600;
   transition: all 0.2s ease;
-  cursor: pointer;
 }
-.tab-btn.active {
-  background: #00A6D2;
-  color: white;
-}
-.tab-btn:not(.active) {
-  background: #1A4459;
-  color: #7A9BAD;
-}
-.tab-btn:not(.active):hover {
-  background: #1F5570;
+.ingredient-card:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Pulse dot */
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-.pulse-dot {
-  animation: pulse 2s ease-in-out infinite;
-}
-
-/* Red X list item */
-.red-x-item {
+/* ── Skeleton placeholder ── */
+.skeleton-placeholder {
+  background: var(--color-surface);
+  border: 2px dashed rgba(0, 166, 210, 0.2);
+  border-radius: 14px;
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  border: 1px solid rgba(220, 38, 38, 0.4);
-  border-radius: 4px;
-  padding: 10px 14px;
-  margin-bottom: 6px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.skeleton-placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(0,166,210,0.04) 50%, transparent 100%);
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
-/* Advisory board circle */
-.advisory-circle {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  border: 3px solid #00A6D2;
-  overflow: hidden;
-  background: #1A4459;
-  margin: 0 auto 16px;
+/* ── Hairline divider ── */
+.section-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  width: 100%;
 }

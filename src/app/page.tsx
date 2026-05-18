@@ -1,78 +1,137 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import {
+  AlertTriangle, X, Zap, Lightbulb, Shield, Target, Rocket,
+  TrendingUp, Brain, ChevronDown, Check, HelpCircle, Minus,
+  Dumbbell, Heart, Moon, Sun, Leaf, BookOpen, Microscope,
+  Award, ArrowRight, Eye, BatteryFull, Factory, FlaskConical,
+  Package, ShieldCheck, Truck, ExternalLink,
+} from "lucide-react";
 
 /* ───────── constants ───────── */
 const SHOP_URL = "https://justfloow.com/products/genius-mind";
 
-/* ───────── countdown helper ───────── */
-function getCountdown() {
-  const now = new Date();
-  const end = new Date(now);
-  end.setHours(23, 59, 59, 999);
-  const diff = Math.max(0, end.getTime() - now.getTime());
-  const h = Math.floor(diff / 3600000);
-  const m = Math.floor((diff % 3600000) / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
-  return {
-    h: String(h).padStart(2, "0"),
-    m: String(m).padStart(2, "0"),
-    s: String(s).padStart(2, "0"),
-  };
+/* ───────── reusable components ───────── */
+
+function SectionNumber({ num, label }: { num: string; label: string }) {
+  return (
+    <p className="label-mono text-[var(--color-brand)] mb-4 text-xs">
+      {num} &mdash; {label}
+    </p>
+  );
 }
 
-/* ───────── scroll reveal hook ───────── */
-function useScrollReveal() {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add("visible");
-          observer.unobserve(el);
-        }
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-  return ref;
+function BreakoutLine({ children }: { children: React.ReactNode }) {
+  return <p className="breakout-line">{children}</p>;
 }
 
-function Reveal({
+function Skeleton({ label, className = "" }: { label: string; className?: string }) {
+  return (
+    <div className={`skeleton-placeholder ${className}`}>
+      <p className="label-mono text-[var(--color-brand)] opacity-50 text-[10px] z-10 text-center px-4">
+        Asset TODO: {label}
+      </p>
+    </div>
+  );
+}
+
+function FadeUp({
   children,
   className = "",
+  delay = 0,
 }: {
   children: React.ReactNode;
   className?: string;
+  delay?: number;
 }) {
-  const ref = useScrollReveal();
   return (
-    <div ref={ref} className={`animate-in ${className}`}>
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.6, ease: "easeOut", delay }}
+      className={className}
+    >
       {children}
+    </motion.div>
+  );
+}
+
+function StaggerChildren({
+  children,
+  className = "",
+  stagger = 0.08,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  stagger?: number;
+}) {
+  return (
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-60px" }}
+      variants={{ visible: { transition: { staggerChildren: stagger } } }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+const childFade = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+};
+
+function AnimatedBar({ value, max, delay = 0 }: { value: number; max: number; delay?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const pct = (value / max) * 100;
+  return (
+    <div ref={ref} className="w-full bg-[var(--color-surface)] rounded-full h-3 overflow-hidden">
+      <motion.div
+        className="h-3 rounded-full"
+        style={{ background: "linear-gradient(90deg, var(--color-brand), #33BBE0)" }}
+        initial={{ width: 0 }}
+        animate={inView ? { width: `${pct}%` } : { width: 0 }}
+        transition={{ duration: 1.2, ease: "easeOut", delay }}
+      />
     </div>
   );
+}
+
+function CountUp({ target, delay = 0 }: { target: number; delay?: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    if (!inView) return;
+    const dur = 1200;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const elapsed = now - start - delay * 1000;
+      if (elapsed < 0) { requestAnimationFrame(tick); return; }
+      const progress = Math.min(elapsed / dur, 1);
+      setVal(Math.round(progress * target));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, [inView, target, delay]);
+  return <span ref={ref}>{val}</span>;
 }
 
 /* ═══════════════════════════════════════════════════════════════
    PAGE
    ═══════════════════════════════════════════════════════════════ */
 export default function CognitiveLander() {
-  const [countdown, setCountdown] = useState(getCountdown());
   const [stickyVisible, setStickyVisible] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [activeWeek, setActiveWeek] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => setCountdown(getCountdown()), 1000);
-    return () => clearInterval(id);
-  }, []);
-
-  useEffect(() => {
-    const onScroll = () => setStickyVisible(window.scrollY > 600);
+    const onScroll = () => setStickyVisible(window.scrollY > 800);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -80,51 +139,43 @@ export default function CognitiveLander() {
   return (
     <>
       {/* ══════════════ HEADER ══════════════ */}
-      <header className="bg-[#041E2B] border-b border-[#1A4459] py-4">
+      <header className="bg-[var(--color-background)] border-b border-[var(--color-border)] py-4 sticky top-0 z-40 backdrop-blur-md bg-opacity-90">
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
-          <a href={SHOP_URL} className="flex items-center gap-2">
-            <span className="text-white font-black text-xl tracking-[0.15em]">
-              GENIUS MIND
-            </span>
+          <a href={SHOP_URL} className="text-white font-black text-lg tracking-[0.12em]">
+            GENIUS MIND
           </a>
-          <nav className="hidden md:flex items-center gap-6 text-sm text-[#7A9BAD]">
-            <a href={SHOP_URL} className="hover:text-white transition-colors">
-              Shop Now
-            </a>
-            <a href="#ingredients" className="hover:text-white transition-colors">
-              Science
-            </a>
-            <a href="#faq" className="hover:text-white transition-colors">
-              FAQ
-            </a>
+          <nav className="hidden md:flex items-center gap-6 text-sm text-[var(--color-text-secondary)]">
+            <a href={SHOP_URL} className="hover:text-white transition-colors">Shop Now</a>
+            <a href="#formula" className="hover:text-white transition-colors">Science</a>
+            <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
           </nav>
         </div>
       </header>
 
       {/* ══════════════ §1 HERO ══════════════ */}
-      <section className="rock-bg py-16 md:py-24">
+      <section className="section-gradient py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Copy */}
-            <div>
-              <p className="label-mono text-[#7A9BAD] mb-4">
+            <FadeUp>
+              <p className="label-mono text-[var(--color-brand)] mb-5">
                 16 Ingredients. One Formula. Zero BS.
               </p>
-              <h1 className="font-mono text-3xl md:text-4xl lg:text-5xl font-black uppercase leading-tight mb-6">
-                Your Brain Isn&apos;t Tired. It&apos;s Running On What Cortisol Left Behind.
+              <h1 className="text-4xl md:text-5xl lg:text-[3.4rem] font-black leading-[1.06] mb-6 tracking-tight">
+                Your Brain Isn&apos;t Tired. It&apos;s Running On What{" "}
+                <span className="text-[var(--color-brand)]">Cortisol Left Behind.</span>
               </h1>
-              <p className="text-white font-bold text-lg mb-4">
+              <p className="text-white font-semibold text-lg mb-4 leading-snug">
                 Every high-pressure year you&apos;ve run this business, cortisol has been
                 wearing down the chemistry your brain needs to think clearly. This is
                 how you restore it.
               </p>
-              <p className="text-[#7A9BAD] mb-4 leading-relaxed">
+              <p className="text-[var(--color-text-secondary)] mb-3 leading-relaxed">
                 The stress hormone that spikes every time a deadline lands, a hire blows
                 up, or a pivot has to be made under pressure &mdash; it&apos;s the same one
                 quietly depleting the precursors your brain uses to build focus, recall,
                 and drive.
               </p>
-              <p className="text-[#7A9BAD] mb-4 leading-relaxed">
+              <p className="text-[var(--color-text-secondary)] mb-3 leading-relaxed">
                 It&apos;s why the second coffee stopped working. Why the calls that used to
                 feel obvious now take three drafts. Why you finish the day with output
                 you wouldn&apos;t have signed off on three years ago.
@@ -136,1005 +187,770 @@ export default function CognitiveLander() {
                 The chaos isn&apos;t going anywhere &mdash; but your brain doesn&apos;t have to
                 keep paying for it.
               </p>
-              <a href="#mechanism" className="cta-btn inline-block">
-                See How It Works &rarr;
+              <a href="#mechanism" className="cta-btn-secondary inline-flex items-center gap-2">
+                See How It Works <ArrowRight size={16} />
               </a>
-            </div>
+            </FadeUp>
 
-            {/* Right: High/Low Cortisol Brain visual */}
-            {/* <!-- ASSET TODO: Split image – "HIGH CORTISOL BRAIN" (depleted, dim) vs "LOW CORTISOL BRAIN" (lit, replenished) – Genius Mind bottle centred between them --> */}
-            <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] aspect-square flex items-center justify-center">
-              <div className="text-center text-[#7A9BAD] p-8">
-                <div className="text-6xl mb-4">&#129504;</div>
-                <p className="text-sm">[High Cortisol Brain vs Low Cortisol Brain comparison]</p>
-                <p className="text-xs mt-2">Genius Mind bottle centred between them</p>
-              </div>
-            </div>
+            <FadeUp delay={0.15}>
+              <Skeleton label="High Cortisol Brain vs Low Cortisol Brain split visual with Genius Mind bottle centred" className="aspect-square" />
+            </FadeUp>
           </div>
         </div>
+        {/* Scroll cue */}
+        <motion.div
+          className="flex justify-center mt-12"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ChevronDown size={24} className="text-[var(--color-text-tertiary)]" />
+        </motion.div>
       </section>
 
-      {/* ══════════════ §2 SYMPTOMS LIST ══════════════ */}
-      <section className="bg-[#041E2B] py-16 md:py-24">
+      <div className="section-divider" />
+
+      {/* ══════════════ §2 SYMPTOMS ══════════════ */}
+      <section className="section-primary py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
-            {/* Left: Image placeholder */}
-            {/* <!-- ASSET TODO: Founder portrait depleted/sharp comparison --> */}
-            <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] aspect-[4/5] flex items-center justify-center">
-              <div className="text-center text-[#7A9BAD] p-8">
-                <div className="text-6xl mb-4">&#128248;</div>
-                <p className="text-sm">[Founder at desk / lifestyle image]</p>
-              </div>
-            </div>
+            <FadeUp>
+              <Skeleton label="Founder at desk / lifestyle image" className="aspect-[4/5]" />
+            </FadeUp>
 
-            {/* Right: Copy */}
-            <div>
-              <h2 className="text-3xl md:text-4xl font-black mb-6">
+            <FadeUp delay={0.1}>
+              <SectionNumber num="01" label="THE SYMPTOMS" />
+              <h2 className="text-3xl md:text-4xl font-black mb-6 leading-tight">
                 It&apos;s Not Just Burnout
               </h2>
-              <p className="text-white font-bold mb-4">Many high-output operators in their 30s and 40s end up...</p>
-              <div className="space-y-2 mb-6">
-                {[
-                  { bold: "Re-reading the same email three times", rest: "before the meaning lands" },
-                  { bold: "Decision quality dropping by 2pm", rest: "\u2014 and the hardest calls always land later" },
-                  { bold: "The second coffee not doing what it used to", rest: "\u2014 and the third one giving you the jitters without the focus" },
-                  { bold: "Word-finding gaps in important conversations", rest: "\u2014 names, terms, the right word for a Slack message that should take 30 seconds" },
-                  { bold: "Brain output flatlining", rest: "even after you\u2019ve sorted sleep, training, and diet" },
-                ].map((item) => (
-                  <div key={item.bold} className="warning-box flex items-start gap-2">
-                    <span className="text-amber-500 mt-0.5">&#9888;</span>
-                    <p className="text-white text-sm">
-                      <strong>{item.bold}</strong>{" "}
-                      <span className="text-[#7A9BAD]">{item.rest}</span>
+              <p className="text-white font-semibold mb-5">Many high-output operators in their 30s and 40s end up...</p>
+
+              <StaggerChildren className="space-y-2 mb-6">
+                {SYMPTOMS.map((s) => (
+                  <motion.div key={s.bold} variants={childFade} className="card card-warn flex items-start gap-3 !py-3 !px-4">
+                    <AlertTriangle size={16} className="text-[var(--color-warn)] mt-0.5 shrink-0" />
+                    <p className="text-sm">
+                      <strong className="text-white">{s.bold}</strong>{" "}
+                      <span className="text-[var(--color-text-secondary)]">{s.rest}</span>
                     </p>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
-              <p className="text-white mb-4 leading-relaxed">
+              </StaggerChildren>
+
+              <p className="text-white leading-relaxed mb-4">
                 Your father at 50 probably had sharper recall than you have at 38.
                 This isn&apos;t aging. This is what chronic cortisol does to the chemistry
                 your brain runs on &mdash; and the longer it goes unaddressed, the more
                 it compounds.
               </p>
-              <p className="text-[#00A6D2] font-bold">
-                Your hormones control your brain&apos;s chemistry.<br />
-                Fix the chemistry. Restore the function.
-              </p>
-            </div>
+              <BreakoutLine>
+                Your hormones control your brain&apos;s chemistry. Fix the chemistry. Restore the function.
+              </BreakoutLine>
+            </FadeUp>
           </div>
         </div>
       </section>
 
-      {/* ══════════════ §3 WHY EVERYTHING YOU'VE TRIED FAILED ══════════════ */}
-      <Reveal>
-        <section className="bg-[#F5F7FA] text-black py-16 md:py-24">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-black text-center mb-8">
+      <div className="section-divider" />
+
+      {/* ══════════════ §3 WHY EVERYTHING FAILED ══════════════ */}
+      <section className="section-elevated py-16 md:py-24">
+        <div className="max-w-4xl mx-auto px-4">
+          <FadeUp>
+            <SectionNumber num="02" label="THE CAUSE" />
+            <h2 className="text-3xl md:text-4xl font-black text-center mb-8 leading-tight">
               Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work
             </h2>
+          </FadeUp>
 
-            <div className="grid lg:grid-cols-2 gap-12 items-start mb-12">
-              <div>
-                <p className="font-bold text-lg mb-4">
-                  You didn&apos;t fail. The strategy failed you.
-                </p>
-                <p className="text-gray-700 mb-4">
-                  Every caffeine protocol, productivity hack, and supplement you&apos;ve tried
-                  attacked the symptom. None of them went after the cause.
-                </p>
-                <p className="font-bold text-lg mb-4">The cause is cortisol.</p>
-                <p className="text-gray-700 mb-4">And the reason is simple:</p>
-                <p className="font-mono text-[#00A6D2] font-black text-xl uppercase mb-4">
-                  Your stress response was built for a world that no longer exists.
-                </p>
-              </div>
+          <div className="grid lg:grid-cols-2 gap-12 items-start mb-12">
+            <FadeUp>
+              <p className="font-semibold text-lg mb-4">
+                You didn&apos;t fail. The strategy failed you.
+              </p>
+              <p className="text-[var(--color-text-secondary)] mb-4">
+                Every caffeine protocol, productivity hack, and supplement you&apos;ve tried
+                attacked the symptom. None of them went after the cause.
+              </p>
+              <BreakoutLine>The cause is cortisol.</BreakoutLine>
+              <p className="text-[var(--color-text-secondary)] mb-4">And the reason is simple:</p>
+              <BreakoutLine>
+                Your stress response was built for a world that no longer exists.
+              </BreakoutLine>
+            </FadeUp>
 
-              <div>
-                <p className="text-gray-700 mb-4">
-                  For most of human history, stress was short.
-                </p>
-                <p className="text-gray-700 mb-4">
-                  <strong>A threat appeared, cortisol spiked to get you through it,
-                  the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</strong>
-                </p>
-                <p className="text-gray-700 mb-4">
-                  <strong>But now the threat never passes.</strong>
-                </p>
-                <p className="text-gray-700 mb-4">
-                  The Slack message at 10pm. The funding round. The hire that isn&apos;t
-                  working out. The product launch. The kid who&apos;s sick the day of the
-                  board meeting. None of it is life or death. But your nervous system
-                  can&apos;t tell the difference.
-                </p>
-              </div>
-            </div>
+            <FadeUp delay={0.1}>
+              <p className="text-[var(--color-text-secondary)] mb-4">
+                For most of human history, stress was short.
+              </p>
+              <p className="text-[var(--color-text-secondary)] mb-4">
+                <strong className="text-white">A threat appeared, cortisol spiked to get you through it,
+                the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</strong>
+              </p>
+              <p className="text-[var(--color-text-secondary)] mb-4">
+                <strong className="text-white">But now the threat never passes.</strong>
+              </p>
+              <p className="text-[var(--color-text-secondary)] mb-4">
+                The Slack message at 10pm. The funding round. The hire that isn&apos;t
+                working out. The product launch. The kid who&apos;s sick the day of the
+                board meeting. None of it is life or death. But your nervous system
+                can&apos;t tell the difference.
+              </p>
+            </FadeUp>
+          </div>
 
-            <p className="text-gray-700 text-center mb-8">
+          <FadeUp>
+            <p className="text-[var(--color-text-secondary)] text-center mb-8">
               And the harder you try to think your way out of cortisol-driven cognitive
               depletion without addressing the chemistry first, the more you&apos;re working
               against yourself:
             </p>
+          </FadeUp>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: "More caffeine builds tolerance and depletes the system underneath.",
-                  desc: "Caffeine doesn\u2019t produce dopamine \u2014 it borrows against the dopamine you already have. The dose that worked in January barely works by March. The system gets worse, not better.",
-                },
-                {
-                  title: "Single-ingredient nootropics solve one thing. Focus isn\u2019t one thing.",
-                  desc: "Lion\u2019s Mane alone addresses neurogenesis. It doesn\u2019t touch blood flow, dopamine depletion, or synaptic signal. The reason your last stack didn\u2019t move the needle isn\u2019t that nootropics don\u2019t work \u2014 it\u2019s that focus is a multi-mechanism problem treated with a one-mechanism solution.",
-                },
-                {
-                  title: "Sorting sleep, training, and diet won\u2019t fix chemistry depletion.",
-                  desc: "You\u2019ve done the work. The lifestyle is dialled. And the cognitive output still plateaus \u2014 because the chemistry layer was never addressed.",
-                },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="bg-[#EDF3F7] rounded-lg p-6 border border-[#D0E0E8]"
-                >
-                  <p className="font-bold text-sm mb-2">{item.title}</p>
-                  <p className="text-gray-600 text-sm">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </Reveal>
+          <StaggerChildren className="grid md:grid-cols-3 gap-5">
+            {FAILURE_BOXES.map((item, i) => (
+              <motion.div key={item.title} variants={childFade} className="card card-warn">
+                <p className="label-mono text-[var(--color-warn)] text-[10px] mb-2">0{i + 1}</p>
+                <p className="font-bold text-sm text-white mb-2">{item.title}</p>
+                <p className="text-[var(--color-text-secondary)] text-sm">{item.desc}</p>
+              </motion.div>
+            ))}
+          </StaggerChildren>
+        </div>
+      </section>
+
+      <div className="section-divider" />
 
       {/* ══════════════ §5 TRANSITION ══════════════ */}
-      <Reveal>
-        <section className="bg-[#041E2B] py-16 md:py-24">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Before/After placeholder */}
-              {/* <!-- ASSET TODO: Founder portrait depleted/sharp comparison --> */}
-              <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] aspect-[4/3] flex items-center justify-center">
-                <div className="text-center text-[#7A9BAD] p-8">
-                  <div className="text-6xl mb-4">&#129504;</div>
-                  <p className="text-sm">[Before/After: Depleted vs restored operator]</p>
-                </div>
-              </div>
-              <div>
-                <p className="text-white text-lg leading-relaxed mb-4">
-                  The operators who finally break through the ceiling &mdash; who sustain
-                  sharp output instead of watching it erode year on year &mdash; are the
-                  ones who get the chemistry right first.
-                </p>
-                <p className="text-[#00A6D2] font-bold text-xl mb-2">
-                  Restore the chemistry. Get the brain back.
-                </p>
-                <p className="text-white font-bold text-xl">
-                  That&apos;s exactly what Genius Mind is built to do.
-                </p>
-              </div>
-            </div>
+      <section className="section-primary py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <FadeUp>
+              <Skeleton label="Before/After: Depleted vs restored operator" className="aspect-[4/3]" />
+            </FadeUp>
+            <FadeUp delay={0.1}>
+              <p className="text-white text-lg leading-relaxed mb-4">
+                The operators who finally break through the ceiling &mdash; who sustain
+                sharp output instead of watching it erode year on year &mdash; are the
+                ones who get the chemistry right first.
+              </p>
+              <BreakoutLine>Restore the chemistry. Get the brain back.</BreakoutLine>
+              <p className="text-white font-bold text-xl">
+                That&apos;s exactly what Genius Mind is built to do.
+              </p>
+            </FadeUp>
           </div>
-        </section>
-      </Reveal>
+        </div>
+      </section>
+
+      <div className="section-divider" />
 
       {/* ══════════════ §6 ENEMY BLOCK ══════════════ */}
-      <Reveal>
-        <section className="bg-[#041E2B] py-16 md:py-24 border-t border-[#1A4459]">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-12">
-              <div>
-                <p className="label-mono text-[#00A6D2] mb-2">
-                  &#10067; And what about other options?
-                </p>
-                <h2 className="text-3xl md:text-4xl font-black mb-8">
-                  Say No to Caffeine Dependency &amp; Nootropic Snake Oil
-                </h2>
+      <section className="section-elevated py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-4">
+          <FadeUp>
+            <SectionNumber num="03" label="THE FAILURES" />
+          </FadeUp>
+          <div className="grid lg:grid-cols-2 gap-12">
+            <FadeUp>
+              <h2 className="text-3xl md:text-4xl font-black mb-8 leading-tight">
+                Say No to Caffeine Dependency &amp; Nootropic Snake Oil
+              </h2>
 
-                <h3 className="text-white font-bold mb-3">
-                  Caffeine &amp; Stimulant Stacks:
-                </h3>
-                {[
-                  { bold: "Tolerance builds within weeks", rest: "\u2014 you need more for less" },
-                  { bold: "90-minute spike then a crash", rest: "\u2014 your best hours get shorter" },
-                  { bold: "Disrupts sleep", rest: "\u2014 which compounds next-day cognitive load" },
-                ].map((item) => (
-                  <div key={item.bold} className="red-x-item">
-                    <span className="text-red-500 font-bold">&#10005;</span>
-                    <p className="text-white text-sm">
-                      <strong>{item.bold}</strong>{" "}
-                      <span className="text-[#7A9BAD]">{item.rest}</span>
-                    </p>
-                  </div>
-                ))}
-
-                <h3 className="text-white font-bold mt-6 mb-3">
-                  Generic &ldquo;Nootropic&rdquo; Supplements:
-                </h3>
-                {[
-                  { bold: "Proprietary blends hide", rest: "worthless micro-doses" },
-                  { bold: "Single-ingredient formulas", rest: "that can\u2019t address multiple pathways" },
-                  { bold: "Raw powders instead of extracts", rest: "\u2014 no bioavailability, no results" },
-                ].map((item) => (
-                  <div key={item.bold} className="red-x-item">
-                    <span className="text-red-500 font-bold">&#10005;</span>
-                    <p className="text-white text-sm">
-                      <strong>{item.bold}</strong>{" "}
-                      <span className="text-[#7A9BAD]">{item.rest}</span>
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Right: Image placeholder */}
-              <div className="flex flex-col gap-6">
-                {/* <!-- ASSET TODO: Operator workspace photo --> */}
-                <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] aspect-square flex items-center justify-center">
-                  <div className="text-center text-[#7A9BAD] p-8">
-                    <div className="text-6xl mb-4">&#128248;</div>
-                    <p className="text-sm">[Operator at desk / workspace image]</p>
-                  </div>
+              <h3 className="text-white font-bold mb-3">Caffeine &amp; Stimulant Stacks:</h3>
+              {ENEMY_CAFFEINE.map((item) => (
+                <div key={item.bold} className="card card-warn flex items-start gap-3 !py-3 !px-4 mb-2">
+                  <X size={14} className="text-[var(--color-warn)] mt-0.5 shrink-0" />
+                  <p className="text-sm">
+                    <strong className="text-white">{item.bold}</strong>{" "}
+                    <span className="text-[var(--color-text-secondary)]">{item.rest}</span>
+                  </p>
                 </div>
-                <p className="text-[#7A9BAD] text-sm">
-                  You deserve better than frying your nervous system with stimulants
-                  OR wasting money on underdosed single-ingredient pills that don&apos;t
-                  address the ROOT of sustained cognitive performance.
-                </p>
-              </div>
-            </div>
+              ))}
+
+              <h3 className="text-white font-bold mt-6 mb-3">Generic &ldquo;Nootropic&rdquo; Supplements:</h3>
+              {ENEMY_GENERIC.map((item) => (
+                <div key={item.bold} className="card card-warn flex items-start gap-3 !py-3 !px-4 mb-2">
+                  <X size={14} className="text-[var(--color-warn)] mt-0.5 shrink-0" />
+                  <p className="text-sm">
+                    <strong className="text-white">{item.bold}</strong>{" "}
+                    <span className="text-[var(--color-text-secondary)]">{item.rest}</span>
+                  </p>
+                </div>
+              ))}
+            </FadeUp>
+
+            <FadeUp delay={0.1}>
+              <Skeleton label="Operator workspace photo" className="aspect-square mb-6" />
+              <p className="text-[var(--color-text-secondary)] text-sm">
+                You deserve better than frying your nervous system with stimulants
+                OR wasting money on underdosed single-ingredient pills that don&apos;t
+                address the ROOT of sustained cognitive performance.
+              </p>
+            </FadeUp>
           </div>
-        </section>
-      </Reveal>
+        </div>
+      </section>
+
+      <div className="section-divider" />
 
       {/* ══════════════ §7 PRODUCT REVEAL – COGNISYNC TRI-FACTOR ══════════════ */}
-      <Reveal>
-        <section id="mechanism" className="bg-[#041E2B] py-16 md:py-24 border-t border-[#1A4459]">
-          <div className="max-w-5xl mx-auto px-4 text-center">
-            <p className="label-mono text-[#7A9BAD] mb-3">Make the infrastructure decision</p>
-            <h2 className="text-3xl md:text-4xl font-black mb-6">
-              Cognitive Chemistry Restored. Sustained Focus, Replenished.
+      <section id="mechanism" className="section-gradient py-16 md:py-24">
+        <div className="max-w-5xl mx-auto px-4 text-center">
+          <FadeUp>
+            <SectionNumber num="04" label="THE SOLUTION" />
+            <h2 className="text-3xl md:text-4xl font-black mb-6 leading-tight">
+              Cognitive Chemistry Restored.{" "}
+              <span className="text-[var(--color-brand)]">Sustained Focus, Replenished.</span>
             </h2>
-            <p className="text-[#7A9BAD] mb-10 max-w-3xl mx-auto">
+            <p className="text-[var(--color-text-secondary)] mb-10 max-w-3xl mx-auto">
               Genius Mind isn&apos;t another nootropic &mdash; it&apos;s a complete cognitive stack
               engineered around the Cognisync Tri-Factor, working on three mechanisms
               simultaneously:
             </p>
+          </FadeUp>
 
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
-              <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] p-6 text-left">
-                <div className="text-[#00A6D2] text-2xl mb-3">&#9889;</div>
-                <h3 className="label-mono text-white font-bold mb-2">Blood Flow Activation</h3>
-                <p className="text-[#7A9BAD] text-sm leading-relaxed">
-                  Ginkgo Biloba 50:1, Rosemary 5:1, Panax Ginseng 20:1.
-                  Researched for cerebral blood flow, oxygen and nutrient delivery
-                  to the brain.
-                </p>
-              </div>
-              <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] p-6 text-left">
-                <div className="text-[#00A6D2] text-2xl mb-3">&#128161;</div>
-                <h3 className="label-mono text-white font-bold mb-2">Neuron Stimulation</h3>
-                <p className="text-[#7A9BAD] text-sm leading-relaxed">
-                  Lion&apos;s Mane 4:1, L-Tyrosine, Guarana. Studied for nerve growth
-                  factor, dopamine precursor support, and clean sustained energy via
-                  slow-release caffeine.
-                </p>
-              </div>
-              <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] p-6 text-left">
-                <div className="text-[#00A6D2] text-2xl mb-3">&#128737;&#65039;</div>
-                <h3 className="label-mono text-white font-bold mb-2">Neuron Strengthening</h3>
-                <p className="text-[#7A9BAD] text-sm leading-relaxed">
-                  Bacopa Monnieri 11:1, Phosphatidylserine, B-Complex, Zinc.
-                  Studied for synaptic communication, memory consolidation, and
-                  cellular brain energy.
-                </p>
-              </div>
+          <StaggerChildren className="grid md:grid-cols-3 gap-5 mb-12">
+            {MECHANISMS.map((m, i) => (
+              <motion.div key={m.title} variants={childFade} className="card card-featured text-left">
+                <p className="label-mono text-[var(--color-brand)] text-[10px] mb-3">0{i + 1} &mdash; {m.label}</p>
+                <motion.div
+                  className="text-[var(--color-brand)] mb-3"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  {m.icon}
+                </motion.div>
+                <h3 className="text-white font-bold text-lg mb-2">{m.title}</h3>
+                <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">{m.desc}</p>
+              </motion.div>
+            ))}
+          </StaggerChildren>
+
+          <FadeUp>
+            <div className="max-w-2xl mx-auto">
+              <p className="text-white text-sm mb-4 leading-relaxed">
+                Genius Mind is a precision-formulated stack of 16 clinically studied
+                ingredients &mdash; high-ratio botanical extracts, amino acid precursors,
+                and essential cofactors &mdash; designed to support sustained focus
+                throughout the working day. No proprietary blends. No fillers. Every
+                dose transparent and clinically backed.
+              </p>
+              <BreakoutLine>No prescription. No crashes. No tolerance. Daily use, safely.</BreakoutLine>
             </div>
 
-            <p className="text-white text-sm max-w-3xl mx-auto mb-4">
-              Genius Mind is a precision-formulated stack of 16 clinically studied
-              ingredients &mdash; high-ratio botanical extracts, amino acid precursors,
-              and essential cofactors &mdash; designed to support sustained focus
-              throughout the working day. No proprietary blends. No fillers. Every
-              dose transparent and clinically backed.
-            </p>
-            <p className="text-white font-semibold mb-8">
-              No prescription. No crashes. No tolerance. Daily use, safely.
-            </p>
-
-            {/* Product image placeholder */}
-            {/* <!-- ASSET TODO: Genius Mind product hero image --> */}
-            <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] max-w-md mx-auto aspect-[3/4] flex items-center justify-center mb-8">
-              <div className="text-center text-[#7A9BAD] p-8">
-                <div className="text-6xl mb-4">&#129514;</div>
-                <p className="text-sm">[Genius Mind product bottle image]</p>
-              </div>
-            </div>
+            <Skeleton label="Genius Mind product bottle image" className="max-w-sm mx-auto aspect-[3/4] mt-8 mb-8" />
 
             <a href={SHOP_URL} className="cta-btn inline-block">
-              TRY IT NOW &rarr;
+              TRY IT NOW <ArrowRight size={16} className="inline ml-1 -mt-0.5" />
             </a>
-          </div>
-        </section>
-      </Reveal>
+          </FadeUp>
+        </div>
+      </section>
+
+      <div className="section-divider" />
 
       {/* ══════════════ §8 BENEFIT TILES ══════════════ */}
-      <Reveal>
-        <section className="rock-bg py-16 md:py-24">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="grid md:grid-cols-3 gap-8">
-              {BENEFITS.map((b) => (
-                <div key={b.title} className="text-center">
-                  <div className="text-[#00A6D2] text-3xl mb-3">{b.icon}</div>
-                  <h3 className="label-mono text-white font-bold mb-2">{b.title}</h3>
-                  <p className="text-[#7A9BAD] text-sm">{b.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </Reveal>
+      <section className="section-primary py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-4">
+          <FadeUp>
+            <SectionNumber num="05" label="THE OUTCOMES" />
+          </FadeUp>
+          <StaggerChildren className="grid md:grid-cols-3 gap-5">
+            {BENEFITS.map((b) => (
+              <motion.div key={b.title} variants={childFade} className="card text-center">
+                <div className="text-[var(--color-brand)] mb-3 flex justify-center">{b.icon}</div>
+                <h3 className="text-white font-bold mb-2">{b.title}</h3>
+                <p className="text-[var(--color-text-secondary)] text-sm">{b.desc}</p>
+                {b.survey && (
+                  <p className="label-mono text-[var(--color-text-tertiary)] text-[9px] mt-3">{b.survey}</p>
+                )}
+              </motion.div>
+            ))}
+          </StaggerChildren>
+        </div>
+      </section>
 
-      {/* ══════════════ §9 INGREDIENTS (8 HERO) ══════════════ */}
-      <Reveal>
-        <section id="ingredients" className="bg-[#041E2B] py-16 md:py-24">
-          <div className="max-w-6xl mx-auto px-4 text-center">
-            <p className="label-mono text-[#7A9BAD] mb-3">Ingredients</p>
-            <h2 className="text-3xl md:text-4xl font-black mb-4">
-              Fuel Your Brain the Clean Way
+      <div className="section-divider" />
+
+      {/* ══════════════ §9 COMBINED INGREDIENTS (16 deep dive) ══════════════ */}
+      <section id="formula" className="section-elevated py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <FadeUp>
+            <SectionNumber num="06" label="THE FORMULA" />
+            <h2 className="text-3xl md:text-4xl font-black mb-3 leading-tight">
+              16 Ingredients in 1 Powerful Formula
             </h2>
-            <div className="flex flex-wrap justify-center gap-6 mb-10">
+            <p className="label-mono text-[var(--color-brand)] mb-6">
+              Clinically Studied + High-Ratio Extracts
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 mb-10">
               {["No proprietary blends", "No fillers", "No synthetic stimulants", "No BS", "No cheap powders"].map((item) => (
-                <div key={item} className="text-center">
-                  <div className="text-[#00A6D2] text-xl mb-1">&#10005;</div>
-                  <p className="text-[#7A9BAD] text-xs">{item}</p>
-                </div>
+                <span key={item} className="flex items-center gap-1.5 text-[var(--color-text-secondary)] text-xs">
+                  <X size={12} className="text-[var(--color-warn)]" />
+                  {item}
+                </span>
               ))}
             </div>
+          </FadeUp>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {INGREDIENTS.map((ing) => (
-                <div key={ing.name} className="ingredient-card text-left">
-                  <h4 className="font-mono text-white font-bold text-lg uppercase tracking-wider mb-1">
-                    {ing.name}
-                  </h4>
-                  <div className="inline-block border border-[#7A9BAD] rounded px-2 py-0.5 text-xs text-[#7A9BAD] font-mono mb-2">
-                    {ing.dose}
-                  </div>
-                  <p className="text-[#7A9BAD] text-xs leading-relaxed">{ing.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </Reveal>
+          <StaggerChildren className="grid grid-cols-2 md:grid-cols-4 gap-4" stagger={0.05}>
+            {INGREDIENTS_DETAIL.map((ing) => (
+              <motion.div key={ing.name} variants={childFade} className="ingredient-card text-left">
+                <h4 className="text-white font-bold text-base mb-1">{ing.name}</h4>
+                <span className="label-mono text-[var(--color-brand)] text-[11px] mb-2 inline-block">
+                  {ing.dose}
+                </span>
+                <p className="text-[var(--color-text-secondary)] text-xs leading-relaxed">{ing.desc}</p>
+              </motion.div>
+            ))}
+          </StaggerChildren>
+        </div>
+      </section>
 
-      {/* ══════════════ TRUST BADGES ══════════════ */}
-      <section className="bg-[#041E2B] border-y border-[#1A4459] py-8">
+      {/* ── Trust Badges ── */}
+      <section className="section-primary border-y border-[var(--color-border)] py-8">
         <div className="max-w-6xl mx-auto px-4 flex flex-wrap justify-center gap-x-10 gap-y-4 text-center">
           {TRUST_BADGES.map((b) => (
-            <div key={b.label}>
-              <div className="text-2xl mb-1">{b.icon}</div>
-              <p className="label-mono text-[#7A9BAD] text-[10px]">{b.label}</p>
+            <div key={b.label} className="flex items-center gap-2">
+              <span className="text-[var(--color-text-secondary)]">{b.icon}</span>
+              <p className="label-mono text-[var(--color-text-secondary)] text-[10px]">{b.label}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ══════════════ NEW §A – THE OPERATOR STACK ══════════════ */}
-      <Reveal>
-        <section className="bg-[#041E2B] py-16 md:py-24">
-          <div className="max-w-5xl mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-black text-center mb-6">
+      <div className="section-divider" />
+
+      {/* ══════════════ §10 OPERATOR STACK ══════════════ */}
+      <section className="section-primary py-16 md:py-24">
+        <div className="max-w-5xl mx-auto px-4">
+          <FadeUp>
+            <SectionNumber num="07" label="THE INTEGRATION" />
+            <h2 className="text-3xl md:text-4xl font-black text-center mb-6 leading-tight">
               How Genius Mind Fits Into A Serious Operator Stack
             </h2>
-            <p className="text-[#7A9BAD] text-center max-w-3xl mx-auto mb-10">
+            <p className="text-[var(--color-text-secondary)] text-center max-w-3xl mx-auto mb-10">
               You already take creatine. Probably omega-3. Maybe AG1 or a multi.
               Magnesium at night. Genius Mind is the chemistry layer &mdash; the missing
               piece between the lifestyle work you&apos;ve already done and the cognitive
-              output you&apos;re trying to protect. It doesn&apos;t replace your stack.
-              It completes it.
+              output you&apos;re trying to protect.
             </p>
+          </FadeUp>
 
-            {/* <!-- ASSET TODO: Operator Stack grid visual --> */}
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-3 mb-10">
-              {OPERATOR_STACK.map((item) => (
-                <div
-                  key={item.label}
-                  className={`rounded-xl p-4 text-center ${
-                    item.highlight
-                      ? "bg-[#00A6D2] border-2 border-[#00A6D2]"
-                      : "bg-[#0C2A3A] border border-[#1A4459]"
-                  }`}
-                >
-                  <div className="text-2xl mb-2">{item.icon}</div>
-                  <p className={`text-xs font-bold ${item.highlight ? "text-white" : "text-[#7A9BAD]"}`}>
-                    {item.label}
-                  </p>
-                  <p className={`text-[10px] mt-1 ${item.highlight ? "text-white/80" : "text-[#7A9BAD]/60"}`}>
-                    {item.target}
-                  </p>
+          <StaggerChildren className="grid grid-cols-3 md:grid-cols-6 gap-3 mb-10">
+            {OPERATOR_STACK.map((item) => (
+              <motion.div
+                key={item.label}
+                variants={childFade}
+                className={`card text-center !p-4 ${item.highlight ? "card-featured !border-[var(--color-brand)] !bg-[rgba(0,166,210,0.08)]" : ""}`}
+              >
+                <span className={`mb-2 block ${item.highlight ? "text-[var(--color-brand)]" : "text-[var(--color-text-secondary)]"}`}>
+                  {item.icon}
+                </span>
+                <p className={`text-xs font-bold ${item.highlight ? "text-[var(--color-brand)]" : "text-[var(--color-text-secondary)]"}`}>
+                  {item.label}
+                </p>
+                <p className="text-[var(--color-text-tertiary)] text-[10px] mt-0.5">{item.target}</p>
+              </motion.div>
+            ))}
+          </StaggerChildren>
+
+          <FadeUp>
+            <BreakoutLine>
+              The lifestyle layer is dialled. The body layer is supported. The brain layer was the missing piece.
+            </BreakoutLine>
+          </FadeUp>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* ══════════════ §11 SURVEY OUTCOMES ══════════════ */}
+      <section className="section-elevated py-16 md:py-24">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <FadeUp>
+            <SectionNumber num="08" label="THE EVIDENCE" />
+            <h2 className="text-3xl md:text-4xl font-black mb-8 leading-tight">
+              What Long-Term Customers Actually Report
+            </h2>
+          </FadeUp>
+
+          <div className="max-w-2xl mx-auto space-y-5 mb-6">
+            {SURVEY_OUTCOMES.map((item, i) => (
+              <FadeUp key={item.label} delay={i * 0.1}>
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-white text-sm font-semibold">{item.label}</span>
+                  <span className="text-[var(--color-brand)] text-sm font-bold label-mono">
+                    <CountUp target={item.count} delay={i * 0.15} />/33
+                  </span>
                 </div>
-              ))}
-            </div>
-
-            <p className="text-white text-center font-semibold">
-              The lifestyle layer is dialled. The body layer is supported.
-              The brain layer was the missing piece.
-            </p>
+                <AnimatedBar value={item.count} max={33} delay={i * 0.15} />
+              </FadeUp>
+            ))}
           </div>
-        </section>
-      </Reveal>
 
-      {/* ══════════════ §10 VIDEO TESTIMONIALS ══════════════ */}
-      <Reveal>
-        <section className="bg-[#041E2B] py-16 md:py-24 border-t border-[#1A4459]">
-          <div className="max-w-6xl mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-black mb-10">
+          <p className="label-mono text-[var(--color-text-tertiary)] text-[10px] mb-1">Source</p>
+          <p className="text-[var(--color-text-tertiary)] text-xs">
+            Post-purchase subscriber survey, 33 respondents using 3+ months.
+          </p>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* ══════════════ §12 VIDEO TESTIMONIALS ══════════════ */}
+      <section className="section-primary py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <FadeUp>
+            <h2 className="text-3xl md:text-4xl font-black mb-10 leading-tight">
               What Operators Are Saying
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {VIDEO_TESTIMONIALS.map((v) => (
-                <div
-                  key={v.label}
-                  className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] aspect-[9/16] flex flex-col items-center justify-center relative overflow-hidden"
-                >
-                  {/* <!-- ASSET TODO: Operator video testimonial - {v.label} --> */}
-                  <div className="absolute top-3 left-3 right-3">
-                    <span className="label-mono bg-[#00A6D2] text-white px-3 py-1 rounded text-[10px] font-bold">
-                      {v.label}
-                    </span>
-                  </div>
-                  <div className="text-5xl text-[#7A9BAD]">&#9654;</div>
-                  <p className="absolute bottom-3 left-3 right-3 text-white text-xs font-semibold">
-                    {v.caption}
-                  </p>
+          </FadeUp>
+          <StaggerChildren className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {VIDEO_TESTIMONIALS.map((v) => (
+              <motion.div
+                key={v.label}
+                variants={childFade}
+                className="skeleton-placeholder aspect-[9/16] relative"
+              >
+                <div className="absolute top-3 left-3 right-3 z-10">
+                  <span className="label-mono bg-[var(--color-brand)] text-white px-3 py-1 rounded text-[10px] font-bold">
+                    {v.label}
+                  </span>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      {/* ══════════════ §11 PRODUCT SECTION (WHITE) ══════════════ */}
-      <Reveal>
-        <section className="bg-[#F5F7FA] py-16 md:py-24">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
-              {/* Left: Product display */}
-              <div className="bg-white rounded-2xl border border-[#E0E6EC] shadow-sm p-8 flex flex-col items-center">
-                <div className="bg-[#F0F4F6] rounded-xl w-full aspect-square flex items-center justify-center mb-6">
-                  <div className="text-center text-[#7A9BAD]">
-                    <div className="text-6xl mb-4">&#129514;</div>
-                    <p className="text-sm">[Product image with benefits callouts]</p>
-                    <p className="text-xs mt-2">Sharpen Focus / Sustain Energy / Support Memory / Extend Output</p>
-                  </div>
-                </div>
-                <div className="text-center">
-                  {/* <!-- TODO: Verify rating and count against Trustpilot/Amazon UK --> */}
-                  <div className="text-[#FFD700] text-sm mb-1">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                  <p className="text-[#0a0a0f] text-sm font-bold">Verified Customer Reviews</p>
-                  <p className="text-[#7A9BAD] text-[10px]">
-                    *Results may vary. Based on verified customer reviews.
-                  </p>
-                </div>
-              </div>
-
-              {/* Right: Purchase info */}
-              <div>
-                <h2 className="text-3xl font-black text-[#0a0a0f] mb-4">Cognitive Infrastructure for Operators</h2>
-                <p className="text-[#0a0a0f] font-bold mb-4">
-                  Genius Mind is a complete cognitive stack engineered around the
-                  Cognisync Tri-Factor &mdash; supporting dopamine pathways,
-                  cerebral blood flow, and synaptic signalling with 16 clinically
-                  studied ingredients.*
+                <p className="absolute bottom-3 left-3 right-3 text-white text-xs font-semibold z-10">
+                  {v.caption}
                 </p>
-                <ul className="space-y-2 mb-6">
-                  {PRODUCT_BULLETS.map((b) => (
-                    <li key={b} className="flex items-start gap-2 text-sm">
-                      <span className="text-green-600 mt-0.5">&#10004;</span>
-                      <span className="text-[#333]">{b}</span>
-                    </li>
-                  ))}
-                </ul>
+              </motion.div>
+            ))}
+          </StaggerChildren>
+        </div>
+      </section>
 
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-3xl font-black text-[#0a0a0f]">&pound;24.99</span>
-                  <span className="text-[#999] line-through text-lg">&pound;34.99</span>
-                  <span className="label-mono text-[#00A6D2] font-bold">Save 28%</span>
-                </div>
+      <div className="section-divider" />
 
-                <a href={SHOP_URL} className="cta-btn mb-4">
-                  TRY IT NOW &rarr;
-                </a>
-
-                <div className="flex justify-center gap-8 text-center text-xs text-[#7A9BAD] mb-6">
-                  <div>
-                    <div className="text-lg mb-1">&#128230;</div>
-                    <p>3-Month Supply<br />Save 43%</p>
-                  </div>
-                  <div>
-                    <div className="text-lg mb-1">&#128640;</div>
-                    <p>Try Risk-Free for 90 Days<br />or 100% Money Back</p>
-                  </div>
-                  <div>
-                    <div className="text-lg mb-1">&#128666;</div>
-                    <p>Free UK Shipping<br />Same-Day Dispatch</p>
-                  </div>
-                </div>
-
-                <div className="text-center">
-                  <p className="label-mono text-[#00A6D2] font-bold mb-3">Best Value: 3-Month Supply</p>
-                  <div className="bg-white rounded-xl border border-[#E0E6EC] shadow-sm p-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-[#0a0a0f] font-bold">3 Bottles (90-Day Supply)</p>
-                        <p className="text-[#7A9BAD] text-xs">Just &pound;0.48/serving</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-[#999] line-through text-sm">&pound;74.97</p>
-                        <p className="text-[#00A6D2] font-bold text-xl">&pound;42.99</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      {/* ══════════════ §11 REVIEW CARDS ══════════════ */}
-      {/* <!-- TODO: Replace with real verbatim Trustpilot reviews. Reduce carousel if insufficient real reviews. --> */}
-      <Reveal>
-        <section className="bg-[#041E2B] py-16 md:py-20">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="grid md:grid-cols-3 gap-4">
-              {MINI_REVIEWS.map((r, i) => (
-                <div key={i} className="bg-[#0F3347] border border-[#1A4459] rounded-xl p-5">
-                  <div className="text-[#FFD700] text-sm mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                  <p className="text-white text-sm leading-relaxed">&ldquo;{r}&rdquo;</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      {/* ══════════════ §12 COMPARISON TABLE ══════════════ */}
-      <Reveal>
-        <section className="bg-[#041E2B] py-16 md:py-24 border-t border-[#1A4459]">
-          <div className="max-w-4xl mx-auto px-4">
-            <p className="label-mono text-[#7A9BAD] text-center mb-3">
-              Genius Mind vs Caffeine Stacks vs Generic Nootropics
-            </p>
-            <h2 className="text-3xl md:text-4xl font-black text-center mb-3">
+      {/* ══════════════ §13 COMPARISON TABLE ══════════════ */}
+      <section className="section-elevated py-16 md:py-24">
+        <div className="max-w-4xl mx-auto px-4">
+          <FadeUp>
+            <SectionNumber num="09" label="THE COMPARISON" />
+            <h2 className="text-3xl md:text-4xl font-black text-center mb-3 leading-tight">
               How Genius Mind Compares
             </h2>
-            <p className="text-[#7A9BAD] text-center mb-10 max-w-xl mx-auto">
-              Cognitive infrastructure, not a stimulant hit &mdash; Genius Mind does
-              what others can&apos;t.
+            <p className="text-[var(--color-text-secondary)] text-center mb-10 max-w-xl mx-auto">
+              Cognitive infrastructure, not a stimulant hit.
             </p>
+          </FadeUp>
 
+          <FadeUp>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-[#1A4459]">
-                    <th className="py-3 text-left text-[#7A9BAD] font-mono uppercase text-xs"></th>
-                    <th className="py-3 text-center text-white font-bold">Genius Mind</th>
-                    <th className="py-3 text-center text-[#7A9BAD]">Caffeine Stacks</th>
-                    <th className="py-3 text-center text-[#7A9BAD]">Generic Nootropics</th>
+                  <tr className="border-b border-[var(--color-border)]">
+                    <th className="py-3 text-left text-[var(--color-text-tertiary)] label-mono text-[10px]"></th>
+                    <th className="py-3 text-center text-[var(--color-brand)] font-bold">Genius Mind</th>
+                    <th className="py-3 text-center text-[var(--color-text-secondary)]">Caffeine Stacks</th>
+                    <th className="py-3 text-center text-[var(--color-text-secondary)]">Generic Nootropics</th>
                   </tr>
                 </thead>
                 <tbody>
                   {COMPARISON.map((row) => (
-                    <tr key={row.label} className="border-b border-[#0F3347]">
-                      <td className="py-4 pr-4 font-mono uppercase text-xs text-[#7A9BAD] tracking-wider">
-                        {row.label}
+                    <tr key={row.label} className="border-b border-[var(--color-border)]">
+                      <td className="py-4 pr-4 label-mono text-[10px] text-[var(--color-text-secondary)]">{row.label}</td>
+                      <td className="py-4 text-center bg-[rgba(0,166,210,0.04)]">
+                        <Check size={18} className="text-[var(--color-brand)] mx-auto" />
                       </td>
-                      <td className="py-4 text-center text-2xl text-green-500">&#9989;</td>
-                      <td className="py-4 text-center text-2xl">
-                        {row.caff === "x" ? <span className="text-red-500">&#10060;</span> : <span className="text-red-400">&#10067;</span>}
+                      <td className="py-4 text-center">
+                        {row.caff === "x"
+                          ? <X size={18} className="text-[var(--color-warn)] mx-auto" />
+                          : <HelpCircle size={16} className="text-[var(--color-text-tertiary)] mx-auto" />}
                       </td>
-                      <td className="py-4 text-center text-2xl">
-                        {row.generic === "x" ? <span className="text-red-500">&#10060;</span> : <span className="text-red-400">&#10067;</span>}
+                      <td className="py-4 text-center">
+                        {row.generic === "x"
+                          ? <X size={18} className="text-[var(--color-warn)] mx-auto" />
+                          : <HelpCircle size={16} className="text-[var(--color-text-tertiary)] mx-auto" />}
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-
             <div className="text-center mt-10">
               <a href={SHOP_URL} className="cta-btn inline-block">
-                TRY IT NOW &rarr;
+                TRY IT NOW <ArrowRight size={16} className="inline ml-1 -mt-0.5" />
               </a>
             </div>
-          </div>
-        </section>
-      </Reveal>
+          </FadeUp>
+        </div>
+      </section>
 
-      {/* ══════════════ §14 SURVEY OUTCOMES CHART (WHITE) ══════════════ */}
-      <Reveal>
-        <section className="bg-[#F5F7FA] py-16 md:py-24">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-black text-[#0a0a0f] mb-8">
-              What Long-Term Customers Actually Report
-            </h2>
+      <div className="section-divider" />
 
-            <div className="max-w-2xl mx-auto space-y-5 mb-8">
-              {SURVEY_OUTCOMES.map((item) => (
-                <div key={item.label}>
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[#0a0a0f] text-sm font-semibold">{item.label}</span>
-                    <span className="text-[#00A6D2] text-sm font-bold">{item.count}/33</span>
-                  </div>
-                  <div className="w-full bg-[#E0E6EC] rounded-full h-3">
-                    <div
-                      className="bg-[#00A6D2] h-3 rounded-full transition-all duration-700"
-                      style={{ width: `${(item.count / 33) * 100}%` }}
-                    />
-                  </div>
+      {/* ══════════════ §14 PRODUCT PURCHASE BLOCK ══════════════ */}
+      <section className="section-gradient py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-4">
+          <FadeUp>
+            <SectionNumber num="10" label="THE OFFER" />
+          </FadeUp>
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <FadeUp>
+              <Skeleton label="Product shot on dark background with benefit callouts" className="aspect-square" />
+            </FadeUp>
+
+            <FadeUp delay={0.1}>
+              <h2 className="text-3xl font-black mb-4 leading-tight">Cognitive Infrastructure for Operators</h2>
+              <p className="text-white font-semibold mb-4">
+                Genius Mind is a complete cognitive stack engineered around the
+                Cognisync Tri-Factor &mdash; supporting dopamine pathways,
+                cerebral blood flow, and synaptic signalling with 16 clinically
+                studied ingredients.*
+              </p>
+              <ul className="space-y-2 mb-6">
+                {PRODUCT_BULLETS.map((b) => (
+                  <li key={b} className="flex items-start gap-2 text-sm">
+                    <Check size={16} className="text-[var(--color-brand)] mt-0.5 shrink-0" />
+                    <span className="text-white">{b}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-3xl font-black text-white">&pound;24.99</span>
+                <span className="text-[var(--color-text-tertiary)] line-through text-lg">&pound;34.99</span>
+                <span className="label-mono text-[var(--color-brand)] font-bold text-xs border border-[var(--color-brand)] rounded px-2 py-0.5">
+                  Save 28%
+                </span>
+              </div>
+
+              <a href={SHOP_URL} className="cta-btn mb-6">
+                TRY IT NOW <ArrowRight size={16} className="inline ml-1 -mt-0.5" />
+              </a>
+
+              <div className="flex justify-center gap-6 text-center text-xs text-[var(--color-text-secondary)] mb-6">
+                <div className="flex flex-col items-center gap-1">
+                  <Package size={18} className="text-[var(--color-text-secondary)]" />
+                  <p>3-Month Supply<br />Save 43%</p>
                 </div>
-              ))}
-            </div>
-
-            <p className="text-[#7A9BAD] text-xs">
-              Source: post-purchase subscriber survey, 33 respondents using 3+ months.
-            </p>
-          </div>
-        </section>
-      </Reveal>
-
-      {/* ══════════════ §15 WEEKLY TIMELINE ══════════════ */}
-      <Reveal>
-        <section className="rock-bg py-16 md:py-24 border-t border-[#1A4459]">
-          <div className="max-w-5xl mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-black text-center mb-10">
-              What You Might Expect from Daily Use of Genius Mind
-            </h2>
-
-            <div className="flex flex-wrap justify-center gap-2 mb-8">
-              {WEEKS.map((w, i) => (
-                <button
-                  key={w.label}
-                  onClick={() => setActiveWeek(i)}
-                  className={`tab-btn ${activeWeek === i ? "active" : ""}`}
-                >
-                  {w.label}
-                </button>
-              ))}
-            </div>
-
-            <div className="bg-[#0C2A3A] border border-[#1A4459] rounded-2xl p-8">
-              <div className="grid lg:grid-cols-2 gap-8">
-                <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-[#00A6D2] font-mono text-4xl font-black">
-                      0{activeWeek + 1}
-                    </span>
-                    <h3 className="text-2xl font-black text-white">
-                      {WEEKS[activeWeek].title}
-                    </h3>
-                  </div>
-                  <p className="text-white font-bold mb-4">
-                    {WEEKS[activeWeek].subtitle}
-                  </p>
-                  <ul className="space-y-2">
-                    {WEEKS[activeWeek].benefits.map((b) => (
-                      <li key={b} className="flex items-start gap-2 text-sm text-[#7A9BAD]">
-                        <span className="text-[#00A6D2] mt-1">&#8226;</span>
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
+                <div className="flex flex-col items-center gap-1">
+                  <ShieldCheck size={18} className="text-[var(--color-text-secondary)]" />
+                  <p>Try Risk-Free 90 Days<br />or 100% Money Back</p>
                 </div>
+                <div className="flex flex-col items-center gap-1">
+                  <Truck size={18} className="text-[var(--color-text-secondary)]" />
+                  <p>Free UK Shipping<br />Same-Day Dispatch</p>
+                </div>
+              </div>
 
-                {/* Progress graph – line rises as weeks increase */}
-                <div className="bg-[#0F3347] rounded-xl p-6 flex flex-col justify-between aspect-video">
-                  <p className="text-[#7A9BAD] text-[10px] label-mono mb-2">Cognitive Output</p>
-                  <svg viewBox="0 0 300 140" className="w-full flex-1" preserveAspectRatio="none">
-                    {/* Grid lines */}
-                    {[0, 1, 2, 3, 4].map((i) => (
-                      <line key={i} x1="0" y1={i * 35} x2="300" y2={i * 35} stroke="#1A4459" strokeWidth="0.5" />
-                    ))}
-                    {/* Full curve (dim) */}
-                    <polyline
-                      fill="none"
-                      stroke="#1A4459"
-                      strokeWidth="1.5"
-                      points="0,130 43,120 86,105 129,85 172,62 215,38 258,20 300,15"
-                    />
-                    {/* Active curve (teal, clipped to active week) */}
-                    <polyline
-                      fill="none"
-                      stroke="#00A6D2"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      points={GRAPH_POINTS.slice(0, activeWeek + 2).join(" ")}
-                    />
-                    {/* Glow area under active curve */}
-                    <polygon
-                      fill="url(#graphGlow)"
-                      opacity="0.15"
-                      points={`${GRAPH_POINTS.slice(0, activeWeek + 2).join(" ")} ${GRAPH_POINTS[activeWeek + 1]?.split(",")[0] || "300"},140 0,140`}
-                    />
-                    {/* Active dot */}
-                    {(() => {
-                      const pt = GRAPH_POINTS[activeWeek + 1] || GRAPH_POINTS[GRAPH_POINTS.length - 1];
-                      const [cx, cy] = pt.split(",");
-                      return (
-                        <>
-                          <circle cx={cx} cy={cy} r="6" fill="#00A6D2" opacity="0.3" />
-                          <circle cx={cx} cy={cy} r="3.5" fill="#00A6D2" />
-                        </>
-                      );
-                    })()}
-                    <defs>
-                      <linearGradient id="graphGlow" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#00A6D2" />
-                        <stop offset="100%" stopColor="#00A6D2" stopOpacity="0" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                  <div className="flex justify-between text-[#7A9BAD] text-[9px] label-mono mt-2">
-                    {WEEKS.map((w, i) => (
-                      <span key={w.label} className={i === activeWeek ? "text-[#00A6D2] font-bold" : ""}>
-                        {w.label.replace("Week ", "W").replace("Month ", "M")}
-                      </span>
-                    ))}
+              <div className="card card-featured !p-4">
+                <p className="label-mono text-[var(--color-brand)] text-[10px] mb-2">Best Value: 3-Month Supply</p>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-white font-bold">3 Bottles (90-Day Supply)</p>
+                    <p className="text-[var(--color-text-tertiary)] text-xs">Just &pound;0.67/day</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-[var(--color-text-tertiary)] line-through text-sm">&pound;74.97</p>
+                    <p className="text-[var(--color-brand)] font-bold text-xl">&pound;59.99</p>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <p className="text-center text-[#7A9BAD] text-xs mt-4">
-              *Individual results may vary. Based on customer reports and ingredient research timelines.
-            </p>
+            </FadeUp>
           </div>
-        </section>
-      </Reveal>
+        </div>
+      </section>
 
-      {/* ══════════════ §16 DAY 1 / 30 / 90 TIMELINE ══════════════ */}
-      <Reveal>
-        <section className="bg-[#0F3347] py-16 md:py-20">
-          <div className="max-w-5xl mx-auto px-4">
-            <div className="flex justify-center gap-4 mb-8">
-              {["What to Expect", "Frequently Asked Questions", "Reviews"].map((tab) => (
-                <a
-                  key={tab}
-                  href={tab === "Frequently Asked Questions" ? "#faq" : tab === "Reviews" ? "#reviews-section" : "#"}
-                  className="bg-[#1A4459] text-white px-5 py-3 rounded-lg text-sm font-semibold hover:bg-[#1F5570] transition-colors"
-                >
-                  {tab}
-                </a>
-              ))}
-            </div>
+      <div className="section-divider" />
 
-            <h3 className="text-white font-bold text-lg mb-6">
+      {/* ══════════════ §15 DAY 1 / 30 / 90 ══════════════ */}
+      <section className="section-elevated py-16 md:py-24">
+        <div className="max-w-5xl mx-auto px-4">
+          <FadeUp>
+            <SectionNumber num="11" label="THE TIMELINE" />
+            <h2 className="text-3xl md:text-4xl font-black text-center mb-10 leading-tight">
               What Happens After You Start Restoring Cognitive Chemistry
-            </h3>
-            <div className="w-full h-0.5 bg-[#00A6D2] mb-8" />
+            </h2>
+          </FadeUp>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              {TIMELINE.map((t) => (
-                <div key={t.day}>
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xl">{t.emoji}</span>
-                    <span className="label-mono text-[#00A6D2] font-bold">Day {t.day}</span>
+          <div className="grid md:grid-cols-3 gap-6">
+            {TIMELINE.map((t, i) => (
+              <FadeUp key={t.day} delay={i * 0.2}>
+                <div className="card text-center md:text-left">
+                  <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
+                    <span className="text-[var(--color-brand)]">{t.icon}</span>
+                    <span className="label-mono text-[var(--color-brand)] font-bold">Day {t.day}</span>
                     <span className="text-white font-bold">{t.title}</span>
                   </div>
                   <ul className="space-y-2">
                     {t.items.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm text-[#7A9BAD]">
-                        <span className="text-[#00A6D2] mt-1">&#8226;</span>
+                      <li key={item} className="flex items-start gap-2 text-sm text-[var(--color-text-secondary)]">
+                        <span className="w-1 h-1 rounded-full bg-[var(--color-brand)] mt-2 shrink-0" />
                         {item}
                       </li>
                     ))}
                   </ul>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      {/* ══════════════ §17 16-INGREDIENT DEEP DIVE ══════════════ */}
-      <Reveal>
-        <section className="bg-[#041E2B] py-16 md:py-24">
-          <div className="max-w-6xl mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-black mb-3">
-              16 Ingredients in 1 Powerful Formula
-            </h2>
-            <p className="label-mono text-[#00A6D2] mb-10">
-              Clinically Studied + High-Ratio Extracts
-            </p>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {INGREDIENTS_DETAIL.map((ing) => (
-                <div key={ing.name} className="ingredient-card text-left">
-                  <h4 className="text-white font-bold text-lg mb-1">{ing.name}</h4>
-                  <p className="text-[#7A9BAD] text-xs leading-relaxed mb-2">{ing.desc}</p>
-                  <div className="inline-block border border-[#7A9BAD] rounded px-2 py-0.5 text-xs text-[#7A9BAD] font-mono">
-                    {ing.dose}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      {/* ══════════════ NEW §B – THE RESEARCH ══════════════ */}
-      <Reveal>
-        <section className="bg-[#041E2B] py-16 md:py-24 border-t border-[#1A4459]">
-          <div className="max-w-5xl mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-black text-center mb-10">
-              The Research Behind The Formula
-            </h2>
-
-            {/* <!-- ASSET TODO: Verify each citation against original source before publishing --> */}
-            <div className="grid md:grid-cols-3 gap-6">
-              {RESEARCH_CITATIONS.map((cite) => (
-                <div key={cite.ingredient} className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] p-6">
-                  <p className="label-mono text-[#00A6D2] text-xs mb-2">{cite.ingredient}</p>
-                  <p className="text-white font-bold text-sm mb-2">{cite.finding}</p>
-                  <p className="text-[#7A9BAD] text-xs mb-3">{cite.citation}</p>
-                  <p className="text-[#7A9BAD] text-xs italic">{cite.relevance}</p>
-                </div>
-              ))}
-            </div>
-
-            <p className="text-[#7A9BAD] text-xs text-center mt-6">
-              Citations are for individual ingredients, not product claims. Genius Mind
-              contains these ingredients at the doses listed. Individual results may vary.
-            </p>
-          </div>
-        </section>
-      </Reveal>
-
-      {/* ══════════════ §18 BUILT BY OPERATORS (WHITE) ══════════════ */}
-      <Reveal>
-        <section className="bg-white py-16 md:py-24">
-          <div className="max-w-5xl mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-black text-[#0a0a0f] mb-12">
-              Built by Operators, for Operators
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {FORMULATION_POINTS.map((point) => (
-                <div key={point.title} className="text-center">
-                  <div className="w-[140px] h-[140px] rounded-full border-3 border-[#00A6D2] bg-[#EDF3F7] flex items-center justify-center mx-auto mb-4">
-                    <span className="text-3xl">{point.icon}</span>
-                  </div>
-                  <h3 className="text-[#0a0a0f] font-bold text-lg mb-1">{point.title}</h3>
-                  <p className="label-mono text-[#00A6D2] text-[10px] mb-3">{point.subtitle}</p>
-                  <p className="text-gray-600 text-sm leading-relaxed">{point.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      {/* ══════════════ §19 MONEY BACK GUARANTEE ══════════════ */}
-      <Reveal>
-        <section className="rock-bg py-16 md:py-24 border-t border-[#1A4459]">
-          <div className="max-w-3xl mx-auto px-4">
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="shrink-0">
-                <div className="w-32 h-32 bg-[#00A6D2] rounded-full flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <div className="text-xs font-bold">100%</div>
-                    <div className="text-xs font-bold">MONEY</div>
-                    <div className="text-xs font-bold">BACK</div>
-                    <div className="text-[8px] mt-1">GUARANTEE</div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <h2 className="text-2xl md:text-3xl font-black mb-2">
-                  Feel a Massive Difference in 90 Days{" "}
-                  <span className="text-[#00A6D2] italic">Or Your Money Back</span>
-                </h2>
-                <p className="text-[#7A9BAD] leading-relaxed mb-6">
-                  We make sure every customer actually gets results or we refund you
-                  100% of your investment. We&apos;re so confident you&apos;ll feel the
-                  difference with Genius Mind that we bear all the risk. No questions
-                  asked.
-                </p>
-                <a href={SHOP_URL} className="cta-btn inline-block">
-                  TRY IT NOW &rarr;
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      {/* ══════════════ §20 FAQ ══════════════ */}
-      <section id="faq" className="rock-bg py-16 md:py-24 border-t border-[#1A4459]">
-        <div className="max-w-3xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-black text-center mb-10">
-            Frequently Asked Questions
-          </h2>
-
-          <div className="space-y-3">
-            {FAQS.map((faq, i) => (
-              <Reveal key={i}>
-                <div className="bg-[#0F3347] border border-[#1A4459] rounded-xl overflow-hidden">
-                  <button
-                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="w-full text-left p-5 flex items-center justify-between text-white font-bold text-sm uppercase tracking-wider hover:bg-[#1A4459] transition-colors"
-                  >
-                    <span>{faq.q}</span>
-                    <span className="text-[#7A9BAD] text-lg transition-transform">
-                      {openFaq === i ? "\u2212" : "\u2228"}
-                    </span>
-                  </button>
-                  <div className={`faq-answer ${openFaq === i ? "open" : ""}`}>
-                    <div className="px-5 pb-5 text-sm text-[#7A9BAD] leading-relaxed">
-                      {faq.a}
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
+              </FadeUp>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ══════════════ §21 STARTER KIT ══════════════ */}
-      <Reveal>
-        <section className="rock-bg py-16 md:py-24 border-t border-[#1A4459]">
-          <div className="max-w-5xl mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-black mb-12">
-              Your Starter Kit <span className="text-[#00A6D2] underline">Includes:</span>
-            </h2>
+      <div className="section-divider" />
 
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] aspect-square flex items-center justify-center">
-                <div className="text-center text-[#7A9BAD] p-8">
-                  <div className="text-6xl mb-4">&#127873;</div>
-                  <p className="text-sm">[Starter Kit bundle image]</p>
+      {/* ══════════════ §16 RESEARCH ══════════════ */}
+      <section className="section-primary py-16 md:py-24">
+        <div className="max-w-5xl mx-auto px-4">
+          <FadeUp>
+            <SectionNumber num="12" label="THE SCIENCE" />
+            <h2 className="text-3xl md:text-4xl font-black text-center mb-10 leading-tight">
+              The Research Behind The Formula
+            </h2>
+          </FadeUp>
+
+          <StaggerChildren className="grid md:grid-cols-3 gap-5">
+            {RESEARCH_CITATIONS.map((cite) => (
+              <motion.div key={cite.ingredient} variants={childFade} className="card relative">
+                <BookOpen size={14} className="absolute top-4 right-4 text-[var(--color-text-tertiary)]" />
+                <p className="label-mono text-[var(--color-brand)] text-xs mb-2">{cite.ingredient}</p>
+                <p className="text-white font-bold text-sm mb-2">{cite.finding}</p>
+                <p className="text-[var(--color-text-tertiary)] text-xs mb-3">{cite.citation}</p>
+                <p className="text-[var(--color-text-tertiary)] text-xs italic">{cite.relevance}</p>
+              </motion.div>
+            ))}
+          </StaggerChildren>
+
+          <p className="text-[var(--color-text-tertiary)] text-xs text-center mt-6">
+            Citations are for individual ingredients, not product claims. Individual results may vary.
+          </p>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* ══════════════ §17 GUARANTEE ══════════════ */}
+      <section className="section-elevated py-16 md:py-24">
+        <div className="max-w-3xl mx-auto px-4">
+          <FadeUp>
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="shrink-0">
+                <div className="w-28 h-28 rounded-full border-2 border-[var(--color-brand)] flex items-center justify-center bg-[rgba(0,166,210,0.06)]">
+                  <div className="text-center text-white label-mono text-[10px] leading-tight">
+                    <div>100%</div>
+                    <div>Money</div>
+                    <div>Back</div>
+                    <div className="text-[8px] mt-1 text-[var(--color-text-tertiary)]">Guarantee</div>
+                  </div>
                 </div>
               </div>
-
-              <div className="text-left">
-                <div className="space-y-4">
-                  {LAUNCH_KIT.map((item) => (
-                    <div key={item.name} className="flex items-center justify-between border-b border-[#1A4459] pb-3">
-                      <span className="text-white font-bold">{item.name}</span>
-                      <div className="flex items-center gap-2">
-                        {item.was && <span className="text-[#7A9BAD] line-through text-sm">{item.was}</span>}
-                        <span className="text-[#00A6D2] font-bold">{item.now}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-8">
-                  <a href={SHOP_URL} className="cta-btn">
-                    TRY IT NOW &rarr;
-                  </a>
-                </div>
+              <div>
+                <h2 className="text-2xl md:text-3xl font-black mb-3 leading-tight">
+                  Feel a Massive Difference in 90 Days{" "}
+                  <span className="text-[var(--color-brand)]">Or Your Money Back</span>
+                </h2>
+                <p className="text-[var(--color-text-secondary)] leading-relaxed mb-6">
+                  We make sure every customer actually gets results or we refund you
+                  100% of your investment. No questions asked.
+                </p>
+                <a href={SHOP_URL} className="cta-btn inline-block">
+                  TRY IT NOW <ArrowRight size={16} className="inline ml-1 -mt-0.5" />
+                </a>
               </div>
             </div>
+          </FadeUp>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* ══════════════ §18 FAQ ══════════════ */}
+      <section id="faq" className="section-primary py-16 md:py-24">
+        <div className="max-w-3xl mx-auto px-4">
+          <FadeUp>
+            <SectionNumber num="13" label="QUESTIONS" />
+            <h2 className="text-3xl md:text-4xl font-black text-center mb-10 leading-tight">
+              Frequently Asked Questions
+            </h2>
+          </FadeUp>
+
+          <div className="space-y-3">
+            {FAQS.map((faq, i) => (
+              <FadeUp key={i} delay={i * 0.05}>
+                <div className={`card overflow-hidden transition-all ${openFaq === i ? "!border-l-2 !border-l-[var(--color-brand)]" : ""}`}>
+                  <button
+                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    className="w-full text-left p-5 flex items-center justify-between text-white font-semibold text-sm hover:text-[var(--color-brand)] transition-colors"
+                  >
+                    <span>{faq.q}</span>
+                    <motion.span
+                      animate={{ rotate: openFaq === i ? 180 : 0 }}
+                      transition={{ duration: 0.25 }}
+                    >
+                      <ChevronDown size={18} className="text-[var(--color-text-secondary)]" />
+                    </motion.span>
+                  </button>
+                  <div className={`faq-answer ${openFaq === i ? "open" : ""}`}>
+                    <div className="px-5 pb-5 text-sm text-[var(--color-text-secondary)] leading-relaxed">
+                      {faq.a}
+                    </div>
+                  </div>
+                </div>
+              </FadeUp>
+            ))}
           </div>
-        </section>
-      </Reveal>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* ══════════════ §19 STARTER KIT ══════════════ */}
+      <section className="section-elevated py-16 md:py-24">
+        <div className="max-w-5xl mx-auto px-4 text-center">
+          <FadeUp>
+            <SectionNumber num="14" label="WHAT YOU GET" />
+            <h2 className="text-3xl md:text-4xl font-black mb-12 leading-tight">
+              Your Starter Kit <span className="text-[var(--color-brand)]">Includes:</span>
+            </h2>
+          </FadeUp>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <FadeUp>
+              <Skeleton label="Starter Kit bundle image" className="aspect-square" />
+            </FadeUp>
+
+            <FadeUp delay={0.1}>
+              <div className="text-left space-y-4">
+                {LAUNCH_KIT.map((item) => (
+                  <div key={item.name} className="flex items-center justify-between border-b border-[var(--color-border)] pb-3">
+                    <span className="text-white font-semibold text-sm">{item.name}</span>
+                    <div className="flex items-center gap-2">
+                      {item.was && <span className="text-[var(--color-text-tertiary)] line-through text-xs">{item.was}</span>}
+                      <span className="text-[var(--color-brand)] font-bold text-sm">{item.now}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-8">
+                <a href={SHOP_URL} className="cta-btn">
+                  TRY IT NOW <ArrowRight size={16} className="inline ml-1 -mt-0.5" />
+                </a>
+              </div>
+            </FadeUp>
+          </div>
+        </div>
+      </section>
 
       {/* ══════════════ FOOTER ══════════════ */}
-      <footer className="border-t border-[#1A4459] py-10 bg-[#041E2B]">
+      <footer className="border-t border-[var(--color-border)] py-10 bg-[var(--color-background)]">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="text-white font-black text-lg tracking-[0.15em]">
-              GENIUS MIND
-            </span>
-          </div>
-          <p className="text-[#7A9BAD] text-xs mb-4">For Those Who Demand More.</p>
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-[#7A9BAD] mb-6">
+          <p className="text-white font-black text-lg tracking-[0.12em] mb-2">GENIUS MIND</p>
+          <p className="text-[var(--color-text-secondary)] text-xs mb-4 font-serif italic">For Those Who Demand More.</p>
+          <div className="flex flex-wrap justify-center gap-6 text-sm text-[var(--color-text-secondary)] mb-6">
             <a href={SHOP_URL} className="hover:text-white transition-colors">Shop</a>
-            <a href="#ingredients" className="hover:text-white transition-colors">Science</a>
+            <a href="#formula" className="hover:text-white transition-colors">Science</a>
             <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
             <a href="mailto:support@justfloow.com" className="hover:text-white transition-colors">Contact</a>
           </div>
-          <p className="text-[10px] text-[#1A4459] max-w-xl mx-auto">
+          <p className="text-[var(--color-text-tertiary)] text-[10px] max-w-xl mx-auto">
             *These statements have not been evaluated by the MHRA. This product is
             not intended to diagnose, treat, cure or prevent any disease. Individual
             results may vary.
@@ -1142,29 +958,27 @@ export default function CognitiveLander() {
         </div>
       </footer>
 
-      {/* ══════════════ STICKY BUY BAR ══════════════ */}
+      {/* ══════════════ STICKY CTA BAR ══════════════ */}
       <div
-        className={`sticky-buy-bar fixed bottom-0 left-0 right-0 bg-[#0C2A3A]/95 backdrop-blur-md border-t border-[#1A4459] py-3 px-4 z-50 ${
+        className={`sticky-buy-bar fixed bottom-0 left-0 right-0 bg-[var(--color-surface)]/95 backdrop-blur-md border-t border-[var(--color-border)] py-3 px-4 z-50 ${
           stickyVisible ? "visible" : ""
         }`}
       >
         <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
           <div className="hidden sm:block">
-            <div className="text-sm font-bold text-white">
-              Genius Mind Cognitive Stack
-            </div>
-            <div className="text-xs text-[#7A9BAD]">
+            <p className="text-sm font-bold text-white">Genius Mind Cognitive Stack</p>
+            <p className="text-xs text-[var(--color-text-secondary)]">
               16 ingredients &bull; 90-day guarantee &bull; Save up to 43%
-            </div>
+            </p>
           </div>
           <div className="flex items-center gap-3">
             <div className="hidden md:block text-right">
               <span className="text-white font-bold">&pound;24.99</span>
-              <span className="text-[#7A9BAD] line-through text-xs ml-1">&pound;34.99</span>
+              <span className="text-[var(--color-text-tertiary)] line-through text-xs ml-1">&pound;34.99</span>
             </div>
             <a
               href={SHOP_URL}
-              className="bg-[#00A6D2] hover:bg-[#008AB0] text-white font-bold py-3 px-6 rounded-lg text-sm transition-colors whitespace-nowrap"
+              className="bg-[var(--color-brand)] hover:bg-[var(--color-brand-dark)] text-white font-bold py-3 px-6 rounded-lg text-sm transition-all whitespace-nowrap hover:scale-[1.02] active:scale-[0.98]"
             >
               TRY IT NOW &rarr;
             </a>
@@ -1179,45 +993,93 @@ export default function CognitiveLander() {
    DATA
    ═══════════════════════════════════════════════════════════════ */
 
-/* §8 – BENEFIT TILES (survey-validated angles) */
-const BENEFITS = [
-  { icon: "\uD83C\uDFAF", title: "Sustained Focus", desc: "Focus that lasts. Lock in for hours, not bursts." },
-  { icon: "\uD83D\uDCA1", title: "Mental Clarity", desc: "Clearer thinking. The fog cuts through." },
-  { icon: "\u26A1", title: "Mental Energy", desc: "All-day cognitive stamina. No afternoon collapse. Clean energy, not borrowed." },
-  { icon: "\uD83D\uDE80", title: "Easier to Take Action", desc: "Close the knowing-doing gap. Start what you\u2019ve been putting off." },
-  { icon: "\uD83D\uDCC8", title: "Peak Performance", desc: "Sharper thinking under pressure. The mental edge that holds when the stakes are highest." },
-  { icon: "\uD83E\uDDE0", title: "Memory & Recall", desc: "Faster recall. Word-finding restored. Pattern recognition back online." },
+const SYMPTOMS = [
+  { bold: "Re-reading the same email three times", rest: "before the meaning lands" },
+  { bold: "Decision quality dropping by 2pm", rest: "\u2014 and the hardest calls always land later" },
+  { bold: "The second coffee not doing what it used to", rest: "\u2014 and the third one giving you the jitters without the focus" },
+  { bold: "Word-finding gaps in important conversations", rest: "\u2014 names, terms, the right word for a Slack message that should take 30 seconds" },
+  { bold: "Brain output flatlining", rest: "even after you\u2019ve sorted sleep, training, and diet" },
 ];
 
-/* §9 – HERO INGREDIENTS (8, hedged) – Fenugreek swapped for Sage Leaf */
-const INGREDIENTS = [
-  { name: "L-Tyrosine", dose: "100 mg", desc: "Studied as a dopamine precursor for focus under stress." },
-  { name: "Ginkgo Biloba", dose: "120 mg (50:1)", desc: "Researched for cerebral blood flow and oxygen delivery." },
-  { name: "Bacopa Monnieri", dose: "80 mg (11:1)", desc: "Studied for memory consolidation and recall." },
-  { name: "Lion\u2019s Mane", dose: "80 mg (4:1)", desc: "Studied for its role in stimulating nerve growth factor." },
-  { name: "Panax Ginseng", dose: "100 mg (20:1)", desc: "Researched for focus, endurance, and stress response." },
-  { name: "L-Choline", dose: "100 mg", desc: "Studied as an acetylcholine precursor for memory and learning." },
-  { name: "Guarana Seed", dose: "90 mg", desc: "Slow-release caffeine via tannin binding \u2014 researched for sustained energy." },
-  { name: "Sage Leaf", dose: "75 mg (4:1)", desc: "Studied for memory retention and cognitive support." },
+const FAILURE_BOXES = [
+  {
+    title: "More caffeine builds tolerance and depletes the system underneath.",
+    desc: "Caffeine doesn\u2019t produce dopamine \u2014 it borrows against the dopamine you already have. The dose that worked in January barely works by March.",
+  },
+  {
+    title: "Single-ingredient nootropics solve one thing. Focus isn\u2019t one thing.",
+    desc: "Lion\u2019s Mane alone addresses neurogenesis. It doesn\u2019t touch blood flow, dopamine depletion, or synaptic signal. Focus is a multi-mechanism problem treated with a one-mechanism solution.",
+  },
+  {
+    title: "Sorting sleep, training, and diet won\u2019t fix chemistry depletion.",
+    desc: "You\u2019ve done the work. The lifestyle is dialled. And the cognitive output still plateaus \u2014 because the chemistry layer was never addressed.",
+  },
+];
+
+const ENEMY_CAFFEINE = [
+  { bold: "Tolerance builds within weeks", rest: "\u2014 you need more for less" },
+  { bold: "90-minute spike then a crash", rest: "\u2014 your best hours get shorter" },
+  { bold: "Disrupts sleep", rest: "\u2014 which compounds next-day cognitive load" },
+];
+
+const ENEMY_GENERIC = [
+  { bold: "Proprietary blends hide", rest: "worthless micro-doses" },
+  { bold: "Single-ingredient formulas", rest: "that can\u2019t address multiple pathways" },
+  { bold: "Raw powders instead of extracts", rest: "\u2014 no bioavailability, no results" },
+];
+
+const MECHANISMS = [
+  {
+    label: "BLOOD FLOW",
+    title: "Blood Flow Activation",
+    icon: <Zap size={28} />,
+    desc: "Ginkgo Biloba 50:1, Rosemary 5:1, Panax Ginseng 20:1. Researched for cerebral blood flow, oxygen and nutrient delivery to the brain.",
+  },
+  {
+    label: "NEURON STIMULATION",
+    title: "Neuron Stimulation",
+    icon: <Lightbulb size={28} />,
+    desc: "Lion\u2019s Mane 4:1, L-Tyrosine, Guarana. Studied for nerve growth factor, dopamine precursor support, and clean sustained energy via slow-release caffeine.",
+  },
+  {
+    label: "NEURON STRENGTHENING",
+    title: "Neuron Strengthening",
+    icon: <Shield size={28} />,
+    desc: "Bacopa Monnieri 11:1, Phosphatidylserine, B-Complex, Zinc. Studied for synaptic communication, memory consolidation, and cellular brain energy.",
+  },
+];
+
+const BENEFITS = [
+  { icon: <Target size={28} />, title: "Sustained Focus", desc: "Focus that lasts. Lock in for hours, not bursts.", survey: "23 of 33 long-term customers report this as #1 outcome" },
+  { icon: <Eye size={28} />, title: "Mental Clarity", desc: "Clearer thinking. The fog cuts through.", survey: "22 of 33 long-term customers report this" },
+  { icon: <Zap size={28} />, title: "Mental Energy", desc: "All-day cognitive stamina. No afternoon collapse. Clean energy, not borrowed.", survey: null },
+  { icon: <Rocket size={28} />, title: "Easier to Take Action", desc: "Close the knowing-doing gap. Start what you\u2019ve been putting off.", survey: "20 of 33 long-term customers report this" },
+  { icon: <TrendingUp size={28} />, title: "Peak Performance", desc: "Sharper thinking under pressure. The mental edge that holds when the stakes are highest.", survey: null },
+  { icon: <Brain size={28} />, title: "Memory & Recall", desc: "Faster recall. Word-finding restored. Pattern recognition back online.", survey: null },
 ];
 
 const TRUST_BADGES = [
-  { icon: "\uD83C\uDFED", label: "GMP Certified Facility" },
-  { icon: "\uD83D\uDD2C", label: "Lab Tested" },
+  { icon: <Factory size={16} />, label: "GMP Certified Facility" },
+  { icon: <FlaskConical size={16} />, label: "Lab Tested" },
   { icon: "\uD83C\uDDEC\uD83C\uDDE7", label: "Made in UK" },
-  { icon: "\uD83C\uDF3F", label: "100% Vegan" },
-  { icon: "\uD83D\uDEAB", label: "Non-GMO" },
-  { icon: "\uD83C\uDF3E", label: "Gluten Free" },
+  { icon: <Leaf size={16} />, label: "100% Vegan" },
+  { icon: <X size={14} />, label: "Non-GMO" },
 ];
 
-/* NEW §A – OPERATOR STACK */
 const OPERATOR_STACK = [
-  { icon: "\uD83D\uDCAA", label: "Creatine", target: "Muscle", highlight: false },
-  { icon: "\uD83D\uDC9B", label: "Omega-3", target: "Heart", highlight: false },
-  { icon: "\uD83E\uDDE0", label: "Genius Mind", target: "Brain", highlight: true },
-  { icon: "\uD83C\uDF19", label: "Magnesium", target: "Sleep", highlight: false },
-  { icon: "\u2600\uFE0F", label: "Vitamin D", target: "Immune", highlight: false },
-  { icon: "\uD83E\uDD57", label: "AG1 / Multi", target: "General", highlight: false },
+  { icon: <Dumbbell size={22} />, label: "Creatine", target: "Muscle", highlight: false },
+  { icon: <Heart size={22} />, label: "Omega-3", target: "Heart", highlight: false },
+  { icon: <Brain size={22} />, label: "Genius Mind", target: "Brain", highlight: true },
+  { icon: <Moon size={22} />, label: "Magnesium", target: "Sleep", highlight: false },
+  { icon: <Sun size={22} />, label: "Vitamin D", target: "Immune", highlight: false },
+  { icon: <Leaf size={22} />, label: "AG1 / Multi", target: "General", highlight: false },
+];
+
+const SURVEY_OUTCOMES = [
+  { label: "Sustained Focus", count: 23 },
+  { label: "Mental Clarity", count: 22 },
+  { label: "Easier to Take Action", count: 20 },
+  { label: "Sharper Under Pressure", count: 17 },
 ];
 
 const VIDEO_TESTIMONIALS = [
@@ -1235,15 +1097,6 @@ const PRODUCT_BULLETS = [
   "90-day 100% money-back guarantee, no questions asked*",
 ];
 
-/* §11 – MINI REVIEWS */
-/* <!-- TODO: Replace with real verbatim Trustpilot reviews --> */
-const MINI_REVIEWS = [
-  "The fog has lifted completely. I used to hit a wall at 2pm every day, now I\u2019m sharp right through to the end of the working day. My team has noticed the difference in my decision-making.",
-  "I was skeptical about another nootropic but this one actually works. My recall is sharper, I\u2019m sleeping better, and the compound effect is real. Three months in.",
-  "Dropped from 4 coffees a day to one. My mornings are cleaner, my afternoons don\u2019t collapse, and I genuinely feel like I\u2019m operating at a higher level.",
-];
-
-/* §12 – COMPARISON TABLE */
 const COMPARISON = [
   { label: "Supports Dopamine Pathways", caff: "x", generic: "?" },
   { label: "No Crash or Withdrawal", caff: "x", generic: "?" },
@@ -1254,113 +1107,9 @@ const COMPARISON = [
   { label: "16 Synergistic Ingredients", caff: "x", generic: "x" },
 ];
 
-/* §14 – SURVEY OUTCOMES */
-const SURVEY_OUTCOMES = [
-  { label: "Sustained Focus", count: 23 },
-  { label: "Mental Clarity", count: 22 },
-  { label: "Easier to Take Action", count: 20 },
-  { label: "Sharper Under Pressure", count: 17 },
-];
-
-/* §15 – GRAPH POINTS for weekly timeline (x,y – y decreases = higher output) */
-const GRAPH_POINTS = [
-  "0,130",    // baseline
-  "43,120",   // W1-2
-  "86,105",   // W3-4
-  "129,85",   // W5-6
-  "172,62",   // W7-8
-  "215,38",   // W9-10
-  "258,20",   // W11-12
-  "300,15",   // M6+
-];
-
-/* §15 – WEEK-BY-WEEK (all hedged) */
-const WEEKS = [
-  {
-    label: "Week 1-2",
-    title: "Adjustment",
-    subtitle: "Your body is getting used to the new stack, gradually absorbing and processing its ingredients.",
-    benefits: [
-      "Some users may notice a subtle lift in daily clarity and alertness.",
-      "Slight improvements in mood and drive as pathways begin activating.",
-      "Guarana and B vitamins may provide an early energy lift.",
-      "Your brain is beginning to build the foundation for sustained output.",
-    ],
-  },
-  {
-    label: "Week 3-4",
-    title: "Activation",
-    subtitle: "Key ingredients are building up in your system. Some users report mild improvements.",
-    benefits: [
-      "Some users report less reliance on afternoon caffeine.",
-      "Focus sessions may begin extending naturally.",
-      "Memory recall may start improving.",
-      "Decision quality may stay more consistent later in the day.",
-    ],
-  },
-  {
-    label: "Week 5-6",
-    title: "Momentum",
-    subtitle: "Research suggests Bacopa effects may begin around 4-6 weeks of consistent use.",
-    benefits: [
-      "More noticeable improvements in sustained focus.",
-      "Deep work may become more accessible and natural.",
-      "Stress response may feel more manageable.",
-      "Others may start noticing sustained sharpness.",
-    ],
-  },
-  {
-    label: "Week 7-8",
-    title: "Sharper Output",
-    subtitle: "Sustained focus may become more reliable with continued daily use.",
-    benefits: [
-      "Some users report consistent concentration throughout the day.",
-      "Executive function and planning may feel sharper.",
-      "Energy may stay more consistent from morning to evening.",
-      "Cognitive endurance under pressure may improve.",
-    ],
-  },
-  {
-    label: "Week 9-10",
-    title: "Compound Effect",
-    subtitle: "Research suggests Lion\u2019s Mane effects may accumulate over this period.",
-    benefits: [
-      "Some users report improvements in recall and working memory.",
-      "Creative problem-solving may feel more accessible.",
-      "Recovery between demanding sessions may be faster.",
-      "Colleagues and team members may notice the difference.",
-    ],
-  },
-  {
-    label: "Week 11-12",
-    title: "New Baseline",
-    subtitle: "This may become the operating state with consistent use.",
-    benefits: [
-      "All 16 ingredients may be operating synergistically.",
-      "Cognitive output may feel consistently supported across the full day.",
-      "For many users, this is no longer a supplement effect \u2014 it\u2019s the new normal.",
-      "Research-backed ingredients continue supporting cognitive function.",
-    ],
-  },
-  {
-    label: "Month 6+",
-    title: "Sustained Cognitive Floor",
-    subtitle: "New baseline may hold with consistent daily use.",
-    benefits: [
-      "Cognitive baseline may be fully established.",
-      "Neural support continues with ongoing use.",
-      "Performance may feel natural and sustained.",
-      "Ongoing protection with continued daily intake.",
-    ],
-  },
-];
-
-/* §16 – DAY TIMELINE */
 const TIMELINE = [
   {
-    day: "1",
-    title: "Activation",
-    emoji: "\u26A1",
+    day: "1", title: "Activation", icon: <Zap size={20} />,
     items: [
       "Guarana and B vitamins may provide an immediate lift",
       "L-Tyrosine begins supporting dopamine pathways",
@@ -1369,9 +1118,7 @@ const TIMELINE = [
     ],
   },
   {
-    day: "30",
-    title: "The Hold",
-    emoji: "\uD83D\uDCA5",
+    day: "30", title: "The Hold", icon: <TrendingUp size={20} />,
     items: [
       "Some users report the afternoon crash flattening",
       "Bacopa and Lion\u2019s Mane may reach effective levels",
@@ -1380,9 +1127,7 @@ const TIMELINE = [
     ],
   },
   {
-    day: "90",
-    title: "Lock-In",
-    emoji: "\uD83D\uDE80",
+    day: "90", title: "Lock-In", icon: <Award size={20} />,
     items: [
       "All 16 ingredients may be working synergistically",
       "Decision stamina may extend across the full day",
@@ -1392,85 +1137,57 @@ const TIMELINE = [
   },
 ];
 
-/* §17 – ALL 16 INGREDIENTS (hedged) */
 const INGREDIENTS_DETAIL = [
   { name: "L-Tyrosine", dose: "100 mg", desc: "Studied as a dopamine precursor for focus and drive under stress." },
   { name: "Ginkgo Biloba", dose: "120 mg (50:1)", desc: "Researched for cerebral blood flow and oxygen delivery to the brain." },
   { name: "Bacopa Monnieri", dose: "80 mg (11:1)", desc: "Studied for memory consolidation and recall support." },
   { name: "Lion\u2019s Mane", dose: "80 mg (4:1)", desc: "Studied for its role in stimulating nerve growth factor." },
   { name: "Phosphatidylserine", dose: "35 mg", desc: "Studied for brain cell membrane integrity and signal transmission." },
-  { name: "B12 (Methylcobalamin)", dose: "500\u03BCg", desc: "Studied for its role in neurotransmitter synthesis. Most adults may be deficient." },
+  { name: "B12 (Methylcobalamin)", dose: "500\u03BCg", desc: "Studied for its role in neurotransmitter synthesis." },
   { name: "Panax Ginseng", dose: "100 mg (20:1)", desc: "Researched for focus, endurance, and stress response support." },
   { name: "L-Choline", dose: "100 mg", desc: "Studied as an acetylcholine precursor for memory and learning." },
-  { name: "Guarana Seed", dose: "90 mg", desc: "Slow-release caffeine via tannin binding \u2014 researched for sustained energy without spikes." },
+  { name: "Guarana Seed", dose: "90 mg", desc: "Slow-release caffeine via tannin binding \u2014 researched for sustained energy." },
   { name: "Sage Leaf", dose: "75 mg (4:1)", desc: "Studied for memory retention and cognitive support." },
   { name: "Rosemary", dose: "20 mg (5:1)", desc: "Researched for neuroprotective properties and long-term brain health." },
   { name: "Vitamin B6", dose: "10 mg", desc: "Studied for its role as a cofactor in neurotransmitter synthesis." },
   { name: "Zinc", dose: "10 mg", desc: "Studied for cognitive function, learning, and synaptic signalling." },
   { name: "Niacin (B3)", dose: "32 mg", desc: "Studied for NAD+ production and cellular brain energy." },
-  { name: "Fenugreek", dose: "675 mg", desc: "Researched for hormonal support and cognitive endurance." },
-  { name: "Taurine", dose: "675 mg", desc: "Studied for reducing oxidative stress and supporting neural function." },
+  { name: "Thiamine (B1)", dose: "2.2 mg", desc: "Studied for neural communication and energy metabolism." },
+  { name: "Pantothenic Acid (B5)", dose: "12 mg", desc: "Studied for neurotransmitter synthesis and stress resilience." },
 ];
 
-/* NEW §B – RESEARCH CITATIONS */
-/* <!-- ASSET TODO: Verify each citation against original source before publishing --> */
 const RESEARCH_CITATIONS = [
   {
     ingredient: "Bacopa Monnieri",
     finding: "Measurable memory improvements after 12 weeks of supplementation.",
-    citation: "Stough et al., Psychopharmacology, 2001; Calabrese et al., Journal of Alternative and Complementary Medicine, 2008.",
-    relevance: "Genius Mind contains Bacopa Monnieri 11:1 at 80mg \u2014 a high-ratio extract studied for memory consolidation.",
+    citation: "Stough et al., Psychopharmacology, 2001; Calabrese et al., J. Alt. Comp. Med., 2008.",
+    relevance: "Genius Mind contains Bacopa Monnieri 11:1 at 80mg \u2014 studied for memory consolidation.",
   },
   {
     ingredient: "Ginkgo Biloba",
     finding: "Measurable increases in cerebral blood flow following administration.",
     citation: "Mashayekh et al., Neuroradiology, 2011.",
-    relevance: "Genius Mind contains Ginkgo Biloba 50:1 at 120mg \u2014 researched for cerebral blood flow and oxygen delivery.",
+    relevance: "Genius Mind contains Ginkgo Biloba 50:1 at 120mg \u2014 researched for cerebral blood flow.",
   },
   {
     ingredient: "L-Tyrosine",
     finding: "Supports cognitive performance during demanding tasks and stressful conditions.",
-    citation: "Deijen & Orlebeke, Brain Research Bulletin, 1994; multiple subsequent studies.",
-    relevance: "Genius Mind contains L-Tyrosine at 100mg \u2014 studied as a dopamine precursor for focus under stress.",
+    citation: "Deijen & Orlebeke, Brain Research Bulletin, 1994.",
+    relevance: "Genius Mind contains L-Tyrosine at 100mg \u2014 studied as a dopamine precursor under stress.",
   },
 ];
 
-/* §18 – FORMULATION POINTS */
-const FORMULATION_POINTS = [
-  {
-    icon: "\uD83E\uDDEA",
-    title: "High-Ratio Extracts",
-    subtitle: "Not Cheap Powders",
-    desc: "50:1 Ginkgo, 11:1 Bacopa, 20:1 Ginseng. Concentrated botanical extracts for maximum bioavailability and efficacy, not the raw powder fillers found in generic supplements.",
-  },
-  {
-    icon: "\uD83D\uDD2C",
-    title: "16 Synergistic Ingredients",
-    subtitle: "Full-Spectrum Stack",
-    desc: "Your brain runs on multiple neurotransmitter systems simultaneously. Single-ingredient supplements are a band-aid. Genius Mind addresses blood flow, neuron stimulation, and neuron strengthening together.",
-  },
-  {
-    icon: "\uD83D\uDCCA",
-    title: "Full Dose Transparency",
-    subtitle: "Zero Proprietary Blends",
-    desc: "Every ingredient, every dose, clearly listed. No proprietary blends hiding micro-doses behind marketing. You know exactly what you\u2019re putting in your body and why.",
-  },
-];
-
-/* §20 – FAQS (original 5 + 3 new per brief) */
 const FAQS = [
   { q: "What is Genius Mind?", a: "Genius Mind is a cognitive stack with 16 clinically studied ingredients \u2014 including high-ratio botanical extracts, amino acid precursors, and essential cofactors \u2014 designed to support sustained focus throughout the working day. No stimulant dependency, no crashes." },
   { q: "Who is Genius Mind for?", a: "Genius Mind is built for operators, founders, and high-performers who need sustained cognitive output across long working days. If you\u2019re hitting a wall by mid-afternoon, building caffeine tolerance, or making worse decisions later in the day, this is designed for you." },
-  { q: "How do I take Genius Mind?", a: "Take 2 capsules daily with breakfast or 30-60 minutes before your most demanding work. Each bottle contains 60 capsules (30 servings). For best results, use consistently for at least 90 days to allow the compound effect to build." },
-  { q: "How long until I see results?", a: "Some users report a subtle lift in clarity within the first 1-2 weeks as Guarana and B vitamins take effect. Research suggests the full synergistic stack \u2014 particularly Bacopa and Lion\u2019s Mane \u2014 may reach optimal levels around weeks 4-8. Month 3 is typically when long-term customers report the most significant changes." },
+  { q: "How do I take Genius Mind?", a: "Take 2 capsules daily with breakfast or 30-60 minutes before your most demanding work. Each bottle contains 60 capsules (30 servings). For best results, use consistently for at least 90 days." },
+  { q: "How long until I see results?", a: "Some users report a subtle lift in clarity within the first 1-2 weeks as Guarana and B vitamins take effect. Research suggests Bacopa and Lion\u2019s Mane may reach optimal levels around weeks 4-8. Month 3 is typically when long-term customers report the most significant changes." },
   { q: "Can Genius Mind replace my coffee?", a: "Many customers reduce or eliminate their coffee intake after starting Genius Mind. The Guarana provides clean, sustained energy without the tolerance-building and crash cycle of caffeine. However, Genius Mind is designed to work alongside moderate coffee intake too." },
-  { q: "Can I stack Genius Mind with creatine, omega-3, magnesium, or my existing supplement routine?", a: "Yes. Genius Mind is designed as the cognitive chemistry layer on top of an existing operator stack. It doesn\u2019t replace creatine, omega-3, or magnesium \u2014 those address different systems. Common stacks include all four taken at appropriate times." },
-  { q: "What happens if I stop taking it?", a: "Genius Mind isn\u2019t habit-forming and doesn\u2019t create withdrawal. The supportive effect on dopamine pathways and synaptic signalling depends on consistent intake \u2014 stop, and the cognitive chemistry support stops. Many long-term customers run it as a permanent part of their stack for that reason." },
+  { q: "Can I stack Genius Mind with creatine, omega-3, magnesium, or my existing supplements?", a: "Yes. Genius Mind is designed as the cognitive chemistry layer on top of an existing operator stack. It doesn\u2019t replace creatine, omega-3, or magnesium \u2014 those address different systems. Common stacks include all four taken at appropriate times." },
+  { q: "What happens if I stop taking it?", a: "Genius Mind isn\u2019t habit-forming and doesn\u2019t create withdrawal. The supportive effect on dopamine pathways and synaptic signalling depends on consistent intake \u2014 stop, and the cognitive chemistry support stops. Many long-term customers run it as a permanent part of their stack." },
   { q: "Is Genius Mind safe for daily, long-term use?", a: "Yes. The formula is non-stimulant-dependent, made in a GMP-certified UK facility, third-party tested, and designed for daily intake. The ingredients are at clinical doses with no tolerance pathway." },
 ];
 
-/* §21 – STARTER KIT */
-/* <!-- TODO: Verify 90-Day Cognitive Blueprint Guide and Operator Performance Tracker exist. If not, mark TO BUILD or remove. --> */
 const LAUNCH_KIT = [
   { name: "Genius Mind Cognitive Stack (30-day)", was: "\u00A334.99", now: "\u00A324.99" },
   { name: "90-Day Cognitive Blueprint Guide", was: "\u00A319.99", now: "FREE" },
