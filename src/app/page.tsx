@@ -101,60 +101,65 @@ export default function CognitiveLander() {
         </div>
       </header>
 
-      {/* ══════════════ HERO ══════════════ */}
+      {/* ══════════════ §1 HERO ══════════════ */}
       <section className="rock-bg py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left: Copy */}
             <div>
               <p className="label-mono text-[#7A9BAD] mb-4">
-                16 Clinically Studied Ingredients. One Formula.{" "}
-                <span className="text-[#00A6D2]">Zero BS.</span>
+                16 Ingredients. One Formula. Zero BS.
               </p>
               <h1 className="font-mono text-3xl md:text-4xl lg:text-5xl font-black uppercase leading-tight mb-6">
-                End The 3PM Cognitive Crash With This{" "}
-                <span className="text-[#00A6D2]">Natural Brain Upgrade</span>
+                Your Brain Isn&apos;t Tired. It&apos;s Running On What Cortisol Left Behind.
               </h1>
               <p className="text-white font-bold text-lg mb-4">
-                Your brain isn&apos;t broken &mdash; your neurochemistry is just running on empty.
+                Every high-pressure year you&apos;ve run this business, cortisol has been
+                wearing down the chemistry your brain needs to think clearly. This is
+                how you restore it.
               </p>
               <p className="text-[#7A9BAD] mb-4 leading-relaxed">
-                The neurotransmitters that power your decisions, focus, and clarity
-                are the same ones being drained by modern cognitive load &mdash; and never
-                replenished.
+                The stress hormone that spikes every time a deadline lands, a hire blows
+                up, or a pivot has to be made under pressure &mdash; it&apos;s the same one
+                quietly depleting the precursors your brain uses to build focus, recall,
+                and drive.
               </p>
               <p className="text-[#7A9BAD] mb-4 leading-relaxed">
-                It&apos;s why you&apos;re sharp at 9am but foggy by 2pm, why the ideas stop
-                flowing, and why every decision feels heavier than it should.
+                It&apos;s why the second coffee stopped working. Why the calls that used to
+                feel obvious now take three drafts. Why you finish the day with output
+                you wouldn&apos;t have signed off on three years ago.
               </p>
               <p className="text-white font-semibold mb-2">
-                Rebuild your cognitive substrates. Extend your decision window.
+                Replenish what cortisol depleted. Restore the chemistry.
               </p>
               <p className="text-white font-semibold mb-8">
-                Do that and the fog lifts, while output compounds.
+                The chaos isn&apos;t going anywhere &mdash; but your brain doesn&apos;t have to
+                keep paying for it.
               </p>
-              <a href={SHOP_URL} className="cta-btn inline-block">
-                TRY IT NOW &rarr;
+              <a href="#mechanism" className="cta-btn inline-block">
+                See How It Works &rarr;
               </a>
             </div>
 
-            {/* Right: Cognitive comparison image placeholder */}
+            {/* Right: High/Low Cortisol Brain visual */}
+            {/* <!-- ASSET TODO: Split image – "HIGH CORTISOL BRAIN" (depleted, dim) vs "LOW CORTISOL BRAIN" (lit, replenished) – Genius Mind bottle centred between them --> */}
             <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] aspect-square flex items-center justify-center">
               <div className="text-center text-[#7A9BAD] p-8">
                 <div className="text-6xl mb-4">&#129504;</div>
-                <p className="text-sm">[Depleted Brain vs Optimised Brain comparison image]</p>
-                <p className="text-xs mt-2">Replace with your cognitive performance comparison image</p>
+                <p className="text-sm">[High Cortisol Brain vs Low Cortisol Brain comparison]</p>
+                <p className="text-xs mt-2">Genius Mind bottle centred between them</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ══════════════ IT'S NOT "JUST BEING BUSY" ══════════════ */}
+      {/* ══════════════ §2 SYMPTOMS LIST ══════════════ */}
       <section className="bg-[#041E2B] py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Left: Image placeholder */}
+            {/* <!-- ASSET TODO: Founder portrait depleted/sharp comparison --> */}
             <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] aspect-[4/5] flex items-center justify-center">
               <div className="text-center text-[#7A9BAD] p-8">
                 <div className="text-6xl mb-4">&#128248;</div>
@@ -164,19 +169,17 @@ export default function CognitiveLander() {
 
             {/* Right: Copy */}
             <div>
-              <p className="label-mono text-[#00A6D2] mb-2">
-                &#9888; Here&apos;s the truth about cognitive decline for operators
-              </p>
               <h2 className="text-3xl md:text-4xl font-black mb-6">
-                It&apos;s Not &ldquo;Just Being Busy&rdquo;
+                It&apos;s Not Just Burnout
               </h2>
-              <p className="text-white font-bold mb-4">Many operators 30+ end up...</p>
+              <p className="text-white font-bold mb-4">Many high-output operators in their 30s and 40s end up...</p>
               <div className="space-y-2 mb-6">
                 {[
-                  { bold: "Losing their sharpest hours", rest: "by early afternoon every single day" },
-                  { bold: "Running on caffeine tolerance", rest: "that stopped working months ago" },
-                  { bold: "Making worse decisions by 3pm", rest: "than they did at 9am" },
-                  { bold: "Sprinting for 3 days, crashing for 2,", rest: "stuck in a boom-bust cycle" },
+                  { bold: "Re-reading the same email three times", rest: "before the meaning lands" },
+                  { bold: "Decision quality dropping by 2pm", rest: "\u2014 and the hardest calls always land later" },
+                  { bold: "The second coffee not doing what it used to", rest: "\u2014 and the third one giving you the jitters without the focus" },
+                  { bold: "Word-finding gaps in important conversations", rest: "\u2014 names, terms, the right word for a Slack message that should take 30 seconds" },
+                  { bold: "Brain output flatlining", rest: "even after you\u2019ve sorted sleep, training, and diet" },
                 ].map((item) => (
                   <div key={item.bold} className="warning-box flex items-start gap-2">
                     <span className="text-amber-500 mt-0.5">&#9888;</span>
@@ -187,25 +190,22 @@ export default function CognitiveLander() {
                   </div>
                 ))}
               </div>
-              <p className="text-white mb-4">
-                <span className="text-xl">&#128073;</span>{" "}
-                <strong>Your sharpest competitor isn&apos;t working harder. They&apos;re operating on better chemistry.</strong>
-              </p>
-              <p className="text-[#7A9BAD] mb-4">
-                This isn&apos;t about willpower &mdash; it&apos;s what happens when dopamine depletes,
-                acetylcholine runs dry, and your brain STOPS sustaining the output you
-                need.
+              <p className="text-white mb-4 leading-relaxed">
+                Your father at 50 probably had sharper recall than you have at 38.
+                This isn&apos;t aging. This is what chronic cortisol does to the chemistry
+                your brain runs on &mdash; and the longer it goes unaddressed, the more
+                it compounds.
               </p>
               <p className="text-[#00A6D2] font-bold">
-                Your neurochemistry controls your performance.<br />
-                Fix the substrate, unlock the output.
+                Your hormones control your brain&apos;s chemistry.<br />
+                Fix the chemistry. Restore the function.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ══════════════ WHY EVERYTHING YOU'VE TRIED DIDN'T WORK ══════════════ */}
+      {/* ══════════════ §3 WHY EVERYTHING YOU'VE TRIED FAILED ══════════════ */}
       <Reveal>
         <section className="bg-white text-black py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-4">
@@ -222,54 +222,52 @@ export default function CognitiveLander() {
                   Every caffeine protocol, productivity hack, and supplement you&apos;ve tried
                   attacked the symptom. None of them went after the cause.
                 </p>
-                <p className="font-bold text-lg mb-4">The cause is substrate depletion.</p>
+                <p className="font-bold text-lg mb-4">The cause is cortisol.</p>
                 <p className="text-gray-700 mb-4">And the reason is simple:</p>
                 <p className="font-mono text-[#00A6D2] font-black text-xl uppercase mb-4">
-                  Your brain was built for a world that no longer exists.
+                  Your stress response was built for a world that no longer exists.
                 </p>
               </div>
 
               <div>
                 <p className="text-gray-700 mb-4">
-                  For most of human history, cognitive demand was intermittent.
+                  For most of human history, stress was short.
                 </p>
                 <p className="text-gray-700 mb-4">
-                  <strong>A challenge appeared, your brain focused intensely,
-                  the challenge passed, neurotransmitters replenished. Clean cycle.
-                  Worked perfectly.</strong>
+                  <strong>A threat appeared, cortisol spiked to get you through it,
+                  the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</strong>
                 </p>
                 <p className="text-gray-700 mb-4">
-                  <strong>But now the demand never stops.</strong>
+                  <strong>But now the threat never passes.</strong>
                 </p>
                 <p className="text-gray-700 mb-4">
-                  Slack notifications. Investor updates. Team decisions. Client calls at
-                  5pm. Another Zoom. Then another.
-                </p>
-                <p className="font-bold mb-4">
-                  None of it is life or death. But your neurotransmitters can&apos;t tell
-                  the difference...
+                  The Slack message at 10pm. The funding round. The hire that isn&apos;t
+                  working out. The product launch. The kid who&apos;s sick the day of the
+                  board meeting. None of it is life or death. But your nervous system
+                  can&apos;t tell the difference.
                 </p>
               </div>
             </div>
 
             <p className="text-gray-700 text-center mb-8">
-              And the harder you try to push through without fixing the substrate,
-              the more you&apos;re working against yourself:
+              And the harder you try to think your way out of cortisol-driven cognitive
+              depletion without addressing the chemistry first, the more you&apos;re working
+              against yourself:
             </p>
 
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
-                  title: "More caffeine just builds tolerance faster.",
-                  desc: "Your body adapts to stimulants by downregulating adenosine receptors. You need more to feel the same, and the crashes get worse. It's a losing game.",
+                  title: "More caffeine builds tolerance and depletes the system underneath.",
+                  desc: "Caffeine doesn\u2019t produce dopamine \u2014 it borrows against the dopamine you already have. The dose that worked in January barely works by March. The system gets worse, not better.",
                 },
                 {
-                  title: "Grinding harder depletes you faster.",
-                  desc: "Pushing through cognitive fatigue burns through dopamine and acetylcholine reserves. Operators who go harder during depleted periods make worse decisions, not better ones.",
+                  title: "Single-ingredient nootropics solve one thing. Focus isn\u2019t one thing.",
+                  desc: "Lion\u2019s Mane alone addresses neurogenesis. It doesn\u2019t touch blood flow, dopamine depletion, or synaptic signal. The reason your last stack didn\u2019t move the needle isn\u2019t that nootropics don\u2019t work \u2014 it\u2019s that focus is a multi-mechanism problem treated with a one-mechanism solution.",
                 },
                 {
-                  title: "Single-ingredient nootropics can't keep up.",
-                  desc: "Taking one compound addresses one pathway. Your brain runs on multiple neurotransmitter systems simultaneously. One ingredient is a band-aid, not a solution.",
+                  title: "Sorting sleep, training, and diet won\u2019t fix chemistry depletion.",
+                  desc: "You\u2019ve done the work. The lifestyle is dialled. And the cognitive output still plateaus \u2014 because the chemistry layer was never addressed.",
                 },
               ].map((item) => (
                 <div
@@ -285,26 +283,27 @@ export default function CognitiveLander() {
         </section>
       </Reveal>
 
-      {/* ══════════════ FIX THE SUBSTRATE. FREE YOUR COGNITION ══════════════ */}
+      {/* ══════════════ §5 TRANSITION ══════════════ */}
       <Reveal>
         <section className="bg-[#041E2B] py-16 md:py-24">
           <div className="max-w-6xl mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Before/After placeholder */}
+              {/* <!-- ASSET TODO: Founder portrait depleted/sharp comparison --> */}
               <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] aspect-[4/3] flex items-center justify-center">
                 <div className="text-center text-[#7A9BAD] p-8">
                   <div className="text-6xl mb-4">&#129504;</div>
-                  <p className="text-sm">[Before/After: Depleted vs Optimised operator]</p>
+                  <p className="text-sm">[Before/After: Depleted vs restored operator]</p>
                 </div>
               </div>
               <div>
                 <p className="text-white text-lg leading-relaxed mb-4">
                   The operators who finally break through the ceiling &mdash; who sustain
-                  elite output all day instead of crashing by 3pm &mdash; are the ones who
-                  fix the neurochemical foundation first.
+                  sharp output instead of watching it erode year on year &mdash; are the
+                  ones who get the chemistry right first.
                 </p>
                 <p className="text-[#00A6D2] font-bold text-xl mb-2">
-                  Fix the substrate. Free your cognition.
+                  Restore the chemistry. Get the brain back.
                 </p>
                 <p className="text-white font-bold text-xl">
                   That&apos;s exactly what Genius Mind is built to do.
@@ -315,7 +314,7 @@ export default function CognitiveLander() {
         </section>
       </Reveal>
 
-      {/* ══════════════ SAY NO TO STIMULANT CRASHES ══════════════ */}
+      {/* ══════════════ §6 ENEMY BLOCK ══════════════ */}
       <Reveal>
         <section className="bg-[#041E2B] py-16 md:py-24 border-t border-[#1A4459]">
           <div className="max-w-6xl mx-auto px-4">
@@ -332,9 +331,9 @@ export default function CognitiveLander() {
                   Caffeine &amp; Stimulant Stacks:
                 </h3>
                 {[
-                  { bold: "Tolerance builds within weeks", rest: "- you need more for less" },
-                  { bold: "90-minute spike then a crash", rest: "- your best hours get shorter" },
-                  { bold: "Disrupts sleep architecture", rest: "which destroys next-day cognition" },
+                  { bold: "Tolerance builds within weeks", rest: "\u2014 you need more for less" },
+                  { bold: "90-minute spike then a crash", rest: "\u2014 your best hours get shorter" },
+                  { bold: "Disrupts sleep", rest: "\u2014 which compounds next-day cognitive load" },
                 ].map((item) => (
                   <div key={item.bold} className="red-x-item">
                     <span className="text-red-500 font-bold">&#10005;</span>
@@ -350,8 +349,8 @@ export default function CognitiveLander() {
                 </h3>
                 {[
                   { bold: "Proprietary blends hide", rest: "worthless micro-doses" },
-                  { bold: "Single-ingredient formulas", rest: "that can't address multiple pathways" },
-                  { bold: "Raw powders instead of extracts", rest: "- no bioavailability, no results" },
+                  { bold: "Single-ingredient formulas", rest: "that can\u2019t address multiple pathways" },
+                  { bold: "Raw powders instead of extracts", rest: "\u2014 no bioavailability, no results" },
                 ].map((item) => (
                   <div key={item.bold} className="red-x-item">
                     <span className="text-red-500 font-bold">&#10005;</span>
@@ -365,6 +364,7 @@ export default function CognitiveLander() {
 
               {/* Right: Image placeholder */}
               <div className="flex flex-col gap-6">
+                {/* <!-- ASSET TODO: Operator workspace photo --> */}
                 <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] aspect-square flex items-center justify-center">
                   <div className="text-center text-[#7A9BAD] p-8">
                     <div className="text-6xl mb-4">&#128248;</div>
@@ -372,9 +372,9 @@ export default function CognitiveLander() {
                   </div>
                 </div>
                 <p className="text-[#7A9BAD] text-sm">
-                  <span className="text-xl">&#128073;</span> You deserve better than frying your
-                  nervous system with stimulants OR wasting money on underdosed single-ingredient
-                  pills that don&apos;t address the ROOT of sustained cognitive performance.
+                  You deserve better than frying your nervous system with stimulants
+                  OR wasting money on underdosed single-ingredient pills that don&apos;t
+                  address the ROOT of sustained cognitive performance.
                 </p>
               </div>
             </div>
@@ -382,41 +382,69 @@ export default function CognitiveLander() {
         </section>
       </Reveal>
 
-      {/* ══════════════ COGNITIVE INFRASTRUCTURE ══════════════ */}
+      {/* ══════════════ §7 PRODUCT REVEAL – COGNISYNC TRI-FACTOR ══════════════ */}
       <Reveal>
-        <section className="bg-[#041E2B] py-16 md:py-24 border-t border-[#1A4459]">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <p className="label-mono text-[#7A9BAD] mb-3">Make the smart choice</p>
+        <section id="mechanism" className="bg-[#041E2B] py-16 md:py-24 border-t border-[#1A4459]">
+          <div className="max-w-5xl mx-auto px-4 text-center">
+            <p className="label-mono text-[#7A9BAD] mb-3">Make the infrastructure decision</p>
             <h2 className="text-3xl md:text-4xl font-black mb-6">
-              Cognitive Infrastructure + Real Sustained Output
+              Cognitive Chemistry Restored. Sustained Focus, Replenished.
             </h2>
-            <p className="text-[#7A9BAD] mb-6 max-w-2xl mx-auto">
-              <span className="text-xl">&#128073;</span> Genius Mind isn&apos;t just another
-              nootropic &mdash; it&apos;s a complete cognitive stack that works on FOUR levels:{" "}
-              <span className="underline">regulate dopamine at the source</span>,{" "}
-              <span className="underline">support acetylcholine for memory</span>,{" "}
-              <span className="underline">protect neural architecture</span>, and{" "}
-              <span className="underline">sustain blood flow to the brain</span>.
+            <p className="text-[#7A9BAD] mb-10 max-w-3xl mx-auto">
+              Genius Mind isn&apos;t another nootropic &mdash; it&apos;s a complete cognitive stack
+              engineered around the Cognisync Tri-Factor, working on three mechanisms
+              simultaneously:
             </p>
-            <p className="text-[#7A9BAD] mb-8">
-              No crashes, no tolerance, no dependency.
+
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] p-6 text-left">
+                <div className="text-[#00A6D2] text-2xl mb-3">&#9889;</div>
+                <h3 className="label-mono text-white font-bold mb-2">Blood Flow Activation</h3>
+                <p className="text-[#7A9BAD] text-sm leading-relaxed">
+                  Ginkgo Biloba 50:1, Rosemary 5:1, Panax Ginseng 20:1.
+                  Researched for cerebral blood flow, oxygen and nutrient delivery
+                  to the brain.
+                </p>
+              </div>
+              <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] p-6 text-left">
+                <div className="text-[#00A6D2] text-2xl mb-3">&#128161;</div>
+                <h3 className="label-mono text-white font-bold mb-2">Neuron Stimulation</h3>
+                <p className="text-[#7A9BAD] text-sm leading-relaxed">
+                  Lion&apos;s Mane 4:1, L-Tyrosine, Guarana. Studied for nerve growth
+                  factor, dopamine precursor support, and clean sustained energy via
+                  slow-release caffeine.
+                </p>
+              </div>
+              <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] p-6 text-left">
+                <div className="text-[#00A6D2] text-2xl mb-3">&#128737;&#65039;</div>
+                <h3 className="label-mono text-white font-bold mb-2">Neuron Strengthening</h3>
+                <p className="text-[#7A9BAD] text-sm leading-relaxed">
+                  Bacopa Monnieri 11:1, Phosphatidylserine, B-Complex, Zinc.
+                  Studied for synaptic communication, memory consolidation, and
+                  cellular brain energy.
+                </p>
+              </div>
+            </div>
+
+            <p className="text-white text-sm max-w-3xl mx-auto mb-4">
+              Genius Mind is a precision-formulated stack of 16 clinically studied
+              ingredients &mdash; high-ratio botanical extracts, amino acid precursors,
+              and essential cofactors &mdash; designed to support sustained focus
+              throughout the working day. No proprietary blends. No fillers. Every
+              dose transparent and clinically backed.
+            </p>
+            <p className="text-white font-semibold mb-8">
+              No prescription. No crashes. No tolerance. Daily use, safely.
             </p>
 
             {/* Product image placeholder */}
+            {/* <!-- ASSET TODO: Genius Mind product hero image --> */}
             <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] max-w-md mx-auto aspect-[3/4] flex items-center justify-center mb-8">
               <div className="text-center text-[#7A9BAD] p-8">
                 <div className="text-6xl mb-4">&#129514;</div>
                 <p className="text-sm">[Genius Mind product bottle image]</p>
               </div>
             </div>
-
-            <p className="text-white text-sm max-w-3xl mx-auto mb-8">
-              Genius Mind is a precision-engineered stack of 16 clinically studied
-              ingredients &mdash; high-ratio botanical extracts, amino acid precursors,
-              and essential cofactors &mdash; designed for 8-12 hours of sustained
-              cognitive output. No proprietary blends. No fillers. Every dose
-              transparent and clinically backed.
-            </p>
 
             <a href={SHOP_URL} className="cta-btn inline-block">
               TRY IT NOW &rarr;
@@ -425,7 +453,7 @@ export default function CognitiveLander() {
         </section>
       </Reveal>
 
-      {/* ══════════════ BENEFITS GRID ══════════════ */}
+      {/* ══════════════ §8 BENEFIT TILES ══════════════ */}
       <Reveal>
         <section className="rock-bg py-16 md:py-24">
           <div className="max-w-6xl mx-auto px-4">
@@ -442,7 +470,7 @@ export default function CognitiveLander() {
         </section>
       </Reveal>
 
-      {/* ══════════════ INGREDIENTS ══════════════ */}
+      {/* ══════════════ §9 INGREDIENTS (8 HERO) ══════════════ */}
       <Reveal>
         <section id="ingredients" className="bg-[#041E2B] py-16 md:py-24">
           <div className="max-w-6xl mx-auto px-4 text-center">
@@ -488,15 +516,57 @@ export default function CognitiveLander() {
         </div>
       </section>
 
-      {/* ══════════════ VIDEO TESTIMONIALS ══════════════ */}
+      {/* ══════════════ NEW §A – THE OPERATOR STACK ══════════════ */}
       <Reveal>
         <section className="bg-[#041E2B] py-16 md:py-24">
-          <div className="max-w-6xl mx-auto px-4 text-center">
-            <p className="label-mono text-[#00A6D2] mb-3">
-              100,000+ Operators Got Their Edge Back
+          <div className="max-w-5xl mx-auto px-4">
+            <h2 className="text-3xl md:text-4xl font-black text-center mb-6">
+              How Genius Mind Fits Into A Serious Operator Stack
+            </h2>
+            <p className="text-[#7A9BAD] text-center max-w-3xl mx-auto mb-10">
+              You already take creatine. Probably omega-3. Maybe AG1 or a multi.
+              Magnesium at night. Genius Mind is the chemistry layer &mdash; the missing
+              piece between the lifestyle work you&apos;ve already done and the cognitive
+              output you&apos;re trying to protect. It doesn&apos;t replace your stack.
+              It completes it.
             </p>
+
+            {/* <!-- ASSET TODO: Operator Stack grid visual --> */}
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-3 mb-10">
+              {OPERATOR_STACK.map((item) => (
+                <div
+                  key={item.label}
+                  className={`rounded-xl p-4 text-center ${
+                    item.highlight
+                      ? "bg-[#00A6D2] border-2 border-[#00A6D2]"
+                      : "bg-[#0C2A3A] border border-[#1A4459]"
+                  }`}
+                >
+                  <div className="text-2xl mb-2">{item.icon}</div>
+                  <p className={`text-xs font-bold ${item.highlight ? "text-white" : "text-[#7A9BAD]"}`}>
+                    {item.label}
+                  </p>
+                  <p className={`text-[10px] mt-1 ${item.highlight ? "text-white/80" : "text-[#7A9BAD]/60"}`}>
+                    {item.target}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-white text-center font-semibold">
+              The lifestyle layer is dialled. The body layer is supported.
+              The brain layer was the missing piece.
+            </p>
+          </div>
+        </section>
+      </Reveal>
+
+      {/* ══════════════ §10 VIDEO TESTIMONIALS ══════════════ */}
+      <Reveal>
+        <section className="bg-[#041E2B] py-16 md:py-24 border-t border-[#1A4459]">
+          <div className="max-w-6xl mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-black mb-10">
-              What Operators Love About Genius Mind
+              What Operators Are Saying
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {VIDEO_TESTIMONIALS.map((v) => (
@@ -504,6 +574,7 @@ export default function CognitiveLander() {
                   key={v.label}
                   className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] aspect-[9/16] flex flex-col items-center justify-center relative overflow-hidden"
                 >
+                  {/* <!-- ASSET TODO: Operator video testimonial - {v.label} --> */}
                   <div className="absolute top-3 left-3 right-3">
                     <span className="label-mono bg-[#00A6D2] text-white px-3 py-1 rounded text-[10px] font-bold">
                       {v.label}
@@ -520,7 +591,7 @@ export default function CognitiveLander() {
         </section>
       </Reveal>
 
-      {/* ══════════════ PRODUCT SECTION ══════════════ */}
+      {/* ══════════════ §11 PRODUCT SECTION ══════════════ */}
       <Reveal>
         <section className="rock-bg py-16 md:py-24">
           <div className="max-w-6xl mx-auto px-4">
@@ -531,12 +602,13 @@ export default function CognitiveLander() {
                   <div className="text-center text-[#7A9BAD]">
                     <div className="text-6xl mb-4">&#129514;</div>
                     <p className="text-sm">[Product image with benefits callouts]</p>
-                    <p className="text-xs mt-2">Sharpen Focus / Sustain Energy / Boost Memory / Extend Output</p>
+                    <p className="text-xs mt-2">Sharpen Focus / Sustain Energy / Support Memory / Extend Output</p>
                   </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-[#00A6D2] text-4xl font-black">4.6/5</div>
-                  <p className="text-white text-sm font-bold">from 2,655+ Verified Reviews</p>
+                  {/* <!-- TODO: Verify rating and count against Trustpilot/Amazon UK --> */}
+                  <div className="text-[#FFD700] text-sm mb-1">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <p className="text-white text-sm font-bold">Verified Customer Reviews</p>
                   <p className="text-[#7A9BAD] text-[10px]">
                     *Results may vary. Based on verified customer reviews.
                   </p>
@@ -547,9 +619,10 @@ export default function CognitiveLander() {
               <div>
                 <h2 className="text-3xl font-black mb-4">Cognitive Infrastructure for Operators</h2>
                 <p className="text-white font-bold mb-4">
-                  Genius Mind is the most comprehensive natural cognitive stack available.
-                  It works four ways: regulates dopamine, supports acetylcholine,
-                  protects neural architecture &amp; sustains cerebral blood flow.*
+                  Genius Mind is a complete cognitive stack engineered around the
+                  Cognisync Tri-Factor &mdash; supporting dopamine pathways,
+                  cerebral blood flow, and synaptic signalling with 16 clinically
+                  studied ingredients.*
                 </p>
                 <ul className="space-y-2 mb-6">
                   {PRODUCT_BULLETS.map((b) => (
@@ -606,25 +679,12 @@ export default function CognitiveLander() {
         </section>
       </Reveal>
 
-      {/* ══════════════ FEATURED IN ══════════════ */}
-      <section className="bg-[#041E2B] py-10 border-y border-[#1A4459]">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <p className="label-mono text-[#7A9BAD] mb-4">Trusted By Operators At</p>
-          <div className="flex justify-center items-center gap-12">
-            {["Founders", "CEOs", "Builders"].map((pub) => (
-              <span key={pub} className="text-[#7A9BAD] text-xl font-bold italic">
-                {pub}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════ REVIEW CARDS ══════════════ */}
+      {/* ══════════════ §11 REVIEW CARDS ══════════════ */}
+      {/* <!-- TODO: Replace with real verbatim Trustpilot reviews. Reduce carousel if insufficient real reviews. --> */}
       <Reveal>
         <section className="bg-[#041E2B] py-16 md:py-20">
           <div className="max-w-6xl mx-auto px-4">
-            <div className="grid md:grid-cols-4 gap-4">
+            <div className="grid md:grid-cols-3 gap-4">
               {MINI_REVIEWS.map((r, i) => (
                 <div key={i} className="bg-[#0F3347] border border-[#1A4459] rounded-xl p-5">
                   <div className="text-[#FFD700] text-sm mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
@@ -636,51 +696,9 @@ export default function CognitiveLander() {
         </section>
       </Reveal>
 
-      {/* ══════════════ TESTIMONIALS + REVIEWS ══════════════ */}
+      {/* ══════════════ §12 COMPARISON TABLE ══════════════ */}
       <Reveal>
-        <section className="rock-bg py-16 md:py-24">
-          <div className="max-w-6xl mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-black mb-2">
-              See How 100,000+ Operators Are Extending Their Decision Window,{" "}
-              <span className="text-[#00A6D2]">and Getting Results That Compound</span>
-            </h2>
-          </div>
-
-          <div className="max-w-6xl mx-auto px-4 mt-12">
-            <div className="grid lg:grid-cols-2 gap-8">
-              {/* Before/After placeholder */}
-              <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] aspect-[3/4] flex items-center justify-center">
-                <div className="text-center text-[#7A9BAD] p-8">
-                  <div className="text-4xl mb-3">&#128248;</div>
-                  <p className="text-sm">[BEFORE / AFTER: Cognitive performance improvement]</p>
-                </div>
-              </div>
-
-              {/* Review cards */}
-              <div className="space-y-4">
-                {DETAILED_REVIEWS.map((r) => (
-                  <div key={r.name} className="bg-[#0F3347] border border-[#1A4459] rounded-xl p-5">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-white font-semibold text-sm">{r.name}</span>
-                      <span className="text-green-500 text-xs">&#10004;</span>
-                      <span className="text-[10px] bg-[#00A6D2]/20 text-[#00A6D2] px-2 py-0.5 rounded-full">
-                        Verified buyer
-                      </span>
-                    </div>
-                    <div className="text-[#FFD700] text-sm mb-1">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <p className="text-white font-bold text-sm mb-1">{r.title}</p>
-                    <p className="text-[#7A9BAD] text-sm leading-relaxed">&ldquo;{r.text}&rdquo;</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      {/* ══════════════ COMPARISON TABLE ══════════════ */}
-      <Reveal>
-        <section className="bg-[#041E2B] py-16 md:py-24">
+        <section className="bg-[#041E2B] py-16 md:py-24 border-t border-[#1A4459]">
           <div className="max-w-4xl mx-auto px-4">
             <p className="label-mono text-[#7A9BAD] text-center mb-3">
               Genius Mind vs Caffeine Stacks vs Generic Nootropics
@@ -689,7 +707,8 @@ export default function CognitiveLander() {
               How Genius Mind Compares
             </h2>
             <p className="text-[#7A9BAD] text-center mb-10 max-w-xl mx-auto">
-              Cognitive infrastructure, not a stimulant hit &mdash; Genius Mind does what others can&apos;t.
+              Cognitive infrastructure, not a stimulant hit &mdash; Genius Mind does
+              what others can&apos;t.
             </p>
 
             <div className="overflow-x-auto">
@@ -720,58 +739,6 @@ export default function CognitiveLander() {
                 </tbody>
               </table>
             </div>
-          </div>
-        </section>
-      </Reveal>
-
-      {/* ══════════════ GENIUS MIND vs PRESCRIPTION STIMS ══════════════ */}
-      <Reveal>
-        <section className="rock-bg py-16 md:py-24">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
-              <div>
-                <h2 className="text-3xl md:text-4xl font-black mb-4">
-                  The Genius Mind Difference
-                </h2>
-                <p className="text-[#7A9BAD] leading-relaxed">
-                  Genius Mind is not your typical nootropic.
-                  It&apos;s a next-generation, 16-ingredient cognitive stack designed to
-                  sustain peak output without the risks, tolerance, or dependency
-                  of pharmaceutical stimulants.
-                </p>
-              </div>
-
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-[#1A4459]">
-                      <th className="py-3 text-left font-mono uppercase text-xs text-[#7A9BAD]"></th>
-                      <th className="py-3 text-center bg-[#00A6D2] text-white font-bold rounded-t-lg">Genius Mind</th>
-                      <th className="py-3 text-center text-[#7A9BAD]">Rx Stimulants</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {RX_COMPARISON.map((row) => (
-                      <tr key={row.label} className="border-b border-[#0F3347]">
-                        <td className="py-3 pr-4 font-mono uppercase text-[10px] text-[#7A9BAD] tracking-wider">
-                          {row.label}
-                        </td>
-                        <td className="py-3 text-center bg-[#00A6D2]/10">
-                          <span className="text-white text-sm font-semibold flex items-center justify-center gap-1">
-                            <span className="text-blue-400">&#10004;</span> {row.gm}
-                          </span>
-                        </td>
-                        <td className="py-3 text-center">
-                          <span className="text-[#7A9BAD] text-sm flex items-center justify-center gap-1">
-                            <span className="text-red-400">&#10005;</span> {row.rx}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
 
             <div className="text-center mt-10">
               <a href={SHOP_URL} className="cta-btn inline-block">
@@ -782,42 +749,40 @@ export default function CognitiveLander() {
         </section>
       </Reveal>
 
-      {/* ══════════════ COGNITIVE PERFORMANCE CHART ══════════════ */}
+      {/* ══════════════ §14 SURVEY OUTCOMES CHART ══════════════ */}
       <Reveal>
         <section className="rock-bg py-16 md:py-24 border-t border-[#1A4459]">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-black mb-2">
-              Genius Mind Extends Your Decision Window{" "}
-              <span className="text-[#00A6D2] italic">Naturally</span>
+            <h2 className="text-3xl md:text-4xl font-black mb-8">
+              What Long-Term Customers Actually Report
             </h2>
 
-            {/* Chart placeholder */}
-            <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] p-8 mt-8 mb-8">
-              <div className="flex items-center justify-center gap-4 mb-6">
-                <div className="bg-white rounded-full w-32 h-32 flex flex-col items-center justify-center">
-                  <span className="text-[#00A6D2] text-3xl font-black">8-12h</span>
-                  <span className="text-black text-xs font-bold">SUSTAINED OUTPUT</span>
+            {/* <!-- ASSET TODO: PPS survey outcome chart from 33-respondent data --> */}
+            <div className="max-w-2xl mx-auto space-y-4 mb-8">
+              {SURVEY_OUTCOMES.map((item) => (
+                <div key={item.label}>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-white text-sm font-semibold">{item.label}</span>
+                    <span className="text-[#00A6D2] text-sm font-bold">{item.count}/33</span>
+                  </div>
+                  <div className="w-full bg-[#0C2A3A] rounded-full h-3">
+                    <div
+                      className="bg-[#00A6D2] h-3 rounded-full"
+                      style={{ width: `${(item.count / 33) * 100}%` }}
+                    />
+                  </div>
                 </div>
-              </div>
-              <p className="text-[#7A9BAD] text-xs">
-                [Cognitive performance chart: sustained output across full working day vs caffeine crash curve]
-              </p>
+              ))}
             </div>
 
-            <p className="text-white text-sm max-w-3xl mx-auto mb-2">
-              Genius Mind supports dopamine regulation, acetylcholine production,
-              cerebral blood flow and neural protection across the full working day.
-              Most users report feeling a noticeable lift in clarity and sustained
-              focus within the first 1-2 weeks.*
-            </p>
             <p className="text-[#7A9BAD] text-xs">
-              *Based on 2,655+ verified customer reviews.
+              Source: post-purchase subscriber survey, 33 respondents using 3+ months.
             </p>
           </div>
         </section>
       </Reveal>
 
-      {/* ══════════════ WEEKLY TIMELINE ══════════════ */}
+      {/* ══════════════ §15 WEEKLY TIMELINE ══════════════ */}
       <Reveal>
         <section className="rock-bg py-16 md:py-24 border-t border-[#1A4459]">
           <div className="max-w-5xl mx-auto px-4">
@@ -851,7 +816,6 @@ export default function CognitiveLander() {
                   <p className="text-white font-bold mb-4">
                     {WEEKS[activeWeek].subtitle}
                   </p>
-                  <p className="label-mono text-[#00A6D2] mb-3">Benefits</p>
                   <ul className="space-y-2">
                     {WEEKS[activeWeek].benefits.map((b) => (
                       <li key={b} className="flex items-start gap-2 text-sm text-[#7A9BAD]">
@@ -862,19 +826,19 @@ export default function CognitiveLander() {
                   </ul>
                 </div>
                 <div className="bg-[#0F3347] rounded-xl flex items-center justify-center aspect-video">
-                  <p className="text-[#7A9BAD] text-sm">[{WEEKS[activeWeek].label} illustration + performance chart]</p>
+                  <p className="text-[#7A9BAD] text-sm">[{WEEKS[activeWeek].label} illustration]</p>
                 </div>
               </div>
             </div>
 
             <p className="text-center text-[#7A9BAD] text-xs mt-4">
-              *Based on 2,655+ verified customer reviews.
+              *Individual results may vary. Based on customer reports and ingredient research timelines.
             </p>
           </div>
         </section>
       </Reveal>
 
-      {/* ══════════════ DAY 1 / 30 / 90 TIMELINE ══════════════ */}
+      {/* ══════════════ §16 DAY 1 / 30 / 90 TIMELINE ══════════════ */}
       <Reveal>
         <section className="bg-[#0F3347] py-16 md:py-20">
           <div className="max-w-5xl mx-auto px-4">
@@ -891,7 +855,7 @@ export default function CognitiveLander() {
             </div>
 
             <h3 className="text-white font-bold text-lg mb-6">
-              What Happens After You Start Building Cognitive Infrastructure
+              What Happens After You Start Restoring Cognitive Chemistry
             </h3>
             <div className="w-full h-0.5 bg-[#00A6D2] mb-8" />
 
@@ -918,7 +882,7 @@ export default function CognitiveLander() {
         </section>
       </Reveal>
 
-      {/* ══════════════ 16 INGREDIENTS DETAIL ══════════════ */}
+      {/* ══════════════ §17 16-INGREDIENT DEEP DIVE ══════════════ */}
       <Reveal>
         <section className="bg-[#041E2B] py-16 md:py-24">
           <div className="max-w-6xl mx-auto px-4 text-center">
@@ -944,7 +908,35 @@ export default function CognitiveLander() {
         </section>
       </Reveal>
 
-      {/* ══════════════ SCIENCE & FORMULATION ══════════════ */}
+      {/* ══════════════ NEW §B – THE RESEARCH ══════════════ */}
+      <Reveal>
+        <section className="bg-[#041E2B] py-16 md:py-24 border-t border-[#1A4459]">
+          <div className="max-w-5xl mx-auto px-4">
+            <h2 className="text-3xl md:text-4xl font-black text-center mb-10">
+              The Research Behind The Formula
+            </h2>
+
+            {/* <!-- ASSET TODO: Verify each citation against original source before publishing --> */}
+            <div className="grid md:grid-cols-3 gap-6">
+              {RESEARCH_CITATIONS.map((cite) => (
+                <div key={cite.ingredient} className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] p-6">
+                  <p className="label-mono text-[#00A6D2] text-xs mb-2">{cite.ingredient}</p>
+                  <p className="text-white font-bold text-sm mb-2">{cite.finding}</p>
+                  <p className="text-[#7A9BAD] text-xs mb-3">{cite.citation}</p>
+                  <p className="text-[#7A9BAD] text-xs italic">{cite.relevance}</p>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-[#7A9BAD] text-xs text-center mt-6">
+              Citations are for individual ingredients, not product claims. Genius Mind
+              contains these ingredients at the doses listed. Individual results may vary.
+            </p>
+          </div>
+        </section>
+      </Reveal>
+
+      {/* ══════════════ §18 BUILT BY OPERATORS ══════════════ */}
       <Reveal>
         <section className="rock-bg py-16 md:py-24">
           <div className="max-w-5xl mx-auto px-4 text-center">
@@ -967,7 +959,7 @@ export default function CognitiveLander() {
         </section>
       </Reveal>
 
-      {/* ══════════════ MONEY BACK GUARANTEE ══════════════ */}
+      {/* ══════════════ §19 MONEY BACK GUARANTEE ══════════════ */}
       <Reveal>
         <section className="rock-bg py-16 md:py-24 border-t border-[#1A4459]">
           <div className="max-w-3xl mx-auto px-4">
@@ -1002,7 +994,7 @@ export default function CognitiveLander() {
         </section>
       </Reveal>
 
-      {/* ══════════════ FAQ ══════════════ */}
+      {/* ══════════════ §20 FAQ ══════════════ */}
       <section id="faq" className="rock-bg py-16 md:py-24 border-t border-[#1A4459]">
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-black text-center mb-10">
@@ -1034,7 +1026,7 @@ export default function CognitiveLander() {
         </div>
       </section>
 
-      {/* ══════════════ LAUNCH KIT ══════════════ */}
+      {/* ══════════════ §21 STARTER KIT ══════════════ */}
       <Reveal>
         <section className="rock-bg py-16 md:py-24 border-t border-[#1A4459]">
           <div className="max-w-5xl mx-auto px-4 text-center">
@@ -1043,7 +1035,6 @@ export default function CognitiveLander() {
             </h2>
 
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Left: Bundle image placeholder */}
               <div className="bg-[#0C2A3A] rounded-xl border border-[#1A4459] aspect-square flex items-center justify-center">
                 <div className="text-center text-[#7A9BAD] p-8">
                   <div className="text-6xl mb-4">&#127873;</div>
@@ -1051,14 +1042,13 @@ export default function CognitiveLander() {
                 </div>
               </div>
 
-              {/* Right: Pricing list */}
               <div className="text-left">
                 <div className="space-y-4">
                   {LAUNCH_KIT.map((item) => (
                     <div key={item.name} className="flex items-center justify-between border-b border-[#1A4459] pb-3">
                       <span className="text-white font-bold">{item.name}</span>
                       <div className="flex items-center gap-2">
-                        <span className="text-[#7A9BAD] line-through text-sm">{item.was}</span>
+                        {item.was && <span className="text-[#7A9BAD] line-through text-sm">{item.was}</span>}
                         <span className="text-[#00A6D2] font-bold">{item.now}</span>
                       </div>
                     </div>
@@ -1084,6 +1074,7 @@ export default function CognitiveLander() {
               GENIUS MIND
             </span>
           </div>
+          <p className="text-[#7A9BAD] text-xs mb-4">For Those Who Demand More.</p>
           <div className="flex flex-wrap justify-center gap-6 text-sm text-[#7A9BAD] mb-6">
             <a href={SHOP_URL} className="hover:text-white transition-colors">Shop</a>
             <a href="#ingredients" className="hover:text-white transition-colors">Science</a>
@@ -1134,24 +1125,27 @@ export default function CognitiveLander() {
 /* ═══════════════════════════════════════════════════════════════
    DATA
    ═══════════════════════════════════════════════════════════════ */
+
+/* §8 – BENEFIT TILES (survey-validated angles) */
 const BENEFITS = [
-  { icon: "\u26A1", title: "Sustained Energy", desc: "No more 2pm crash. 8-12 hours of clean output without stimulant spikes." },
-  { icon: "\uD83E\uDDE0", title: "Focus & Clarity", desc: "Brain fog gone. Deep work sessions become effortless and consistent." },
-  { icon: "\uD83D\uDCA1", title: "Decision Quality", desc: "Sharper calls at 5pm as at 9am. Extend your decision window all day." },
-  { icon: "\uD83D\uDCAA", title: "Memory & Recall", desc: "Names, details, strategy. Access what you need, when you need it." },
-  { icon: "\uD83D\uDE34", title: "Recovery & Sleep", desc: "No stimulant debt. Wake up restored, cognitively primed for the next day." },
-  { icon: "\uD83D\uDEE1\uFE0F", title: "Stress Resilience", desc: "Adaptogens buffer cortisol. Stay composed when pressure peaks." },
+  { icon: "\uD83C\uDFAF", title: "Sustained Focus", desc: "Focus that lasts. Lock in for hours, not bursts." },
+  { icon: "\uD83D\uDCA1", title: "Mental Clarity", desc: "Clearer thinking. The fog cuts through." },
+  { icon: "\u26A1", title: "Mental Energy", desc: "All-day cognitive stamina. No afternoon collapse. Clean energy, not borrowed." },
+  { icon: "\uD83D\uDE80", title: "Easier to Take Action", desc: "Close the knowing-doing gap. Start what you\u2019ve been putting off." },
+  { icon: "\uD83D\uDCC8", title: "Peak Performance", desc: "Sharper thinking under pressure. The mental edge that holds when the stakes are highest." },
+  { icon: "\uD83E\uDDE0", title: "Memory & Recall", desc: "Faster recall. Word-finding restored. Pattern recognition back online." },
 ];
 
+/* §9 – HERO INGREDIENTS (8, hedged) – Fenugreek swapped for Sage Leaf */
 const INGREDIENTS = [
-  { name: "L-Tyrosine", dose: "100 mg", desc: "Dopamine precursor. Sustains motivation, focus, and drive under pressure." },
-  { name: "Ginkgo Biloba", dose: "120 mg (50:1)", desc: "Drives cerebral blood flow and oxygen delivery to the brain." },
-  { name: "Bacopa Monnieri", dose: "80 mg (11:1)", desc: "Supports memory consolidation, retention, and learning speed." },
-  { name: "Lion's Mane", dose: "80 mg (4:1)", desc: "NGF support. Builds and repairs neural pathways over time." },
-  { name: "Panax Ginseng", dose: "100 mg (20:1)", desc: "Adaptogen for stress resilience and sustained mental stamina." },
-  { name: "L-Choline", dose: "100 mg", desc: "Acetylcholine precursor. Powers memory, learning, and mental clarity." },
-  { name: "Guarana Seed", dose: "90 mg", desc: "Natural sustained energy without jitters or crash." },
-  { name: "Fenugreek", dose: "675 mg", desc: "Supports hormonal balance and cognitive endurance." },
+  { name: "L-Tyrosine", dose: "100 mg", desc: "Studied as a dopamine precursor for focus under stress." },
+  { name: "Ginkgo Biloba", dose: "120 mg (50:1)", desc: "Researched for cerebral blood flow and oxygen delivery." },
+  { name: "Bacopa Monnieri", dose: "80 mg (11:1)", desc: "Studied for memory consolidation and recall." },
+  { name: "Lion\u2019s Mane", dose: "80 mg (4:1)", desc: "Studied for its role in stimulating nerve growth factor." },
+  { name: "Panax Ginseng", dose: "100 mg (20:1)", desc: "Researched for focus, endurance, and stress response." },
+  { name: "L-Choline", dose: "100 mg", desc: "Studied as an acetylcholine precursor for memory and learning." },
+  { name: "Guarana Seed", dose: "90 mg", desc: "Slow-release caffeine via tannin binding \u2014 researched for sustained energy." },
+  { name: "Sage Leaf", dose: "75 mg (4:1)", desc: "Studied for memory retention and cognitive support." },
 ];
 
 const TRUST_BADGES = [
@@ -1163,156 +1157,149 @@ const TRUST_BADGES = [
   { icon: "\uD83C\uDF3E", label: "Gluten Free" },
 ];
 
+/* NEW §A – OPERATOR STACK */
+const OPERATOR_STACK = [
+  { icon: "\uD83D\uDCAA", label: "Creatine", target: "Muscle", highlight: false },
+  { icon: "\uD83D\uDC9B", label: "Omega-3", target: "Heart", highlight: false },
+  { icon: "\uD83E\uDDE0", label: "Genius Mind", target: "Brain", highlight: true },
+  { icon: "\uD83C\uDF19", label: "Magnesium", target: "Sleep", highlight: false },
+  { icon: "\u2600\uFE0F", label: "Vitamin D", target: "Immune", highlight: false },
+  { icon: "\uD83E\uDD57", label: "AG1 / Multi", target: "General", highlight: false },
+];
+
 const VIDEO_TESTIMONIALS = [
   { label: "Fog Has Lifted", caption: "THE 3PM SLUMP IS COMPLETELY GONE." },
-  { label: "Better Than Coffee", caption: "REDUCED FROM 4 COFFEES TO ZERO." },
+  { label: "Sharper Recall", caption: "WORD-FINDING IS BACK TO WHERE IT WAS." },
   { label: "6 Months Strong", caption: "MY DECISION QUALITY HAS TRANSFORMED." },
   { label: "First Thing That Worked", caption: "TRIED EVERYTHING. THIS IS THE ONE." },
 ];
 
 const PRODUCT_BULLETS = [
   "16 clinically studied ingredients with high-ratio botanical extracts",
-  "78% of customers rated 5 stars from 2,655+ verified reviews",
-  'Zero fillers or "proprietary" blends - every dose transparent',
+  'Zero fillers or "proprietary" blends \u2014 every dose transparent',
   "Made in UK, GMP certified, and lab tested",
+  "Cognisync Tri-Factor: Blood Flow, Neuron Stimulation, Neuron Strengthening",
   "90-day 100% money-back guarantee, no questions asked*",
 ];
 
+/* §11 – MINI REVIEWS */
+/* <!-- TODO: Replace with real verbatim Trustpilot reviews --> */
 const MINI_REVIEWS = [
-  "The fog has lifted completely. I used to hit a wall at 2pm every day, now I'm sharp right through to 6pm. My team has noticed the difference in my decision-making.",
-  "Better than coffee, better than modafinil, and no crash. I'm 3 months in and my output has never been more consistent. Game changer.",
-  "I was skeptical about another nootropic but this one actually works. My recall is sharper, I'm sleeping better, and the compound effect is real.",
-  "Dropped from 4 coffees a day to one. My mornings are cleaner, my afternoons don't collapse, and I genuinely feel like I'm operating at a higher level.",
+  "The fog has lifted completely. I used to hit a wall at 2pm every day, now I\u2019m sharp right through to the end of the working day. My team has noticed the difference in my decision-making.",
+  "I was skeptical about another nootropic but this one actually works. My recall is sharper, I\u2019m sleeping better, and the compound effect is real. Three months in.",
+  "Dropped from 4 coffees a day to one. My mornings are cleaner, my afternoons don\u2019t collapse, and I genuinely feel like I\u2019m operating at a higher level.",
 ];
 
-const DETAILED_REVIEWS = [
-  {
-    name: "Mark D.",
-    title: "Fog Has Lifted. Output is Consistent.",
-    text: "I've tried L-Theanine, individual nootropics, caffeine protocols - nothing stuck. After 6 weeks on Genius Mind the difference is undeniable. I'm making better calls at 5pm than I used to at 10am. My team has started commenting on it. This isn't a hack, it's infrastructure.",
-  },
-  {
-    name: "Sarah K.",
-    title: "The 3pm Slump Is Gone",
-    text: "As a founder running a 12-person agency, I can't afford brain fog. Genius Mind eliminated my afternoon crash completely. I'm 4 months in and the compound effect is real - my memory, focus, and stress tolerance are all noticeably better.",
-  },
-  {
-    name: "James T.",
-    title: "First Thing That Actually Worked",
-    text: "I've spent thousands on productivity tools, coaches, and supplements. This is the first thing that actually shifted the underlying issue. My decision stamina has extended by hours, not minutes.",
-  },
-];
-
+/* §12 – COMPARISON TABLE */
 const COMPARISON = [
-  { label: "Supports Dopamine Regulation", caff: "x", generic: "?" },
+  { label: "Supports Dopamine Pathways", caff: "x", generic: "?" },
   { label: "No Crash or Withdrawal", caff: "x", generic: "?" },
-  { label: "Sustains Full-Day Output", caff: "x", generic: "x" },
-  { label: "Supports Neural Architecture", caff: "x", generic: "?" },
-  { label: "Tolerance Doesn't Build", caff: "x", generic: "?" },
+  { label: "Supports Sustained Focus", caff: "x", generic: "x" },
+  { label: "Multi-Mechanism Neural Support", caff: "x", generic: "?" },
+  { label: "Tolerance Doesn\u2019t Build", caff: "x", generic: "?" },
   { label: "Clinically Dosed Extracts", caff: "x", generic: "x" },
   { label: "16 Synergistic Ingredients", caff: "x", generic: "x" },
 ];
 
-const RX_COMPARISON = [
-  { label: "Approach", gm: "Natural Support", rx: "Synthetic Stimulation" },
-  { label: "Dependency Risk", gm: "None", rx: "High" },
-  { label: "Side Effects", gm: "Minimal", rx: "Significant" },
-  { label: "Cost", gm: "From £0.48/day", rx: "£100+/month" },
-  { label: "Prescription", gm: "Not Required", rx: "Required" },
-  { label: "Tolerance", gm: "Doesn't Build", rx: "Builds Rapidly" },
-  { label: "Sleep Impact", gm: "Supports Sleep", rx: "Disrupts Sleep" },
-  { label: "Reversibility", gm: "Stop Anytime", rx: "Withdrawal Effects" },
+/* §14 – SURVEY OUTCOMES */
+const SURVEY_OUTCOMES = [
+  { label: "Sustained Focus", count: 23 },
+  { label: "Mental Clarity", count: 22 },
+  { label: "Easier to Take Action", count: 20 },
+  { label: "Sharper Under Pressure", count: 17 },
 ];
 
+/* §15 – WEEK-BY-WEEK (all hedged) */
 const WEEKS = [
   {
     label: "Week 1-2",
-    title: "Activation",
-    subtitle: "Guarana and B vitamins are active from day one. Your body begins processing the stack.",
+    title: "Adjustment",
+    subtitle: "Your body is getting used to the new stack, gradually absorbing and processing its ingredients.",
     benefits: [
-      "Subtle lift in daily clarity and alertness",
-      "Slight improvements in mood and motivation as pathways activate",
-      "Some users notice cleaner energy without caffeine dependency",
-      "Your brain is beginning to build the foundation for sustained output",
+      "Some users may notice a subtle lift in daily clarity and alertness.",
+      "Slight improvements in mood and drive as pathways begin activating.",
+      "Guarana and B vitamins may provide an early energy lift.",
+      "Your brain is beginning to build the foundation for sustained output.",
     ],
   },
   {
     label: "Week 3-4",
-    title: "Foundation",
-    subtitle: "L-Tyrosine and Bacopa reach effective levels. The afternoon starts to hold.",
+    title: "Activation",
+    subtitle: "Key ingredients are building up in your system. Some users report mild improvements.",
     benefits: [
-      "The 3pm drop begins to flatten noticeably",
-      "Focus sessions extend without forcing them",
-      "Memory recall starts improving",
-      "Decision quality stays more consistent throughout the day",
+      "Some users report less reliance on afternoon caffeine.",
+      "Focus sessions may begin extending naturally.",
+      "Memory recall may start improving.",
+      "Decision quality may stay more consistent later in the day.",
     ],
   },
   {
     label: "Week 5-6",
     title: "Momentum",
-    subtitle: "Lion's Mane neural maintenance kicks in. Sprint-crash cycles start breaking.",
+    subtitle: "Research suggests Bacopa effects may begin around 4-6 weeks of consistent use.",
     benefits: [
-      "Consistent baseline replaces boom-bust output",
-      "Deep work becomes more accessible and natural",
-      "Stress resilience noticeably improved",
-      "Others start noticing your sustained sharpness",
+      "More noticeable improvements in sustained focus.",
+      "Deep work may become more accessible and natural.",
+      "Stress response may feel more manageable.",
+      "Others may start noticing sustained sharpness.",
     ],
   },
   {
     label: "Week 7-8",
-    title: "Acceleration",
-    subtitle: "Full synergistic effect engaging. Output becoming reliably high.",
+    title: "Sharper Output",
+    subtitle: "Sustained focus may become more reliable with continued daily use.",
     benefits: [
-      "Major improvements in sustained concentration",
-      "Executive function and planning sharper",
-      "Energy consistent from morning to evening",
-      "Confidence in cognitive endurance at peak",
+      "Some users report consistent concentration throughout the day.",
+      "Executive function and planning may feel sharper.",
+      "Energy may stay more consistent from morning to evening.",
+      "Cognitive endurance under pressure may improve.",
     ],
   },
   {
     label: "Week 9-10",
     title: "Compound Effect",
-    subtitle: "Memory, executive function, and decision stamina strengthening together.",
+    subtitle: "Research suggests Lion\u2019s Mane effects may accumulate over this period.",
     benefits: [
-      "Dramatic improvement in recall and working memory",
-      "Creative problem-solving noticeably enhanced",
-      "Recovery between demanding sessions faster",
-      "Colleagues and team members notice the difference",
+      "Some users report improvements in recall and working memory.",
+      "Creative problem-solving may feel more accessible.",
+      "Recovery between demanding sessions may be faster.",
+      "Colleagues and team members may notice the difference.",
     ],
   },
   {
     label: "Week 11-12",
-    title: "Breakthrough",
-    subtitle: "This is the breakthrough month. Full cognitive infrastructure established.",
+    title: "New Baseline",
+    subtitle: "This may become the operating state with consistent use.",
     benefits: [
-      "All 16 ingredients operating synergistically",
-      "Cognitive output optimised across full day",
-      "Not temporary - this is becoming your new baseline",
-      "Welcome to how your brain was meant to perform",
+      "All 16 ingredients may be operating synergistically.",
+      "Cognitive output may feel consistently supported across the full day.",
+      "For many users, this is no longer a supplement effect \u2014 it\u2019s the new normal.",
+      "Research-backed ingredients continue supporting cognitive function.",
     ],
   },
   {
     label: "Month 6+",
-    title: "New Baseline",
-    subtitle: "Sustained results. Cognition is no longer something you manage - it just works.",
+    title: "Sustained Cognitive Floor",
+    subtitle: "New baseline may hold with consistent daily use.",
     benefits: [
-      "New cognitive baseline fully established",
-      "Neural architecture strengthened long-term",
-      "Performance feels natural and effortless",
-      "Ongoing protection and optimisation with continued use",
+      "Cognitive baseline may be fully established.",
+      "Neural support continues with ongoing use.",
+      "Performance may feel natural and sustained.",
+      "Ongoing protection with continued daily intake.",
     ],
   },
 ];
 
+/* §16 – DAY TIMELINE */
 const TIMELINE = [
   {
     day: "1",
     title: "Activation",
     emoji: "\u26A1",
     items: [
-      "Guarana and B vitamins provide immediate lift",
+      "Guarana and B vitamins may provide an immediate lift",
       "L-Tyrosine begins supporting dopamine pathways",
-      "Clarity feels subtly cleaner from day one",
+      "Some users report subtly cleaner clarity from day one",
       "The cognitive foundation starts building",
     ],
   },
@@ -1321,44 +1308,69 @@ const TIMELINE = [
     title: "The Hold",
     emoji: "\uD83D\uDCA5",
     items: [
-      "The 3pm crash starts flattening",
-      "Bacopa and Lion's Mane reach effective levels",
-      "Focus extends naturally, less forced",
-      "People notice you're sharper, more present",
+      "Some users report the afternoon crash flattening",
+      "Bacopa and Lion\u2019s Mane may reach effective levels",
+      "Focus may extend naturally, less forced",
+      "Some users report others noticing sharper presence",
     ],
   },
   {
     day: "90",
-    title: "Breakthrough",
+    title: "Lock-In",
     emoji: "\uD83D\uDE80",
     items: [
-      "All 16 ingredients working synergistically",
-      "Decision stamina extends across the full day",
-      "Not a supplement effect - it's your new baseline",
+      "All 16 ingredients may be working synergistically",
+      "Decision stamina may extend across the full day",
+      "For many users, it\u2019s no longer a supplement effect \u2014 it\u2019s the new baseline",
       "Cognitive infrastructure, fully built",
     ],
   },
 ];
 
+/* §17 – ALL 16 INGREDIENTS (hedged) */
 const INGREDIENTS_DETAIL = [
-  { name: "L-Tyrosine", dose: "100 mg", desc: "Dopamine precursor that sustains motivation, focus, and drive under cognitive pressure." },
-  { name: "Ginkgo Biloba", dose: "120 mg (50:1)", desc: "High-ratio extract that drives cerebral blood flow and oxygen delivery to the brain." },
-  { name: "Bacopa Monnieri", dose: "80 mg (11:1)", desc: "Supports memory consolidation, retention, and accelerated learning." },
-  { name: "Lion's Mane", dose: "80 mg (4:1)", desc: "NGF (Nerve Growth Factor) support for neural pathway growth and maintenance." },
-  { name: "Phosphatidylserine", dose: "35 mg", desc: "Maintains brain cell membrane integrity for optimal signal transmission." },
-  { name: "B12 (Methylcobalamin)", dose: "500\u03BCg", desc: "Essential for neurotransmitter synthesis. Most adults are deficient." },
-  { name: "Panax Ginseng", dose: "100 mg (20:1)", desc: "Adaptogen that buffers stress and sustains mental stamina under pressure." },
-  { name: "L-Choline", dose: "100 mg", desc: "Acetylcholine precursor powering memory, learning, and mental clarity." },
-  { name: "Guarana Seed", dose: "90 mg", desc: "Natural sustained energy release without jitters or afternoon crash." },
-  { name: "Sage Leaf", dose: "75 mg (4:1)", desc: "Supports memory retention and cognitive enhancement across the day." },
-  { name: "Rosemary", dose: "20 mg (5:1)", desc: "Neuroprotective compound that supports long-term brain health." },
-  { name: "Vitamin B6", dose: "10 mg", desc: "Critical cofactor for neurotransmitter synthesis including serotonin and dopamine." },
-  { name: "Zinc", dose: "10 mg", desc: "Supports cognitive function, learning, and synaptic signalling." },
-  { name: "Niacin (B3)", dose: "32 mg", desc: "Supports NAD+ production for cellular energy and mitochondrial function." },
-  { name: "Fenugreek", dose: "675 mg", desc: "Supports hormonal balance, cognitive endurance, and metabolic function." },
-  { name: "Taurine", dose: "675 mg", desc: "Reduces oxidative stress and supports healthy neural function during demanding work." },
+  { name: "L-Tyrosine", dose: "100 mg", desc: "Studied as a dopamine precursor for focus and drive under stress." },
+  { name: "Ginkgo Biloba", dose: "120 mg (50:1)", desc: "Researched for cerebral blood flow and oxygen delivery to the brain." },
+  { name: "Bacopa Monnieri", dose: "80 mg (11:1)", desc: "Studied for memory consolidation and recall support." },
+  { name: "Lion\u2019s Mane", dose: "80 mg (4:1)", desc: "Studied for its role in stimulating nerve growth factor." },
+  { name: "Phosphatidylserine", dose: "35 mg", desc: "Studied for brain cell membrane integrity and signal transmission." },
+  { name: "B12 (Methylcobalamin)", dose: "500\u03BCg", desc: "Studied for its role in neurotransmitter synthesis. Most adults may be deficient." },
+  { name: "Panax Ginseng", dose: "100 mg (20:1)", desc: "Researched for focus, endurance, and stress response support." },
+  { name: "L-Choline", dose: "100 mg", desc: "Studied as an acetylcholine precursor for memory and learning." },
+  { name: "Guarana Seed", dose: "90 mg", desc: "Slow-release caffeine via tannin binding \u2014 researched for sustained energy without spikes." },
+  { name: "Sage Leaf", dose: "75 mg (4:1)", desc: "Studied for memory retention and cognitive support." },
+  { name: "Rosemary", dose: "20 mg (5:1)", desc: "Researched for neuroprotective properties and long-term brain health." },
+  { name: "Vitamin B6", dose: "10 mg", desc: "Studied for its role as a cofactor in neurotransmitter synthesis." },
+  { name: "Zinc", dose: "10 mg", desc: "Studied for cognitive function, learning, and synaptic signalling." },
+  { name: "Niacin (B3)", dose: "32 mg", desc: "Studied for NAD+ production and cellular brain energy." },
+  { name: "Fenugreek", dose: "675 mg", desc: "Researched for hormonal support and cognitive endurance." },
+  { name: "Taurine", dose: "675 mg", desc: "Studied for reducing oxidative stress and supporting neural function." },
 ];
 
+/* NEW §B – RESEARCH CITATIONS */
+/* <!-- ASSET TODO: Verify each citation against original source before publishing --> */
+const RESEARCH_CITATIONS = [
+  {
+    ingredient: "Bacopa Monnieri",
+    finding: "Measurable memory improvements after 12 weeks of supplementation.",
+    citation: "Stough et al., Psychopharmacology, 2001; Calabrese et al., Journal of Alternative and Complementary Medicine, 2008.",
+    relevance: "Genius Mind contains Bacopa Monnieri 11:1 at 80mg \u2014 a high-ratio extract studied for memory consolidation.",
+  },
+  {
+    ingredient: "Ginkgo Biloba",
+    finding: "Measurable increases in cerebral blood flow following administration.",
+    citation: "Mashayekh et al., Neuroradiology, 2011.",
+    relevance: "Genius Mind contains Ginkgo Biloba 50:1 at 120mg \u2014 researched for cerebral blood flow and oxygen delivery.",
+  },
+  {
+    ingredient: "L-Tyrosine",
+    finding: "Supports cognitive performance during demanding tasks and stressful conditions.",
+    citation: "Deijen & Orlebeke, Brain Research Bulletin, 1994; multiple subsequent studies.",
+    relevance: "Genius Mind contains L-Tyrosine at 100mg \u2014 studied as a dopamine precursor for focus under stress.",
+  },
+];
+
+/* §18 – FORMULATION POINTS */
 const FORMULATION_POINTS = [
   {
     icon: "\uD83E\uDDEA",
@@ -1370,28 +1382,34 @@ const FORMULATION_POINTS = [
     icon: "\uD83D\uDD2C",
     title: "16 Synergistic Ingredients",
     subtitle: "Full-Spectrum Stack",
-    desc: "Your brain runs on multiple neurotransmitter systems simultaneously. Single-ingredient supplements are a band-aid. Genius Mind addresses dopamine, acetylcholine, blood flow, and neural protection together.",
+    desc: "Your brain runs on multiple neurotransmitter systems simultaneously. Single-ingredient supplements are a band-aid. Genius Mind addresses blood flow, neuron stimulation, and neuron strengthening together.",
   },
   {
     icon: "\uD83D\uDCCA",
     title: "Full Dose Transparency",
     subtitle: "Zero Proprietary Blends",
-    desc: "Every ingredient, every dose, clearly listed. No proprietary blends hiding micro-doses behind marketing. You know exactly what you're putting in your body and why.",
+    desc: "Every ingredient, every dose, clearly listed. No proprietary blends hiding micro-doses behind marketing. You know exactly what you\u2019re putting in your body and why.",
   },
 ];
 
+/* §20 – FAQS (original 5 + 3 new per brief) */
 const FAQS = [
-  { q: "What is Genius Mind?", a: "Genius Mind is a premium cognitive stack with 16 clinically studied ingredients - including high-ratio botanical extracts, amino acid precursors, and essential cofactors - designed to sustain peak mental output for 8-12 hours. No stimulant dependency, no crashes." },
-  { q: "Who is Genius Mind for?", a: "Genius Mind is built for operators, founders, and high-performers who need sustained cognitive output across long working days. If you're hitting a 3pm wall, building caffeine tolerance, or making worse decisions by late afternoon, this is designed for you." },
+  { q: "What is Genius Mind?", a: "Genius Mind is a cognitive stack with 16 clinically studied ingredients \u2014 including high-ratio botanical extracts, amino acid precursors, and essential cofactors \u2014 designed to support sustained focus throughout the working day. No stimulant dependency, no crashes." },
+  { q: "Who is Genius Mind for?", a: "Genius Mind is built for operators, founders, and high-performers who need sustained cognitive output across long working days. If you\u2019re hitting a wall by mid-afternoon, building caffeine tolerance, or making worse decisions later in the day, this is designed for you." },
   { q: "How do I take Genius Mind?", a: "Take 2 capsules daily with breakfast or 30-60 minutes before your most demanding work. Each bottle contains 60 capsules (30 servings). For best results, use consistently for at least 90 days to allow the compound effect to build." },
-  { q: "How long until I see results?", a: "Most users report a subtle lift in clarity within the first 1-2 weeks as Guarana and B vitamins take effect. The real transformation happens around weeks 4-8 as Bacopa, Lion's Mane, and the full synergistic stack reaches optimal levels. Month 3 is typically the breakthrough month." },
+  { q: "How long until I see results?", a: "Some users report a subtle lift in clarity within the first 1-2 weeks as Guarana and B vitamins take effect. Research suggests the full synergistic stack \u2014 particularly Bacopa and Lion\u2019s Mane \u2014 may reach optimal levels around weeks 4-8. Month 3 is typically when long-term customers report the most significant changes." },
   { q: "Can Genius Mind replace my coffee?", a: "Many customers reduce or eliminate their coffee intake after starting Genius Mind. The Guarana provides clean, sustained energy without the tolerance-building and crash cycle of caffeine. However, Genius Mind is designed to work alongside moderate coffee intake too." },
+  { q: "Can I stack Genius Mind with creatine, omega-3, magnesium, or my existing supplement routine?", a: "Yes. Genius Mind is designed as the cognitive chemistry layer on top of an existing operator stack. It doesn\u2019t replace creatine, omega-3, or magnesium \u2014 those address different systems. Common stacks include all four taken at appropriate times." },
+  { q: "What happens if I stop taking it?", a: "Genius Mind isn\u2019t habit-forming and doesn\u2019t create withdrawal. The supportive effect on dopamine pathways and synaptic signalling depends on consistent intake \u2014 stop, and the cognitive chemistry support stops. Many long-term customers run it as a permanent part of their stack for that reason." },
+  { q: "Is Genius Mind safe for daily, long-term use?", a: "Yes. The formula is non-stimulant-dependent, made in a GMP-certified UK facility, third-party tested, and designed for daily intake. The ingredients are at clinical doses with no tolerance pathway." },
 ];
 
+/* §21 – STARTER KIT */
+/* <!-- TODO: Verify 90-Day Cognitive Blueprint Guide and Operator Performance Tracker exist. If not, mark TO BUILD or remove. --> */
 const LAUNCH_KIT = [
   { name: "Genius Mind Cognitive Stack (30-day)", was: "\u00A334.99", now: "\u00A324.99" },
   { name: "90-Day Cognitive Blueprint Guide", was: "\u00A319.99", now: "FREE" },
   { name: "Operator Performance Tracker", was: "\u00A314.99", now: "FREE" },
   { name: "Free UK Shipping", was: "\u00A34.99", now: "FREE" },
-  { name: "90-Day Money-Back Guarantee", was: "\u2014", now: "INCLUDED" },
+  { name: "90-Day Money-Back Guarantee", was: null, now: "INCLUDED" },
 ];
