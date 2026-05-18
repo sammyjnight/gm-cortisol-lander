@@ -1,208 +1,426 @@
 {% comment %}
-  Genius Mind — Cortisol Angle Landing Page
-  Avatar: Chaos Operator
+  Mars Men — Cortisol Belly Landing Page
   Upload via Shopify CLI: shopify theme push --path shopify/
   Then create a page in Shopify admin and assign template "page.cortisol-lander"
 {% endcomment %}
 
 {{ 'cortisol-lander.css' | asset_url | stylesheet_tag }}
 
-{% assign shop_url = section.settings.product_url | default: '/products/genius-mind' %}
-{% assign cdn = 'https://cdn.shopify.com/s/files/1/0594/8892/7953/files' %}
+{% assign shop_url = section.settings.product_url | default: '/products/natural-testosterone-support' %}
 
-{%- style -%}
-  .cl-section { --brand: #00a6d2; --accent: #ff5600; --bg: #0a0a0a; --surface: #141414; --surface2: #1a1a1a; --border: #262626; --muted: #737373; --text2: #a3a3a3; }
-{%- endstyle -%}
+<div class="mm-section" style="background:#0a0a0a;color:#ededed;font-family:system-ui,-apple-system,sans-serif;">
 
-<div class="cl-section" style="background:#0a0a0a;color:#ededed;font-family:system-ui,-apple-system,sans-serif;">
-
-  <!-- Announcement Bar -->
-  <div style="background:#054b65;color:#fff;text-align:center;font-size:12px;padding:8px 16px;letter-spacing:0.5px;">
-    <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-right:8px;"></span>
-    Free UK Shipping Over &pound;40
-    <span style="margin:0 8px;opacity:0.3;">|</span>
-    90-Day Money Back Guarantee
-    <span style="margin:0 8px;opacity:0.3;">|</span>
-    Subscribe &amp; Save
-  </div>
-
-  <!-- Hero Section -->
-  <section style="position:relative;overflow:hidden;padding:64px 0 80px;">
-    <div style="max-width:1280px;margin:0 auto;padding:0 16px;position:relative;z-index:1;">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="cl-hero-grid">
-
-        <!-- Left: Image -->
-        <div class="cl-hero-img-col">
-          <div style="background:#141414;border-radius:16px;overflow:hidden;border:1px solid #262626;aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:32px;">
-            <img src="{{ cdn }}/hero-bundle.png" alt="Genius Mind 3-bottle bundle" style="max-width:100%;max-height:100%;object-fit:contain;" loading="lazy" />
-          </div>
-        </div>
-
-        <!-- Right: Offer -->
-        <div>
-          <!-- Reviews -->
-          <div style="display:flex;align-items:center;gap:8px;font-size:14px;margin-bottom:16px;">
-            <span style="color:#facc15;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <span style="color:#a3a3a3;">4.6 from 673 Reviews</span>
-            <span style="color:#404040;">|</span>
-            <span style="color:#a3a3a3;">100K+ customers</span>
-          </div>
-
-          <!-- CORTISOL HOOK -->
-          <h1 style="font-size:clamp(28px,4vw,42px);font-weight:800;line-height:1.15;letter-spacing:-0.5px;margin:0 0 20px;">
-            Every High-Pressure Year You've Run This Business,
-            <span style="color:#ff5600;">Cortisol Has Been Shrinking Your Brain.</span>
-          </h1>
-
-          <p style="color:#a3a3a3;font-size:clamp(15px,1.5vw,18px);line-height:1.65;margin-bottom:24px;">
-            It's been shrinking the hippocampus &mdash; the region responsible for pattern recognition, fast recall, and the sharp instinct that tells you which hires are wrong, which pivots are right, which opportunities are real before anyone else sees them.
-            <span style="color:#fff;font-weight:500;">16 clinically-dosed ingredients designed to protect it.</span>
-          </p>
-
-          <!-- Tags -->
-          <div style="display:flex;gap:12px;margin-bottom:24px;">
-            <span style="background:#1a1a1a;border:1px solid #262626;padding:6px 12px;border-radius:100px;font-size:12px;color:#a3a3a3;">16-Ingredient Nootropic Stack</span>
-            <span style="background:#1a1a1a;border:1px solid #262626;padding:6px 12px;border-radius:100px;font-size:12px;color:#a3a3a3;">60 Capsules per Bottle</span>
-          </div>
-
-          <!-- CTA -->
-          <a href="{{ shop_url }}" style="display:block;width:100%;text-align:center;background:#00a6d2;color:#fff;font-weight:700;padding:16px;border-radius:12px;font-size:16px;text-decoration:none;margin-bottom:16px;transition:background 0.2s;">
-            Add to Cart &mdash; &pound;19.99/mo
-          </a>
-
-          <!-- Trust -->
-          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;font-size:12px;color:#737373;margin-bottom:24px;">
-            <span>&#x1F6E1;&#xFE0F; 90-Day Money Back</span>
-            <span>&#x1F69A; Free UK Shipping over &pound;40</span>
-            <span>&#x26A1; Same-Day Dispatch</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Trust Bar -->
-  <section style="background:#141414;border-top:1px solid #262626;border-bottom:1px solid #262626;padding:20px 0;">
-    <div style="max-width:1280px;margin:0 auto;padding:0 16px;display:flex;flex-wrap:wrap;justify-content:center;gap:16px 32px;font-size:14px;color:#a3a3a3;">
-      <span>&#x1F1EC;&#x1F1E7; Made in UK</span>
-      <span>&#x1F33F; 100% Natural</span>
-      <span>&#x1F52C; Nutritionist Formulated</span>
-      <span>&#x2705; Non-GMO</span>
-      <span>&#x1F6E1;&#xFE0F; 90-Day Guarantee</span>
-      <span>&#x1F331; Vegan</span>
-    </div>
-  </section>
-
-  <!-- Cortisol Science Section -->
-  <section style="position:relative;padding:80px 0;overflow:hidden;">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,#0a0a0a,#0f1a1e,#0a0a0a);pointer-events:none;"></div>
-    <div style="max-width:900px;margin:0 auto;padding:0 16px;position:relative;z-index:1;">
-      <div style="text-align:center;margin-bottom:64px;">
-        <span style="display:inline-block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:#00a6d2;margin-bottom:16px;">The Cortisol Problem</span>
-        <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:800;margin:0 0 24px;">
-          Your Brain Is Paying the Price for <span style="color:#ff5600;">Every Year of Pressure.</span>
-        </h2>
-        <p style="color:#a3a3a3;font-size:18px;max-width:640px;margin:0 auto;line-height:1.65;">
-          Chronic high-stakes decision making floods your system with cortisol. Over time, it physically shrinks the hippocampus &mdash; the brain region that gives you your edge.
-        </p>
-      </div>
-
-      <!-- What cortisol takes vs protects -->
-      <div style="background:#141414;border:1px solid #262626;border-radius:16px;padding:40px;">
-        <div style="text-align:center;margin-bottom:32px;">
-          <h3 style="font-size:24px;font-weight:700;margin:0 0 12px;">
-            The More Cortisol You've Endured, <span style="color:#ff5600;">The More Your Hippocampus Shrinks.</span>
-          </h3>
-          <p style="color:#a3a3a3;max-width:560px;margin:0 auto;">
-            Leading to your business mind becoming slower, less capable, and less motivated. You didn't build a business that's outgrowing you.
-          </p>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" class="cl-two-col">
-          <div style="background:#1a1a1a;border-radius:12px;padding:24px;border:1px solid #262626;">
-            <div style="font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#ff5600;font-weight:600;margin-bottom:12px;">What Cortisol Takes</div>
-            <ul style="list-style:none;padding:0;margin:0;font-size:14px;color:#a3a3a3;">
-              <li style="display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;"><span style="color:#ff5600;">&#x2715;</span> Afternoon decision quality collapses</li>
-              <li style="display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;"><span style="color:#ff5600;">&#x2715;</span> Sprint-crash cycle repeats daily</li>
-              <li style="display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;"><span style="color:#ff5600;">&#x2715;</span> The sharp instinct that built your business &mdash; dulling</li>
-              <li style="display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;"><span style="color:#ff5600;">&#x2715;</span> Memory gaps in high-stakes conversations</li>
-              <li style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#ff5600;">&#x2715;</span> Caffeine dependency just to maintain baseline</li>
-            </ul>
-          </div>
-          <div style="background:#1a1a1a;border-radius:12px;padding:24px;border:1px solid #262626;">
-            <div style="font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#00a6d2;font-weight:600;margin-bottom:12px;">What Genius Mind Protects</div>
-            <ul style="list-style:none;padding:0;margin:0;font-size:14px;color:#a3a3a3;">
-              <li style="display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;"><span style="color:#00a6d2;">&#x2713;</span> Cerebral blood flow &mdash; Ginkgo Biloba 50:1</li>
-              <li style="display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;"><span style="color:#00a6d2;">&#x2713;</span> Dopamine precursors &mdash; L-Tyrosine replenishment</li>
-              <li style="display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;"><span style="color:#00a6d2;">&#x2713;</span> Cortisol reduction &mdash; Phosphatidylserine</li>
-              <li style="display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;"><span style="color:#00a6d2;">&#x2713;</span> Stress resilience &mdash; Panax Ginseng 20:1 adaptogen</li>
-              <li style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#00a6d2;">&#x2713;</span> Neural pathway growth &mdash; Lion's Mane 4:1</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Benefits -->
-  <section style="padding:80px 0;">
-    <div style="max-width:1280px;margin:0 auto;padding:0 16px;">
-      <div style="text-align:center;margin-bottom:56px;">
-        <span style="display:inline-block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:#00a6d2;margin-bottom:16px;">Cognitive Infrastructure</span>
-        <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:800;margin:0;">
-          4 Reasons Operators <span style="color:#00a6d2;">Switch to Genius Mind</span>
-        </h2>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;" class="cl-four-col">
-        <div style="background:#141414;border:1px solid #262626;border-radius:12px;padding:24px;">
-          <div style="font-size:28px;margin-bottom:16px;">&#x23F1;&#xFE0F;</div>
-          <h3 style="font-weight:700;margin:0 0 8px;font-size:18px;">Extends the Decision Window</h3>
-          <p style="font-size:14px;color:#a3a3a3;line-height:1.6;margin:0;">Ginkgo Biloba (50:1 extract) supports cerebral blood flow, helping maintain the sharp thinking you have at 9am deep into the afternoon.</p>
-        </div>
-        <div style="background:#141414;border:1px solid #262626;border-radius:12px;padding:24px;">
-          <div style="font-size:28px;margin-bottom:16px;">&#x1F9E0;</div>
-          <h3 style="font-weight:700;margin:0 0 8px;font-size:18px;">Infrastructure, Not a Patch</h3>
-          <p style="font-size:14px;color:#a3a3a3;line-height:1.6;margin:0;">16 ingredients across three mechanisms &mdash; blood flow, neurotransmitter precursors, and adaptogens. A system built for sustained cognitive output.</p>
-        </div>
-        <div style="background:#141414;border:1px solid #262626;border-radius:12px;padding:24px;">
-          <div style="font-size:28px;margin-bottom:16px;">&#x1F52C;</div>
-          <h3 style="font-weight:700;margin:0 0 8px;font-size:18px;">Every Dose Disclosed</h3>
-          <p style="font-size:14px;color:#a3a3a3;line-height:1.6;margin:0;">No proprietary blends. No hidden dosages. High-ratio extracts with extraction ratios printed on the label. You read labels &mdash; this one is worth reading.</p>
-        </div>
-        <div style="background:#141414;border:1px solid #262626;border-radius:12px;padding:24px;">
-          <div style="font-size:28px;margin-bottom:16px;">&#x26A1;</div>
-          <h3 style="font-weight:700;margin:0 0 8px;font-size:18px;">Replaces Caffeine Dependence</h3>
-          <p style="font-size:14px;color:#a3a3a3;line-height:1.6;margin:0;">Guarana provides sustained energy release without the spike-and-crash cycle. L-Tyrosine replenishes the dopamine precursors that chronic decision-making depletes.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Guarantee CTA -->
-  <section style="position:relative;padding:80px 0;overflow:hidden;">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,#0a0a0a,#0f1a1e,#0a0a0a);pointer-events:none;"></div>
-    <div style="max-width:640px;margin:0 auto;padding:0 16px;text-align:center;position:relative;z-index:1;">
-      <div style="font-size:48px;margin-bottom:16px;">&#x1F6E1;&#xFE0F;</div>
-      <span style="display:inline-block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:#00a6d2;margin-bottom:16px;">Our Promise</span>
-      <div style="font-size:clamp(40px,6vw,64px);font-weight:800;margin-bottom:16px;">Risk-Free</div>
-      <h2 style="font-size:clamp(18px,2.5vw,24px);font-weight:600;color:#a3a3a3;margin:0 0 24px;">
-        Protect what you've built. Try it for 90 days.
-      </h2>
-      <p style="color:#737373;margin-bottom:32px;max-width:400px;margin-left:auto;margin-right:auto;">
-        Over 100,000 customers. 4.6/5 average rating. If the decision quality doesn't shift, you get your money back.
-      </p>
-      <a href="{{ shop_url }}" style="display:inline-block;background:#00a6d2;color:#fff;font-weight:700;padding:16px 40px;border-radius:12px;font-size:16px;text-decoration:none;">
-        Try Genius Mind Risk-Free
+  <!-- ═══ HEADER ═══ -->
+  <header style="background:#0a0a0a;border-bottom:1px solid #262626;padding:16px 0;">
+    <div style="max-width:1100px;margin:0 auto;padding:0 16px;display:flex;align-items:center;justify-content:space-between;">
+      <a href="{{ shop_url }}" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
+        <span class="mm-mono" style="color:#fff;font-weight:900;font-size:20px;letter-spacing:0.3em;">MARS MEN</span>
+        <span style="width:12px;height:12px;border-radius:50%;background:#ff5600;display:inline-block;"></span>
       </a>
+      <nav style="display:flex;align-items:center;gap:24px;font-size:14px;">
+        <a href="{{ shop_url }}" style="color:#a3a3a3;text-decoration:none;">Shop Now</a>
+        <a href="#mm-ingredients" style="color:#a3a3a3;text-decoration:none;">Science</a>
+        <a href="#mm-faq" style="color:#a3a3a3;text-decoration:none;">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══ HERO ═══ -->
+  <section style="padding:64px 0 80px;background:linear-gradient(180deg,rgba(10,10,10,0.95),rgba(20,20,20,0.9),rgba(10,10,10,0.95));">
+    <div style="max-width:1100px;margin:0 auto;padding:0 16px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="mm-hero-grid">
+        <div>
+          <p class="mm-mono" style="color:#a3a3a3;font-size:12px;margin-bottom:16px;">
+            8 Ingredients. One Formula. <span style="color:#ff5600;">Zero BS.</span>
+          </p>
+          <h1 class="mm-mono" style="font-size:clamp(28px,4vw,48px);font-weight:900;line-height:1.1;margin:0 0 24px;">
+            Crush Cortisol Belly With This <span style="color:#ff5600;">Natural T Upgrade</span>
+          </h1>
+          <p style="color:#fff;font-weight:700;font-size:18px;margin-bottom:16px;">
+            Your metabolism&rsquo;s not broken &mdash; your cortisol&rsquo;s just running the show.
+          </p>
+          <p style="color:#a3a3a3;margin-bottom:16px;line-height:1.65;">
+            The stress hormone that spikes whenever modern life hits you is the same one telling your body to lock belly fat down and never let go.
+          </p>
+          <p style="color:#a3a3a3;margin-bottom:16px;line-height:1.65;">
+            It&rsquo;s why the scale won&rsquo;t move, the diets &ldquo;fail&rdquo;, and why the man in the mirror looks softer than the effort you&rsquo;re putting in.
+          </p>
+          <p style="color:#fff;font-weight:600;margin-bottom:8px;">Drop your cortisol. Free your testosterone.</p>
+          <p style="color:#fff;font-weight:600;margin-bottom:32px;">Do that and the belly disappears, while energy skyrockets.</p>
+          <a href="{{ shop_url }}" class="mm-cta">TRY IT NOW &rarr;</a>
+        </div>
+        <div style="background:#141414;border-radius:12px;border:1px solid #262626;aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:32px;">
+          {% if section.settings.hero_image %}
+            <img src="{{ section.settings.hero_image | image_url: width: 800 }}" alt="High Cortisol vs Low Cortisol" style="max-width:100%;height:auto;" loading="lazy" />
+          {% else %}
+            <p style="color:#737373;font-size:14px;text-align:center;">Upload hero image in section settings</p>
+          {% endif %}
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer style="border-top:1px solid #1a1a1a;padding:40px 0;">
-    <div style="max-width:1280px;margin:0 auto;padding:0 16px;text-align:center;">
-      <div style="font-size:12px;color:#404040;">
-        &copy; {{ 'now' | date: '%Y' }} JustFloow. All rights reserved.<br />
-        *These statements have not been evaluated by the MHRA. This product is not intended to diagnose, treat, cure or prevent any disease.
+  <!-- ═══ IT'S NOT JUST GETTING OLDER ═══ -->
+  <section style="padding:64px 0 80px;">
+    <div style="max-width:1100px;margin:0 auto;padding:0 16px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="mm-hero-grid">
+        <div style="background:#141414;border-radius:12px;border:1px solid #262626;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;">
+          {% if section.settings.lifestyle_image %}
+            <img src="{{ section.settings.lifestyle_image | image_url: width: 600 }}" alt="Lifestyle" style="max-width:100%;height:auto;border-radius:12px;" loading="lazy" />
+          {% else %}
+            <p style="color:#737373;font-size:14px;">Upload lifestyle image</p>
+          {% endif %}
+        </div>
+        <div>
+          <p class="mm-mono" style="color:#ff5600;font-size:12px;margin-bottom:8px;">&#9888; Here&rsquo;s the truth about weight loss for men over 30</p>
+          <h2 style="font-size:clamp(28px,3.5vw,42px);font-weight:900;margin:0 0 24px;">It&rsquo;s Not &ldquo;Just Getting Older&rdquo;</h2>
+          <p style="color:#fff;font-weight:700;margin-bottom:16px;">Many guys 30+ end up...</p>
+
+          <div class="mm-warn"><span style="color:#eab308;">&#9888;</span><p style="color:#fff;font-size:14px;margin:0;"><strong>Unable to lose belly fat</strong> <span style="color:#a3a3a3;">no matter how clean they eat</span></p></div>
+          <div class="mm-warn"><span style="color:#eab308;">&#9888;</span><p style="color:#fff;font-size:14px;margin:0;"><strong>With a metabolism that&rsquo;s shut down</strong> <span style="color:#a3a3a3;">from years of crash diets</span></p></div>
+          <div class="mm-warn"><span style="color:#eab308;">&#9888;</span><p style="color:#fff;font-size:14px;margin:0;"><strong>Carrying 20-40 extra pounds</strong> <span style="color:#a3a3a3;">they can&rsquo;t seem to shake</span></p></div>
+          <div class="mm-warn"><span style="color:#eab308;">&#9888;</span><p style="color:#fff;font-size:14px;margin:0;"><strong>Exhausted from 2pm onward,</strong> <span style="color:#a3a3a3;">no energy to work out</span></p></div>
+
+          <p style="color:#fff;margin-top:24px;margin-bottom:16px;">&#128073; <strong>Your grandfather likely had higher T at 60 than you do at 40.</strong></p>
+          <p style="color:#a3a3a3;margin-bottom:16px;">This isn&rsquo;t aging &mdash; it&rsquo;s what happens when plastics mimic estrogen, stress spikes cortisol, and your body STOPS burning fat efficiently.</p>
+          <p style="color:#ff5600;font-weight:700;">Your hormones control your metabolism.<br>Fix the hormone, burn the fat.</p>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ═══ WHY EVERYTHING FAILED (White section) ═══ -->
+  <section style="background:#fff;color:#111;padding:64px 0 80px;">
+    <div style="max-width:900px;margin:0 auto;padding:0 16px;">
+      <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:900;text-align:center;margin:0 0 32px;">
+        Why Everything You&rsquo;ve Tried Made Logical Sense &mdash; And Still Didn&rsquo;t Work
+      </h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;" class="mm-two-col">
+        <div>
+          <p style="font-weight:700;font-size:18px;margin-bottom:16px;">You didn&rsquo;t fail. The strategy failed you.</p>
+          <p style="color:#555;margin-bottom:16px;">Every diet and training program you&rsquo;ve tried attacked the symptom. None of them went after the cause.</p>
+          <p style="font-weight:700;font-size:18px;margin-bottom:16px;">The cause is cortisol.</p>
+          <p class="mm-mono" style="color:#ff5600;font-weight:900;font-size:18px;">Your body was built for a world that no longer exists.</p>
+        </div>
+        <div>
+          <p style="color:#555;margin-bottom:16px;">For most of human history, stress was short.</p>
+          <p style="color:#333;font-weight:600;margin-bottom:16px;">A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
+          <p style="color:#333;font-weight:700;margin-bottom:16px;">But now the threat never passes.</p>
+          <p style="color:#555;margin-bottom:16px;">Deadlines. The mortgage. The kids&rsquo; schedules. Your boss at 10pm. Another notification. Then another.</p>
+          <p style="font-weight:700;">None of it is life or death. But your nervous system can&rsquo;t tell the difference...</p>
+        </div>
+      </div>
+      <p style="color:#555;text-align:center;margin:32px 0;">And the harder you try to lose weight without addressing cortisol first, the more you&rsquo;re working against yourself:</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="mm-three-col">
+        <div style="background:#fff5f0;border-radius:8px;padding:24px;border:1px solid #ffe0d0;">
+          <p style="font-weight:700;font-size:14px;margin:0 0 8px;">Aggressive calorie restriction spikes cortisol further.</p>
+          <p style="color:#666;font-size:14px;margin:0;">Your body reads a severe calorie deficit as a threat and responds by elevating cortisol and locking abdominal fat down.</p>
+        </div>
+        <div style="background:#fff5f0;border-radius:8px;padding:24px;border:1px solid #ffe0d0;">
+          <p style="font-weight:700;font-size:14px;margin:0 0 8px;">Hard training without addressing cortisol adds fuel to the fire.</p>
+          <p style="color:#666;font-size:14px;margin:0;">High-intensity exercise done while cortisol is already elevated pushes it even higher.</p>
+        </div>
+        <div style="background:#fff5f0;border-radius:8px;padding:24px;border:1px solid #ffe0d0;">
+          <p style="font-weight:700;font-size:14px;margin:0 0 8px;">Stimulant fat burners work by triggering cortisol.</p>
+          <p style="color:#666;font-size:14px;margin:0;">The temporary energy and appetite suppression come from spiking your stress hormones.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FIX CORTISOL ═══ -->
+  <section style="padding:64px 0;">
+    <div style="max-width:1100px;margin:0 auto;padding:0 16px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="mm-hero-grid">
+        <div style="background:#141414;border-radius:12px;border:1px solid #262626;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;">
+          {% if section.settings.before_after_image %}
+            <img src="{{ section.settings.before_after_image | image_url: width: 600 }}" alt="Before/After" style="max-width:100%;height:auto;border-radius:12px;" loading="lazy" />
+          {% else %}
+            <p style="color:#737373;font-size:14px;">Upload before/after image</p>
+          {% endif %}
+        </div>
+        <div>
+          <p style="color:#fff;font-size:18px;line-height:1.6;margin-bottom:16px;">The men who finally crack the code &mdash; who lose the belly after years of nothing working &mdash; are the ones who get the hormonal environment right first.</p>
+          <p style="color:#ff5600;font-weight:700;font-size:20px;margin-bottom:8px;">Fix cortisol. Free testosterone.</p>
+          <p style="color:#fff;font-weight:700;font-size:20px;">That&rsquo;s exactly what Mars Men is built to do.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SAY NO TO STIMULANTS ═══ -->
+  <section style="padding:64px 0;border-top:1px solid #262626;">
+    <div style="max-width:1100px;margin:0 auto;padding:0 16px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;" class="mm-hero-grid">
+        <div>
+          <p class="mm-mono" style="color:#ff5600;font-size:12px;margin-bottom:8px;">&#10067; And what about other options?</p>
+          <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:900;margin:0 0 32px;">Say No to Stimulant Crashes &amp; Fat Burner Snake Oil</h2>
+          <h3 style="color:#fff;font-weight:700;margin-bottom:12px;">Stimulant-Based Fat Burners:</h3>
+          <div class="mm-redx"><span style="color:#ef4444;font-weight:700;">&#10005;</span><p style="color:#fff;font-size:14px;margin:0;"><strong>Heart racing, jitters, anxiety</strong> <span style="color:#a3a3a3;">&ndash; then a brutal crash</span></p></div>
+          <div class="mm-redx"><span style="color:#ef4444;font-weight:700;">&#10005;</span><p style="color:#fff;font-size:14px;margin:0;"><strong>Only work while you&rsquo;re taking them</strong> <span style="color:#a3a3a3;">&ndash; stop and rebound fast</span></p></div>
+          <div class="mm-redx"><span style="color:#ef4444;font-weight:700;">&#10005;</span><p style="color:#fff;font-size:14px;margin:0;"><strong>Damage your metabolism long-term</strong> <span style="color:#a3a3a3;">with constant stimulation</span></p></div>
+          <h3 style="color:#fff;font-weight:700;margin:24px 0 12px;">Legacy &ldquo;Testosterone Boosters&rdquo;:</h3>
+          <div class="mm-redx"><span style="color:#ef4444;font-weight:700;">&#10005;</span><p style="color:#fff;font-size:14px;margin:0;"><strong>Proprietary blends hide</strong> <span style="color:#a3a3a3;">worthless dosages</span></p></div>
+          <div class="mm-redx"><span style="color:#ef4444;font-weight:700;">&#10005;</span><p style="color:#fff;font-size:14px;margin:0;"><strong>Dated formulas</strong> <span style="color:#a3a3a3;">with ingredients that don&rsquo;t work</span></p></div>
+          <div class="mm-redx"><span style="color:#ef4444;font-weight:700;">&#10005;</span><p style="color:#fff;font-size:14px;margin:0;"><strong>Just expensive pee</strong> <span style="color:#a3a3a3;">&ndash; no actual hormonal impact</span></p></div>
+        </div>
+        <div>
+          <div style="background:#141414;border-radius:12px;border:1px solid #262626;aspect-ratio:1;display:flex;align-items:center;justify-content:center;margin-bottom:24px;">
+            <p style="color:#737373;font-size:14px;">Upload lifestyle image</p>
+          </div>
+          <p style="color:#a3a3a3;font-size:14px;">&#128073; You deserve better than frying your nervous system with stimulants OR wasting money on underdosed garbage that doesn&rsquo;t address the ROOT of optimal fat burning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ NATURAL HORMONE SUPPORT ═══ -->
+  <section style="padding:64px 0;border-top:1px solid #262626;text-align:center;">
+    <div style="max-width:900px;margin:0 auto;padding:0 16px;">
+      <p class="mm-mono" style="color:#a3a3a3;font-size:12px;margin-bottom:12px;">Make the smart choice</p>
+      <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:900;margin:0 0 24px;">Natural Hormone Support + Real Fat Loss</h2>
+      <p style="color:#a3a3a3;margin-bottom:24px;">&#128073; Mars Men isn&rsquo;t just another fat burner &mdash; it&rsquo;s a complete hormonal stack that works on FOUR levels: <u>make more testosterone</u>, <u>free the T you already have</u>, <u>protect it</u>, and <u>optimize it for optimal fat-burning</u>.</p>
+      <p style="color:#a3a3a3;margin-bottom:32px;">No needles, prescriptions, or dependency.</p>
+      <p style="color:#fff;font-size:14px;max-width:700px;margin:0 auto 32px;">Natural Testosterone Support is a unique blend of natural herbs and minerals that are scientifically proven to support healthy testosterone levels and overall well-being. At Mars Men, we utilize clinical doses of each ingredient to support powerful results.</p>
+      <a href="{{ shop_url }}" class="mm-cta">TRY IT NOW &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ═══ BENEFITS GRID ═══ -->
+  <section style="padding:64px 0;background:linear-gradient(180deg,rgba(10,10,10,0.95),rgba(20,20,20,0.9),rgba(10,10,10,0.95));">
+    <div style="max-width:1100px;margin:0 auto;padding:0 16px;">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;text-align:center;" class="mm-benefits-grid">
+        <div><div style="color:#ff5600;font-size:28px;margin-bottom:12px;">&#9889;</div><h3 class="mm-mono" style="color:#fff;font-weight:700;font-size:14px;margin-bottom:8px;">Support Fat Burning</h3><p style="color:#a3a3a3;font-size:14px;margin:0;">Helps target belly fat at the hormonal level.</p></div>
+        <div><div style="color:#ff5600;font-size:28px;margin-bottom:12px;">&#128293;</div><h3 class="mm-mono" style="color:#fff;font-weight:700;font-size:14px;margin-bottom:8px;">Energy &amp; Stamina</h3><p style="color:#a3a3a3;font-size:14px;margin:0;">No more 2pm crash. Burn fat AND feel energized.</p></div>
+        <div><div style="color:#ff5600;font-size:28px;margin-bottom:12px;">&#128170;</div><h3 class="mm-mono" style="color:#fff;font-weight:700;font-size:14px;margin-bottom:8px;">Strength &amp; Muscle</h3><p style="color:#a3a3a3;font-size:14px;margin:0;">Lose fat, keep (or build) muscle. Look HARD, not skinny.</p></div>
+        <div><div style="color:#ff5600;font-size:28px;margin-bottom:12px;">&#129504;</div><h3 class="mm-mono" style="color:#fff;font-weight:700;font-size:14px;margin-bottom:8px;">Focus &amp; Clarity</h3><p style="color:#a3a3a3;font-size:14px;margin:0;">Brain fog gone. Disciplined eating becomes EASY.</p></div>
+        <div><div style="color:#ff5600;font-size:28px;margin-bottom:12px;">&#128564;</div><h3 class="mm-mono" style="color:#fff;font-weight:700;font-size:14px;margin-bottom:8px;">Recovery &amp; Sleep</h3><p style="color:#a3a3a3;font-size:14px;margin:0;">Deep sleep = fat loss. Wake up rested, metabolism-primed.</p></div>
+        <div><div style="color:#ff5600;font-size:28px;margin-bottom:12px;">&#128737;</div><h3 class="mm-mono" style="color:#fff;font-weight:700;font-size:14px;margin-bottom:8px;">Stress Resilience</h3><p style="color:#a3a3a3;font-size:14px;margin:0;">Lower cortisol = less belly fat storage. Stress gets handled.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ INGREDIENTS ═══ -->
+  <section id="mm-ingredients" style="padding:64px 0;text-align:center;">
+    <div style="max-width:1100px;margin:0 auto;padding:0 16px;">
+      <p class="mm-mono" style="color:#a3a3a3;font-size:12px;margin-bottom:12px;">Ingredients</p>
+      <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:900;margin:0 0 16px;">Fuel Your Body the Clean Way</h2>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:24px;margin-bottom:40px;">
+        <div style="text-align:center;"><div style="color:#ff5600;font-size:20px;">&#10005;</div><p style="color:#a3a3a3;font-size:11px;margin:0;">No proprietary blends</p></div>
+        <div style="text-align:center;"><div style="color:#ff5600;font-size:20px;">&#10005;</div><p style="color:#a3a3a3;font-size:11px;margin:0;">No fillers</p></div>
+        <div style="text-align:center;"><div style="color:#ff5600;font-size:20px;">&#10005;</div><p style="color:#a3a3a3;font-size:11px;margin:0;">No synthetic hormones</p></div>
+        <div style="text-align:center;"><div style="color:#ff5600;font-size:20px;">&#10005;</div><p style="color:#a3a3a3;font-size:11px;margin:0;">No BS</p></div>
+        <div style="text-align:center;"><div style="color:#ff5600;font-size:20px;">&#10005;</div><p style="color:#a3a3a3;font-size:11px;margin:0;">No cheap powders</p></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:left;" class="mm-four-col">
+        <div class="mm-ing-card"><h4 class="mm-mono" style="color:#fff;font-weight:700;font-size:16px;margin:0 0 4px;">Tongkat Ali</h4><span class="mm-mono" style="display:inline-block;border:1px solid #737373;border-radius:4px;padding:2px 8px;font-size:11px;color:#a3a3a3;margin-bottom:8px;">1000 mg</span><p style="color:#a3a3a3;font-size:12px;margin:0;line-height:1.5;">Blocks cortisol (the belly fat storage hormone), supports natural T production</p></div>
+        <div class="mm-ing-card"><h4 class="mm-mono" style="color:#fff;font-weight:700;font-size:16px;margin:0 0 4px;">Shilajit</h4><span class="mm-mono" style="display:inline-block;border:1px solid #737373;border-radius:4px;padding:2px 8px;font-size:11px;color:#a3a3a3;margin-bottom:8px;">400 mg</span><p style="color:#a3a3a3;font-size:12px;margin:0;line-height:1.5;">Supports testosterone levels &amp; mitochondrial fat-burning</p></div>
+        <div class="mm-ing-card"><h4 class="mm-mono" style="color:#fff;font-weight:700;font-size:16px;margin:0 0 4px;">Boron</h4><span class="mm-mono" style="display:inline-block;border:1px solid #737373;border-radius:4px;padding:2px 8px;font-size:11px;color:#a3a3a3;margin-bottom:8px;">4 mg</span><p style="color:#a3a3a3;font-size:12px;margin:0;line-height:1.5;">Frees locked testosterone, regulates estrogen</p></div>
+        <div class="mm-ing-card"><h4 class="mm-mono" style="color:#fff;font-weight:700;font-size:16px;margin:0 0 4px;">Fenugreek</h4><span class="mm-mono" style="display:inline-block;border:1px solid #737373;border-radius:4px;padding:2px 8px;font-size:11px;color:#a3a3a3;margin-bottom:8px;">675 mg</span><p style="color:#a3a3a3;font-size:12px;margin:0;line-height:1.5;">Helps increase T &amp; free T, supports lean muscle retention during fat loss</p></div>
+        <div class="mm-ing-card"><h4 class="mm-mono" style="color:#fff;font-weight:700;font-size:16px;margin:0 0 4px;">Vitamin D3</h4><span class="mm-mono" style="display:inline-block;border:1px solid #737373;border-radius:4px;padding:2px 8px;font-size:11px;color:#a3a3a3;margin-bottom:8px;">4,000 IU</span><p style="color:#a3a3a3;font-size:12px;margin:0;line-height:1.5;">Promotes cellular health &amp; T regulation</p></div>
+        <div class="mm-ing-card"><h4 class="mm-mono" style="color:#fff;font-weight:700;font-size:16px;margin:0 0 4px;">Taurine</h4><span class="mm-mono" style="display:inline-block;border:1px solid #737373;border-radius:4px;padding:2px 8px;font-size:11px;color:#a3a3a3;margin-bottom:8px;">675 mg</span><p style="color:#a3a3a3;font-size:12px;margin:0;line-height:1.5;">Reduces oxidative stress, supports healthy metabolic function w/ exercise</p></div>
+        <div class="mm-ing-card"><h4 class="mm-mono" style="color:#fff;font-weight:700;font-size:16px;margin:0 0 4px;">Zinc</h4><span class="mm-mono" style="display:inline-block;border:1px solid #737373;border-radius:4px;padding:2px 8px;font-size:11px;color:#a3a3a3;margin-bottom:8px;">30 mg</span><p style="color:#a3a3a3;font-size:12px;margin:0;line-height:1.5;">Essential for T synthesis &amp; metabolism &ndash; most men are deficient</p></div>
+        <div class="mm-ing-card"><h4 class="mm-mono" style="color:#fff;font-weight:700;font-size:16px;margin:0 0 4px;">Vitamin K1+K2</h4><span class="mm-mono" style="display:inline-block;border:1px solid #737373;border-radius:4px;padding:2px 8px;font-size:11px;color:#a3a3a3;margin-bottom:8px;">100 mcg</span><p style="color:#a3a3a3;font-size:12px;margin:0;line-height:1.5;">Supports bone density &amp; metabolic health</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TRUST BADGES ═══ -->
+  <section style="border-top:1px solid #262626;border-bottom:1px solid #262626;padding:32px 0;">
+    <div style="max-width:1100px;margin:0 auto;padding:0 16px;display:flex;flex-wrap:wrap;justify-content:center;gap:16px 40px;text-align:center;">
+      <div><div style="font-size:24px;margin-bottom:4px;">&#127981;</div><p class="mm-mono" style="color:#a3a3a3;font-size:10px;margin:0;">Made in a CGMP Facility</p></div>
+      <div><div style="font-size:24px;margin-bottom:4px;">&#128300;</div><p class="mm-mono" style="color:#a3a3a3;font-size:10px;margin:0;">Third Party Tested</p></div>
+      <div><div style="font-size:24px;margin-bottom:4px;">&#129514;</div><p class="mm-mono" style="color:#a3a3a3;font-size:10px;margin:0;">Hormone-Free</p></div>
+      <div><div style="font-size:24px;margin-bottom:4px;">&#127482;&#127480;</div><p class="mm-mono" style="color:#a3a3a3;font-size:10px;margin:0;">Made in USA</p></div>
+      <div><div style="font-size:24px;margin-bottom:4px;">&#127793;</div><p class="mm-mono" style="color:#a3a3a3;font-size:10px;margin:0;">Vegan</p></div>
+      <div><div style="font-size:24px;margin-bottom:4px;">&#128683;</div><p class="mm-mono" style="color:#a3a3a3;font-size:10px;margin:0;">Non-GMO</p></div>
+    </div>
+  </section>
+
+  <!-- ═══ PRODUCT SECTION ═══ -->
+  <section style="padding:64px 0;background:linear-gradient(180deg,rgba(10,10,10,0.95),rgba(20,20,20,0.9),rgba(10,10,10,0.95));">
+    <div style="max-width:1100px;margin:0 auto;padding:0 16px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="mm-product-grid">
+        <div style="background:#141414;border-radius:16px;border:1px solid #262626;padding:32px;text-align:center;">
+          <div style="background:#1a1a1a;border-radius:12px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;margin-bottom:24px;">
+            {% if section.settings.product_image %}
+              <img src="{{ section.settings.product_image | image_url: width: 600 }}" alt="Mars Men Natural T Support" style="max-width:100%;height:auto;" loading="lazy" />
+            {% else %}
+              <p style="color:#737373;font-size:14px;">Upload product image</p>
+            {% endif %}
+          </div>
+          <div style="color:#ff5600;font-size:40px;font-weight:900;">91%</div>
+          <p style="color:#fff;font-size:14px;font-weight:700;">of Users Reported Higher Energy Levels*</p>
+          <p style="color:#737373;font-size:10px;">*Results may vary. Based on survey of 1,000 Actual Mars Men customers.</p>
+        </div>
+        <div>
+          <h2 style="font-size:28px;font-weight:900;margin:0 0 16px;">Natural Testosterone Support</h2>
+          <p style="color:#fff;font-weight:700;margin-bottom:16px;">Mars Men is the most potent and natural testosterone stack on earth. It works four ways: produces, frees, protects &amp; optimizes testosterone.*</p>
+          <ul style="list-style:none;padding:0;margin:0 0 24px;">
+            <li style="display:flex;align-items:flex-start;gap:8px;font-size:14px;margin-bottom:8px;"><span style="color:#22c55e;">&#10004;</span> 8 ingredients at full clinical doses</li>
+            <li style="display:flex;align-items:flex-start;gap:8px;font-size:14px;margin-bottom:8px;"><span style="color:#22c55e;">&#10004;</span> 91% of customers reported higher energy within 90 days*</li>
+            <li style="display:flex;align-items:flex-start;gap:8px;font-size:14px;margin-bottom:8px;"><span style="color:#22c55e;">&#10004;</span> Zero fillers or &ldquo;proprietary&rdquo; blends</li>
+            <li style="display:flex;align-items:flex-start;gap:8px;font-size:14px;margin-bottom:8px;"><span style="color:#22c55e;">&#10004;</span> Made in USA and third-party tested</li>
+            <li style="display:flex;align-items:flex-start;gap:8px;font-size:14px;"><span style="color:#22c55e;">&#10004;</span> 90-day 100% money-back guarantee</li>
+          </ul>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <span style="font-size:28px;font-weight:900;">&pound;54</span>
+            <span style="color:#737373;text-decoration:line-through;font-size:18px;">&pound;107</span>
+            <span class="mm-mono" style="color:#ff5600;font-weight:700;font-size:12px;">50% Off For Life</span>
+          </div>
+          <a href="{{ shop_url }}" class="mm-cta" style="margin-bottom:16px;">TRY IT NOW &rarr;</a>
+          <div style="display:flex;justify-content:center;gap:32px;text-align:center;font-size:12px;color:#a3a3a3;margin-top:16px;">
+            <div><div style="font-size:18px;margin-bottom:4px;">&#128230;</div>$59 Refill Ships<br>in 30 Days</div>
+            <div><div style="font-size:18px;margin-bottom:4px;">&#128640;</div>Try Risk-Free 90 Days<br>or 100% Money Back</div>
+            <div><div style="font-size:18px;margin-bottom:4px;">&#128666;</div>Fast &amp; Free Shipping<br>with 1st Order</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FEATURED IN ═══ -->
+  <section style="padding:40px 0;border-top:1px solid #262626;border-bottom:1px solid #262626;text-align:center;">
+    <p class="mm-mono" style="color:#a3a3a3;font-size:12px;margin-bottom:16px;">Featured In</p>
+    <div style="display:flex;justify-content:center;align-items:center;gap:48px;">
+      <span style="color:#737373;font-size:20px;font-weight:700;font-style:italic;">GQ</span>
+      <span style="color:#737373;font-size:20px;font-weight:700;font-style:italic;">Men&rsquo;s Health</span>
+      <span style="color:#737373;font-size:20px;font-weight:700;font-style:italic;">Forbes</span>
+    </div>
+  </section>
+
+  <!-- ═══ REVIEWS ═══ -->
+  <section id="mm-reviews" style="padding:64px 0;">
+    <div style="max-width:1100px;margin:0 auto;padding:0 16px;">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;" class="mm-four-col">
+        <div style="background:#1a1a1a;border:1px solid #262626;border-radius:12px;padding:20px;">
+          <div style="color:#ff5600;font-size:14px;margin-bottom:8px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p style="color:#fff;font-size:14px;line-height:1.6;margin:0;">&ldquo;I swear to God I feel like I&rsquo;m 25 again! Lost 30 pounds of fat, gained muscle, and my wife can&rsquo;t keep her hands off me now.&rdquo;</p>
+        </div>
+        <div style="background:#1a1a1a;border:1px solid #262626;border-radius:12px;padding:20px;">
+          <div style="color:#ff5600;font-size:14px;margin-bottom:8px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p style="color:#fff;font-size:14px;line-height:1.6;margin:0;">&ldquo;So far have lost about 15 pounds and feel stronger and a lot more energy. I&rsquo;m 2.5 months into the program.&rdquo;</p>
+        </div>
+        <div style="background:#1a1a1a;border:1px solid #262626;border-radius:12px;padding:20px;">
+          <div style="color:#ff5600;font-size:14px;margin-bottom:8px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p style="color:#fff;font-size:14px;line-height:1.6;margin:0;">&ldquo;This product is the real deal. My levels were 620 and now my T count is 879. The longer you take it the better it works.&rdquo;</p>
+        </div>
+        <div style="background:#1a1a1a;border:1px solid #262626;border-radius:12px;padding:20px;">
+          <div style="color:#ff5600;font-size:14px;margin-bottom:8px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p style="color:#fff;font-size:14px;line-height:1.6;margin:0;">&ldquo;I love it, dropped 15lbs, retaining good muscle mass, and the Mrs. Likes it too. I look forward to buying my third bottle!&rdquo;</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MEDICAL ADVISORY BOARD ═══ -->
+  <section style="padding:64px 0;background:linear-gradient(180deg,rgba(10,10,10,0.95),rgba(20,20,20,0.9),rgba(10,10,10,0.95));">
+    <div style="max-width:1000px;margin:0 auto;padding:0 16px;text-align:center;">
+      <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:900;margin:0 0 48px;">Meet Our Medical Advisory Board</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;" class="mm-three-col">
+        <div>
+          <div class="mm-adv-circle"><span style="font-size:48px;">&#129464;</span></div>
+          <h3 style="color:#fff;font-weight:700;font-size:18px;margin:0 0 4px;">Dr. Latt Mansor</h3>
+          <p class="mm-mono" style="color:#ff5600;font-size:10px;margin-bottom:12px;">Research Lead at H.V.M.N.</p>
+          <p style="color:#a3a3a3;font-size:14px;line-height:1.6;margin:0;">Dr. Latt Mansor holds a PhD in Physiology, Anatomy and Genetics from the University of Oxford. He is a world expert in physiology and metabolism.</p>
+        </div>
+        <div>
+          <div class="mm-adv-circle"><span style="font-size:48px;">&#129464;</span></div>
+          <h3 style="color:#fff;font-weight:700;font-size:18px;margin:0 0 4px;">Dr. Jesse Ropat</h3>
+          <p class="mm-mono" style="color:#ff5600;font-size:10px;margin-bottom:12px;">Biochemist in Human Kinetics</p>
+          <p style="color:#a3a3a3;font-size:14px;line-height:1.6;margin:0;">A licensed pharmacist with a deep interest in natural medicine and over a decade of clinical experience in biochemistry and human kinetics.</p>
+        </div>
+        <div>
+          <div class="mm-adv-circle"><span style="font-size:48px;">&#129464;</span></div>
+          <h3 style="color:#fff;font-weight:700;font-size:18px;margin:0 0 4px;">Dr. Jeff Vogel</h3>
+          <p class="mm-mono" style="color:#ff5600;font-size:10px;margin-bottom:12px;">Board-Certified Medicine Physician</p>
+          <p style="color:#a3a3a3;font-size:14px;line-height:1.6;margin:0;">A board-certified occupational and preventive medicine physician with deep expertise in men&rsquo;s health and hormone optimization.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ GUARANTEE ═══ -->
+  <section style="padding:64px 0;border-top:1px solid #262626;">
+    <div style="max-width:800px;margin:0 auto;padding:0 16px;">
+      <div style="display:flex;align-items:center;gap:32px;" class="mm-guarantee-row">
+        <div class="mm-guarantee-badge">
+          <div style="text-align:center;color:#fff;"><div style="font-size:12px;font-weight:700;">100%</div><div style="font-size:12px;font-weight:700;">MONEY BACK</div><div style="font-size:8px;margin-top:4px;">GUARANTEE</div></div>
+        </div>
+        <div>
+          <h2 style="font-size:clamp(20px,3vw,32px);font-weight:900;margin:0 0 8px;">Feel a Massive Difference in 90 Days <span style="color:#ff5600;font-style:italic;">Or Your Money Back</span></h2>
+          <p style="color:#a3a3a3;line-height:1.6;margin-bottom:24px;">We make sure every customer actually gets results or we refund you 100% of your investment. We&rsquo;re so confident you&rsquo;ll feel the difference with Mars Men that we bear all the risk.</p>
+          <a href="{{ shop_url }}" class="mm-cta">TRY IT NOW &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ═══ -->
+  <section id="mm-faq" style="padding:64px 0;border-top:1px solid #262626;">
+    <div style="max-width:800px;margin:0 auto;padding:0 16px;">
+      <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:900;text-align:center;margin:0 0 40px;">Frequently Asked Questions</h2>
+
+      <div style="margin-bottom:12px;background:#1a1a1a;border:1px solid #262626;border-radius:12px;overflow:hidden;">
+        <button class="mm-faq-q" onclick="this.nextElementSibling.classList.toggle('open')">What is Mars Men? <span style="color:#a3a3a3;">&#8964;</span></button>
+        <div class="mm-faq-a"><div style="padding:0 20px 20px;font-size:14px;color:#a3a3a3;line-height:1.6;">Mars Men Natural Testosterone Support is a premium supplement with 8 clinically-dosed ingredients designed to naturally boost testosterone, reduce cortisol, and support fat loss, energy, and overall male vitality.</div></div>
+      </div>
+      <div style="margin-bottom:12px;background:#1a1a1a;border:1px solid #262626;border-radius:12px;overflow:hidden;">
+        <button class="mm-faq-q" onclick="this.nextElementSibling.classList.toggle('open')">Who is Mars Men for? <span style="color:#a3a3a3;">&#8964;</span></button>
+        <div class="mm-faq-a"><div style="padding:0 20px 20px;font-size:14px;color:#a3a3a3;line-height:1.6;">Mars Men is designed for men over 30 who are struggling with low energy, stubborn belly fat, declining testosterone, and the effects of chronic stress.</div></div>
+      </div>
+      <div style="margin-bottom:12px;background:#1a1a1a;border:1px solid #262626;border-radius:12px;overflow:hidden;">
+        <button class="mm-faq-q" onclick="this.nextElementSibling.classList.toggle('open')">How do I take Mars Men? <span style="color:#a3a3a3;">&#8964;</span></button>
+        <div class="mm-faq-a"><div style="padding:0 20px 20px;font-size:14px;color:#a3a3a3;line-height:1.6;">Take 2 capsules daily with water, preferably in the morning. Each bottle contains a 30-day supply. For best results, use consistently for at least 90 days.</div></div>
+      </div>
+      <div style="margin-bottom:12px;background:#1a1a1a;border:1px solid #262626;border-radius:12px;overflow:hidden;">
+        <button class="mm-faq-q" onclick="this.nextElementSibling.classList.toggle('open')">How long until I see results? <span style="color:#a3a3a3;">&#8964;</span></button>
+        <div class="mm-faq-a"><div style="padding:0 20px 20px;font-size:14px;color:#a3a3a3;line-height:1.6;">Most users report feeling a difference in energy levels within the first 1-2 weeks. Full hormonal optimization and visible body composition changes typically develop over 8-12 weeks.</div></div>
+      </div>
+      <div style="margin-bottom:12px;background:#1a1a1a;border:1px solid #262626;border-radius:12px;overflow:hidden;">
+        <button class="mm-faq-q" onclick="this.nextElementSibling.classList.toggle('open')">Can Mars Men help increase my energy? <span style="color:#a3a3a3;">&#8964;</span></button>
+        <div class="mm-faq-a"><div style="padding:0 20px 20px;font-size:14px;color:#a3a3a3;line-height:1.6;">Yes. 91% of customers reported higher energy levels within 90 days. The combination of Tongkat Ali, Shilajit, and Taurine works synergistically to support sustained energy without stimulants or crashes.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ LAUNCH KIT ═══ -->
+  <section style="padding:64px 0;border-top:1px solid #262626;background:linear-gradient(180deg,rgba(10,10,10,0.95),rgba(20,20,20,0.9),rgba(10,10,10,0.95));">
+    <div style="max-width:1000px;margin:0 auto;padding:0 16px;text-align:center;">
+      <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:900;margin:0 0 48px;">Your Launch Kit <span style="color:#ff5600;text-decoration:underline;">Includes:</span></h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="mm-product-grid">
+        <div style="background:#141414;border-radius:12px;border:1px solid #262626;aspect-ratio:1;display:flex;align-items:center;justify-content:center;">
+          <p style="color:#737373;font-size:14px;">Upload launch kit bundle image</p>
+        </div>
+        <div style="text-align:left;">
+          <div style="display:flex;justify-content:space-between;border-bottom:1px solid #262626;padding-bottom:12px;margin-bottom:12px;"><span style="font-weight:700;">Mars Men Natural T Support</span><div><span style="color:#737373;text-decoration:line-through;font-size:14px;">&pound;107</span> <span style="color:#ff5600;font-weight:700;">&pound;54</span></div></div>
+          <div style="display:flex;justify-content:space-between;border-bottom:1px solid #262626;padding-bottom:12px;margin-bottom:12px;"><span style="font-weight:700;">Mars Men Travel Tin</span><div><span style="color:#737373;text-decoration:line-through;font-size:14px;">$10</span> <span style="color:#ff5600;font-weight:700;">FREE</span></div></div>
+          <div style="display:flex;justify-content:space-between;border-bottom:1px solid #262626;padding-bottom:12px;margin-bottom:12px;"><span style="font-weight:700;">Galactic Testosterone Guide</span><div><span style="color:#737373;text-decoration:line-through;font-size:14px;">$20</span> <span style="color:#ff5600;font-weight:700;">FREE</span></div></div>
+          <div style="display:flex;justify-content:space-between;border-bottom:1px solid #262626;padding-bottom:12px;margin-bottom:12px;"><span style="font-weight:700;">Ladder Workout App (30 Day)</span><div><span style="color:#737373;text-decoration:line-through;font-size:14px;">$30</span> <span style="color:#ff5600;font-weight:700;">FREE</span></div></div>
+          <div style="display:flex;justify-content:space-between;border-bottom:1px solid #262626;padding-bottom:12px;margin-bottom:12px;"><span style="font-weight:700;">Shipping On First Order</span><div><span style="color:#737373;text-decoration:line-through;font-size:14px;">$10</span> <span style="color:#ff5600;font-weight:700;">FREE</span></div></div>
+          <div style="display:flex;justify-content:space-between;padding-bottom:12px;margin-bottom:24px;"><span style="font-weight:700;"><span style="color:#ff5600;">Chance to Win</span> Apple Watch Ultra 3.0</span><div><span style="color:#737373;text-decoration:line-through;font-size:14px;">$799</span> <span style="color:#ff5600;font-weight:700;">FREE</span></div></div>
+          <a href="{{ shop_url }}" class="mm-cta">TRY IT NOW &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer style="border-top:1px solid #262626;padding:40px 0;text-align:center;">
+    <div style="max-width:1100px;margin:0 auto;padding:0 16px;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px;">
+        <span class="mm-mono" style="color:#fff;font-weight:900;font-size:18px;letter-spacing:0.3em;">MARS MEN</span>
+        <span style="width:10px;height:10px;border-radius:50%;background:#ff5600;display:inline-block;"></span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:24px;font-size:14px;color:#737373;margin-bottom:24px;">
+        <a href="{{ shop_url }}" style="color:#737373;text-decoration:none;">Shop</a>
+        <a href="#mm-ingredients" style="color:#737373;text-decoration:none;">Science</a>
+        <a href="#mm-faq" style="color:#737373;text-decoration:none;">FAQ</a>
+        <a href="mailto:support@mengotomars.com" style="color:#737373;text-decoration:none;">Contact</a>
+      </div>
+      <p style="font-size:10px;color:#404040;max-width:560px;margin:0 auto;">
+        *These statements have not been evaluated by the FDA/MHRA. This product is not intended to diagnose, treat, cure or prevent any disease. Individual results may vary.
+      </p>
     </div>
   </footer>
 
@@ -210,20 +428,40 @@
 
 {% schema %}
 {
-  "name": "Cortisol Lander",
+  "name": "Mars Men Cortisol Lander",
   "tag": "section",
-  "class": "cortisol-lander",
+  "class": "mm-cortisol-lander",
   "settings": [
     {
       "type": "url",
       "id": "product_url",
       "label": "Product URL",
-      "default": "/products/genius-mind"
+      "default": "/products/natural-testosterone-support"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image (High/Low Cortisol comparison)"
+    },
+    {
+      "type": "image_picker",
+      "id": "lifestyle_image",
+      "label": "Lifestyle Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "before_after_image",
+      "label": "Before/After Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product Image"
     }
   ],
   "presets": [
     {
-      "name": "Cortisol Lander"
+      "name": "Mars Men Cortisol Lander"
     }
   ]
 }

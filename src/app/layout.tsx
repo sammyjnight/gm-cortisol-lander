@@ -13,13 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Genius Mind | Cortisol Is Shrinking Your Brain — Here's How to Stop It",
+  title: "Mars Men | Crush Cortisol Belly With This Natural T Upgrade",
   description:
-    "Every high-pressure year you've run this business, cortisol has been shrinking your hippocampus. 16 clinically-dosed ingredients to protect what you've built.",
+    "8 ingredients. One formula. Zero BS. Drop your cortisol, free your testosterone, and watch the belly disappear while energy skyrockets.",
   openGraph: {
-    title: "Genius Mind | Cortisol Is Shrinking Your Brain",
+    title: "Mars Men | Natural Testosterone Support",
     description:
-      "The region responsible for pattern recognition, fast recall, and sharp instinct — shrinking under chronic stress. Protect it.",
+      "See how 429,576+ men over 30 are burning fat, building strength, and getting results that show.",
     type: "website",
   },
 };
