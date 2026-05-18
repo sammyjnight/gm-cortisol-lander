@@ -107,7 +107,9 @@ export default function Page() {
               <p className={`${h2L} font-semibold mb-8`}>The chaos isn&apos;t going anywhere &mdash; but your brain doesn&apos;t have to keep paying for it.</p>
               <a href="#mechanism" className="btn-secondary">See How It Works <ArrowRight size={16} /></a>
             </FadeUp>
-            <FadeUp delay={0.15}><Skel label="High Cortisol Brain vs Low Cortisol Brain — bottle centred" mode="light" className="aspect-[4/3] max-h-[480px]" /></FadeUp>
+            <FadeUp delay={0.15}>
+              <img src="/assets/hero-single.png" alt="Genius Mind product bottle" className="w-full max-h-[480px] object-contain drop-shadow-2xl" />
+            </FadeUp>
           </div>
         </div>
         <motion.div className="flex justify-center mt-14" animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}><ChevronDown size={24} className={capL} /></motion.div>
@@ -117,7 +119,9 @@ export default function Page() {
       <section className="sec-dark py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <FadeUp><Skel label="Founder at desk / lifestyle" mode="dark" className="aspect-[4/5]" /></FadeUp>
+            <FadeUp>
+              <img src="/assets/hero-lifestyle.png" alt="Operator lifestyle" className="w-full rounded-xl object-cover aspect-[4/5]" />
+            </FadeUp>
             <FadeUp delay={0.1}>
               <SN n="01" label="THE SYMPTOMS" mode="dark" />
               <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-6 ${h2D}`}>It&apos;s Not Just Burnout</h2>
@@ -174,7 +178,9 @@ export default function Page() {
       <section className="sec-light py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <FadeUp><Skel label="Depleted vs restored operator" mode="light" className="aspect-[4/3]" /></FadeUp>
+            <FadeUp>
+              <img src="/assets/hero-label.png" alt="Genius Mind label detail" className="w-full rounded-xl object-cover aspect-[4/3]" />
+            </FadeUp>
             <FadeUp delay={0.1}>
               <p className={`${bodyL} text-lg leading-relaxed mb-4`}>The operators who finally break through the ceiling &mdash; who sustain sharp output instead of watching it erode year on year &mdash; are the ones who get the chemistry right first.</p>
               <BL mode="light">Restore the chemistry. Get the brain back.</BL>
@@ -205,7 +211,7 @@ export default function Page() {
               ))}
             </FadeUp>
             <FadeUp delay={0.1}>
-              <Skel label="Operator workspace photo" mode="dark" className="aspect-square mb-6" />
+              <img src="/assets/hero-lifestyle.png" alt="Operator workspace" className="w-full rounded-xl object-cover aspect-square mb-6" />
               <p className={`${bodyD} text-sm`}>You deserve better than frying your nervous system with stimulants OR wasting money on underdosed single-ingredient pills that don&apos;t address the ROOT of sustained cognitive performance.</p>
             </FadeUp>
           </div>
@@ -235,7 +241,7 @@ export default function Page() {
               <p className={`${bodyL} text-sm mb-4 leading-relaxed`}>Genius Mind is a precision-formulated stack of 16 clinically studied ingredients &mdash; high-ratio botanical extracts, amino acid precursors, and essential cofactors &mdash; designed to support sustained focus throughout the working day.</p>
               <BL mode="light">No prescription. No crashes. No tolerance. Daily use, safely.</BL>
             </div>
-            <Skel label="Genius Mind product bottle" mode="light" className="max-w-sm mx-auto aspect-[3/4] mt-8 mb-8" />
+            <img src="/assets/hero-single.png" alt="Genius Mind product bottle" className="max-w-sm mx-auto mt-8 mb-8 drop-shadow-2xl" />
             <a href={SHOP} className="btn-primary btn-block">TRY IT NOW <ArrowRight size={16} /></a>
           </FadeUp>
         </div>
@@ -394,7 +400,16 @@ export default function Page() {
         <div className="max-w-6xl mx-auto px-4">
           <FadeUp><SN n="10" label="THE OFFER" /></FadeUp>
           <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <FadeUp><Skel label="Product shot with benefit callouts" mode="light" className="aspect-square" /></FadeUp>
+            <FadeUp>
+              <div className="relative flex items-center justify-center aspect-square bg-[var(--color-light-secondary)] rounded-xl p-8">
+                <img src="/assets/hero-single.png" alt="Genius Mind product" className="max-h-full object-contain drop-shadow-2xl" />
+                {/* Benefit callouts */}
+                <span className={`absolute top-6 left-6 label-mono ${cyanL} text-[10px] font-bold`}>Sharpen Focus</span>
+                <span className={`absolute top-6 right-6 label-mono ${cyanL} text-[10px] font-bold`}>Sustain Energy</span>
+                <span className={`absolute bottom-6 left-6 label-mono ${cyanL} text-[10px] font-bold`}>Support Memory</span>
+                <span className={`absolute bottom-6 right-6 label-mono ${cyanL} text-[10px] font-bold`}>Extend Output</span>
+              </div>
+            </FadeUp>
             <FadeUp delay={0.1}>
               <h2 className={`text-[clamp(28px,4vw,44px)] font-[800] leading-[1.05] mb-4 ${h2L}`}>Cognitive Infrastructure for Operators</h2>
               <p className={`${h2L} font-semibold mb-4`}>Genius Mind is a complete cognitive stack engineered around the Cognisync Tri-Factor &mdash; 16 clinically studied ingredients.*</p>
@@ -527,7 +542,9 @@ export default function Page() {
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-12 ${h2L}`}>Your Starter Kit <span className={cyanL}>Includes:</span></h2>
           </FadeUp>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <FadeUp><Skel label="Starter Kit bundle image" mode="light" className="aspect-square" /></FadeUp>
+            <FadeUp>
+              <img src="/assets/hero-bundle.png" alt="Genius Mind Starter Kit bundle" className="w-full rounded-xl object-contain aspect-square" />
+            </FadeUp>
             <FadeUp delay={0.1}>
               <div className="text-left space-y-4">
                 {KIT.map((k) => (
