@@ -2,29 +2,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
 
 @theme inline {
-  /* ── Base canvas ── */
-  --color-background: #0a0a0f;
-  --color-foreground: #ededed;
-  --color-surface: #111118;
-  --color-surface-2: #1a1a24;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-hover: rgba(255, 255, 255, 0.16);
+  /* ── Light canvas ── */
+  --color-light-primary: #fafafa;
+  --color-light-secondary: #f0f2f5;
+  --color-light-tertiary: #ffffff;
 
-  /* ── Brand accent (teal/cyan) ── */
-  --color-brand: #00A6D2;
-  --color-brand-dark: #008AB0;
-  --color-brand-glow: rgba(0, 166, 210, 0.15);
+  /* ── Dark canvas ── */
+  --color-dark-primary: #0a0e14;
+  --color-dark-secondary: #11161e;
+  --color-dark-tertiary: #161c26;
 
-  /* ── Warning accent (coral) ── */
-  --color-warn: #D97757;
-  --color-warn-glow: rgba(217, 119, 87, 0.15);
+  /* ── Light ink ── */
+  --color-ink-primary: #0a0e14;
+  --color-ink-secondary: #475569;
+  --color-ink-tertiary: #94a3b8;
 
-  /* ── Text tones ── */
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: rgba(255, 255, 255, 0.65);
-  --color-text-tertiary: rgba(255, 255, 255, 0.35);
+  /* ── Dark ink ── */
+  --color-dink-primary: #f0f4f8;
+  --color-dink-secondary: #a8b3c1;
+  --color-dink-tertiary: #6b7686;
 
-  /* ── Star gold ── */
+  /* ── Accent ── */
+  --color-cyan: #0891b2;
+  --color-cyan-bright: #22d3ee;
+  --color-coral: #e85d3c;
+  --color-coral-deep: #c2410c;
   --color-gold: #FFD700;
 
   /* ── Fonts ── */
@@ -33,188 +35,148 @@
   --font-mono: 'SF Mono', 'Fira Code', 'Fira Mono', monospace;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--color-background);
-  color: var(--color-foreground);
+  background: var(--color-light-primary);
+  color: var(--color-ink-primary);
   font-family: var(--font-sans);
 }
 
-/* ── Section backgrounds ── */
-.section-primary {
-  background: var(--color-background);
+/* ══════ SECTION MODES ══════ */
+.sec-light {
+  background: var(--color-light-primary);
+  color: var(--color-ink-primary);
 }
-.section-elevated {
-  background: var(--color-surface);
+.sec-light-alt {
+  background: var(--color-light-secondary);
+  color: var(--color-ink-primary);
 }
-.section-gradient {
-  background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,166,210,0.04) 0%, transparent 70%),
-    var(--color-background);
+.sec-dark {
+  background: var(--color-dark-primary);
+  color: var(--color-dink-primary);
+}
+.sec-dark-alt {
+  background: var(--color-dark-secondary);
+  color: var(--color-dink-primary);
 }
 
-/* ── Monospace label ── */
+/* ══════ MONO LABEL ══════ */
 .label-mono {
   font-family: var(--font-mono);
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   font-size: 0.75rem;
+  font-weight: 500;
 }
 
-/* ── Breakout line (cyan mono emphasis) ── */
+/* ══════ BREAKOUT LINE ══════ */
 .breakout-line {
   font-family: var(--font-mono);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-brand);
-  font-weight: 900;
-  font-size: 1.15rem;
-  line-height: 1.3;
-  margin: 1.5rem 0;
+  letter-spacing: 0.06em;
+  font-weight: 800;
+  font-size: 1.1rem;
+  line-height: 1.35;
+  margin: 1.25rem 0;
 }
+.breakout-light { color: var(--color-cyan); }
+.breakout-dark { color: var(--color-cyan-bright); }
 
-/* ── Sticky bar ── */
-.sticky-buy-bar {
+/* ══════ CARDS – LIGHT ══════ */
+.card-light {
+  background: var(--color-light-tertiary);
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(15,23,42,0.04), 0 2px 8px rgba(15,23,42,0.06);
+  transition: all 200ms ease-out;
+}
+.card-light:hover {
+  transform: translateY(-2px);
+  border-color: rgba(8,145,178,0.3);
+  box-shadow: 0 4px 12px rgba(15,23,42,0.08), 0 8px 24px rgba(15,23,42,0.06), 0 0 0 1px rgba(8,145,178,0.1);
+}
+.card-light-warn { border-left: 3px solid var(--color-coral-deep); }
+.card-light-featured { border-color: rgba(8,145,178,0.25); }
+.card-light-featured:hover { border-color: rgba(8,145,178,0.5); }
+
+/* ══════ CARDS – DARK ══════ */
+.card-dark {
+  background: var(--color-dark-secondary);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 4px 12px rgba(0,0,0,0.4);
+  transition: all 200ms ease-out;
+}
+.card-dark:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.5);
+}
+.card-dark-warn { border-left: 3px solid var(--color-coral); }
+.card-dark-featured { border-color: rgba(34,211,238,0.25); }
+
+/* ══════ BUTTONS ══════ */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--color-cyan); color: white;
+  font-family: var(--font-sans); font-weight: 700; font-size: 1rem;
+  padding: 14px 32px; border-radius: 10px;
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 14px rgba(8,145,178,0.25);
+  transition: all 150ms ease-out; cursor: pointer;
+}
+.btn-primary:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(8,145,178,0.35); }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: transparent; color: var(--color-cyan);
+  border: 1.5px solid var(--color-cyan);
+  font-family: var(--font-sans); font-weight: 600; font-size: 1rem;
+  padding: 14px 28px; border-radius: 10px;
+  transition: all 150ms ease-out; cursor: pointer;
+}
+.btn-secondary:hover { background: rgba(8,145,178,0.08); transform: scale(1.02); }
+.btn-secondary:active { transform: scale(0.98); }
+
+.btn-block { display: block; width: 100%; max-width: 500px; margin: 0 auto; text-align: center; justify-content: center; }
+
+/* ══════ STICKY BAR ══════ */
+.sticky-bar {
   transform: translateY(100%);
   transition: transform 0.3s ease;
 }
-.sticky-buy-bar.visible {
-  transform: translateY(0);
-}
+.sticky-bar.visible { transform: translateY(0); }
 
-/* ── FAQ accordion ── */
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-}
-.faq-answer.open {
-  max-height: 600px;
-}
+/* ══════ FAQ ══════ */
+.faq-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.faq-body.open { max-height: 600px; }
 
-/* ── CTA primary ── */
-.cta-btn {
-  display: block;
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-  background: var(--color-brand);
-  color: white;
-  font-family: var(--font-sans);
-  font-weight: 800;
-  font-size: 1rem;
-  padding: 16px 32px;
-  border-radius: 10px;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  transition: all 0.15s ease;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 166, 210, 0.2);
+/* ══════ SKELETON PLACEHOLDER ══════ */
+.skel-light {
+  background: var(--color-light-secondary);
+  border: 1px dashed rgba(8,145,178,0.35);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
 }
-.cta-btn:hover {
-  background: var(--color-brand-dark);
-  transform: scale(1.02);
-  box-shadow: 0 4px 16px rgba(0, 166, 210, 0.3);
+.skel-dark {
+  background: var(--color-dark-secondary);
+  border: 2px dashed rgba(34,211,238,0.2);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
 }
-.cta-btn:active {
-  transform: scale(0.98);
-}
-
-/* ── CTA secondary ── */
-.cta-btn-secondary {
-  display: inline-block;
-  background: transparent;
-  color: var(--color-brand);
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 1rem;
-  padding: 14px 28px;
-  border-radius: 10px;
-  border: 1.5px solid var(--color-brand);
-  text-align: center;
-  transition: all 0.15s ease;
-  cursor: pointer;
-}
-.cta-btn-secondary:hover {
-  background: rgba(0, 166, 210, 0.08);
-  transform: scale(1.02);
-}
-.cta-btn-secondary:active {
-  transform: scale(0.98);
-}
-
-/* ── Card system ── */
-.card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 14px;
-  padding: 24px;
-  transition: all 0.2s ease;
-}
-.card:hover {
-  border-color: var(--color-border-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-.card-featured {
-  border-color: rgba(0, 166, 210, 0.3);
-}
-.card-featured:hover {
-  border-color: rgba(0, 166, 210, 0.5);
-  box-shadow: 0 4px 20px rgba(0, 166, 210, 0.1);
-}
-.card-warn {
-  border-left: 3px solid var(--color-warn);
-}
-
-/* ── Ingredient card ── */
-.ingredient-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 14px;
-  padding: 20px;
-  min-height: 180px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  transition: all 0.2s ease;
-}
-.ingredient-card:hover {
-  border-color: var(--color-border-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-/* ── Skeleton placeholder ── */
-.skeleton-placeholder {
-  background: var(--color-surface);
-  border: 2px dashed rgba(0, 166, 210, 0.2);
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-.skeleton-placeholder::after {
+.skel-light::after, .skel-dark::after {
   content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent 0%, rgba(0,166,210,0.04) 50%, transparent 100%);
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(8,145,178,0.03) 50%, transparent 100%);
   animation: shimmer 2.5s ease-in-out infinite;
 }
 @keyframes shimmer {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
-}
-
-/* ── Hairline divider ── */
-.section-divider {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.06);
-  width: 100%;
 }
