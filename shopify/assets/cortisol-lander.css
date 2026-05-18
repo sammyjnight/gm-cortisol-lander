@@ -1,32 +1,32 @@
-/* Mars Men Cortisol Lander - Responsive Styles */
-.mm-section { --brand: #ff5600; --bg: #0a0a0a; --surface: #141414; --surface2: #1a1a1a; --border: #262626; --muted: #737373; --text2: #a3a3a3; }
-.mm-section * { box-sizing: border-box; }
-.mm-mono { font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.15em; }
-.mm-cta { display:block; max-width:500px; margin:0 auto; background:#ff5600; color:#fff; font-weight:800; font-size:18px; padding:18px 32px; border-radius:12px; text-align:center; text-decoration:none; transition:background 0.2s; }
-.mm-cta:hover { background:#e64d00; }
-.mm-warn { border:1px solid rgba(220,38,38,0.5); border-radius:4px; padding:10px 14px; margin-bottom:6px; display:flex; align-items:flex-start; gap:8px; }
-.mm-redx { border:1px solid rgba(220,38,38,0.4); border-radius:4px; padding:10px 14px; margin-bottom:6px; display:flex; align-items:flex-start; gap:10px; }
-.mm-ing-card { background:#1a1a1a; border-radius:12px; padding:20px; min-height:160px; display:flex; flex-direction:column; justify-content:flex-end; }
-.mm-tab { padding:10px 20px; border-radius:8px; font-family:'Courier New',monospace; text-transform:uppercase; letter-spacing:0.1em; font-size:11px; font-weight:600; cursor:pointer; border:none; transition:all 0.2s; }
-.mm-tab.active { background:#ff5600; color:#fff; }
-.mm-tab:not(.active) { background:#262626; color:#a3a3a3; }
-.mm-adv-circle { width:140px; height:140px; border-radius:50%; border:3px solid #ff5600; overflow:hidden; background:#262626; margin:0 auto 16px; display:flex; align-items:center; justify-content:center; }
-.mm-guarantee-badge { width:120px; height:120px; background:#ff5600; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-.mm-faq-q { width:100%; text-align:left; padding:20px; display:flex; align-items:center; justify-content:space-between; color:#fff; font-weight:700; font-size:13px; text-transform:uppercase; letter-spacing:1px; background:transparent; border:none; cursor:pointer; }
-.mm-faq-q:hover { background:#262626; }
-.mm-faq-a { max-height:0; overflow:hidden; transition:max-height 0.3s ease; }
-.mm-faq-a.open { max-height:500px; }
+/* Genius Mind Cognitive Lander - Responsive Styles */
+.gm-section { --brand: #00A6D2; --brand-dark: #008AB0; --bg: #041E2B; --surface: #0C2A3A; --surface2: #0F3347; --border: #1A4459; --muted: #7A9BAD; --text2: #7A9BAD; --gold: #FFD700; }
+.gm-section * { box-sizing: border-box; }
+.gm-mono { font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.15em; }
+.gm-cta { display:block; max-width:500px; margin:0 auto; background:#00A6D2; color:#fff; font-weight:800; font-size:18px; padding:18px 32px; border-radius:12px; text-align:center; text-decoration:none; transition:background 0.2s; }
+.gm-cta:hover { background:#008AB0; }
+.gm-warn { border:1px solid rgba(245,158,11,0.5); border-radius:4px; padding:10px 14px; margin-bottom:6px; display:flex; align-items:flex-start; gap:8px; }
+.gm-redx { border:1px solid rgba(220,38,38,0.4); border-radius:4px; padding:10px 14px; margin-bottom:6px; display:flex; align-items:flex-start; gap:10px; }
+.gm-ing-card { background:#0F3347; border-radius:12px; padding:20px; min-height:160px; display:flex; flex-direction:column; justify-content:flex-end; }
+.gm-tab { padding:10px 20px; border-radius:8px; font-family:'Courier New',monospace; text-transform:uppercase; letter-spacing:0.1em; font-size:11px; font-weight:600; cursor:pointer; border:none; transition:all 0.2s; }
+.gm-tab.active { background:#00A6D2; color:#fff; }
+.gm-tab:not(.active) { background:#1A4459; color:#7A9BAD; }
+.gm-adv-circle { width:140px; height:140px; border-radius:50%; border:3px solid #00A6D2; overflow:hidden; background:#1A4459; margin:0 auto 16px; display:flex; align-items:center; justify-content:center; }
+.gm-guarantee-badge { width:120px; height:120px; background:#00A6D2; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.gm-faq-q { width:100%; text-align:left; padding:20px; display:flex; align-items:center; justify-content:space-between; color:#fff; font-weight:700; font-size:13px; text-transform:uppercase; letter-spacing:1px; background:transparent; border:none; cursor:pointer; }
+.gm-faq-q:hover { background:#1A4459; }
+.gm-faq-a { max-height:0; overflow:hidden; transition:max-height 0.3s ease; }
+.gm-faq-a.open { max-height:500px; }
 
 @media (max-width: 768px) {
-  .mm-hero-grid { grid-template-columns: 1fr !important; }
-  .mm-two-col { grid-template-columns: 1fr !important; }
-  .mm-three-col { grid-template-columns: 1fr !important; }
-  .mm-four-col { grid-template-columns: 1fr 1fr !important; }
-  .mm-product-grid { grid-template-columns: 1fr !important; }
-  .mm-benefits-grid { grid-template-columns: 1fr 1fr !important; }
-  .mm-guarantee-row { flex-direction: column !important; text-align: center !important; }
+  .gm-hero-grid { grid-template-columns: 1fr !important; }
+  .gm-two-col { grid-template-columns: 1fr !important; }
+  .gm-three-col { grid-template-columns: 1fr !important; }
+  .gm-four-col { grid-template-columns: 1fr 1fr !important; }
+  .gm-product-grid { grid-template-columns: 1fr !important; }
+  .gm-benefits-grid { grid-template-columns: 1fr 1fr !important; }
+  .gm-guarantee-row { flex-direction: column !important; text-align: center !important; }
 }
 @media (max-width: 480px) {
-  .mm-four-col { grid-template-columns: 1fr !important; }
-  .mm-benefits-grid { grid-template-columns: 1fr !important; }
+  .gm-four-col { grid-template-columns: 1fr !important; }
+  .gm-benefits-grid { grid-template-columns: 1fr !important; }
 }

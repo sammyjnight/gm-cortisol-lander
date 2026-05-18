@@ -13,13 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mars Men | Crush Cortisol Belly With This Natural T Upgrade",
+  title: "Genius Mind | End the 3PM Cognitive Crash Naturally",
   description:
-    "8 ingredients. One formula. Zero BS. Drop your cortisol, free your testosterone, and watch the belly disappear while energy skyrockets.",
+    "16 clinically studied ingredients. One formula. Zero BS. Fix your neurochemistry, extend your decision window, and perform at your peak all day.",
   openGraph: {
-    title: "Mars Men | Natural Testosterone Support",
+    title: "Genius Mind | Cognitive Infrastructure for Operators",
     description:
-      "See how 429,576+ men over 30 are burning fat, building strength, and getting results that show.",
+      "See how 100,000+ operators are extending their decision window, eliminating brain fog, and sustaining peak output all day.",
     type: "website",
   },
 };
