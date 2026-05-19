@@ -5,7 +5,7 @@ import { motion, useInView } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
 import {
   AlertTriangle, X, Zap, Lightbulb, Shield, Target, Rocket,
-  TrendingUp, Brain, ChevronDown, ChevronLeft, ChevronRight, Check, HelpCircle,
+  TrendingUp, Brain, ChevronDown, ChevronLeft, ChevronRight, Check, CheckCircle2, HelpCircle,
   Leaf, BookOpen, Award, ArrowRight, Eye, Factory, FlaskConical,
   Package, ShieldCheck, Truck, Star,
 } from "lucide-react";
@@ -36,18 +36,26 @@ function Stagger({ children, className = "", s = 0.08 }: { children: React.React
 
 const cF = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } } };
 
+function CountUp({ target, delay = 0 }: { target: number; delay?: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const iv = useInView(ref, { once: true, margin: "-60px" });
+  const [v, setV] = useState(0);
+  useEffect(() => { if (!iv) return; const d = 1200, st = performance.now(); const t = (n: number) => { const e = n - st - delay * 1000; if (e < 0) { requestAnimationFrame(t); return; } const p = Math.min(e / d, 1); setV(Math.round(p * target)); if (p < 1) requestAnimationFrame(t); }; requestAnimationFrame(t); }, [iv, target, delay]);
+  return <span ref={ref}>{v}</span>;
+}
+
 function Badge({ type }: { type: "check" | "x" | "q" }) {
   if (type === "check") return <div className="badge badge-check"><Check size={18} strokeWidth={3} className="text-white" /></div>;
   if (type === "x") return <div className="badge badge-x"><X size={18} strokeWidth={3} className="text-white" /></div>;
   return <div className="badge badge-q"><span className="text-[#dc2626] font-bold text-lg">?</span></div>;
 }
 
-/* Primary CTA — mint green, centred text+arrow */
-function PrimaryCTA({ children, href = SHOP, block = false, className = "" }: { children: React.ReactNode; href?: string; block?: boolean; className?: string }) {
+/* Primary CTA — mint green, centred text+arrow as single unit */
+function PrimaryCTA({ children, href = SHOP, block = false }: { children: React.ReactNode; href?: string; block?: boolean }) {
   return (
-    <a href={href} className={`btn-primary ${block ? "btn-block" : ""} ${className}`}>
+    <a href={href} className={`btn-primary${block ? " btn-block" : ""}`}>
       <span>{children}</span>
-      <ArrowRight size={16} strokeWidth={2.5} className="shrink-0" />
+      <ArrowRight size={20} strokeWidth={2.5} />
     </a>
   );
 }
@@ -146,7 +154,7 @@ function PricingCard({ highlighted = false, header, price, period, strikethrough
       {cta === "primary" ? (
         <PrimaryCTA block>ADD TO CART</PrimaryCTA>
       ) : (
-        <a href={SHOP} className="btn-secondary btn-block !py-3 justify-center"><span>Add to Cart</span> <ArrowRight size={16} /></a>
+        <a href={SHOP} className="btn-secondary" style={{ width: "100%", maxWidth: 500, margin: "0 auto", justifyContent: "center" }}><span>Add to Cart</span> <ArrowRight size={16} /></a>
       )}
     </div>
   );
@@ -165,54 +173,43 @@ function TimelineGraph() {
 
   return (
     <div ref={ref} className="relative">
-      <svg viewBox="0 0 600 220" className="w-full" preserveAspectRatio="xMidYMid meet">
-        {/* Grid lines */}
-        {[40, 80, 120, 160, 200].map((y) => (<line key={y} x1="30" y1={y} x2="580" y2={y} stroke="#e5e7eb" strokeWidth="0.5" />))}
-        {/* Y-axis label */}
-        <text x="8" y="110" fill="var(--color-ink-tertiary)" fontSize="7" fontFamily="var(--font-mono)" textAnchor="middle" transform="rotate(-90,8,110)" style={{ textTransform: "uppercase", letterSpacing: "0.1em" }}>Cognitive Capacity</text>
-        {/* Gradient fill */}
-        <defs>
-          <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="var(--color-cyan)" stopOpacity="0.15" />
-            <stop offset="100%" stopColor="var(--color-cyan)" stopOpacity="0" />
-          </linearGradient>
-          <clipPath id="curveClip">
-            <rect x="0" y="0" width={inView ? "100%" : "0%"} height="220" style={{ transition: "width 1.5s ease-out" }} />
-          </clipPath>
-        </defs>
-        {/* Area fill */}
-        <path d={`${curvePath} L 560 200 L 40 200 Z`} fill="url(#areaFill)" clipPath="url(#curveClip)" />
-        {/* Curve */}
-        <path d={curvePath} fill="none" stroke="var(--color-cyan)" strokeWidth="3" strokeLinecap="round" clipPath="url(#curveClip)" />
-        {/* X-axis */}
-        <line x1="30" y1="200" x2="580" y2="200" stroke="#e5e7eb" strokeWidth="1" />
-        {/* Markers */}
+      {/* Milestone cards on TOP */}
+      <div className="grid md:grid-cols-3 gap-6 mb-10">
         {markers.map((m) => (
-          <g key={m.day}>
-            <circle cx={m.cx} cy={m.cy} r="8" fill="var(--color-cyan)" opacity={inView ? 1 : 0} style={{ transition: `opacity 0.4s ease-out ${m.delay + 0.8}s` }} />
-            <circle cx={m.cx} cy={m.cy} r="3" fill="white" opacity={inView ? 1 : 0} style={{ transition: `opacity 0.4s ease-out ${m.delay + 0.8}s` }} />
-          </g>
-        ))}
-        {/* X-axis labels */}
-        <text x="40" y="215" fill="var(--color-ink-secondary)" fontSize="10" textAnchor="middle" fontFamily="var(--font-mono)">Day 1</text>
-        <text x="300" y="215" fill="var(--color-ink-secondary)" fontSize="10" textAnchor="middle" fontFamily="var(--font-mono)">Day 30</text>
-        <text x="560" y="215" fill="var(--color-ink-secondary)" fontSize="10" textAnchor="middle" fontFamily="var(--font-mono)">Day 90</text>
-      </svg>
-
-      {/* Content cards below the graph */}
-      <div className="grid md:grid-cols-3 gap-4 mt-8">
-        {markers.map((m, i) => (
-          <motion.div key={m.day} initial={{ opacity: 0, y: 8 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: m.delay + 1 }} className="card-light !p-5">
-            <div className="flex items-center gap-2 mb-2">
-              <span className={`label-mono ${cyanL} font-bold text-xs`}>Day {m.day}</span>
-              <span className={`font-bold text-sm ${h2L}`}>{m.title}</span>
-            </div>
+          <motion.div key={m.day} initial={{ opacity: 0, y: 8 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: m.delay + 0.3 }} className="card-light !p-6 !shadow-none">
+            <p className={`label-mono ${cyanL} font-bold text-xs mb-1`}>Day {m.day}</p>
+            <p className={`font-bold text-base ${h2L} mb-3`}>{m.title}</p>
             <ul className="space-y-1.5">
               {m.items.map((item) => (<li key={item} className={`flex items-start gap-2 text-xs ${bodyL}`}><span className="w-1 h-1 rounded-full bg-[var(--color-cyan)] mt-1.5 shrink-0" />{item}</li>))}
             </ul>
           </motion.div>
         ))}
       </div>
+
+      {/* Graph BELOW the cards */}
+      <svg viewBox="0 0 600 200" className="w-full" preserveAspectRatio="xMidYMid meet">
+        {[40, 80, 120, 160].map((y) => (<line key={y} x1="30" y1={y} x2="580" y2={y} stroke="#e5e7eb" strokeWidth="0.5" />))}
+        <text x="8" y="100" fill="var(--color-ink-tertiary)" fontSize="7" fontFamily="var(--font-mono)" textAnchor="middle" transform="rotate(-90,8,100)" style={{ textTransform: "uppercase", letterSpacing: "0.1em" }}>Cognitive Capacity</text>
+        <defs>
+          <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="var(--color-cyan)" stopOpacity="0.15" />
+            <stop offset="100%" stopColor="var(--color-cyan)" stopOpacity="0" />
+          </linearGradient>
+          <clipPath id="curveClip"><rect x="0" y="0" width={inView ? "100%" : "0%"} height="200" style={{ transition: "width 1.5s ease-out" }} /></clipPath>
+        </defs>
+        <path d={`${curvePath} L 560 180 L 40 180 Z`} fill="url(#areaFill)" clipPath="url(#curveClip)" />
+        <path d={curvePath} fill="none" stroke="var(--color-cyan)" strokeWidth="3" strokeLinecap="round" clipPath="url(#curveClip)" />
+        <line x1="30" y1="180" x2="580" y2="180" stroke="#e5e7eb" strokeWidth="1" />
+        {markers.map((m) => (
+          <g key={m.day}>
+            <circle cx={m.cx} cy={m.cy} r="8" fill="var(--color-cyan)" opacity={inView ? 1 : 0} style={{ transition: `opacity 0.4s ease-out ${m.delay + 0.8}s` }} />
+            <circle cx={m.cx} cy={m.cy} r="3" fill="white" opacity={inView ? 1 : 0} style={{ transition: `opacity 0.4s ease-out ${m.delay + 0.8}s` }} />
+          </g>
+        ))}
+        <text x="40" y="195" fill="var(--color-ink-secondary)" fontSize="10" textAnchor="middle" fontFamily="var(--font-mono)">Day 1</text>
+        <text x="300" y="195" fill="var(--color-ink-secondary)" fontSize="10" textAnchor="middle" fontFamily="var(--font-mono)">Day 30</text>
+        <text x="560" y="195" fill="var(--color-ink-secondary)" fontSize="10" textAnchor="middle" fontFamily="var(--font-mono)">Day 90</text>
+      </svg>
     </div>
   );
 }
@@ -371,12 +368,12 @@ export default function Page() {
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-6 ${h2L}`}>Cognitive Chemistry Restored.<br /><span className={cyanL}>Sustained Focus, Replenished.</span></h2>
             <p className={`${bodyL} mb-10 max-w-3xl mx-auto`}>Genius Mind isn&apos;t another nootropic &mdash; it&apos;s a complete cognitive stack engineered around the Cognisync Tri-Factor, working on three mechanisms simultaneously:</p>
           </FadeUp>
-          <Stagger className="grid md:grid-cols-3 gap-6 mb-12">
+          <Stagger className="grid md:grid-cols-3 gap-12 mb-12">
             {MECHS.map((m, i) => (
-              <motion.div key={m.title} variants={cF} className="card-light card-light-featured text-left !p-8">
+              <motion.div key={m.title} variants={cF} className="text-left border-l-[3px] border-[var(--color-cyan)] pl-6">
                 <p className={`label-mono ${cyanL} text-[10px] mb-3`}>0{i + 1} &mdash; {m.label}</p>
-                <motion.div className={`${cyanL} mb-4`} animate={{ scale: [1, 1.06, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>{m.icon}</motion.div>
-                <h3 className={`font-bold text-[22px] mb-3 ${h2L}`}>{m.title}</h3>
+                <div className={`${cyanL} mb-4`}>{m.iconLg}</div>
+                <h3 className={`font-bold text-2xl mb-3 ${h2L}`}>{m.title}</h3>
                 <p className={`${bodyL} text-sm leading-relaxed`}>{m.desc}</p>
               </motion.div>
             ))}
@@ -386,7 +383,9 @@ export default function Page() {
               <p className={`${bodyL} text-sm mb-4 leading-relaxed`}>Genius Mind is a precision-formulated stack of 16 clinically studied ingredients &mdash; high-ratio botanical extracts, amino acid precursors, and essential cofactors &mdash; designed to support sustained focus throughout the working day.</p>
               <BL mode="light">No prescription. No crashes. No tolerance. Daily use, safely.</BL>
             </div>
-            <img src="/assets/hero-single.png" alt="Genius Mind product bottle" width={810} height={773} loading="lazy" className="max-w-sm mx-auto mt-8 mb-8 drop-shadow-2xl" />
+            <div className="max-w-sm mx-auto mt-8 mb-8 bg-[#f5f0eb] rounded-2xl p-8">
+              <img src="/assets/hero-single.png" alt="Genius Mind product bottle on cream background" width={810} height={773} loading="lazy" className="w-full object-contain drop-shadow-xl" />
+            </div>
             <PrimaryCTA block>TRY IT NOW</PrimaryCTA>
           </FadeUp>
         </div>
@@ -416,10 +415,15 @@ export default function Page() {
             <SN n="06" label="THE FORMULA" mode="dark" />
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-3 ${h2D}`}>16 Ingredients in 1 Powerful Formula</h2>
             <div className="mb-4"><span className="sticker sticker-cyan">Clinically Studied + High-Ratio Extracts</span></div>
-            {/* Clean text divider row — no icons */}
-            <p className={`${bodyD} text-xs tracking-wide mb-10`}>
-              No Proprietary Blends <span className="mx-2 opacity-30">|</span> No Fillers <span className="mx-2 opacity-30">|</span> No Synthetic Stimulants <span className="mx-2 opacity-30">|</span> No Cheap Powders
-            </p>
+            <div className="flex flex-wrap justify-center items-center gap-x-1 gap-y-2 mb-10">
+              {["No Proprietary Blends", "No Fillers", "No Synthetic Stimulants", "No Cheap Powders"].map((item, i) => (
+                <span key={item} className="flex items-center gap-1">
+                  {i > 0 && <span className={`mx-2 ${bodyD} opacity-30`}>|</span>}
+                  <CheckCircle2 size={12} className={cyanD} />
+                  <span className={`${bodyD} text-xs tracking-wide`}>{item}</span>
+                </span>
+              ))}
+            </div>
           </FadeUp>
           <Stagger className="grid grid-cols-2 md:grid-cols-4 gap-3" s={0.04}>
             {INGS.map((ing) => (
@@ -451,9 +455,12 @@ export default function Page() {
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-10 ${h2L}`}>What Long-Term Customers Actually Report</h2>
           </FadeUp>
           <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {SURVEY.map((s) => (
+            {SURVEY.map((s, i) => (
               <motion.div key={s.label} variants={cF} className="card-light text-center !p-6">
-                <p className={`text-5xl md:text-6xl font-[800] ${h2L} leading-none mb-1`}>{s.count}<span className={`text-2xl ${capL}`}>/33</span></p>
+                <p className="text-5xl md:text-6xl font-[800] leading-none mb-1">
+                  <span className={cyanL}><CountUp target={s.count} delay={i * 0.1} /></span>
+                  <span className={`text-2xl ${capL}`}>/33</span>
+                </p>
                 <div className="w-8 h-0.5 bg-[var(--color-cyan)] mx-auto my-3" />
                 <p className={`${bodyL} text-sm`}>{s.subtitle}</p>
               </motion.div>
@@ -671,8 +678,8 @@ export default function Page() {
           </div>
           <div className="flex items-center gap-3">
             <div className="hidden md:block text-right"><span className="text-white font-bold">From &pound;16.99/mo</span></div>
-            <a href={SHOP} className="flex items-center justify-center gap-3 bg-[#10b981] hover:bg-[#059669] text-white font-bold py-3 px-6 rounded-lg text-sm transition-all whitespace-nowrap hover:scale-[1.02] active:scale-[0.98]">
-              <span>ADD TO CART</span> <ArrowRight size={14} strokeWidth={2.5} />
+            <a href={SHOP} className="btn-primary !py-3 !px-6 !text-sm whitespace-nowrap">
+              <span>ADD TO CART</span> <ArrowRight size={16} strokeWidth={2.5} />
             </a>
           </div>
         </div>
@@ -707,9 +714,9 @@ const ENEMY_GEN = [
   { bold: "Raw powders instead of extracts", rest: "\u2014 no bioavailability, no results" },
 ];
 const MECHS = [
-  { label: "BLOOD FLOW", title: "Blood Flow Activation", icon: <Zap size={32} />, desc: "Ginkgo Biloba 50:1, Rosemary 5:1, Panax Ginseng 20:1. Researched for cerebral blood flow, oxygen and nutrient delivery." },
-  { label: "NEURON STIMULATION", title: "Neuron Stimulation", icon: <Lightbulb size={32} />, desc: "Lion\u2019s Mane 4:1, L-Tyrosine, Guarana. Studied for nerve growth factor, dopamine precursor support, and clean sustained energy." },
-  { label: "NEURON STRENGTHENING", title: "Neuron Strengthening", icon: <Shield size={32} />, desc: "Bacopa Monnieri 11:1, Phosphatidylserine, B-Complex, Zinc. Studied for synaptic communication, memory consolidation, and cellular brain energy." },
+  { label: "BLOOD FLOW", title: "Blood Flow Activation", icon: <Zap size={32} />, iconLg: <Zap size={40} />, desc: "Ginkgo Biloba 50:1, Rosemary 5:1, Panax Ginseng 20:1. Researched for cerebral blood flow, oxygen and nutrient delivery." },
+  { label: "NEURON STIMULATION", title: "Neuron Stimulation", icon: <Lightbulb size={32} />, iconLg: <Lightbulb size={40} />, desc: "Lion\u2019s Mane 4:1, L-Tyrosine, Guarana. Studied for nerve growth factor, dopamine precursor support, and clean sustained energy." },
+  { label: "NEURON STRENGTHENING", title: "Neuron Strengthening", icon: <Shield size={32} />, iconLg: <Shield size={40} />, desc: "Bacopa Monnieri 11:1, Phosphatidylserine, B-Complex, Zinc. Studied for synaptic communication, memory consolidation, and cellular brain energy." },
 ];
 const BENEFITS = [
   { icon: <Target size={28} className="text-[var(--color-cyan)]" />, title: "Sustained Focus", desc: "Focus that lasts. Lock in for hours, not bursts.", survey: "23 of 33 long-term customers report this as #1 outcome" },

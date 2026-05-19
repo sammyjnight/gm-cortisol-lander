@@ -76,12 +76,30 @@ body { background: var(--color-light-primary); color: var(--color-ink-primary); 
 .ing-card .dose-pill { display: inline-block; background: white; color: #0a0e14; font-family: var(--font-mono); font-weight: 600; font-size: 12px; padding: 5px 10px; border-radius: 999px; }
 
 /* ══════ BUTTONS ══════ */
-.btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #10b981; color: white; font-family: var(--font-sans); font-weight: 700; font-size: 1rem; padding: 16px 36px; border-radius: 10px; box-shadow: 0 4px 14px rgba(16,185,129,0.25); transition: all 150ms ease-out; cursor: pointer; }
-.btn-primary:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(16,185,129,0.35); background: #059669; }
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 32px;
+  background: #10b981;
+  color: white;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 150ms ease-out, transform 150ms ease-out;
+  text-decoration: none;
+  width: fit-content;
+}
+.btn-primary:hover { background: #059669; transform: scale(1.02); }
 .btn-primary:active { transform: scale(0.98); }
-.btn-secondary { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: var(--color-cyan); border: 1.5px solid var(--color-cyan); font-family: var(--font-sans); font-weight: 600; font-size: 1rem; padding: 14px 28px; border-radius: 10px; transition: all 150ms ease-out; cursor: pointer; }
+@media (max-width: 640px) { .btn-primary { width: 100%; } }
+.btn-primary.btn-block { width: 100%; max-width: 500px; margin: 0 auto; }
+.btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--color-cyan); border: 1.5px solid var(--color-cyan); font-family: var(--font-sans); font-weight: 600; font-size: 1rem; padding: 14px 28px; border-radius: 8px; transition: all 150ms ease-out; cursor: pointer; text-decoration: none; }
 .btn-secondary:hover { background: rgba(8,145,178,0.08); transform: scale(1.02); }
-.btn-block { display: block; width: 100%; max-width: 500px; margin: 0 auto; text-align: center; justify-content: center; }
 
 /* ══════ STICKY / FAQ / SKEL ══════ */
 .sticky-bar { transform: translateY(100%); transition: transform 0.3s ease; }
