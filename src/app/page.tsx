@@ -229,14 +229,14 @@ function TabbedTimeline() {
           </div>
 
           {/* Progressive graph */}
-          <div className="bg-[var(--color-dark-tertiary)] rounded-xl p-4">
+          <div className="bg-[var(--color-dark-tertiary)] rounded-xl p-3 md:p-5">
             {/* Mobile Y-axis label (horizontal, above graph) */}
             <p className="md:hidden label-mono text-[var(--color-dink-tertiary)] text-[9px] mb-2">Cognitive Capacity</p>
 
-            {/* Desktop graph */}
-            <svg viewBox="0 0 600 180" className="w-full hidden md:block" preserveAspectRatio="xMidYMid meet">
-              {[30, 60, 90, 120, 150].map((y) => (<line key={y} x1="20" y1={y} x2="580" y2={y} stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />))}
-              <text x="6" y="90" fill="var(--color-dink-tertiary)" fontSize="6" fontFamily="var(--font-mono)" textAnchor="middle" transform="rotate(-90,6,90)" style={{ textTransform: "uppercase", letterSpacing: "0.12em" }}>Cognitive Capacity</text>
+            {/* Desktop graph — full 12-week axis, ~280px tall */}
+            <svg viewBox="0 0 600 220" className="w-full hidden md:block" style={{ minHeight: 260 }} preserveAspectRatio="xMidYMid meet">
+              {[30, 60, 90, 120, 150, 180].map((y) => (<line key={y} x1="25" y1={y} x2="585" y2={y} stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />))}
+              <text x="8" y="105" fill="var(--color-dink-tertiary)" fontSize="7" fontFamily="var(--font-mono)" textAnchor="middle" transform="rotate(-90,8,105)" style={{ textTransform: "uppercase", letterSpacing: "0.12em" }}>Cognitive Capacity</text>
               <defs>
                 <linearGradient id="tlFill" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor="var(--color-cyan)" stopOpacity="0.2" />
@@ -244,18 +244,18 @@ function TabbedTimeline() {
                 </linearGradient>
               </defs>
               <g style={{ clipPath: `inset(0 ${100 - s.clipPct}% 0 0)`, transition: "clip-path 0.3s ease-out" }}>
-                <path d={`${TL_CURVE} L 570 165 L 30 165 Z`} fill="url(#tlFill)" />
+                <path d={`${TL_CURVE} L 570 195 L 30 195 Z`} fill="url(#tlFill)" />
                 <path d={TL_CURVE} fill="none" stroke="var(--color-cyan)" strokeWidth="3" strokeLinecap="round" />
               </g>
               {TL_DOTS.map((d, i) => {
                 const dotPct = [8, 25, 50, 80, 100][i];
                 const show = s.clipPct >= dotPct;
-                return (<g key={i} style={{ opacity: show ? 1 : 0, transition: "opacity 0.3s ease-out" }}><circle cx={d.cx} cy={d.cy} r="6" fill="var(--color-cyan)" /><circle cx={d.cx} cy={d.cy} r="2.5" fill="white" /></g>);
+                return (<g key={i} style={{ opacity: show ? 1 : 0, transition: "opacity 0.3s ease-out" }}><circle cx={d.cx} cy={d.cy} r="7" fill="var(--color-cyan)" /><circle cx={d.cx} cy={d.cy} r="3" fill="white" /></g>);
               })}
               {["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"].map((w, i) => (
-                <text key={w} x={30 + i * 49} y="178" fill="var(--color-dink-tertiary)" fontSize="7" textAnchor="middle" fontFamily="var(--font-mono)">{w}</text>
+                <text key={w} x={30 + i * 50} y="210" fill="var(--color-dink-tertiary)" fontSize="8" textAnchor="middle" fontFamily="var(--font-mono)">{w}</text>
               ))}
-              <text x="300" y="178" fill="var(--color-dink-tertiary)" fontSize="7" textAnchor="middle" fontFamily="var(--font-mono)" dy="10">Weeks</text>
+              <text x="300" y="210" fill="var(--color-dink-tertiary)" fontSize="8" textAnchor="middle" fontFamily="var(--font-mono)" dy="10">Weeks</text>
             </svg>
 
             {/* Mobile graph — compact, 3 anchor labels, no horizontal scroll */}
@@ -358,32 +358,55 @@ export default function Page() {
 
       {/* ═══ §02 THE CAUSE (merged) — DARK ═══ */}
       <section className="sec-dark py-20 md:py-28">
-        <div className="max-w-4xl mx-auto px-4">
-          <FadeUp>
-            <SN n="02" label="THE CAUSE" mode="dark" />
-            <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] text-center mb-8 ${h2D}`}>Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work</h2>
-            <p className={`${bodyD} text-center max-w-2xl mx-auto mb-12`}>You didn&apos;t fail. The strategy failed you. Every caffeine protocol, productivity hack, and supplement attacked the symptom. The cause is cortisol &mdash; and your stress response was built for a world that no longer exists.</p>
-          </FadeUp>
-          <div className="grid lg:grid-cols-2 gap-12 items-start mb-12">
-            <FadeUp>
-              <p className={bodyD}>For most of human history, stress was short. A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
-            </FadeUp>
-            <FadeUp delay={0.1}>
-              <p className={bodyD}>But now the threat never passes. The Slack message at 10pm. The funding round. The hire that isn&apos;t working out. The kid who&apos;s sick the day of the board meeting. None of it is life or death. But your nervous system can&apos;t tell the difference.</p>
-            </FadeUp>
+        <div className="max-w-6xl mx-auto px-4">
+          {/* Mobile: image banner at top */}
+          <div className="md:hidden mb-8">
+            <img src="/assets/gm-enemy-workspace.png" alt="Chaotic workspace with empty coffee cups and supplement bottles" width={800} height={800} loading="lazy" className="w-full rounded-xl object-cover h-[280px]" />
           </div>
-          <Stagger className="grid md:grid-cols-3 gap-6 mb-12">
-            {FAILURES.map((f, i) => (
-              <motion.div key={f.title} variants={cF} className="bg-[var(--color-dark-tertiary)] border border-[rgba(255,255,255,0.06)] rounded-xl p-6">
-                <p className={`${cyanD} font-[800] text-3xl opacity-20 mb-2`}>0{i + 1}</p>
-                <p className="font-bold text-sm text-white mb-2">{f.title}</p>
-                <p className={`${bodyD} text-sm`}>{f.desc}</p>
-              </motion.div>
-            ))}
-          </Stagger>
-          <FadeUp>
-            <p className="text-white font-[800] text-center uppercase tracking-wide text-sm">Restore the chemistry. Protect the window. Get the brain back. That&apos;s exactly what Genius Mind is built to do.</p>
-          </FadeUp>
+
+          <div className="grid md:grid-cols-[1.1fr_0.9fr] gap-10 md:gap-14">
+            {/* Left: all text content */}
+            <div>
+              <FadeUp>
+                <SN n="02" label="THE CAUSE" mode="dark" />
+                <h2 className={`text-[clamp(28px,4.5vw,48px)] font-[800] leading-[1.05] mb-6 ${h2D}`}>Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work</h2>
+                <p className={`${bodyD} mb-8`}>You didn&apos;t fail. The strategy failed you. Every caffeine protocol, productivity hack, and supplement attacked the symptom. The cause is cortisol &mdash; and your stress response was built for a world that no longer exists.</p>
+              </FadeUp>
+
+              <div className="grid sm:grid-cols-2 gap-6 mb-8">
+                <FadeUp>
+                  <p className={bodyD}>For most of human history, stress was short. A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
+                </FadeUp>
+                <FadeUp delay={0.1}>
+                  <p className={bodyD}>But now the threat never passes. The Slack message at 10pm. The funding round. The hire that isn&apos;t working out. None of it is life or death. But your nervous system can&apos;t tell the difference.</p>
+                </FadeUp>
+              </div>
+
+              <Stagger className="space-y-4 mb-8">
+                {FAILURES.map((f, i) => (
+                  <motion.div key={f.title} variants={cF} className="bg-[var(--color-dark-tertiary)] border border-[rgba(255,255,255,0.06)] rounded-xl p-5">
+                    <p className={`${cyanD} font-[800] text-2xl opacity-20 mb-1`}>0{i + 1}</p>
+                    <p className="font-bold text-sm text-white mb-1">{f.title}</p>
+                    <p className={`${bodyD} text-sm`}>{f.desc}</p>
+                  </motion.div>
+                ))}
+              </Stagger>
+
+              <FadeUp>
+                <p className="text-white font-[800] uppercase tracking-wide text-sm">Restore the chemistry. Protect the window. Get the brain back. That&apos;s exactly what Genius Mind is built to do.</p>
+              </FadeUp>
+            </div>
+
+            {/* Right: sticky workspace image (desktop only) */}
+            <div className="hidden md:block">
+              <div className="sticky top-24">
+                <div className="relative rounded-2xl overflow-hidden border border-[var(--color-dark-tertiary)]">
+                  <img src="/assets/gm-enemy-workspace.png" alt="Chaotic workspace with empty coffee cups and supplement bottles" width={800} height={800} loading="lazy" className="w-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-dark-primary)] via-transparent to-transparent opacity-60" />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -613,25 +636,49 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ §12 RESEARCH — LIGHT ═══ */}
-      <section className="sec-light-alt py-20 md:py-28">
+      {/* ═══ §10 FORMULATED BY — LIGHT ═══ */}
+      <section className="sec-light py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-4">
           <FadeUp>
-            <SN n="10" label="THE SCIENCE" />
-            <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] text-center mb-10 ${h2L}`}>The Research Behind The Formula</h2>
+            <SN n="10" label="FORMULATED BY" />
+            <h2 className={`text-[clamp(28px,4.5vw,44px)] font-[800] leading-[1.05] mb-12 ${h2L}`}>Built By A Registered Nutritionist With 20+ Years In Supplement Formulation</h2>
           </FadeUp>
-          <Stagger className="grid md:grid-cols-3 gap-6">
-            {RESEARCH.map((c) => (
-              <motion.div key={c.ingredient} variants={cF} className="card-light relative !p-7">
-                <BookOpen size={14} className={`absolute top-5 right-5 ${capL}`} />
-                <p className={`label-mono ${cyanL} text-xs mb-2`}>{c.ingredient}</p>
-                <p className={`font-bold text-sm mb-2 ${h2L}`}>{c.finding}</p>
-                <p className={`${capL} text-xs mb-3`}>{c.citation}</p>
-                <p className={`${capL} text-xs italic`}>{c.relevance}</p>
-              </motion.div>
-            ))}
-          </Stagger>
-          <p className={`${capL} text-xs text-center mt-6`}>Citations are for individual ingredients, not product claims. Individual results may vary.</p>
+
+          <div className="grid md:grid-cols-[2fr_3fr] gap-10 items-start">
+            {/* Left: headshot + credentials */}
+            <FadeUp>
+              <img src="/assets/shona-wilkinson.png" alt="Shona Wilkinson, Registered Nutritionist" width={600} height={600} loading="lazy" className="w-full rounded-xl object-cover aspect-square mb-5" />
+              <p className={`font-bold text-lg ${h2L}`}>Shona Wilkinson, RNutr</p>
+              <p className={`${bodyL} text-sm mb-3`}>Registered Nutritionist</p>
+              <p className={`label-mono ${capL} text-[10px]`}>BANT &middot; CNHC &middot; Royal Society for Medicine</p>
+            </FadeUp>
+
+            {/* Right: bio + pull-quote + badges */}
+            <FadeUp delay={0.1}>
+              <p className={`${bodyL} mb-4 leading-relaxed`}>Shona Wilkinson is a Registered Nutritionist (RNutr) with over 20 years of experience in supplement formulation. A member of BANT, CNHC, and the Royal Society for Medicine &mdash; she previously led the nutritionist team at Tesco Nutricentre overseeing 74 nutritionists and 35,000 product references.</p>
+              <p className={`${bodyL} mb-6 leading-relaxed`}>Shona specialises in the formulation and development of supplements &mdash; the actual science of what dose of what ingredient does what, and how compounds work together in a stack. She formulated Genius Mind from the ground up around the Cognisync Tri-Factor: blood flow, neuron stimulation, and neuron strengthening.</p>
+
+              {/* Pull-quote */}
+              <div className="border-l-[3px] border-[var(--color-cyan)] pl-5 mb-6">
+                <p className={`${bodyL} italic leading-relaxed`}>&ldquo;Genius Mind isn&apos;t a blend of trendy ingredients. Every dose is at clinically-studied levels. Every extract is high-ratio. Every ingredient is there for a specific reason &mdash; to support the chemistry your brain actually needs.&rdquo;</p>
+                <p className={`${capL} text-xs mt-3`}>&mdash; Shona Wilkinson, Lead Formulator</p>
+              </div>
+
+              {/* Credential badges */}
+              <div className="grid grid-cols-3 gap-3">
+                {[
+                  { stat: "20+ Years", label: "Formulation Expertise" },
+                  { stat: "BANT Registered", label: "Nutritionist" },
+                  { stat: "UK Based", label: "GMP Certified" },
+                ].map((b) => (
+                  <div key={b.stat} className="card-light !p-3 text-center">
+                    <p className={`label-mono ${cyanL} text-[10px] font-bold mb-0.5`}>{b.stat}</p>
+                    <p className={`${capL} text-[10px]`}>{b.label}</p>
+                  </div>
+                ))}
+              </div>
+            </FadeUp>
+          </div>
         </div>
       </section>
 
@@ -815,11 +862,6 @@ const INGS = [
   { name: "Niacin (B3)", dose: "32 mg", desc: "Studied for NAD+ production and cellular brain energy.", img: "gm-ingredients-niacin.png" },
   { name: "Thiamine (B1)", dose: "2.2 mg", desc: "Studied for neural communication and energy metabolism.", img: "gm-ingredients-thiamine.png" },
   { name: "Pantothenic Acid (B5)", dose: "12 mg", desc: "Studied for neurotransmitter synthesis and stress resilience.", img: "gm-ingredients-pantothenic.png" },
-];
-const RESEARCH = [
-  { ingredient: "Bacopa Monnieri", finding: "Measurable memory improvements after 12 weeks.", citation: "Stough et al., Psychopharmacology, 2001; Calabrese et al., J. Alt. Comp. Med., 2008.", relevance: "Genius Mind contains Bacopa 11:1 at 80mg \u2014 studied for memory consolidation." },
-  { ingredient: "Ginkgo Biloba", finding: "Measurable increases in cerebral blood flow.", citation: "Mashayekh et al., Neuroradiology, 2011.", relevance: "Genius Mind contains Ginkgo 50:1 at 120mg \u2014 researched for cerebral blood flow." },
-  { ingredient: "L-Tyrosine", finding: "Supports cognitive performance under stress.", citation: "Deijen & Orlebeke, Brain Research Bulletin, 1994.", relevance: "Genius Mind contains L-Tyrosine at 100mg \u2014 studied as a dopamine precursor." },
 ];
 const FAQS = [
   { q: "What is Genius Mind?", a: "Genius Mind is a cognitive stack with 16 clinically studied ingredients \u2014 including high-ratio botanical extracts, amino acid precursors, and essential cofactors \u2014 designed to support sustained focus throughout the working day. No stimulant dependency, no crashes." },
