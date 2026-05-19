@@ -1,3 +1,7 @@
+/* TODO (pass-two, not yet):
+   - Premium design system tightening pass (CTA conflicts, generic card treatments, cyan accent overuse, mixed card treatments across sections)
+   - Section-by-section review against Mars Men benchmark
+*/
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
@@ -7,7 +11,7 @@ import {
   AlertTriangle, X, Zap, Lightbulb, Shield, Target, Rocket,
   TrendingUp, Brain, ChevronDown, ChevronLeft, ChevronRight, Check, CheckCircle2, HelpCircle,
   Leaf, BookOpen, Award, ArrowRight, Eye, Factory, FlaskConical,
-  Package, ShieldCheck, Truck, Star,
+  Package, ShieldCheck, Truck, Star, RotateCw, Layers, Anchor,
 } from "lucide-react";
 
 const SHOP = "https://justfloow.com/products/genius-mind";
@@ -160,56 +164,106 @@ function PricingCard({ highlighted = false, header, price, period, strikethrough
   );
 }
 
-/* ═══════ TIMELINE GRAPH ═══════ */
-function TimelineGraph() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-  const curvePath = "M 40 180 C 80 170, 120 140, 180 120 S 300 80, 380 55 S 480 30, 560 25";
-  const markers = [
-    { cx: 40, cy: 180, day: "1", title: "Activation", items: ["Guarana and B vitamins may provide an immediate lift", "L-Tyrosine begins supporting dopamine pathways", "The cognitive foundation starts building"], delay: 0 },
-    { cx: 300, cy: 70, day: "30", title: "The Hold", items: ["The afternoon crash may flatten", "Bacopa and Lion\u2019s Mane may reach effective levels", "Focus may extend naturally"], delay: 0.6 },
-    { cx: 560, cy: 25, day: "90", title: "Lock-In", items: ["All 16 ingredients may be working synergistically", "Decision stamina may extend across the full day", "Cognitive infrastructure, fully built"], delay: 1.2 },
-  ];
+/* ═══════ INTERACTIVE TABBED TIMELINE ═══════ */
+const TL_STAGES = [
+  { id: "day_1", tab: "Day 1", num: "01", title: "Activation", clipPct: 8, icon: <RotateCw size={48} />,
+    sub: "Your brain is taking in the first signals. The compounds are absorbing, but the changes are still building beneath the surface.",
+    benefits: ["Guarana and B vitamins may provide an immediate lift", "Initial absorption of L-Tyrosine begins supporting dopamine pathways", "Most users feel slightly more present, not yet transformed", "The cognitive foundation starts building"] },
+  { id: "day_7", tab: "Day 7", num: "02", title: "First Signals", clipPct: 16, icon: <Zap size={48} />,
+    sub: "Early shifts start to show. Mornings feel slightly cleaner, afternoons less foggy. Subtle but real.",
+    benefits: ["Cleaner morning starts for many users", "The 3pm crash may feel slightly softer", "Bacopa begins building in the system", "Focus may hold for longer stretches without forcing it"] },
+  { id: "day_14", tab: "Day 14", num: "03", title: "Foundation", clipPct: 25, icon: <Layers size={48} />,
+    sub: "Two weeks in, the supporting compounds reach effective levels. The chemistry your brain runs on is being rebuilt.",
+    benefits: ["Lion\u2019s Mane begins supporting nerve growth factor activity", "Sustained focus reported by many users for the first time", "Mental fatigue may feel less compounding day-to-day", "Cognitive endurance begins to lengthen"] },
+  { id: "day_30", tab: "Day 30", num: "04", title: "The Hold", clipPct: 50, icon: <Anchor size={48} />,
+    sub: "One month in. The afternoon crash flattens for many users. The focus that used to require effort becomes the baseline.",
+    benefits: ["Bacopa and Lion\u2019s Mane may reach effective levels", "The afternoon crash may flatten", "Focus may extend naturally, less forced", "Word-finding and recall may feel sharper"] },
+  { id: "day_60", tab: "Day 60", num: "05", title: "Compounding", clipPct: 80, icon: <TrendingUp size={48} />,
+    sub: "Two months in. The ingredients are now working in concert. Most users report this as the point things really click.",
+    benefits: ["All 16 ingredients working synergistically for many users", "Decision stamina extending across the full day", "Sharper thinking under pressure becomes more consistent", "Many users report others noticing the change"] },
+  { id: "day_90", tab: "Day 90", num: "06", title: "Lock-In", clipPct: 100, icon: <ShieldCheck size={48} />,
+    sub: "Three months in. For many users this stops feeling like a supplement effect \u2014 it\u2019s the new cognitive baseline.",
+    benefits: ["For many users, it\u2019s no longer a supplement effect \u2014 it\u2019s the new baseline", "Cognitive infrastructure, fully built", "Decision stamina extends across the full working day", "Sustained focus reported as the #1 outcome by 23 of 33 long-term customers"] },
+];
+const TL_CURVE = "M 30 155 C 60 148, 80 138, 110 125 S 180 100, 240 82 S 340 52, 420 35 S 500 18, 570 15";
+const TL_DOTS = [
+  { cx: 30, cy: 155 }, { cx: 110, cy: 125 }, { cx: 240, cy: 82 }, { cx: 420, cy: 35 }, { cx: 570, cy: 15 },
+];
 
+function TabbedTimeline() {
+  const [active, setActive] = useState(0);
+  const s = TL_STAGES[active];
   return (
-    <div ref={ref} className="relative">
-      {/* Milestone cards on TOP */}
-      <div className="grid md:grid-cols-3 gap-6 mb-10">
-        {markers.map((m) => (
-          <motion.div key={m.day} initial={{ opacity: 0, y: 8 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: m.delay + 0.3 }} className="card-light !p-6 !shadow-none">
-            <p className={`label-mono ${cyanL} font-bold text-xs mb-1`}>Day {m.day}</p>
-            <p className={`font-bold text-base ${h2L} mb-3`}>{m.title}</p>
-            <ul className="space-y-1.5">
-              {m.items.map((item) => (<li key={item} className={`flex items-start gap-2 text-xs ${bodyL}`}><span className="w-1 h-1 rounded-full bg-[var(--color-cyan)] mt-1.5 shrink-0" />{item}</li>))}
-            </ul>
-          </motion.div>
+    <div className="bg-[var(--color-dark-secondary)] border border-[var(--color-dark-tertiary)] rounded-2xl p-6 md:p-10">
+      {/* Tab strip */}
+      <div className="flex gap-2 overflow-x-auto pb-4 mb-8 -mx-2 px-2 scrollbar-none">
+        {TL_STAGES.map((st, i) => (
+          <button key={st.id} onClick={() => setActive(i)} className={`label-mono text-[11px] px-5 py-3 rounded-lg whitespace-nowrap transition-all shrink-0 ${i === active ? "bg-[var(--color-cyan)] text-white" : "bg-[var(--color-dark-tertiary)] text-[var(--color-dink-secondary)] hover:text-white hover:translate-y-[-1px]"}`}>
+            {st.tab}
+          </button>
         ))}
       </div>
 
-      {/* Graph BELOW the cards */}
-      <svg viewBox="0 0 600 200" className="w-full" preserveAspectRatio="xMidYMid meet">
-        {[40, 80, 120, 160].map((y) => (<line key={y} x1="30" y1={y} x2="580" y2={y} stroke="#e5e7eb" strokeWidth="0.5" />))}
-        <text x="8" y="100" fill="var(--color-ink-tertiary)" fontSize="7" fontFamily="var(--font-mono)" textAnchor="middle" transform="rotate(-90,8,100)" style={{ textTransform: "uppercase", letterSpacing: "0.1em" }}>Cognitive Capacity</text>
-        <defs>
-          <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="var(--color-cyan)" stopOpacity="0.15" />
-            <stop offset="100%" stopColor="var(--color-cyan)" stopOpacity="0" />
-          </linearGradient>
-          <clipPath id="curveClip"><rect x="0" y="0" width={inView ? "100%" : "0%"} height="200" style={{ transition: "width 1.5s ease-out" }} /></clipPath>
-        </defs>
-        <path d={`${curvePath} L 560 180 L 40 180 Z`} fill="url(#areaFill)" clipPath="url(#curveClip)" />
-        <path d={curvePath} fill="none" stroke="var(--color-cyan)" strokeWidth="3" strokeLinecap="round" clipPath="url(#curveClip)" />
-        <line x1="30" y1="180" x2="580" y2="180" stroke="#e5e7eb" strokeWidth="1" />
-        {markers.map((m) => (
-          <g key={m.day}>
-            <circle cx={m.cx} cy={m.cy} r="8" fill="var(--color-cyan)" opacity={inView ? 1 : 0} style={{ transition: `opacity 0.4s ease-out ${m.delay + 0.8}s` }} />
-            <circle cx={m.cx} cy={m.cy} r="3" fill="white" opacity={inView ? 1 : 0} style={{ transition: `opacity 0.4s ease-out ${m.delay + 0.8}s` }} />
-          </g>
-        ))}
-        <text x="40" y="195" fill="var(--color-ink-secondary)" fontSize="10" textAnchor="middle" fontFamily="var(--font-mono)">Day 1</text>
-        <text x="300" y="195" fill="var(--color-ink-secondary)" fontSize="10" textAnchor="middle" fontFamily="var(--font-mono)">Day 30</text>
-        <text x="560" y="195" fill="var(--color-ink-secondary)" fontSize="10" textAnchor="middle" fontFamily="var(--font-mono)">Day 90</text>
-      </svg>
+      {/* Two-column content */}
+      <div className="grid lg:grid-cols-[1.5fr_1fr] gap-8">
+        {/* Left: stage content */}
+        <div>
+          <p className="text-[var(--color-cyan)] font-[800] text-[100px] leading-none opacity-10 select-none mb-[-40px]">{s.num}</p>
+          <h3 className="text-white font-bold text-2xl mb-3 relative">{s.title}</h3>
+          <p className="text-[var(--color-dink-secondary)] text-sm leading-relaxed mb-6">{s.sub}</p>
+          <p className="label-mono text-[var(--color-cyan-bright)] text-[10px] mb-3">Benefits</p>
+          <ul className="space-y-2">
+            {s.benefits.map((b) => (
+              <li key={b} className="flex items-start gap-2 text-sm text-[var(--color-dink-secondary)]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-cyan)] mt-2 shrink-0" />{b}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Right: icon banner + graph */}
+        <div className="flex flex-col gap-4">
+          {/* Icon banner */}
+          <div className="rounded-xl h-28 flex items-center justify-center" style={{ background: "linear-gradient(135deg, var(--color-cyan) 0%, #065f73 100%)" }}>
+            <span className="text-white opacity-90">{s.icon}</span>
+          </div>
+
+          {/* Progressive graph */}
+          <div className="bg-[var(--color-dark-tertiary)] rounded-xl p-4">
+            <svg viewBox="0 0 600 180" className="w-full" preserveAspectRatio="xMidYMid meet">
+              {[30, 60, 90, 120, 150].map((y) => (<line key={y} x1="20" y1={y} x2="580" y2={y} stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />))}
+              <text x="6" y="90" fill="var(--color-dink-tertiary)" fontSize="6" fontFamily="var(--font-mono)" textAnchor="middle" transform="rotate(-90,6,90)" style={{ textTransform: "uppercase", letterSpacing: "0.12em" }}>Cognitive Capacity</text>
+              <defs>
+                <linearGradient id="tlFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="var(--color-cyan)" stopOpacity="0.2" />
+                  <stop offset="100%" stopColor="var(--color-cyan)" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+              {/* Area fill clipped to active pct */}
+              <g style={{ clipPath: `inset(0 ${100 - s.clipPct}% 0 0)`, transition: "clip-path 0.3s ease-out" }}>
+                <path d={`${TL_CURVE} L 570 165 L 30 165 Z`} fill="url(#tlFill)" />
+                <path d={TL_CURVE} fill="none" stroke="var(--color-cyan)" strokeWidth="3" strokeLinecap="round" />
+              </g>
+              {/* Data points */}
+              {TL_DOTS.map((d, i) => {
+                const dotPct = [8, 25, 50, 80, 100][i];
+                const show = s.clipPct >= dotPct;
+                return (
+                  <g key={i} style={{ opacity: show ? 1 : 0, transition: "opacity 0.3s ease-out" }}>
+                    <circle cx={d.cx} cy={d.cy} r="6" fill="var(--color-cyan)" />
+                    <circle cx={d.cx} cy={d.cy} r="2.5" fill="white" />
+                  </g>
+                );
+              })}
+              {/* X-axis labels */}
+              {["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"].map((w, i) => (
+                <text key={w} x={30 + i * 49} y="178" fill="var(--color-dink-tertiary)" fontSize="7" textAnchor="middle" fontFamily="var(--font-mono)">{w}</text>
+              ))}
+              <text x="300" y="178" fill="var(--color-dink-tertiary)" fontSize="7" textAnchor="middle" fontFamily="var(--font-mono)" dy="10">Weeks</text>
+            </svg>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -547,14 +601,17 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ §11 TIMELINE — SVG GRAPH — LIGHT ═══ */}
-      <section className="sec-light py-20 md:py-28">
+      {/* ═══ §11 TIMELINE — INTERACTIVE TABBED — DARK ═══ */}
+      <section className="sec-dark py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-4">
           <FadeUp>
-            <SN n="11" label="THE TIMELINE" />
-            <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] text-center mb-12 ${h2L}`}>What Happens After You Start Restoring Cognitive Chemistry</h2>
+            <SN n="11" label="THE TIMELINE" mode="dark" />
+            <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] text-center mb-12 ${h2D}`}>What Happens After You Start Restoring Cognitive Chemistry</h2>
           </FadeUp>
-          <TimelineGraph />
+          <FadeUp delay={0.1}>
+            <TabbedTimeline />
+          </FadeUp>
+          <p className={`${capD} text-xs text-center mt-6`}>*Individual results may vary. Based on customer reports and ingredient research timelines.</p>
         </div>
       </section>
 
@@ -629,7 +686,9 @@ export default function Page() {
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-12 ${h2L}`}>Your Starter Kit <span className={cyanL}>Includes:</span></h2>
           </FadeUp>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <FadeUp><Skel label="gm-welcome-offer.png — Welcome kit composite" mode="light" className="aspect-square" /></FadeUp>
+            <FadeUp>
+              <img src="/assets/gm-welcome-offer.png" alt="Genius Mind welcome kit showing Brain Performance Digital Guide, Genius Mind bottle, and Magnesium 3-in-1 with £25 in welcome gifts" width={800} height={800} loading="lazy" className="w-full rounded-xl object-contain" />
+            </FadeUp>
             <FadeUp delay={0.1}>
               <div className="text-left space-y-3">
                 {KIT_REAL.map((k) => (
