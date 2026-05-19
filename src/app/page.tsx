@@ -74,8 +74,8 @@ const CAROUSEL_SLIDES = [
   { src: "/assets/carousel_1.webp", alt: "Genius Mind product hero shot" },
   { src: "/assets/carousel_2.webp", alt: "Genius Mind ingredients and dosage detail" },
   { src: "/assets/carousel_3.webp", alt: "Genius Mind benefits overview" },
-  { src: "/assets/carousel_6.webp", alt: "Genius Mind customer results" },
   { src: "/assets/carousel_4.webp", alt: "Genius Mind supplement facts" },
+  { src: "/assets/carousel_6.webp", alt: "Genius Mind customer results" },
   { src: "/assets/carousel_5.webp", alt: "Genius Mind usage instructions" },
 ];
 
@@ -225,8 +225,8 @@ function PricingCard({
 
       {/* CTA */}
       {cta === "primary" ? (
-        <a href={SHOP} className="block w-full text-center bg-[var(--color-coral)] hover:bg-[var(--color-coral-deep)] text-white font-bold py-3.5 px-6 rounded-lg transition-all hover:scale-[1.02] active:scale-[0.98]">
-          ADD TO CART <ArrowRight size={16} className="inline ml-1 -mt-0.5" />
+        <a href={SHOP} className="flex items-center justify-center gap-2 w-full bg-[#10b981] hover:bg-[#059669] text-white font-bold py-3.5 px-6 rounded-lg transition-all hover:scale-[1.02] active:scale-[0.98]">
+          ADD TO CART <ArrowRight size={16} strokeWidth={2.5} />
         </a>
       ) : (
         <a href={SHOP} className="btn-secondary btn-block !py-3">
@@ -260,24 +260,24 @@ export default function Page() {
       </header>
 
       {/* ═══ §1 HERO — LIGHT ═══ */}
-      <section className="sec-light py-20 md:py-32">
+      <section className="sec-light py-10 md:py-16 lg:py-20">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <FadeUp>
-              <p className={`label-mono ${cyanL} mb-5`}>16 Ingredients. One Formula. Zero BS.</p>
-              <h1 className={`text-[clamp(42px,7vw,80px)] font-[800] leading-[1.0] mb-6 tracking-tight ${h2L}`}>
+              <p className={`label-mono ${cyanL} mb-4`}>16 Ingredients. One Formula. Zero BS.</p>
+              <h1 className={`text-3xl md:text-4xl lg:text-[2.75rem] font-[800] leading-[1.05] mb-4 tracking-tight ${h2L}`}>
                 Your Brain Isn&apos;t Tired. It&apos;s Running On What{" "}
                 <span className={cyanL}>Cortisol Left Behind.</span>
               </h1>
-              <p className={`${h2L} font-semibold text-lg mb-4 leading-snug`}>Every high-pressure year you&apos;ve run this business, cortisol has been wearing down the chemistry your brain needs to think clearly. This is how you restore it.</p>
-              <p className={`${bodyL} mb-3 leading-relaxed`}>The stress hormone that spikes every time a deadline lands, a hire blows up, or a pivot has to be made under pressure &mdash; it&apos;s the same one quietly depleting the precursors your brain uses to build focus, recall, and drive.</p>
-              <p className={`${bodyL} mb-3 leading-relaxed`}>It&apos;s why the second coffee stopped working. Why the calls that used to feel obvious now take three drafts. Why you finish the day with output you wouldn&apos;t have signed off on three years ago.</p>
-              <p className={`${h2L} font-semibold mb-2`}>Replenish what cortisol depleted. Restore the chemistry.</p>
-              <p className={`${h2L} font-semibold mb-8`}>The chaos isn&apos;t going anywhere &mdash; but your brain doesn&apos;t have to keep paying for it.</p>
-              <a href="#mechanism" className="btn-secondary">See How It Works <ArrowRight size={16} /></a>
+              <p className={`${h2L} font-semibold text-base mb-3 leading-snug`}>Every high-pressure year you&apos;ve run this business, cortisol has been wearing down the chemistry your brain needs to think clearly. This is how you restore it.</p>
+              <p className={`${bodyL} mb-2 leading-relaxed text-sm`}>The stress hormone that spikes every time a deadline lands, a hire blows up, or a pivot has to be made under pressure &mdash; it&apos;s the same one quietly depleting the precursors your brain uses to build focus, recall, and drive.</p>
+              <p className={`${bodyL} mb-2 leading-relaxed text-sm`}>It&apos;s why the second coffee stopped working. Why the calls that used to feel obvious now take three drafts. Why you finish the day with output you wouldn&apos;t have signed off on three years ago.</p>
+              <p className={`${h2L} font-semibold mb-1 text-sm`}>Replenish what cortisol depleted. Restore the chemistry.</p>
+              <p className={`${h2L} font-semibold mb-6 text-sm`}>The chaos isn&apos;t going anywhere &mdash; but your brain doesn&apos;t have to keep paying for it.</p>
+              <a href="#mechanism" className="btn-primary">See How It Works <ArrowRight size={16} strokeWidth={2.5} /></a>
             </FadeUp>
             <FadeUp delay={0.15}>
-              <img src="/assets/gm-hero-brain-comparison.png" alt="Anatomical illustration showing a brain split between high-cortisol and low-cortisol states" width={800} height={1000} loading="eager" className="w-full max-h-[480px] object-contain drop-shadow-2xl" />
+              <img src="/assets/gm-hero-brain-comparison.png" alt="Anatomical illustration showing a brain split between high-cortisol and low-cortisol states" width={800} height={1000} loading="eager" className="w-full max-h-[420px] object-contain drop-shadow-2xl" />
             </FadeUp>
           </div>
         </div>
@@ -727,7 +727,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ §19 STARTER KIT — LIGHT ═══ */}
+      {/* ═══ §14 STARTER KIT — LIGHT ═══ */}
       <section className="sec-light py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <FadeUp>
@@ -736,11 +736,11 @@ export default function Page() {
           </FadeUp>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <FadeUp>
-              <img src="/assets/hero-bundle.png" alt="Genius Mind Starter Kit bundle with Blueprint Guide and Performance Tracker" width={1024} height={1024} loading="lazy" className="w-full rounded-xl object-contain aspect-square" />
+              <Skel label="gm-welcome-offer.png — Welcome kit composite with Brain Guide, bottle, and Magnesium pouch" mode="light" className="aspect-square" />
             </FadeUp>
             <FadeUp delay={0.1}>
-              <div className="text-left space-y-4">
-                {KIT.map((k) => (
+              <div className="text-left space-y-3">
+                {KIT_REAL.map((k) => (
                   <div key={k.name} className="flex items-center justify-between border-b border-[#e5e7eb] pb-3">
                     <span className={`font-semibold text-sm ${h2L}`}>{k.name}</span>
                     <div className="flex items-center gap-2">
@@ -750,7 +750,25 @@ export default function Page() {
                   </div>
                 ))}
               </div>
-              <div className="mt-8"><a href={SHOP} className="btn-primary btn-block">TRY IT NOW <ArrowRight size={16} /></a></div>
+
+              {/* Subtotal */}
+              <div className="text-left mt-6 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className={`font-semibold text-sm ${bodyL}`}>Total Value</span>
+                  <span className={`${capL} line-through text-sm`}>&pound;104.96</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className={`font-bold text-lg ${h2L}`}>You Pay Today</span>
+                  <span className={`font-bold text-lg ${h2L}`}>&pound;50.99</span>
+                </div>
+                <p className={`${capL} text-xs`}>Equivalent to &pound;16.99/mo &middot; 60-Day+ subscribers only</p>
+              </div>
+
+              <div className="mt-6">
+                <a href={SHOP} className="btn-primary btn-block">TRY IT NOW <ArrowRight size={16} strokeWidth={2.5} /></a>
+              </div>
+
+              <p className={`${capL} text-xs text-center mt-4`}>90-Day Money Back &middot; Free UK Shipping &middot; Cancel Anytime</p>
             </FadeUp>
           </div>
         </div>
@@ -783,7 +801,7 @@ export default function Page() {
           </div>
           <div className="flex items-center gap-3">
             <div className="hidden md:block text-right"><span className="text-white font-bold">From &pound;16.99/mo</span></div>
-            <a href={SHOP} className="bg-[var(--color-coral)] hover:bg-[var(--color-coral-deep)] text-white font-bold py-3 px-6 rounded-lg text-sm transition-all whitespace-nowrap hover:scale-[1.02] active:scale-[0.98]">ADD TO CART &rarr;</a>
+            <a href={SHOP} className="flex items-center gap-2 bg-[#10b981] hover:bg-[#059669] text-white font-bold py-3 px-6 rounded-lg text-sm transition-all whitespace-nowrap hover:scale-[1.02] active:scale-[0.98]">ADD TO CART <ArrowRight size={14} strokeWidth={2.5} /></a>
           </div>
         </div>
       </div>
@@ -909,10 +927,10 @@ const FAQS = [
   { q: "What happens if I stop taking it?", a: "Genius Mind isn\u2019t habit-forming and doesn\u2019t create withdrawal. The supportive effect depends on consistent intake \u2014 stop, and the cognitive chemistry support stops. Many long-term customers run it as a permanent part of their stack." },
   { q: "Is it safe for daily, long-term use?", a: "Yes. The formula is non-stimulant-dependent, made in a GMP-certified UK facility, third-party tested, and designed for daily intake. The ingredients are at clinical doses with no tolerance pathway." },
 ];
-const KIT = [
-  { name: "Genius Mind Cognitive Stack (30-day)", was: "\u00A334.99", now: "\u00A324.99" },
-  { name: "90-Day Cognitive Blueprint Guide", was: "\u00A319.99", now: "FREE" },
-  { name: "Operator Performance Tracker", was: "\u00A314.99", now: "FREE" },
+const KIT_REAL = [
+  { name: "Genius Mind Cognitive Stack (90-day)", was: "\u00A374.97", now: "\u00A350.99" },
+  { name: "Brain Performance Digital Guide", was: "\u00A310", now: "FREE" },
+  { name: "Magnesium 3-in-1", was: "\u00A315", now: "FREE" },
   { name: "Free UK Shipping", was: "\u00A34.99", now: "FREE" },
   { name: "90-Day Money-Back Guarantee", was: null, now: "INCLUDED" },
 ];
