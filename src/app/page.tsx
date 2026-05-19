@@ -230,7 +230,11 @@ function TabbedTimeline() {
 
           {/* Progressive graph */}
           <div className="bg-[var(--color-dark-tertiary)] rounded-xl p-4">
-            <svg viewBox="0 0 600 180" className="w-full" preserveAspectRatio="xMidYMid meet">
+            {/* Mobile Y-axis label (horizontal, above graph) */}
+            <p className="md:hidden label-mono text-[var(--color-dink-tertiary)] text-[9px] mb-2">Cognitive Capacity</p>
+
+            {/* Desktop graph */}
+            <svg viewBox="0 0 600 180" className="w-full hidden md:block" preserveAspectRatio="xMidYMid meet">
               {[30, 60, 90, 120, 150].map((y) => (<line key={y} x1="20" y1={y} x2="580" y2={y} stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />))}
               <text x="6" y="90" fill="var(--color-dink-tertiary)" fontSize="6" fontFamily="var(--font-mono)" textAnchor="middle" transform="rotate(-90,6,90)" style={{ textTransform: "uppercase", letterSpacing: "0.12em" }}>Cognitive Capacity</text>
               <defs>
@@ -239,27 +243,43 @@ function TabbedTimeline() {
                   <stop offset="100%" stopColor="var(--color-cyan)" stopOpacity="0" />
                 </linearGradient>
               </defs>
-              {/* Area fill clipped to active pct */}
               <g style={{ clipPath: `inset(0 ${100 - s.clipPct}% 0 0)`, transition: "clip-path 0.3s ease-out" }}>
                 <path d={`${TL_CURVE} L 570 165 L 30 165 Z`} fill="url(#tlFill)" />
                 <path d={TL_CURVE} fill="none" stroke="var(--color-cyan)" strokeWidth="3" strokeLinecap="round" />
               </g>
-              {/* Data points */}
               {TL_DOTS.map((d, i) => {
                 const dotPct = [8, 25, 50, 80, 100][i];
                 const show = s.clipPct >= dotPct;
-                return (
-                  <g key={i} style={{ opacity: show ? 1 : 0, transition: "opacity 0.3s ease-out" }}>
-                    <circle cx={d.cx} cy={d.cy} r="6" fill="var(--color-cyan)" />
-                    <circle cx={d.cx} cy={d.cy} r="2.5" fill="white" />
-                  </g>
-                );
+                return (<g key={i} style={{ opacity: show ? 1 : 0, transition: "opacity 0.3s ease-out" }}><circle cx={d.cx} cy={d.cy} r="6" fill="var(--color-cyan)" /><circle cx={d.cx} cy={d.cy} r="2.5" fill="white" /></g>);
               })}
-              {/* X-axis labels */}
               {["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"].map((w, i) => (
                 <text key={w} x={30 + i * 49} y="178" fill="var(--color-dink-tertiary)" fontSize="7" textAnchor="middle" fontFamily="var(--font-mono)">{w}</text>
               ))}
               <text x="300" y="178" fill="var(--color-dink-tertiary)" fontSize="7" textAnchor="middle" fontFamily="var(--font-mono)" dy="10">Weeks</text>
+            </svg>
+
+            {/* Mobile graph — compact, 3 anchor labels, no horizontal scroll */}
+            <svg viewBox="0 0 300 120" className="w-full md:hidden" preserveAspectRatio="xMidYMid meet">
+              {[20, 40, 60, 80, 100].map((y) => (<line key={y} x1="10" y1={y} x2="290" y2={y} stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />))}
+              <defs>
+                <linearGradient id="tlFillM" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="var(--color-cyan)" stopOpacity="0.2" />
+                  <stop offset="100%" stopColor="var(--color-cyan)" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+              <g style={{ clipPath: `inset(0 ${100 - s.clipPct}% 0 0)`, transition: "clip-path 0.3s ease-out" }}>
+                <path d="M 15 95 C 40 90, 60 80, 80 70 S 130 50, 170 38 S 230 18, 285 12 L 285 108 L 15 108 Z" fill="url(#tlFillM)" />
+                <path d="M 15 95 C 40 90, 60 80, 80 70 S 130 50, 170 38 S 230 18, 285 12" fill="none" stroke="var(--color-cyan)" strokeWidth="2.5" strokeLinecap="round" />
+              </g>
+              {[{ cx: 15, cy: 95 }, { cx: 80, cy: 70 }, { cx: 170, cy: 38 }, { cx: 240, cy: 20 }, { cx: 285, cy: 12 }].map((d, i) => {
+                const dotPct = [8, 25, 50, 80, 100][i];
+                const show = s.clipPct >= dotPct;
+                return (<g key={i} style={{ opacity: show ? 1 : 0, transition: "opacity 0.3s ease-out" }}><circle cx={d.cx} cy={d.cy} r="4" fill="var(--color-cyan)" /><circle cx={d.cx} cy={d.cy} r="1.5" fill="white" /></g>);
+              })}
+              <line x1="10" y1="108" x2="290" y2="108" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
+              <text x="15" y="118" fill="var(--color-dink-tertiary)" fontSize="8" fontFamily="var(--font-mono)" textAnchor="start">Week 1</text>
+              <text x="150" y="118" fill="var(--color-dink-tertiary)" fontSize="8" fontFamily="var(--font-mono)" textAnchor="middle">Week 6</text>
+              <text x="285" y="118" fill="var(--color-dink-tertiary)" fontSize="8" fontFamily="var(--font-mono)" textAnchor="end">Week 12</text>
             </svg>
           </div>
         </div>
@@ -503,8 +523,9 @@ export default function Page() {
             <p className={`${bodyL} text-center mb-10`}>Cognitive infrastructure, not a stimulant hit.</p>
           </FadeUp>
           <FadeUp>
-            <div className="card-light !p-0 overflow-x-auto">
-              <table className="w-full text-sm min-w-[600px]">
+            {/* Desktop: 3-column table */}
+            <div className="hidden md:block card-light !p-0 overflow-x-auto">
+              <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-[#e5e7eb]">
                     <th className={`py-4 px-5 text-left label-mono text-[10px] ${capL}`}></th>
@@ -525,6 +546,30 @@ export default function Page() {
                 </tbody>
               </table>
             </div>
+
+            {/* Mobile: stacked feature cards */}
+            <div className="md:hidden space-y-3">
+              {COMP.map((r) => (
+                <div key={r.label} className="card-light !p-4">
+                  <p className={`label-mono text-[11px] font-bold ${h2L} mb-3`}>{r.label}</p>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className={`text-sm ${cyanL} font-semibold`}>Genius Mind</span>
+                      <CheckCircle2 size={18} className={cyanL} />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className={`text-sm ${bodyL}`}>Caffeine Stacks</span>
+                      {r.caff === "x" ? <X size={18} className="text-[var(--color-coral-deep)]" /> : <HelpCircle size={16} className={capL} />}
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className={`text-sm ${bodyL}`}>Generic Nootropics</span>
+                      {r.generic === "x" ? <X size={18} className="text-[var(--color-coral-deep)]" /> : <HelpCircle size={16} className={capL} />}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
             <div className="text-center mt-10"><PrimaryCTA block>TRY IT NOW</PrimaryCTA></div>
           </FadeUp>
         </div>
