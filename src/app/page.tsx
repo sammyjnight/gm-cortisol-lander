@@ -6,8 +6,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import {
   AlertTriangle, X, Zap, Lightbulb, Shield, Target, Rocket,
   TrendingUp, Brain, ChevronDown, ChevronLeft, ChevronRight, Check, HelpCircle,
-  Dumbbell, Heart, Moon, Sun, Leaf, BookOpen,
-  Award, ArrowRight, Eye, Factory, FlaskConical,
+  Leaf, BookOpen, Award, ArrowRight, Eye, Factory, FlaskConical,
   Package, ShieldCheck, Truck, Star,
 } from "lucide-react";
 
@@ -37,24 +36,20 @@ function Stagger({ children, className = "", s = 0.08 }: { children: React.React
 
 const cF = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } } };
 
-function ABar({ value, max, delay = 0 }: { value: number; max: number; delay?: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const iv = useInView(ref, { once: true, margin: "-60px" });
-  return <div ref={ref} className="w-full rounded-full h-3 overflow-hidden bg-[#e5e7eb]"><motion.div className="h-3 rounded-full bg-[var(--color-cyan)]" initial={{ width: 0 }} animate={iv ? { width: `${(value / max) * 100}%` } : { width: 0 }} transition={{ duration: 1.2, ease: "easeOut", delay }} /></div>;
-}
-
-function CountUp({ target, delay = 0 }: { target: number; delay?: number }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const iv = useInView(ref, { once: true, margin: "-60px" });
-  const [v, setV] = useState(0);
-  useEffect(() => { if (!iv) return; const d = 1200, st = performance.now(); const t = (n: number) => { const e = n - st - delay * 1000; if (e < 0) { requestAnimationFrame(t); return; } const p = Math.min(e / d, 1); setV(Math.round(p * target)); if (p < 1) requestAnimationFrame(t); }; requestAnimationFrame(t); }, [iv, target, delay]);
-  return <span ref={ref}>{v}</span>;
-}
-
 function Badge({ type }: { type: "check" | "x" | "q" }) {
   if (type === "check") return <div className="badge badge-check"><Check size={18} strokeWidth={3} className="text-white" /></div>;
   if (type === "x") return <div className="badge badge-x"><X size={18} strokeWidth={3} className="text-white" /></div>;
   return <div className="badge badge-q"><span className="text-[#dc2626] font-bold text-lg">?</span></div>;
+}
+
+/* Primary CTA — mint green, centred text+arrow */
+function PrimaryCTA({ children, href = SHOP, block = false, className = "" }: { children: React.ReactNode; href?: string; block?: boolean; className?: string }) {
+  return (
+    <a href={href} className={`btn-primary ${block ? "btn-block" : ""} ${className}`}>
+      <span>{children}</span>
+      <ArrowRight size={16} strokeWidth={2.5} className="shrink-0" />
+    </a>
+  );
 }
 
 /* mode-aware text helpers */
@@ -67,9 +62,8 @@ const bodyD = "text-[var(--color-dink-secondary)]";
 const capD = "text-[var(--color-dink-tertiary)]";
 const cyanD = "text-[var(--color-cyan-bright)]";
 const coralD = "text-[var(--color-coral)]";
-const coralL = "text-[var(--color-coral-deep)]";
 
-/* ═══════ PRODUCT CAROUSEL ═══════ */
+/* ═══════ PRODUCT CAROUSEL (no autoplay) ═══════ */
 const CAROUSEL_SLIDES = [
   { src: "/assets/carousel_1.webp", alt: "Genius Mind product hero shot" },
   { src: "/assets/carousel_2.webp", alt: "Genius Mind ingredients and dosage detail" },
@@ -82,31 +76,14 @@ const CAROUSEL_SLIDES = [
 function ProductCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
-
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
-
   useEffect(() => {
     if (!emblaApi) return;
     const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
     emblaApi.on("select", onSelect);
     onSelect();
-    // auto-advance
-    const interval = setInterval(() => {
-      if (emblaApi.canScrollNext()) emblaApi.scrollNext();
-      else emblaApi.scrollTo(0);
-    }, 5000);
-    // pause on hover
-    const root = emblaApi.rootNode();
-    const pause = () => clearInterval(interval);
-    root.addEventListener("mouseenter", pause);
-    root.addEventListener("focusin", pause);
-    return () => {
-      clearInterval(interval);
-      root.removeEventListener("mouseenter", pause);
-      root.removeEventListener("focusin", pause);
-      emblaApi.off("select", onSelect);
-    };
+    return () => { emblaApi.off("select", onSelect); };
   }, [emblaApi]);
 
   return (
@@ -115,36 +92,16 @@ function ProductCarousel() {
         <div className="flex">
           {CAROUSEL_SLIDES.map((slide, i) => (
             <div key={slide.src} className="flex-[0_0_100%] min-w-0">
-              <img
-                src={slide.src}
-                alt={slide.alt}
-                width={800}
-                height={800}
-                loading={i === 0 ? "eager" : "lazy"}
-                className="w-full aspect-square object-cover"
-              />
+              <img src={slide.src} alt={slide.alt} width={800} height={800} loading={i === 0 ? "eager" : "lazy"} className="w-full aspect-square object-cover" />
             </div>
           ))}
         </div>
       </div>
-      {/* Arrows */}
-      <button onClick={scrollPrev} aria-label="Previous slide" className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors z-10">
-        <ChevronLeft size={18} className="text-[var(--color-ink-secondary)]" />
-      </button>
-      <button onClick={scrollNext} aria-label="Next slide" className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors z-10">
-        <ChevronRight size={18} className="text-[var(--color-ink-secondary)]" />
-      </button>
-      {/* Dots */}
+      <button onClick={scrollPrev} aria-label="Previous slide" className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors z-10"><ChevronLeft size={18} className="text-[var(--color-ink-secondary)]" /></button>
+      <button onClick={scrollNext} aria-label="Next slide" className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors z-10"><ChevronRight size={18} className="text-[var(--color-ink-secondary)]" /></button>
       <div className="flex justify-center gap-2 mt-4">
         {CAROUSEL_SLIDES.map((_, i) => (
-          <button
-            key={i}
-            aria-label={`Go to slide ${i + 1}`}
-            onClick={() => emblaApi?.scrollTo(i)}
-            className={`w-2.5 h-2.5 rounded-full transition-all ${
-              i === selectedIndex ? "bg-[var(--color-cyan)] scale-110" : "bg-[var(--color-ink-tertiary)]/40 hover:bg-[var(--color-ink-tertiary)]"
-            }`}
-          />
+          <button key={i} aria-label={`Go to slide ${i + 1}`} onClick={() => emblaApi?.scrollTo(i)} className={`w-2.5 h-2.5 rounded-full transition-all ${i === selectedIndex ? "bg-[var(--color-cyan)] scale-110" : "bg-[var(--color-ink-tertiary)]/40 hover:bg-[var(--color-ink-tertiary)]"}`} />
         ))}
       </div>
     </div>
@@ -152,66 +109,30 @@ function ProductCarousel() {
 }
 
 /* ═══════ PRICING CARD ═══════ */
-function PricingCard({
-  highlighted = false,
-  header,
-  price,
-  period,
-  strikethrough,
-  subtext,
-  savePill,
-  benefits,
-  cta,
-}: {
-  highlighted?: boolean;
-  header: string;
-  price: string;
-  period: string;
-  strikethrough: string;
-  subtext: string;
-  savePill: string;
-  benefits: string[];
-  cta: "primary" | "secondary";
-}) {
+function PricingCard({ highlighted = false, header, price, period, strikethrough, subtext, savePill, benefits, cta }: { highlighted?: boolean; header: string; price: string; period: string; strikethrough: string; subtext: string; savePill: string; benefits: string[]; cta: "primary" | "secondary" }) {
   const [kitOpen, setKitOpen] = useState(false);
   return (
     <div className={`card-light relative mb-4 ${highlighted ? "card-light-featured !border-[var(--color-cyan)] ring-1 ring-[var(--color-cyan)]/20" : ""}`}>
-      {/* Header row */}
       <div className="flex items-start justify-between mb-3">
         <h3 className={`font-bold text-lg ${h2L}`}>{header}</h3>
         <span className="sticker sticker-cyan !text-[10px] !py-1">{savePill}</span>
       </div>
-      {/* Price */}
       <div className="flex items-baseline gap-2 mb-1">
         <span className={`text-3xl font-[800] ${h2L}`}>&pound;{price}</span>
         <span className={`${capL} text-sm`}>{period}</span>
         <span className={`${capL} line-through text-sm ml-2`}>{strikethrough}</span>
       </div>
       <p className={`${capL} text-xs mb-4`}>{subtext}</p>
-
-      {/* Benefits (only for highlighted) */}
       {benefits.length > 0 && (
         <ul className="space-y-2 mb-4">
-          {benefits.map((b) => (
-            <li key={b} className={`flex items-start gap-2 text-sm ${bodyL}`}>
-              <Check size={16} className="text-[var(--color-cyan)] mt-0.5 shrink-0" />
-              {b}
-            </li>
-          ))}
+          {benefits.map((b) => (<li key={b} className={`flex items-start gap-2 text-sm ${bodyL}`}><Check size={16} className="text-[var(--color-cyan)] mt-0.5 shrink-0" />{b}</li>))}
         </ul>
       )}
-
-      {/* Welcome Kit expandable (only for highlighted) */}
       {highlighted && (
         <div className="mb-4">
-          <button
-            onClick={() => setKitOpen(!kitOpen)}
-            className="w-full text-left bg-[rgba(8,145,178,0.06)] rounded-lg px-4 py-3 flex items-center justify-between"
-          >
+          <button onClick={() => setKitOpen(!kitOpen)} className="w-full text-left bg-[rgba(8,145,178,0.06)] rounded-lg px-4 py-3 flex items-center justify-between">
             <span className={`label-mono text-[11px] ${cyanL}`}>Welcome Kit &mdash; Arrives With First Order</span>
-            <motion.span animate={{ rotate: kitOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
-              <ChevronDown size={16} className={cyanL} />
-            </motion.span>
+            <motion.span animate={{ rotate: kitOpen ? 180 : 0 }} transition={{ duration: 0.2 }}><ChevronDown size={16} className={cyanL} /></motion.span>
           </button>
           <div className={`overflow-hidden transition-all duration-300 ${kitOpen ? "max-h-40 mt-2" : "max-h-0"}`}>
             <div className="px-4 space-y-1.5">
@@ -222,17 +143,76 @@ function PricingCard({
           </div>
         </div>
       )}
-
-      {/* CTA */}
       {cta === "primary" ? (
-        <a href={SHOP} className="flex items-center justify-center gap-2 w-full bg-[#10b981] hover:bg-[#059669] text-white font-bold py-3.5 px-6 rounded-lg transition-all hover:scale-[1.02] active:scale-[0.98]">
-          ADD TO CART <ArrowRight size={16} strokeWidth={2.5} />
-        </a>
+        <PrimaryCTA block>ADD TO CART</PrimaryCTA>
       ) : (
-        <a href={SHOP} className="btn-secondary btn-block !py-3">
-          Add to Cart <ArrowRight size={16} />
-        </a>
+        <a href={SHOP} className="btn-secondary btn-block !py-3 justify-center"><span>Add to Cart</span> <ArrowRight size={16} /></a>
       )}
+    </div>
+  );
+}
+
+/* ═══════ TIMELINE GRAPH ═══════ */
+function TimelineGraph() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const curvePath = "M 40 180 C 80 170, 120 140, 180 120 S 300 80, 380 55 S 480 30, 560 25";
+  const markers = [
+    { cx: 40, cy: 180, day: "1", title: "Activation", items: ["Guarana and B vitamins may provide an immediate lift", "L-Tyrosine begins supporting dopamine pathways", "The cognitive foundation starts building"], delay: 0 },
+    { cx: 300, cy: 70, day: "30", title: "The Hold", items: ["The afternoon crash may flatten", "Bacopa and Lion\u2019s Mane may reach effective levels", "Focus may extend naturally"], delay: 0.6 },
+    { cx: 560, cy: 25, day: "90", title: "Lock-In", items: ["All 16 ingredients may be working synergistically", "Decision stamina may extend across the full day", "Cognitive infrastructure, fully built"], delay: 1.2 },
+  ];
+
+  return (
+    <div ref={ref} className="relative">
+      <svg viewBox="0 0 600 220" className="w-full" preserveAspectRatio="xMidYMid meet">
+        {/* Grid lines */}
+        {[40, 80, 120, 160, 200].map((y) => (<line key={y} x1="30" y1={y} x2="580" y2={y} stroke="#e5e7eb" strokeWidth="0.5" />))}
+        {/* Y-axis label */}
+        <text x="8" y="110" fill="var(--color-ink-tertiary)" fontSize="7" fontFamily="var(--font-mono)" textAnchor="middle" transform="rotate(-90,8,110)" style={{ textTransform: "uppercase", letterSpacing: "0.1em" }}>Cognitive Capacity</text>
+        {/* Gradient fill */}
+        <defs>
+          <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="var(--color-cyan)" stopOpacity="0.15" />
+            <stop offset="100%" stopColor="var(--color-cyan)" stopOpacity="0" />
+          </linearGradient>
+          <clipPath id="curveClip">
+            <rect x="0" y="0" width={inView ? "100%" : "0%"} height="220" style={{ transition: "width 1.5s ease-out" }} />
+          </clipPath>
+        </defs>
+        {/* Area fill */}
+        <path d={`${curvePath} L 560 200 L 40 200 Z`} fill="url(#areaFill)" clipPath="url(#curveClip)" />
+        {/* Curve */}
+        <path d={curvePath} fill="none" stroke="var(--color-cyan)" strokeWidth="3" strokeLinecap="round" clipPath="url(#curveClip)" />
+        {/* X-axis */}
+        <line x1="30" y1="200" x2="580" y2="200" stroke="#e5e7eb" strokeWidth="1" />
+        {/* Markers */}
+        {markers.map((m) => (
+          <g key={m.day}>
+            <circle cx={m.cx} cy={m.cy} r="8" fill="var(--color-cyan)" opacity={inView ? 1 : 0} style={{ transition: `opacity 0.4s ease-out ${m.delay + 0.8}s` }} />
+            <circle cx={m.cx} cy={m.cy} r="3" fill="white" opacity={inView ? 1 : 0} style={{ transition: `opacity 0.4s ease-out ${m.delay + 0.8}s` }} />
+          </g>
+        ))}
+        {/* X-axis labels */}
+        <text x="40" y="215" fill="var(--color-ink-secondary)" fontSize="10" textAnchor="middle" fontFamily="var(--font-mono)">Day 1</text>
+        <text x="300" y="215" fill="var(--color-ink-secondary)" fontSize="10" textAnchor="middle" fontFamily="var(--font-mono)">Day 30</text>
+        <text x="560" y="215" fill="var(--color-ink-secondary)" fontSize="10" textAnchor="middle" fontFamily="var(--font-mono)">Day 90</text>
+      </svg>
+
+      {/* Content cards below the graph */}
+      <div className="grid md:grid-cols-3 gap-4 mt-8">
+        {markers.map((m, i) => (
+          <motion.div key={m.day} initial={{ opacity: 0, y: 8 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: m.delay + 1 }} className="card-light !p-5">
+            <div className="flex items-center gap-2 mb-2">
+              <span className={`label-mono ${cyanL} font-bold text-xs`}>Day {m.day}</span>
+              <span className={`font-bold text-sm ${h2L}`}>{m.title}</span>
+            </div>
+            <ul className="space-y-1.5">
+              {m.items.map((item) => (<li key={item} className={`flex items-start gap-2 text-xs ${bodyL}`}><span className="w-1 h-1 rounded-full bg-[var(--color-cyan)] mt-1.5 shrink-0" />{item}</li>))}
+            </ul>
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -274,7 +254,7 @@ export default function Page() {
               <p className={`${bodyL} mb-2 leading-relaxed text-sm`}>It&apos;s why the second coffee stopped working. Why the calls that used to feel obvious now take three drafts. Why you finish the day with output you wouldn&apos;t have signed off on three years ago.</p>
               <p className={`${h2L} font-semibold mb-1 text-sm`}>Replenish what cortisol depleted. Restore the chemistry.</p>
               <p className={`${h2L} font-semibold mb-6 text-sm`}>The chaos isn&apos;t going anywhere &mdash; but your brain doesn&apos;t have to keep paying for it.</p>
-              <a href="#mechanism" className="btn-primary">See How It Works <ArrowRight size={16} strokeWidth={2.5} /></a>
+              <PrimaryCTA href="#mechanism">See How It Works</PrimaryCTA>
             </FadeUp>
             <FadeUp delay={0.15}>
               <img src="/assets/gm-hero-brain-comparison.png" alt="Anatomical illustration showing a brain split between high-cortisol and low-cortisol states" width={800} height={1000} loading="eager" className="w-full max-h-[420px] object-contain drop-shadow-2xl" />
@@ -288,9 +268,7 @@ export default function Page() {
       <section className="sec-dark py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <FadeUp>
-              <img src="/assets/gm-symptoms-desk.png" alt="Overhead view of operator at desk showing signs of cognitive fatigue" width={800} height={1000} loading="lazy" className="w-full rounded-xl object-cover aspect-[4/5]" />
-            </FadeUp>
+            <FadeUp><img src="/assets/gm-symptoms-desk.png" alt="Overhead view of operator at desk showing signs of cognitive fatigue" width={800} height={1000} loading="lazy" className="w-full rounded-xl object-cover aspect-[4/5]" /></FadeUp>
             <FadeUp delay={0.1}>
               <SN n="01" label="THE SYMPTOMS" mode="dark" />
               <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-6 ${h2D}`}>It&apos;s Not Just Burnout</h2>
@@ -328,7 +306,7 @@ export default function Page() {
               <p className={`${bodyD} mb-4`}>For most of human history, stress was short.</p>
               <p className={`${bodyD} mb-4`}><strong className="text-white">A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</strong></p>
               <p className={`${bodyD} mb-4`}><strong className="text-white">But now the threat never passes.</strong></p>
-              <p className={`${bodyD}`}>The Slack message at 10pm. The funding round. The hire that isn&apos;t working out. The kid who&apos;s sick the day of the board meeting. None of it is life or death. But your nervous system can&apos;t tell the difference.</p>
+              <p className={bodyD}>The Slack message at 10pm. The funding round. The hire that isn&apos;t working out. The kid who&apos;s sick the day of the board meeting. None of it is life or death. But your nervous system can&apos;t tell the difference.</p>
             </FadeUp>
           </div>
           <Stagger className="grid md:grid-cols-3 gap-6">
@@ -347,9 +325,7 @@ export default function Page() {
       <section className="sec-light py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <FadeUp>
-              <img src="/assets/gm-transition-before-after.png" alt="Before and after comparison showing an operator in depleted and restored cognitive states" width={800} height={600} loading="lazy" className="w-full rounded-xl object-cover aspect-[4/3]" />
-            </FadeUp>
+            <FadeUp><img src="/assets/gm-transition-before-after.png" alt="Before and after comparison showing an operator in depleted and restored cognitive states" width={800} height={600} loading="lazy" className="w-full rounded-xl object-cover aspect-[4/3]" /></FadeUp>
             <FadeUp delay={0.1}>
               <p className={`${bodyL} text-lg leading-relaxed mb-4`}>The operators who finally break through the ceiling &mdash; who sustain sharp output instead of watching it erode year on year &mdash; are the ones who get the chemistry right first.</p>
               <BL mode="light">Restore the chemistry. Get the brain back.</BL>
@@ -411,50 +387,48 @@ export default function Page() {
               <BL mode="light">No prescription. No crashes. No tolerance. Daily use, safely.</BL>
             </div>
             <img src="/assets/hero-single.png" alt="Genius Mind product bottle" width={810} height={773} loading="lazy" className="max-w-sm mx-auto mt-8 mb-8 drop-shadow-2xl" />
-            <a href={SHOP} className="btn-primary btn-block">TRY IT NOW <ArrowRight size={16} /></a>
+            <PrimaryCTA block>TRY IT NOW</PrimaryCTA>
           </FadeUp>
         </div>
       </section>
 
-      {/* ═══ §8 BENEFIT TILES — LIGHT ═══ */}
+      {/* ═══ §5 OUTCOMES (4 tiles) — LIGHT ═══ */}
       <section className="sec-light-alt py-20 md:py-28">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-5xl mx-auto px-4">
           <FadeUp><SN n="05" label="THE OUTCOMES" /></FadeUp>
-          <Stagger className="grid md:grid-cols-3 gap-6">
+          <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {BENEFITS.map((b) => (
               <motion.div key={b.title} variants={cF} className="card-light text-center !p-8">
                 <div className="icon-box">{b.icon}</div>
                 <h3 className={`font-bold text-[22px] mb-3 ${h2L}`}>{b.title}</h3>
                 <p className={`${bodyL} text-sm mb-4`}>{b.desc}</p>
-                {b.survey && <p className={`label-mono ${cyanL} text-[10px] border-t border-[rgba(15,23,42,0.08)] pt-4`}>{b.survey}</p>}
+                <p className={`label-mono ${cyanL} text-[10px] border-t border-[rgba(15,23,42,0.08)] pt-4`}>{b.survey}</p>
               </motion.div>
             ))}
           </Stagger>
         </div>
       </section>
 
-      {/* ═══ §9 16 INGREDIENTS — DARK (photo-backed cards) ═══ */}
+      {/* ═══ §6 INGREDIENTS — DARK (photo-backed) ═══ */}
       <section id="formula" className="sec-dark py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <FadeUp>
             <SN n="06" label="THE FORMULA" mode="dark" />
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-3 ${h2D}`}>16 Ingredients in 1 Powerful Formula</h2>
-            <div className="mb-6"><span className="sticker sticker-cyan">Clinically Studied + High-Ratio Extracts</span></div>
-            <div className="flex flex-wrap justify-center gap-4 mb-10">
-              {["No proprietary blends", "No fillers", "No synthetic stimulants", "No BS", "No cheap powders"].map((t) => (
-                <span key={t} className={`flex items-center gap-1.5 ${bodyD} text-xs`}><X size={12} className={coralD} />{t}</span>
-              ))}
-            </div>
+            <div className="mb-4"><span className="sticker sticker-cyan">Clinically Studied + High-Ratio Extracts</span></div>
+            {/* Clean text divider row — no icons */}
+            <p className={`${bodyD} text-xs tracking-wide mb-10`}>
+              No Proprietary Blends <span className="mx-2 opacity-30">|</span> No Fillers <span className="mx-2 opacity-30">|</span> No Synthetic Stimulants <span className="mx-2 opacity-30">|</span> No Cheap Powders
+            </p>
           </FadeUp>
-          <Stagger className="grid grid-cols-2 md:grid-cols-4 gap-5" s={0.04}>
+          <Stagger className="grid grid-cols-2 md:grid-cols-4 gap-3" s={0.04}>
             {INGS.map((ing) => (
               <motion.div key={ing.name} variants={cF} className="ing-card" style={{ backgroundImage: `url(/assets/${ing.img})` }}>
-                <div className="ing-inner">
-                  <div>
-                    <h4 className="text-white font-bold text-xl mb-1">{ing.name}</h4>
-                    <p className="text-white/80 text-xs leading-relaxed mb-3">{ing.desc}</p>
-                  </div>
-                  <span className="dose-pill">{ing.dose}</span>
+                {/* Dose pill top-right */}
+                <span className="absolute top-3 right-3 z-[2] bg-white/90 text-[var(--color-ink-primary)] font-mono font-semibold text-[10px] px-2 py-1 rounded">{ing.dose}</span>
+                <div className="ing-inner !justify-end">
+                  <h4 className="text-white font-bold text-lg mb-0.5">{ing.name}</h4>
+                  <p className="text-white/80 text-[11px] leading-relaxed">{ing.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -469,51 +443,27 @@ export default function Page() {
         </div>
       </div>
 
-      {/* ═══ §10 OPERATOR STACK — LIGHT ═══ */}
-      <section className="sec-light py-20 md:py-28">
-        <div className="max-w-5xl mx-auto px-4">
+      {/* ═══ §7 SURVEY — BIG NUMBER PANELS — LIGHT ═══ */}
+      <section className="sec-light-alt py-20 md:py-28">
+        <div className="max-w-5xl mx-auto px-4 text-center">
           <FadeUp>
-            <SN n="07" label="THE INTEGRATION" />
-            <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] text-center mb-6 ${h2L}`}>How Genius Mind Fits Into A Serious Operator Stack</h2>
-            <p className={`${bodyL} text-center max-w-3xl mx-auto mb-10`}>You already take creatine. Probably omega-3. Maybe AG1 or a multi. Magnesium at night. Genius Mind is the chemistry layer &mdash; the missing piece.</p>
+            <SN n="07" label="THE EVIDENCE" />
+            <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-10 ${h2L}`}>What Long-Term Customers Actually Report</h2>
           </FadeUp>
-          <Stagger className="grid grid-cols-3 md:grid-cols-6 gap-4 mb-10">
-            {STACK.map((s) => (
-              <motion.div key={s.label} variants={cF} className={`card-light text-center !p-5 ${s.hl ? "card-light-featured !bg-[rgba(8,145,178,0.06)] !border-[var(--color-cyan)]" : ""}`}>
-                <span className={`mb-2 block ${s.hl ? cyanL : bodyL}`}>{s.icon}</span>
-                <p className={`text-xs font-bold ${s.hl ? cyanL : bodyL}`}>{s.label}</p>
-                <p className={`${capL} text-[10px] mt-0.5`}>{s.target}</p>
+          <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {SURVEY.map((s) => (
+              <motion.div key={s.label} variants={cF} className="card-light text-center !p-6">
+                <p className={`text-5xl md:text-6xl font-[800] ${h2L} leading-none mb-1`}>{s.count}<span className={`text-2xl ${capL}`}>/33</span></p>
+                <div className="w-8 h-0.5 bg-[var(--color-cyan)] mx-auto my-3" />
+                <p className={`${bodyL} text-sm`}>{s.subtitle}</p>
               </motion.div>
             ))}
           </Stagger>
-          <FadeUp><BL mode="light">The lifestyle layer is dialled. The body layer is supported. The brain layer was the missing piece.</BL></FadeUp>
+          <p className={`${capL} text-xs mt-6`}>Post-purchase subscriber survey &middot; 33 respondents using 3+ months</p>
         </div>
       </section>
 
-      {/* ═══ §11 SURVEY — LIGHT ═══ */}
-      <section className="sec-light-alt py-20 md:py-28">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <FadeUp>
-            <SN n="08" label="THE EVIDENCE" />
-            <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-8 ${h2L}`}>What Long-Term Customers Actually Report</h2>
-          </FadeUp>
-          <div className="max-w-2xl mx-auto space-y-5 mb-6">
-            {SURVEY.map((s, i) => (
-              <FadeUp key={s.label} delay={i * 0.1}>
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className={`text-sm font-semibold ${h2L}`}>{s.label}</span>
-                  <span className={`text-sm font-bold label-mono ${cyanL}`}><CountUp target={s.count} delay={i * 0.15} />/33</span>
-                </div>
-                <ABar value={s.count} max={33} delay={i * 0.15} />
-              </FadeUp>
-            ))}
-          </div>
-          <p className={`label-mono ${capL} text-[10px] mb-1`}>Source</p>
-          <p className={`${capL} text-xs`}>Post-purchase subscriber survey, 33 respondents using 3+ months.</p>
-        </div>
-      </section>
-
-      {/* ═══ §12 VIDEO TESTIMONIALS — DARK ═══ */}
+      {/* ═══ §8 VIDEO TESTIMONIALS — DARK ═══ */}
       <section className="sec-dark py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <FadeUp><h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-10 ${h2D}`}>What Operators Are Saying</h2></FadeUp>
@@ -530,7 +480,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ §13 COMPARISON TABLE — LIGHT ═══ */}
+      {/* ═══ §9 COMPARISON TABLE — LIGHT ═══ */}
       <section className="sec-light py-20 md:py-28">
         <div className="max-w-4xl mx-auto px-4">
           <FadeUp>
@@ -561,73 +511,28 @@ export default function Page() {
                 </tbody>
               </table>
             </div>
-            <div className="text-center mt-10"><a href={SHOP} className="btn-primary btn-block">TRY IT NOW <ArrowRight size={16} /></a></div>
+            <div className="text-center mt-10"><PrimaryCTA block>TRY IT NOW</PrimaryCTA></div>
           </FadeUp>
         </div>
       </section>
 
-      {/* ═══ §10 THE OFFER — LIGHT (carousel + real pricing) ═══ */}
+      {/* ═══ §10 THE OFFER — LIGHT ═══ */}
       <section className="sec-light-alt py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4">
           <FadeUp><SN n="10" label="THE OFFER" /></FadeUp>
           <div className="grid lg:grid-cols-2 gap-12 items-start">
-            {/* Left: Carousel */}
-            <FadeUp>
-              <ProductCarousel />
-            </FadeUp>
-
-            {/* Right: Pricing tiers */}
+            <FadeUp><ProductCarousel /></FadeUp>
             <FadeUp delay={0.1}>
               <h2 className={`text-[clamp(28px,4vw,44px)] font-[800] leading-[1.05] mb-4 ${h2L}`}>Cognitive Infrastructure for Operators</h2>
               <p className={`${bodyL} mb-6`}>Genius Mind is a complete cognitive stack engineered around the Cognisync Tri-Factor &mdash; 16 clinically studied ingredients designed to support sustained focus throughout the working day.*</p>
-
-              {/* OPTION 1 — 90-Day (highlighted) */}
-              <PricingCard
-                highlighted
-                header="90-Day Supply"
-                price="16.99"
-                period="/mo"
-                strikethrough="£74.97"
-                subtext="Billed £50.99 every 3 months · £0.57 per serving"
-                savePill="Save 41%"
-                benefits={[
-                  "90 servings, only £0.57 per day",
-                  "NO CONTRACT — pause, skip & cancel anytime",
-                  "Fast & free shipping",
-                  "90-day money back guarantee",
-                ]}
-                cta="primary"
-              />
-
-              {/* OPTION 2 — 30-Day */}
-              <PricingCard
-                header="30-Day Supply"
-                price="21.24"
-                period="/mo"
-                strikethrough="£24.99"
-                subtext="Billed £21.24 every 4 weeks · £0.71 per serving"
-                savePill="Save 29%"
-                benefits={[]}
-                cta="secondary"
-              />
-
-              {/* OPTION 3 — One-time */}
+              <PricingCard highlighted header="90-Day Supply" price="16.99" period="/mo" strikethrough="£74.97" subtext="Billed £50.99 every 3 months · £0.57 per serving" savePill="Save 41%" benefits={["90 servings, only £0.57 per day", "NO CONTRACT — pause, skip & cancel anytime", "Fast & free shipping", "90-day money back guarantee"]} cta="primary" />
+              <PricingCard header="30-Day Supply" price="21.24" period="/mo" strikethrough="£24.99" subtext="Billed £21.24 every 4 weeks · £0.71 per serving" savePill="Save 29%" benefits={[]} cta="secondary" />
               <div className="text-center mt-3 mb-8">
-                <a href={SHOP} className={`${bodyL} underline text-sm hover:${cyanL} transition-colors`}>One Time Purchase &pound;24.99</a>
+                <a href={SHOP} className={`${bodyL} underline text-sm transition-colors`}>One Time Purchase &pound;24.99</a>
               </div>
-
-              {/* Trust row */}
               <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[11px]">
-                {[
-                  [ShieldCheck, "90-day money back guarantee"],
-                  [Factory, "GMP certified"],
-                  [FlaskConical, "Made in UK"],
-                  [Star, "1000+ five-star reviews"],
-                ].map(([Icon, label]) => (
-                  <div key={label as string} className={`flex items-center gap-1.5 ${capL}`}>
-                    <Icon size={14} className={capL} />
-                    <span>{label as string}</span>
-                  </div>
+                {[[ShieldCheck, "90-day money back guarantee"], [Factory, "GMP certified"], [FlaskConical, "Made in UK"], [Star, "1000+ five-star reviews"]].map(([Icon, label]) => (
+                  <div key={label as string} className={`flex items-center gap-1.5 ${capL}`}><Icon size={14} className={capL} /><span>{label as string}</span></div>
                 ))}
               </div>
             </FadeUp>
@@ -635,36 +540,18 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ §15 DAY 1/30/90 — LIGHT (connector line) ═══ */}
+      {/* ═══ §11 TIMELINE — SVG GRAPH — LIGHT ═══ */}
       <section className="sec-light py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-4">
           <FadeUp>
             <SN n="11" label="THE TIMELINE" />
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] text-center mb-12 ${h2L}`}>What Happens After You Start Restoring Cognitive Chemistry</h2>
           </FadeUp>
-          <div className="grid md:grid-cols-3 gap-6 tl-grid">
-            {TL.map((t, i) => (
-              <FadeUp key={t.day} delay={i * 0.2}>
-                <div className="tl-card">
-                  <div className="tl-dot" />
-                  <div className="card-light !p-6">
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className={cyanL}>{t.icon}</span>
-                      <span className={`label-mono ${cyanL} font-bold`}>Day {t.day}</span>
-                      <span className={`font-bold ${h2L}`}>{t.title}</span>
-                    </div>
-                    <ul className="space-y-2">
-                      {t.items.map((item) => <li key={item} className={`flex items-start gap-2 text-sm ${bodyL}`}><span className="w-1.5 h-1.5 rounded-full bg-[var(--color-cyan)] mt-2 shrink-0" />{item}</li>)}
-                    </ul>
-                  </div>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
+          <TimelineGraph />
         </div>
       </section>
 
-      {/* ═══ §16 RESEARCH — LIGHT ═══ */}
+      {/* ═══ §12 RESEARCH — LIGHT ═══ */}
       <section className="sec-light-alt py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-4">
           <FadeUp>
@@ -686,7 +573,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ §17 GUARANTEE — LIGHT ═══ */}
+      {/* ═══ §13 GUARANTEE — LIGHT ═══ */}
       <section className="sec-light py-20 md:py-28">
         <div className="max-w-3xl mx-auto px-4">
           <FadeUp>
@@ -697,18 +584,18 @@ export default function Page() {
               <div>
                 <h2 className={`text-2xl md:text-3xl font-[800] mb-3 leading-tight ${h2L}`}>Feel a Massive Difference in 90 Days <span className={cyanL}>Or Your Money Back</span></h2>
                 <p className={`${bodyL} leading-relaxed mb-6`}>We make sure every customer actually gets results or we refund you 100% of your investment. No questions asked.</p>
-                <a href={SHOP} className="btn-primary inline-flex items-center gap-2">TRY IT NOW <ArrowRight size={16} /></a>
+                <PrimaryCTA>TRY IT NOW</PrimaryCTA>
               </div>
             </div>
           </FadeUp>
         </div>
       </section>
 
-      {/* ═══ §18 FAQ — LIGHT ═══ */}
+      {/* ═══ §14 FAQ — LIGHT ═══ */}
       <section id="faq" className="sec-light-alt py-20 md:py-28">
         <div className="max-w-3xl mx-auto px-4">
           <FadeUp>
-            <SN n="13" label="QUESTIONS" />
+            <SN n="14" label="QUESTIONS" />
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] text-center mb-10 ${h2L}`}>Frequently Asked Questions</h2>
           </FadeUp>
           <div className="space-y-3">
@@ -727,17 +614,15 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ §14 STARTER KIT — LIGHT ═══ */}
+      {/* ═══ §15 STARTER KIT — LIGHT ═══ */}
       <section className="sec-light py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <FadeUp>
-            <SN n="14" label="WHAT YOU GET" />
+            <SN n="15" label="WHAT YOU GET" />
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-12 ${h2L}`}>Your Starter Kit <span className={cyanL}>Includes:</span></h2>
           </FadeUp>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <FadeUp>
-              <Skel label="gm-welcome-offer.png — Welcome kit composite with Brain Guide, bottle, and Magnesium pouch" mode="light" className="aspect-square" />
-            </FadeUp>
+            <FadeUp><Skel label="gm-welcome-offer.png — Welcome kit composite" mode="light" className="aspect-square" /></FadeUp>
             <FadeUp delay={0.1}>
               <div className="text-left space-y-3">
                 {KIT_REAL.map((k) => (
@@ -750,24 +635,12 @@ export default function Page() {
                   </div>
                 ))}
               </div>
-
-              {/* Subtotal */}
               <div className="text-left mt-6 space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className={`font-semibold text-sm ${bodyL}`}>Total Value</span>
-                  <span className={`${capL} line-through text-sm`}>&pound;104.96</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className={`font-bold text-lg ${h2L}`}>You Pay Today</span>
-                  <span className={`font-bold text-lg ${h2L}`}>&pound;50.99</span>
-                </div>
+                <div className="flex items-center justify-between"><span className={`font-semibold text-sm ${bodyL}`}>Total Value</span><span className={`${capL} line-through text-sm`}>&pound;104.96</span></div>
+                <div className="flex items-center justify-between"><span className={`font-bold text-lg ${h2L}`}>You Pay Today</span><span className={`font-bold text-lg ${h2L}`}>&pound;50.99</span></div>
                 <p className={`${capL} text-xs`}>Equivalent to &pound;16.99/mo &middot; 60-Day+ subscribers only</p>
               </div>
-
-              <div className="mt-6">
-                <a href={SHOP} className="btn-primary btn-block">TRY IT NOW <ArrowRight size={16} strokeWidth={2.5} /></a>
-              </div>
-
+              <div className="mt-6"><PrimaryCTA block>TRY IT NOW</PrimaryCTA></div>
               <p className={`${capL} text-xs text-center mt-4`}>90-Day Money Back &middot; Free UK Shipping &middot; Cancel Anytime</p>
             </FadeUp>
           </div>
@@ -794,14 +667,13 @@ export default function Page() {
         <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <img src="/assets/hero-single.png" alt="Genius Mind bottle" width={40} height={38} className="hidden sm:block w-10 h-10 object-contain" />
-            <div className="hidden sm:block">
-              <p className="text-sm font-bold text-white">Genius Mind</p>
-              <p className={`text-xs ${capD}`}>From &pound;16.99/mo &bull; 90-day guarantee</p>
-            </div>
+            <div className="hidden sm:block"><p className="text-sm font-bold text-white">Genius Mind</p><p className={`text-xs ${capD}`}>From &pound;16.99/mo &bull; 90-day guarantee</p></div>
           </div>
           <div className="flex items-center gap-3">
             <div className="hidden md:block text-right"><span className="text-white font-bold">From &pound;16.99/mo</span></div>
-            <a href={SHOP} className="flex items-center gap-2 bg-[#10b981] hover:bg-[#059669] text-white font-bold py-3 px-6 rounded-lg text-sm transition-all whitespace-nowrap hover:scale-[1.02] active:scale-[0.98]">ADD TO CART <ArrowRight size={14} strokeWidth={2.5} /></a>
+            <a href={SHOP} className="flex items-center justify-center gap-3 bg-[#10b981] hover:bg-[#059669] text-white font-bold py-3 px-6 rounded-lg text-sm transition-all whitespace-nowrap hover:scale-[1.02] active:scale-[0.98]">
+              <span>ADD TO CART</span> <ArrowRight size={14} strokeWidth={2.5} />
+            </a>
           </div>
         </div>
       </div>
@@ -842,10 +714,8 @@ const MECHS = [
 const BENEFITS = [
   { icon: <Target size={28} className="text-[var(--color-cyan)]" />, title: "Sustained Focus", desc: "Focus that lasts. Lock in for hours, not bursts.", survey: "23 of 33 long-term customers report this as #1 outcome" },
   { icon: <Eye size={28} className="text-[var(--color-cyan)]" />, title: "Mental Clarity", desc: "Clearer thinking. The fog cuts through.", survey: "22 of 33 long-term customers report this" },
-  { icon: <Zap size={28} className="text-[var(--color-cyan)]" />, title: "Mental Energy", desc: "All-day cognitive stamina. No afternoon collapse. Clean energy, not borrowed.", survey: null },
   { icon: <Rocket size={28} className="text-[var(--color-cyan)]" />, title: "Easier to Take Action", desc: "Close the knowing-doing gap. Start what you\u2019ve been putting off.", survey: "20 of 33 long-term customers report this" },
-  { icon: <TrendingUp size={28} className="text-[var(--color-cyan)]" />, title: "Peak Performance", desc: "Sharper thinking under pressure. The mental edge that holds when the stakes are highest.", survey: null },
-  { icon: <Brain size={28} className="text-[var(--color-cyan)]" />, title: "Memory & Recall", desc: "Faster recall. Word-finding restored. Pattern recognition back online.", survey: null },
+  { icon: <TrendingUp size={28} className="text-[var(--color-cyan)]" />, title: "Sharper Under Pressure", desc: "The mental edge that holds when the stakes are highest.", survey: "17 of 33 long-term customers report this" },
 ];
 const TRUST = [
   { icon: <Factory size={16} />, label: "GMP Certified" },
@@ -853,32 +723,17 @@ const TRUST = [
   { icon: "\uD83C\uDDEC\uD83C\uDDE7", label: "Made in UK" },
   { icon: <Leaf size={16} />, label: "Vegan" },
 ];
-const STACK = [
-  { icon: <Dumbbell size={22} />, label: "Creatine", target: "Muscle", hl: false },
-  { icon: <Heart size={22} />, label: "Omega-3", target: "Heart", hl: false },
-  { icon: <Brain size={22} />, label: "Genius Mind", target: "Brain", hl: true },
-  { icon: <Moon size={22} />, label: "Magnesium", target: "Sleep", hl: false },
-  { icon: <Sun size={22} />, label: "Vitamin D", target: "Immune", hl: false },
-  { icon: <Leaf size={22} />, label: "AG1 / Multi", target: "General", hl: false },
-];
 const SURVEY = [
-  { label: "Sustained Focus", count: 23 },
-  { label: "Mental Clarity", count: 22 },
-  { label: "Easier to Take Action", count: 20 },
-  { label: "Sharper Under Pressure", count: 17 },
+  { label: "Sustained Focus", count: 23, subtitle: "long-term customers report sustained focus" },
+  { label: "Mental Clarity", count: 22, subtitle: "report sharper mental clarity" },
+  { label: "Easier to Take Action", count: 20, subtitle: "report it\u2019s easier to take action" },
+  { label: "Sharper Under Pressure", count: 17, subtitle: "report sharper thinking under pressure" },
 ];
 const VIDS = [
   { label: "Fog Has Lifted", caption: "THE 3PM SLUMP IS COMPLETELY GONE.", img: "/assets/gm-testimonial-1.png" },
   { label: "Sharper Recall", caption: "WORD-FINDING IS BACK TO WHERE IT WAS.", img: "/assets/gm-testimonial-2.png" },
   { label: "6 Months Strong", caption: "MY DECISION QUALITY HAS TRANSFORMED.", img: "/assets/gm-testimonial-3.png" },
   { label: "First Thing That Worked", caption: "TRIED EVERYTHING. THIS IS THE ONE.", img: "/assets/gm-testimonial-4.png" },
-];
-const BULLETS = [
-  "16 clinically studied ingredients with high-ratio botanical extracts",
-  'Zero fillers or "proprietary" blends \u2014 every dose transparent',
-  "Made in UK, GMP certified, and lab tested",
-  "Cognisync Tri-Factor: Blood Flow, Neuron Stimulation, Neuron Strengthening",
-  "90-day 100% money-back guarantee, no questions asked*",
 ];
 const COMP = [
   { label: "Supports Dopamine Pathways", caff: "x", generic: "?" },
@@ -888,11 +743,6 @@ const COMP = [
   { label: "Tolerance Doesn\u2019t Build", caff: "x", generic: "?" },
   { label: "Clinically Dosed Extracts", caff: "x", generic: "x" },
   { label: "16 Synergistic Ingredients", caff: "x", generic: "x" },
-];
-const TL = [
-  { day: "1", title: "Activation", icon: <Zap size={20} />, items: ["Guarana and B vitamins may provide an immediate lift", "L-Tyrosine begins supporting dopamine pathways", "Some users report subtly cleaner clarity from day one", "The cognitive foundation starts building"] },
-  { day: "30", title: "The Hold", icon: <TrendingUp size={20} />, items: ["Some users report the afternoon crash flattening", "Bacopa and Lion\u2019s Mane may reach effective levels", "Focus may extend naturally, less forced", "Some users report others noticing sharper presence"] },
-  { day: "90", title: "Lock-In", icon: <Award size={20} />, items: ["All 16 ingredients may be working synergistically", "Decision stamina may extend across the full day", "For many users, it\u2019s no longer a supplement effect \u2014 it\u2019s the new baseline", "Cognitive infrastructure, fully built"] },
 ];
 const INGS = [
   { name: "L-Tyrosine", dose: "100 mg", desc: "Studied as a dopamine precursor for focus and drive under stress.", img: "gm-ingredient-ltyrosine.png" },
