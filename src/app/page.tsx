@@ -636,49 +636,39 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ §10 FORMULATED BY — LIGHT ═══ */}
-      <section className="sec-light py-20 md:py-28">
-        <div className="max-w-5xl mx-auto px-4">
+      {/* ═══ §10 NUTRITIONIST FORMULATED — LIGHT ═══ */}
+      <section className="sec-light-alt py-20 md:py-28">
+        <div className="max-w-3xl mx-auto px-4">
           <FadeUp>
-            <SN n="10" label="FORMULATED BY" />
-            <h2 className={`text-[clamp(28px,4.5vw,44px)] font-[800] leading-[1.05] mb-12 ${h2L}`}>Built By A Registered Nutritionist With 20+ Years In Supplement Formulation</h2>
+            <SN n="10" label="NUTRITIONIST FORMULATED" />
+            <h2 className={`text-[clamp(28px,4.5vw,44px)] font-[800] leading-[1.05] text-center mb-10 ${h2L}`}>Nutritionist Formulated, Operator Tested.</h2>
           </FadeUp>
 
-          <div className="grid md:grid-cols-[2fr_3fr] gap-10 items-start">
-            {/* Left: headshot + credentials */}
-            <FadeUp>
-              <img src="/assets/shona-wilkinson.png" alt="Shona Wilkinson, Registered Nutritionist" width={600} height={600} loading="lazy" className="w-full rounded-xl object-cover aspect-square mb-5" />
-              <p className={`font-bold text-lg ${h2L}`}>Shona Wilkinson, RNutr</p>
-              <p className={`${bodyL} text-sm mb-3`}>Registered Nutritionist</p>
-              <p className={`label-mono ${capL} text-[10px]`}>BANT &middot; CNHC &middot; Royal Society for Medicine</p>
-            </FadeUp>
-
-            {/* Right: bio + pull-quote + badges */}
-            <FadeUp delay={0.1}>
-              <p className={`${bodyL} mb-4 leading-relaxed`}>Shona Wilkinson is a Registered Nutritionist (RNutr) with over 20 years of experience in supplement formulation. A member of BANT, CNHC, and the Royal Society for Medicine &mdash; she previously led the nutritionist team at Tesco Nutricentre overseeing 74 nutritionists and 35,000 product references.</p>
-              <p className={`${bodyL} mb-6 leading-relaxed`}>Shona specialises in the formulation and development of supplements &mdash; the actual science of what dose of what ingredient does what, and how compounds work together in a stack. She formulated Genius Mind from the ground up around the Cognisync Tri-Factor: blood flow, neuron stimulation, and neuron strengthening.</p>
-
-              {/* Pull-quote */}
-              <div className="border-l-[3px] border-[var(--color-cyan)] pl-5 mb-6">
-                <p className={`${bodyL} italic leading-relaxed`}>&ldquo;Genius Mind isn&apos;t a blend of trendy ingredients. Every dose is at clinically-studied levels. Every extract is high-ratio. Every ingredient is there for a specific reason &mdash; to support the chemistry your brain actually needs.&rdquo;</p>
-                <p className={`${capL} text-xs mt-3`}>&mdash; Shona Wilkinson, Lead Formulator</p>
+          <FadeUp delay={0.1}>
+            <div className="card-light !p-8 md:!p-10">
+              {/* Expert verified pill */}
+              <div className="flex justify-center mb-6">
+                <span className="inline-flex items-center gap-1.5 bg-[var(--color-cyan)] text-white label-mono text-[11px] px-3 py-1.5 rounded-full">
+                  <Check size={12} strokeWidth={3} /> Expert Verified
+                </span>
               </div>
 
-              {/* Credential badges */}
-              <div className="grid grid-cols-3 gap-3">
-                {[
-                  { stat: "20+ Years", label: "Formulation Expertise" },
-                  { stat: "BANT Registered", label: "Nutritionist" },
-                  { stat: "UK Based", label: "GMP Certified" },
-                ].map((b) => (
-                  <div key={b.stat} className="card-light !p-3 text-center">
-                    <p className={`label-mono ${cyanL} text-[10px] font-bold mb-0.5`}>{b.stat}</p>
-                    <p className={`${capL} text-[10px]`}>{b.label}</p>
-                  </div>
-                ))}
+              {/* Headshot + name row */}
+              <div className="flex items-center gap-5 mb-6">
+                <img src="/assets/shona-wilkinson.png" alt="Shona Wilkinson, Registered Nutritionist" width={140} height={140} loading="lazy" className="w-[100px] h-[100px] md:w-[140px] md:h-[140px] rounded-full object-cover border border-[#e5e7eb] shrink-0" />
+                <div>
+                  <p className={`font-bold text-lg ${h2L}`}>Shona Wilkinson, RNutr</p>
+                  <p className={`${bodyL} text-sm`}>Lead Nutritionist at JustFloow</p>
+                  <p className={`label-mono ${capL} text-[10px] mt-1`}>BANT &middot; CNHC &middot; Royal Society for Medicine</p>
+                </div>
               </div>
-            </FadeUp>
-          </div>
+
+              {/* Quote */}
+              <div className="border-l-[3px] border-[var(--color-cyan)] pl-5">
+                <p className={`${bodyL} italic text-base leading-relaxed`}>&ldquo;Genius Mind is built around the science of cognitive chemistry &mdash; a blend of clinically-studied, naturally-sourced ingredients designed to support focus, recall, and steady mental energy. Every dose is at the level the research actually requires.&rdquo;</p>
+              </div>
+            </div>
+          </FadeUp>
         </div>
       </section>
 
