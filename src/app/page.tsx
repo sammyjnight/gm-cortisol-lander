@@ -108,7 +108,7 @@ export default function Page() {
               <a href="#mechanism" className="btn-secondary">See How It Works <ArrowRight size={16} /></a>
             </FadeUp>
             <FadeUp delay={0.15}>
-              <img src="/assets/hero-single.png" alt="Genius Mind product bottle" className="w-full max-h-[480px] object-contain drop-shadow-2xl" />
+              <img src="/assets/gm-hero-brain-comparison.png" alt="Anatomical illustration showing a brain split between high-cortisol and low-cortisol states" width={800} height={1000} loading="eager" className="w-full max-h-[480px] object-contain drop-shadow-2xl" />
             </FadeUp>
           </div>
         </div>
@@ -120,7 +120,7 @@ export default function Page() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <FadeUp>
-              <img src="/assets/hero-lifestyle.png" alt="Operator lifestyle" className="w-full rounded-xl object-cover aspect-[4/5]" />
+              <img src="/assets/gm-symptoms-desk.png" alt="Overhead view of operator at desk showing signs of cognitive fatigue" width={800} height={1000} loading="lazy" className="w-full rounded-xl object-cover aspect-[4/5]" />
             </FadeUp>
             <FadeUp delay={0.1}>
               <SN n="01" label="THE SYMPTOMS" mode="dark" />
@@ -179,7 +179,7 @@ export default function Page() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <FadeUp>
-              <img src="/assets/hero-label.png" alt="Genius Mind label detail" className="w-full rounded-xl object-cover aspect-[4/3]" />
+              <img src="/assets/gm-transition-before-after.png" alt="Before and after comparison showing an operator in depleted and restored cognitive states" width={800} height={600} loading="lazy" className="w-full rounded-xl object-cover aspect-[4/3]" />
             </FadeUp>
             <FadeUp delay={0.1}>
               <p className={`${bodyL} text-lg leading-relaxed mb-4`}>The operators who finally break through the ceiling &mdash; who sustain sharp output instead of watching it erode year on year &mdash; are the ones who get the chemistry right first.</p>
@@ -211,7 +211,7 @@ export default function Page() {
               ))}
             </FadeUp>
             <FadeUp delay={0.1}>
-              <img src="/assets/hero-lifestyle.png" alt="Operator workspace" className="w-full rounded-xl object-cover aspect-square mb-6" />
+              <img src="/assets/gm-enemy-workspace.png" alt="Chaotic workspace showing empty coffee cups, supplement bottles, and energy drinks" width={800} height={800} loading="lazy" className="w-full rounded-xl object-cover aspect-square mb-6" />
               <p className={`${bodyD} text-sm`}>You deserve better than frying your nervous system with stimulants OR wasting money on underdosed single-ingredient pills that don&apos;t address the ROOT of sustained cognitive performance.</p>
             </FadeUp>
           </div>
@@ -241,7 +241,7 @@ export default function Page() {
               <p className={`${bodyL} text-sm mb-4 leading-relaxed`}>Genius Mind is a precision-formulated stack of 16 clinically studied ingredients &mdash; high-ratio botanical extracts, amino acid precursors, and essential cofactors &mdash; designed to support sustained focus throughout the working day.</p>
               <BL mode="light">No prescription. No crashes. No tolerance. Daily use, safely.</BL>
             </div>
-            <img src="/assets/hero-single.png" alt="Genius Mind product bottle" className="max-w-sm mx-auto mt-8 mb-8 drop-shadow-2xl" />
+            <img src="/assets/hero-single.png" alt="Genius Mind product bottle" width={810} height={773} loading="lazy" className="max-w-sm mx-auto mt-8 mb-8 drop-shadow-2xl" />
             <a href={SHOP} className="btn-primary btn-block">TRY IT NOW <ArrowRight size={16} /></a>
           </FadeUp>
         </div>
@@ -279,7 +279,7 @@ export default function Page() {
           </FadeUp>
           <Stagger className="grid grid-cols-2 md:grid-cols-4 gap-5" s={0.04}>
             {INGS.map((ing) => (
-              <motion.div key={ing.name} variants={cF} className="ing-card" style={{ backgroundImage: `url(/ingredients/${ing.img})` }}>
+              <motion.div key={ing.name} variants={cF} className="ing-card" style={{ backgroundImage: `url(/assets/${ing.img})` }}>
                 <div className="ing-inner">
                   <div>
                     <h4 className="text-white font-bold text-xl mb-1">{ing.name}</h4>
@@ -350,9 +350,11 @@ export default function Page() {
           <FadeUp><h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-10 ${h2D}`}>What Operators Are Saying</h2></FadeUp>
           <Stagger className="grid grid-cols-2 md:grid-cols-4 gap-5">
             {VIDS.map((v) => (
-              <motion.div key={v.label} variants={cF} className="skel-dark aspect-[9/16] relative">
-                <div className="absolute top-3 left-3 right-3 z-10"><span className="sticker sticker-cyan !text-[10px] !py-1 !px-3">{v.label}</span></div>
-                <p className="absolute bottom-3 left-3 right-3 text-white text-xs font-semibold z-10">{v.caption}</p>
+              <motion.div key={v.label} variants={cF} className="aspect-[9/16] relative rounded-xl overflow-hidden">
+                <img src={v.img} alt={`Video testimonial: ${v.label}`} width={360} height={640} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 z-[1]" />
+                <div className="absolute top-3 left-3 right-3 z-[2]"><span className="sticker sticker-cyan !text-[10px] !py-1 !px-3">{v.label}</span></div>
+                <p className="absolute bottom-3 left-3 right-3 text-white text-xs font-semibold z-[2]">{v.caption}</p>
               </motion.div>
             ))}
           </Stagger>
@@ -402,7 +404,7 @@ export default function Page() {
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <FadeUp>
               <div className="relative flex items-center justify-center aspect-square bg-[var(--color-light-secondary)] rounded-xl p-8">
-                <img src="/assets/hero-single.png" alt="Genius Mind product" className="max-h-full object-contain drop-shadow-2xl" />
+                <img src="/assets/hero-single.png" alt="Genius Mind product with benefit callouts" width={810} height={773} loading="lazy" className="max-h-full object-contain drop-shadow-2xl" />
                 {/* Benefit callouts */}
                 <span className={`absolute top-6 left-6 label-mono ${cyanL} text-[10px] font-bold`}>Sharpen Focus</span>
                 <span className={`absolute top-6 right-6 label-mono ${cyanL} text-[10px] font-bold`}>Sustain Energy</span>
@@ -543,7 +545,7 @@ export default function Page() {
           </FadeUp>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <FadeUp>
-              <img src="/assets/hero-bundle.png" alt="Genius Mind Starter Kit bundle" className="w-full rounded-xl object-contain aspect-square" />
+              <img src="/assets/hero-bundle.png" alt="Genius Mind Starter Kit bundle with Blueprint Guide and Performance Tracker" width={1024} height={1024} loading="lazy" className="w-full rounded-xl object-contain aspect-square" />
             </FadeUp>
             <FadeUp delay={0.1}>
               <div className="text-left space-y-4">
@@ -651,10 +653,10 @@ const SURVEY = [
   { label: "Sharper Under Pressure", count: 17 },
 ];
 const VIDS = [
-  { label: "Fog Has Lifted", caption: "THE 3PM SLUMP IS COMPLETELY GONE." },
-  { label: "Sharper Recall", caption: "WORD-FINDING IS BACK TO WHERE IT WAS." },
-  { label: "6 Months Strong", caption: "MY DECISION QUALITY HAS TRANSFORMED." },
-  { label: "First Thing That Worked", caption: "TRIED EVERYTHING. THIS IS THE ONE." },
+  { label: "Fog Has Lifted", caption: "THE 3PM SLUMP IS COMPLETELY GONE.", img: "/assets/gm-testimonial-1.png" },
+  { label: "Sharper Recall", caption: "WORD-FINDING IS BACK TO WHERE IT WAS.", img: "/assets/gm-testimonial-2.png" },
+  { label: "6 Months Strong", caption: "MY DECISION QUALITY HAS TRANSFORMED.", img: "/assets/gm-testimonial-3.png" },
+  { label: "First Thing That Worked", caption: "TRIED EVERYTHING. THIS IS THE ONE.", img: "/assets/gm-testimonial-4.png" },
 ];
 const BULLETS = [
   "16 clinically studied ingredients with high-ratio botanical extracts",
@@ -678,22 +680,22 @@ const TL = [
   { day: "90", title: "Lock-In", icon: <Award size={20} />, items: ["All 16 ingredients may be working synergistically", "Decision stamina may extend across the full day", "For many users, it\u2019s no longer a supplement effect \u2014 it\u2019s the new baseline", "Cognitive infrastructure, fully built"] },
 ];
 const INGS = [
-  { name: "L-Tyrosine", dose: "100 mg", desc: "Studied as a dopamine precursor for focus and drive under stress.", img: "l-tyrosine.jpg" },
-  { name: "Ginkgo Biloba", dose: "120 mg (50:1)", desc: "Researched for cerebral blood flow and oxygen delivery.", img: "ginkgo.jpg" },
-  { name: "Bacopa Monnieri", dose: "80 mg (11:1)", desc: "Studied for memory consolidation and recall support.", img: "bacopa.jpg" },
-  { name: "Lion\u2019s Mane", dose: "80 mg (4:1)", desc: "Studied for its role in stimulating nerve growth factor.", img: "lions-mane.jpg" },
-  { name: "Phosphatidylserine", dose: "35 mg", desc: "Studied for brain cell membrane integrity.", img: "phosphatidylserine.jpg" },
-  { name: "B12", dose: "500\u03BCg", desc: "Studied for neurotransmitter synthesis.", img: "b12.jpg" },
-  { name: "Panax Ginseng", dose: "100 mg (20:1)", desc: "Researched for focus, endurance, and stress response.", img: "ginseng.jpg" },
-  { name: "L-Choline", dose: "100 mg", desc: "Studied as an acetylcholine precursor for memory.", img: "choline.jpg" },
-  { name: "Guarana Seed", dose: "90 mg", desc: "Slow-release caffeine \u2014 researched for sustained energy.", img: "guarana.jpg" },
-  { name: "Sage Leaf", dose: "75 mg (4:1)", desc: "Studied for memory retention and cognitive support.", img: "sage.jpg" },
-  { name: "Rosemary", dose: "20 mg (5:1)", desc: "Researched for neuroprotective properties.", img: "rosemary.jpg" },
-  { name: "Vitamin B6", dose: "10 mg", desc: "Studied as a cofactor in neurotransmitter synthesis.", img: "b6.jpg" },
-  { name: "Zinc", dose: "10 mg", desc: "Studied for cognitive function and synaptic signalling.", img: "zinc.jpg" },
-  { name: "Niacin (B3)", dose: "32 mg", desc: "Studied for NAD+ production and cellular brain energy.", img: "niacin.jpg" },
-  { name: "Thiamine (B1)", dose: "2.2 mg", desc: "Studied for neural communication and energy metabolism.", img: "fenugreek.jpg" },
-  { name: "Pantothenic Acid (B5)", dose: "12 mg", desc: "Studied for neurotransmitter synthesis and stress resilience.", img: "taurine.jpg" },
+  { name: "L-Tyrosine", dose: "100 mg", desc: "Studied as a dopamine precursor for focus and drive under stress.", img: "gm-ingredient-ltyrosine.png" },
+  { name: "Ginkgo Biloba", dose: "120 mg (50:1)", desc: "Researched for cerebral blood flow and oxygen delivery.", img: "gm-ingredient-ginkgo.png" },
+  { name: "Bacopa Monnieri", dose: "80 mg (11:1)", desc: "Studied for memory consolidation and recall support.", img: "gm-ingredient-bacopa.png" },
+  { name: "Lion\u2019s Mane", dose: "80 mg (4:1)", desc: "Studied for its role in stimulating nerve growth factor.", img: "gm-ingredient-lionsmane.png" },
+  { name: "Phosphatidylserine", dose: "35 mg", desc: "Studied for brain cell membrane integrity.", img: "gm-ingredient-phosphatidylserine.png" },
+  { name: "B12", dose: "500\u03BCg", desc: "Studied for neurotransmitter synthesis.", img: "gm-ingredient-b12.png" },
+  { name: "Panax Ginseng", dose: "100 mg (20:1)", desc: "Researched for focus, endurance, and stress response.", img: "gm-ingredient-ginseng.png" },
+  { name: "L-Choline", dose: "100 mg", desc: "Studied as an acetylcholine precursor for memory.", img: "gm-ingredient-lcholine.png" },
+  { name: "Guarana Seed", dose: "90 mg", desc: "Slow-release caffeine \u2014 researched for sustained energy.", img: "gm-ingredient-guarana.png" },
+  { name: "Sage Leaf", dose: "75 mg (4:1)", desc: "Studied for memory retention and cognitive support.", img: "gm-ingredient-sage.png" },
+  { name: "Rosemary", dose: "20 mg (5:1)", desc: "Researched for neuroprotective properties.", img: "gm-ingredient-rosemary.png" },
+  { name: "Vitamin B6", dose: "10 mg", desc: "Studied as a cofactor in neurotransmitter synthesis.", img: "gm-ingredient-b6.png" },
+  { name: "Zinc", dose: "10 mg", desc: "Studied for cognitive function and synaptic signalling.", img: "gm-ingredient-zinc.png" },
+  { name: "Niacin (B3)", dose: "32 mg", desc: "Studied for NAD+ production and cellular brain energy.", img: "gm-ingredients-niacin.png" },
+  { name: "Thiamine (B1)", dose: "2.2 mg", desc: "Studied for neural communication and energy metabolism.", img: "gm-ingredients-thiamine.png" },
+  { name: "Pantothenic Acid (B5)", dose: "12 mg", desc: "Studied for neurotransmitter synthesis and stress resilience.", img: "gm-ingredients-pantothenic.png" },
 ];
 const RESEARCH = [
   { ingredient: "Bacopa Monnieri", finding: "Measurable memory improvements after 12 weeks.", citation: "Stough et al., Psychopharmacology, 2001; Calabrese et al., J. Alt. Comp. Med., 2008.", relevance: "Genius Mind contains Bacopa 11:1 at 80mg \u2014 studied for memory consolidation." },
