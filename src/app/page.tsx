@@ -204,9 +204,8 @@ function TabbedTimeline() {
         ))}
       </div>
 
-      {/* Two-column content */}
-      <div className="grid lg:grid-cols-[1.5fr_1fr] gap-8">
-        {/* Left: stage content */}
+      {/* Stage content + icon banner side by side */}
+      <div className="grid lg:grid-cols-[1.5fr_1fr] gap-8 mb-8">
         <div>
           <p className="text-[var(--color-cyan)] font-[800] text-[100px] leading-none opacity-10 select-none mb-[-40px]">{s.num}</p>
           <h3 className="text-white font-bold text-2xl mb-3 relative">{s.title}</h3>
@@ -220,69 +219,74 @@ function TabbedTimeline() {
             ))}
           </ul>
         </div>
-
-        {/* Right: icon banner + graph */}
-        <div className="flex flex-col gap-4">
-          {/* Icon banner */}
-          <div className="rounded-xl h-28 flex items-center justify-center" style={{ background: "linear-gradient(135deg, var(--color-cyan) 0%, #065f73 100%)" }}>
+        <div className="hidden lg:flex items-start">
+          <div className="rounded-xl w-full h-40 flex items-center justify-center" style={{ background: "linear-gradient(135deg, var(--color-cyan) 0%, #065f73 100%)" }}>
             <span className="text-white opacity-90">{s.icon}</span>
           </div>
-
-          {/* Progressive graph */}
-          <div className="bg-[var(--color-dark-tertiary)] rounded-xl p-3 md:p-5">
-            {/* Mobile Y-axis label (horizontal, above graph) */}
-            <p className="md:hidden label-mono text-[var(--color-dink-tertiary)] text-[9px] mb-2">Cognitive Capacity</p>
-
-            {/* Desktop graph — full 12-week axis, ~280px tall */}
-            <svg viewBox="0 0 600 220" className="w-full hidden md:block" style={{ minHeight: 260 }} preserveAspectRatio="xMidYMid meet">
-              {[30, 60, 90, 120, 150, 180].map((y) => (<line key={y} x1="25" y1={y} x2="585" y2={y} stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />))}
-              <text x="8" y="105" fill="var(--color-dink-tertiary)" fontSize="7" fontFamily="var(--font-mono)" textAnchor="middle" transform="rotate(-90,8,105)" style={{ textTransform: "uppercase", letterSpacing: "0.12em" }}>Cognitive Capacity</text>
-              <defs>
-                <linearGradient id="tlFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="var(--color-cyan)" stopOpacity="0.2" />
-                  <stop offset="100%" stopColor="var(--color-cyan)" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              <g style={{ clipPath: `inset(0 ${100 - s.clipPct}% 0 0)`, transition: "clip-path 0.3s ease-out" }}>
-                <path d={`${TL_CURVE} L 570 195 L 30 195 Z`} fill="url(#tlFill)" />
-                <path d={TL_CURVE} fill="none" stroke="var(--color-cyan)" strokeWidth="3" strokeLinecap="round" />
-              </g>
-              {TL_DOTS.map((d, i) => {
-                const dotPct = [8, 25, 50, 80, 100][i];
-                const show = s.clipPct >= dotPct;
-                return (<g key={i} style={{ opacity: show ? 1 : 0, transition: "opacity 0.3s ease-out" }}><circle cx={d.cx} cy={d.cy} r="7" fill="var(--color-cyan)" /><circle cx={d.cx} cy={d.cy} r="3" fill="white" /></g>);
-              })}
-              {["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"].map((w, i) => (
-                <text key={w} x={30 + i * 50} y="210" fill="var(--color-dink-tertiary)" fontSize="8" textAnchor="middle" fontFamily="var(--font-mono)">{w}</text>
-              ))}
-              <text x="300" y="210" fill="var(--color-dink-tertiary)" fontSize="8" textAnchor="middle" fontFamily="var(--font-mono)" dy="10">Weeks</text>
-            </svg>
-
-            {/* Mobile graph — compact, 3 anchor labels, no horizontal scroll */}
-            <svg viewBox="0 0 300 120" className="w-full md:hidden" preserveAspectRatio="xMidYMid meet">
-              {[20, 40, 60, 80, 100].map((y) => (<line key={y} x1="10" y1={y} x2="290" y2={y} stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />))}
-              <defs>
-                <linearGradient id="tlFillM" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="var(--color-cyan)" stopOpacity="0.2" />
-                  <stop offset="100%" stopColor="var(--color-cyan)" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              <g style={{ clipPath: `inset(0 ${100 - s.clipPct}% 0 0)`, transition: "clip-path 0.3s ease-out" }}>
-                <path d="M 15 95 C 40 90, 60 80, 80 70 S 130 50, 170 38 S 230 18, 285 12 L 285 108 L 15 108 Z" fill="url(#tlFillM)" />
-                <path d="M 15 95 C 40 90, 60 80, 80 70 S 130 50, 170 38 S 230 18, 285 12" fill="none" stroke="var(--color-cyan)" strokeWidth="2.5" strokeLinecap="round" />
-              </g>
-              {[{ cx: 15, cy: 95 }, { cx: 80, cy: 70 }, { cx: 170, cy: 38 }, { cx: 240, cy: 20 }, { cx: 285, cy: 12 }].map((d, i) => {
-                const dotPct = [8, 25, 50, 80, 100][i];
-                const show = s.clipPct >= dotPct;
-                return (<g key={i} style={{ opacity: show ? 1 : 0, transition: "opacity 0.3s ease-out" }}><circle cx={d.cx} cy={d.cy} r="4" fill="var(--color-cyan)" /><circle cx={d.cx} cy={d.cy} r="1.5" fill="white" /></g>);
-              })}
-              <line x1="10" y1="108" x2="290" y2="108" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
-              <text x="15" y="118" fill="var(--color-dink-tertiary)" fontSize="8" fontFamily="var(--font-mono)" textAnchor="start">Week 1</text>
-              <text x="150" y="118" fill="var(--color-dink-tertiary)" fontSize="8" fontFamily="var(--font-mono)" textAnchor="middle">Week 6</text>
-              <text x="285" y="118" fill="var(--color-dink-tertiary)" fontSize="8" fontFamily="var(--font-mono)" textAnchor="end">Week 12</text>
-            </svg>
-          </div>
         </div>
+      </div>
+
+      {/* Graph — FULL WIDTH below content */}
+      <div className="bg-[var(--color-dark-tertiary)] rounded-xl p-4 md:p-6">
+        <p className="md:hidden label-mono text-[var(--color-dink-tertiary)] text-[9px] mb-2">Cognitive Capacity</p>
+
+        {/* Desktop graph — full width, readable */}
+        <svg viewBox="0 0 800 200" className="w-full hidden md:block" preserveAspectRatio="xMidYMid meet">
+          {[25, 55, 85, 115, 145, 175].map((y) => (<line key={y} x1="35" y1={y} x2="780" y2={y} stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />))}
+          <text x="12" y="100" fill="var(--color-dink-tertiary)" fontSize="8" fontFamily="var(--font-mono)" textAnchor="middle" transform="rotate(-90,12,100)" style={{ textTransform: "uppercase", letterSpacing: "0.12em" }}>Cognitive Capacity</text>
+          <defs>
+            <linearGradient id="tlFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="var(--color-cyan)" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="var(--color-cyan)" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          {(() => {
+            const curve = "M 40 165 C 80 158, 120 145, 180 128 S 300 90, 420 55 S 600 20, 760 15";
+            const dots = [{ cx: 40, cy: 165 }, { cx: 180, cy: 128 }, { cx: 350, cy: 78 }, { cx: 560, cy: 32 }, { cx: 760, cy: 15 }];
+            return (
+              <>
+                <g style={{ clipPath: `inset(0 ${100 - s.clipPct}% 0 0)`, transition: "clip-path 0.3s ease-out" }}>
+                  <path d={`${curve} L 760 180 L 40 180 Z`} fill="url(#tlFill)" />
+                  <path d={curve} fill="none" stroke="var(--color-cyan)" strokeWidth="3" strokeLinecap="round" />
+                </g>
+                {dots.map((d, i) => {
+                  const dotPct = [8, 25, 50, 80, 100][i];
+                  const show = s.clipPct >= dotPct;
+                  return (<g key={i} style={{ opacity: show ? 1 : 0, transition: "opacity 0.3s ease-out" }}><circle cx={d.cx} cy={d.cy} r="7" fill="var(--color-cyan)" /><circle cx={d.cx} cy={d.cy} r="3" fill="white" /></g>);
+                })}
+              </>
+            );
+          })()}
+          <line x1="35" y1="180" x2="780" y2="180" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />
+          {["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"].map((w, i) => (
+            <text key={w} x={40 + i * 65.5} y="195" fill="var(--color-dink-tertiary)" fontSize="9" textAnchor="middle" fontFamily="var(--font-mono)">{w}</text>
+          ))}
+          <text x="410" y="195" fill="var(--color-dink-tertiary)" fontSize="9" textAnchor="middle" fontFamily="var(--font-mono)" dy="12">Weeks</text>
+        </svg>
+
+        {/* Mobile graph — compact */}
+        <svg viewBox="0 0 300 120" className="w-full md:hidden" preserveAspectRatio="xMidYMid meet">
+          {[20, 40, 60, 80, 100].map((y) => (<line key={y} x1="10" y1={y} x2="290" y2={y} stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />))}
+          <defs>
+            <linearGradient id="tlFillM" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="var(--color-cyan)" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="var(--color-cyan)" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          <g style={{ clipPath: `inset(0 ${100 - s.clipPct}% 0 0)`, transition: "clip-path 0.3s ease-out" }}>
+            <path d="M 15 95 C 40 90, 60 80, 80 70 S 130 50, 170 38 S 230 18, 285 12 L 285 108 L 15 108 Z" fill="url(#tlFillM)" />
+            <path d="M 15 95 C 40 90, 60 80, 80 70 S 130 50, 170 38 S 230 18, 285 12" fill="none" stroke="var(--color-cyan)" strokeWidth="2.5" strokeLinecap="round" />
+          </g>
+          {[{ cx: 15, cy: 95 }, { cx: 80, cy: 70 }, { cx: 170, cy: 38 }, { cx: 240, cy: 20 }, { cx: 285, cy: 12 }].map((d, i) => {
+            const dotPct = [8, 25, 50, 80, 100][i];
+            const show = s.clipPct >= dotPct;
+            return (<g key={i} style={{ opacity: show ? 1 : 0, transition: "opacity 0.3s ease-out" }}><circle cx={d.cx} cy={d.cy} r="4" fill="var(--color-cyan)" /><circle cx={d.cx} cy={d.cy} r="1.5" fill="white" /></g>);
+          })}
+          <line x1="10" y1="108" x2="290" y2="108" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
+          <text x="15" y="118" fill="var(--color-dink-tertiary)" fontSize="8" fontFamily="var(--font-mono)" textAnchor="start">Week 1</text>
+          <text x="150" y="118" fill="var(--color-dink-tertiary)" fontSize="8" fontFamily="var(--font-mono)" textAnchor="middle">Week 6</text>
+          <text x="285" y="118" fill="var(--color-dink-tertiary)" fontSize="8" fontFamily="var(--font-mono)" textAnchor="end">Week 12</text>
+        </svg>
       </div>
     </div>
   );
