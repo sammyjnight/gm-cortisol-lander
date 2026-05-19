@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
+import useEmblaCarousel from "embla-carousel-react";
 import {
   AlertTriangle, X, Zap, Lightbulb, Shield, Target, Rocket,
-  TrendingUp, Brain, ChevronDown, Check, HelpCircle,
+  TrendingUp, Brain, ChevronDown, ChevronLeft, ChevronRight, Check, HelpCircle,
   Dumbbell, Heart, Moon, Sun, Leaf, BookOpen,
   Award, ArrowRight, Eye, Factory, FlaskConical,
-  Package, ShieldCheck, Truck,
+  Package, ShieldCheck, Truck, Star,
 } from "lucide-react";
 
 const SHOP = "https://justfloow.com/products/genius-mind";
@@ -67,6 +68,174 @@ const capD = "text-[var(--color-dink-tertiary)]";
 const cyanD = "text-[var(--color-cyan-bright)]";
 const coralD = "text-[var(--color-coral)]";
 const coralL = "text-[var(--color-coral-deep)]";
+
+/* ═══════ PRODUCT CAROUSEL ═══════ */
+const CAROUSEL_SLIDES = [
+  { src: "/assets/carousel_1.webp", alt: "Genius Mind product hero shot" },
+  { src: "/assets/carousel_2.webp", alt: "Genius Mind ingredients and dosage detail" },
+  { src: "/assets/carousel_3.webp", alt: "Genius Mind benefits overview" },
+  { src: "/assets/carousel_6.webp", alt: "Genius Mind customer results" },
+  { src: "/assets/carousel_4.webp", alt: "Genius Mind supplement facts" },
+  { src: "/assets/carousel_5.webp", alt: "Genius Mind usage instructions" },
+];
+
+function ProductCarousel() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    emblaApi.on("select", onSelect);
+    onSelect();
+    // auto-advance
+    const interval = setInterval(() => {
+      if (emblaApi.canScrollNext()) emblaApi.scrollNext();
+      else emblaApi.scrollTo(0);
+    }, 5000);
+    // pause on hover
+    const root = emblaApi.rootNode();
+    const pause = () => clearInterval(interval);
+    root.addEventListener("mouseenter", pause);
+    root.addEventListener("focusin", pause);
+    return () => {
+      clearInterval(interval);
+      root.removeEventListener("mouseenter", pause);
+      root.removeEventListener("focusin", pause);
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi]);
+
+  return (
+    <div className="relative">
+      <div className="overflow-hidden rounded-xl" ref={emblaRef}>
+        <div className="flex">
+          {CAROUSEL_SLIDES.map((slide, i) => (
+            <div key={slide.src} className="flex-[0_0_100%] min-w-0">
+              <img
+                src={slide.src}
+                alt={slide.alt}
+                width={800}
+                height={800}
+                loading={i === 0 ? "eager" : "lazy"}
+                className="w-full aspect-square object-cover"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Arrows */}
+      <button onClick={scrollPrev} aria-label="Previous slide" className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors z-10">
+        <ChevronLeft size={18} className="text-[var(--color-ink-secondary)]" />
+      </button>
+      <button onClick={scrollNext} aria-label="Next slide" className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors z-10">
+        <ChevronRight size={18} className="text-[var(--color-ink-secondary)]" />
+      </button>
+      {/* Dots */}
+      <div className="flex justify-center gap-2 mt-4">
+        {CAROUSEL_SLIDES.map((_, i) => (
+          <button
+            key={i}
+            aria-label={`Go to slide ${i + 1}`}
+            onClick={() => emblaApi?.scrollTo(i)}
+            className={`w-2.5 h-2.5 rounded-full transition-all ${
+              i === selectedIndex ? "bg-[var(--color-cyan)] scale-110" : "bg-[var(--color-ink-tertiary)]/40 hover:bg-[var(--color-ink-tertiary)]"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ═══════ PRICING CARD ═══════ */
+function PricingCard({
+  highlighted = false,
+  header,
+  price,
+  period,
+  strikethrough,
+  subtext,
+  savePill,
+  benefits,
+  cta,
+}: {
+  highlighted?: boolean;
+  header: string;
+  price: string;
+  period: string;
+  strikethrough: string;
+  subtext: string;
+  savePill: string;
+  benefits: string[];
+  cta: "primary" | "secondary";
+}) {
+  const [kitOpen, setKitOpen] = useState(false);
+  return (
+    <div className={`card-light relative mb-4 ${highlighted ? "card-light-featured !border-[var(--color-cyan)] ring-1 ring-[var(--color-cyan)]/20" : ""}`}>
+      {/* Header row */}
+      <div className="flex items-start justify-between mb-3">
+        <h3 className={`font-bold text-lg ${h2L}`}>{header}</h3>
+        <span className="sticker sticker-cyan !text-[10px] !py-1">{savePill}</span>
+      </div>
+      {/* Price */}
+      <div className="flex items-baseline gap-2 mb-1">
+        <span className={`text-3xl font-[800] ${h2L}`}>&pound;{price}</span>
+        <span className={`${capL} text-sm`}>{period}</span>
+        <span className={`${capL} line-through text-sm ml-2`}>{strikethrough}</span>
+      </div>
+      <p className={`${capL} text-xs mb-4`}>{subtext}</p>
+
+      {/* Benefits (only for highlighted) */}
+      {benefits.length > 0 && (
+        <ul className="space-y-2 mb-4">
+          {benefits.map((b) => (
+            <li key={b} className={`flex items-start gap-2 text-sm ${bodyL}`}>
+              <Check size={16} className="text-[var(--color-cyan)] mt-0.5 shrink-0" />
+              {b}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* Welcome Kit expandable (only for highlighted) */}
+      {highlighted && (
+        <div className="mb-4">
+          <button
+            onClick={() => setKitOpen(!kitOpen)}
+            className="w-full text-left bg-[rgba(8,145,178,0.06)] rounded-lg px-4 py-3 flex items-center justify-between"
+          >
+            <span className={`label-mono text-[11px] ${cyanL}`}>Welcome Kit &mdash; Arrives With First Order</span>
+            <motion.span animate={{ rotate: kitOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
+              <ChevronDown size={16} className={cyanL} />
+            </motion.span>
+          </button>
+          <div className={`overflow-hidden transition-all duration-300 ${kitOpen ? "max-h-40 mt-2" : "max-h-0"}`}>
+            <div className="px-4 space-y-1.5">
+              <p className={`text-sm ${bodyL}`}><Check size={14} className="text-[var(--color-cyan)] inline mr-1.5" />Brain Performance Digital Guide <span className={capL}>(&pound;10 value)</span> &mdash; <span className={cyanL}>FREE</span></p>
+              <p className={`text-sm ${bodyL}`}><Check size={14} className="text-[var(--color-cyan)] inline mr-1.5" />Magnesium 3-in-1 <span className={capL}>(&pound;15 value)</span> &mdash; <span className={cyanL}>FREE</span></p>
+              <p className={`${capL} text-[10px] mt-2`}>*60-Day+ Subscribers Only</p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* CTA */}
+      {cta === "primary" ? (
+        <a href={SHOP} className="block w-full text-center bg-[var(--color-coral)] hover:bg-[var(--color-coral-deep)] text-white font-bold py-3.5 px-6 rounded-lg transition-all hover:scale-[1.02] active:scale-[0.98]">
+          ADD TO CART <ArrowRight size={16} className="inline ml-1 -mt-0.5" />
+        </a>
+      ) : (
+        <a href={SHOP} className="btn-secondary btn-block !py-3">
+          Add to Cart <ArrowRight size={16} />
+        </a>
+      )}
+    </div>
+  );
+}
 
 /* ═══════════════════════════════════════════════════════════════
    PAGE
@@ -397,47 +566,69 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ §14 PRODUCT PURCHASE — LIGHT ═══ */}
+      {/* ═══ §10 THE OFFER — LIGHT (carousel + real pricing) ═══ */}
       <section className="sec-light-alt py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4">
           <FadeUp><SN n="10" label="THE OFFER" /></FadeUp>
           <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Left: Carousel */}
             <FadeUp>
-              <div className="relative flex items-center justify-center aspect-square bg-[var(--color-light-secondary)] rounded-xl p-8">
-                <img src="/assets/hero-single.png" alt="Genius Mind product with benefit callouts" width={810} height={773} loading="lazy" className="max-h-full object-contain drop-shadow-2xl" />
-                {/* Benefit callouts */}
-                <span className={`absolute top-6 left-6 label-mono ${cyanL} text-[10px] font-bold`}>Sharpen Focus</span>
-                <span className={`absolute top-6 right-6 label-mono ${cyanL} text-[10px] font-bold`}>Sustain Energy</span>
-                <span className={`absolute bottom-6 left-6 label-mono ${cyanL} text-[10px] font-bold`}>Support Memory</span>
-                <span className={`absolute bottom-6 right-6 label-mono ${cyanL} text-[10px] font-bold`}>Extend Output</span>
-              </div>
+              <ProductCarousel />
             </FadeUp>
+
+            {/* Right: Pricing tiers */}
             <FadeUp delay={0.1}>
               <h2 className={`text-[clamp(28px,4vw,44px)] font-[800] leading-[1.05] mb-4 ${h2L}`}>Cognitive Infrastructure for Operators</h2>
-              <p className={`${h2L} font-semibold mb-4`}>Genius Mind is a complete cognitive stack engineered around the Cognisync Tri-Factor &mdash; 16 clinically studied ingredients.*</p>
-              <ul className="space-y-2.5 mb-6">
-                {BULLETS.map((b) => <li key={b} className="flex items-start gap-3 text-sm"><Badge type="check" /><span className={`${bodyL} pt-1.5`}>{b}</span></li>)}
-              </ul>
-              <div className="flex items-center gap-3 mb-4">
-                <span className={`text-4xl font-[800] ${h2L}`}>&pound;24.99</span>
-                <span className={`${capL} line-through text-lg`}>&pound;34.99</span>
-                <span className="sticker sticker-cyan !text-[11px] !py-1.5">Save 28%</span>
+              <p className={`${bodyL} mb-6`}>Genius Mind is a complete cognitive stack engineered around the Cognisync Tri-Factor &mdash; 16 clinically studied ingredients designed to support sustained focus throughout the working day.*</p>
+
+              {/* OPTION 1 — 90-Day (highlighted) */}
+              <PricingCard
+                highlighted
+                header="90-Day Supply"
+                price="16.99"
+                period="/mo"
+                strikethrough="£74.97"
+                subtext="Billed £50.99 every 3 months · £0.57 per serving"
+                savePill="Save 41%"
+                benefits={[
+                  "90 servings, only £0.57 per day",
+                  "NO CONTRACT — pause, skip & cancel anytime",
+                  "Fast & free shipping",
+                  "90-day money back guarantee",
+                ]}
+                cta="primary"
+              />
+
+              {/* OPTION 2 — 30-Day */}
+              <PricingCard
+                header="30-Day Supply"
+                price="21.24"
+                period="/mo"
+                strikethrough="£24.99"
+                subtext="Billed £21.24 every 4 weeks · £0.71 per serving"
+                savePill="Save 29%"
+                benefits={[]}
+                cta="secondary"
+              />
+
+              {/* OPTION 3 — One-time */}
+              <div className="text-center mt-3 mb-8">
+                <a href={SHOP} className={`${bodyL} underline text-sm hover:${cyanL} transition-colors`}>One Time Purchase &pound;24.99</a>
               </div>
-              <a href={SHOP} className="btn-primary btn-block mb-6">TRY IT NOW <ArrowRight size={16} /></a>
-              <div className="flex justify-center gap-6 text-center text-xs mb-6">
-                {[[Package, "3-Month Supply", "Save 43%"], [ShieldCheck, "Risk-Free 90 Days", "100% Money Back"], [Truck, "Free UK Shipping", "Same-Day Dispatch"]].map(([Icon, l1, l2]) => (
-                  <div key={l1 as string} className="flex flex-col items-center gap-1">
-                    <Icon size={18} className={bodyL} />
-                    <p className={capL}>{l1 as string}<br />{l2 as string}</p>
+
+              {/* Trust row */}
+              <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[11px]">
+                {[
+                  [ShieldCheck, "90-day money back guarantee"],
+                  [Factory, "GMP certified"],
+                  [FlaskConical, "Made in UK"],
+                  [Star, "1000+ five-star reviews"],
+                ].map(([Icon, label]) => (
+                  <div key={label as string} className={`flex items-center gap-1.5 ${capL}`}>
+                    <Icon size={14} className={capL} />
+                    <span>{label as string}</span>
                   </div>
                 ))}
-              </div>
-              <div className="card-light card-light-featured !p-5">
-                <div className="mb-2"><span className="sticker sticker-cyan !text-[10px] !py-1">Best Value: 3-Month Supply</span></div>
-                <div className="flex items-center justify-between">
-                  <div><p className={`font-bold ${h2L}`}>3 Bottles (90-Day Supply)</p><p className={`${capL} text-xs`}>Just &pound;0.67/day</p></div>
-                  <div className="text-right"><p className={`${capL} line-through text-sm`}>&pound;74.97</p><p className={`${cyanL} font-bold text-xl`}>&pound;59.99</p></div>
-                </div>
               </div>
             </FadeUp>
           </div>
@@ -583,10 +774,16 @@ export default function Page() {
       {/* ═══ STICKY CTA — DARK ═══ */}
       <div className={`sticky-bar fixed bottom-0 left-0 right-0 bg-[var(--color-dark-primary)]/95 backdrop-blur-md border-t border-[rgba(255,255,255,0.08)] py-3 px-4 z-50 ${sticky ? "visible" : ""}`}>
         <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
-          <div className="hidden sm:block"><p className="text-sm font-bold text-white">Genius Mind Cognitive Stack</p><p className={`text-xs ${capD}`}>16 ingredients &bull; 90-day guarantee &bull; Save up to 43%</p></div>
           <div className="flex items-center gap-3">
-            <div className="hidden md:block text-right"><span className="text-white font-bold">&pound;24.99</span><span className={`${capD} line-through text-xs ml-1`}>&pound;34.99</span></div>
-            <a href={SHOP} className="btn-primary !py-3 !px-6 !text-sm whitespace-nowrap">TRY IT NOW &rarr;</a>
+            <img src="/assets/hero-single.png" alt="Genius Mind bottle" width={40} height={38} className="hidden sm:block w-10 h-10 object-contain" />
+            <div className="hidden sm:block">
+              <p className="text-sm font-bold text-white">Genius Mind</p>
+              <p className={`text-xs ${capD}`}>From &pound;16.99/mo &bull; 90-day guarantee</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="hidden md:block text-right"><span className="text-white font-bold">From &pound;16.99/mo</span></div>
+            <a href={SHOP} className="bg-[var(--color-coral)] hover:bg-[var(--color-coral-deep)] text-white font-bold py-3 px-6 rounded-lg text-sm transition-all whitespace-nowrap hover:scale-[1.02] active:scale-[0.98]">ADD TO CART &rarr;</a>
           </div>
         </div>
       </div>
