@@ -391,70 +391,70 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ §03 WHY EVERYTHING FAILED — DARK ═══ */}
-      <section className="sec-dark py-20 md:py-28">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+      {/* ═══ §03 WHY EVERYTHING FAILED — WHITE ═══ */}
+      <section className="bg-white" style={{ padding: "80px 60px" }}>
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center lg:max-h-[700px]">
             <FadeUp>
-              <div className="text-center md:text-left"><SN n="03" label="THE CAUSE" mode="dark" /></div>
-              <h2 className="text-[clamp(28px,4.5vw,48px)] font-[800] leading-[1.05] mb-6 text-white text-center md:text-left">Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work</h2>
-              <p className="text-white font-semibold text-lg mb-4">You didn&apos;t fail. The strategy failed you.</p>
-              <p className="text-white/80 mb-6 leading-relaxed">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
-              <p className="text-white font-bold text-lg mb-4">The cause is cortisol.</p>
-              <p className="text-white/70 mb-6">And the reason is simple:</p>
-              <p className="label-mono text-[var(--color-coral)] text-sm tracking-[0.08em] font-[800] uppercase">Your Brain Was Built for a World That No Longer Exists.</p>
+              <p className="font-mono text-[14px] tracking-[0.1em] uppercase text-[#00A6D2] mb-4 text-center md:text-left">03 &mdash; The Cause</p>
+              <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-[800] leading-[1.05] mb-6 text-black text-center md:text-left">Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work</h2>
+              <p className="text-black font-bold text-lg md:text-xl mb-6">You didn&apos;t fail. The strategy failed you.</p>
+              <p className="text-[#333] text-base leading-[1.5] mb-8">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
+              <p className="text-black font-bold text-lg mb-6">The cause is cortisol.</p>
+              <p className="text-[#666] mb-5">And the reason is simple:</p>
+              <p className="font-mono text-[clamp(1.5rem,3vw,2.5rem)] font-[900] leading-[1.1] tracking-tight text-[#00A6D2] uppercase">Your Brain Was Built for a World That No Longer Exists.</p>
             </FadeUp>
-            <FadeUp delay={0.15}>
-              {/* ASSET TODO: Replace with section-3-illustration-collapsed-operator.png (1000x1000, B&W line art of operator collapsed at desk) */}
-              <Skel label="section-3-illustration-collapsed-operator.png (1000x1000, B&W line art)" mode="dark" className="aspect-square" />
+            <FadeUp delay={0.15} className="flex justify-center">
+              <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={500} height={500} loading="lazy" className="max-w-[500px] w-full h-auto" />
             </FadeUp>
           </div>
         </div>
       </section>
 
-      {/* ═══ §04 STRESS WAS SHORT — DARK ═══ */}
-      <section className="sec-dark py-20 md:py-28">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid lg:grid-cols-[0.4fr_1fr] gap-12 items-start mb-12">
-            <FadeUp>
-              {/* ASSET TODO: Replace with section-4-illustration-couch-operator.png (600x600, B&W line art, same style as §3) */}
-              <Skel label="section-4-illustration-couch-operator.png (600x600, B&W line art)" mode="dark" className="aspect-square" />
+      {/* ═══ §04 STRESS WAS SHORT — WHITE (flush with §03) ═══ */}
+      <section className="bg-white" style={{ padding: "60px 60px 80px" }}>
+        <div className="max-w-7xl mx-auto px-4">
+          {/* Top: illustration + body */}
+          <div className="grid lg:grid-cols-[0.3fr_0.7fr] gap-10 items-center mb-10">
+            <FadeUp className="flex justify-center">
+              <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={280} height={280} loading="lazy" className="max-w-[280px] w-full h-auto" />
             </FadeUp>
             <FadeUp delay={0.1}>
-              <p className="text-white/90 mb-4 leading-relaxed">For most of human history, stress was short.</p>
-              <p className="text-white/90 mb-4 leading-relaxed">A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
-              <p className="text-white font-bold mb-4">But now the threat never passes.</p>
-              <p className="text-white/80 mb-4 leading-relaxed">Investor updates. Cash-flow projections. The Slack ping at 10pm. The decision you&apos;ve been putting off. Another notification. Then another.</p>
-              <p className="text-white font-bold">None of it is life or death. But your nervous system can&apos;t tell the difference...</p>
+              <p className="text-black text-[17px] leading-[1.5] mb-4">For most of human history, stress was short.</p>
+              <p className="text-black text-[17px] leading-[1.5] mb-4">A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
+              <p className="text-black font-bold text-[18px] mb-4">But now the threat never passes.</p>
+              <p className="text-black text-[17px] leading-[1.5] mb-4">Investor updates. Cash-flow projections. The Slack ping at 10pm. The decision you&apos;ve been putting off. Another notification. Then another.</p>
+              <p className="text-black font-bold text-[17px]">None of it is life or death. But your nervous system can&apos;t tell the difference...</p>
             </FadeUp>
           </div>
 
+          {/* Bridge */}
           <FadeUp>
-            <p className="text-white/80 mb-8 text-center">And the harder you push your brain without addressing cortisol first, the more you&apos;re working against yourself:</p>
+            <p className="text-black text-[17px] mb-8 mt-10">And the harder you push your brain without addressing cortisol first, the more you&apos;re working against yourself:</p>
           </FadeUp>
 
+          {/* 3 teal boxes */}
           <Stagger className="grid md:grid-cols-3 gap-6">
-            {STRESS_BOXES.map((b) => (
-              <motion.div key={b.title} variants={cF} className="bg-[#E8F5F8] border border-[#b5dfe8] rounded-xl p-5">
-                <p className="text-[var(--color-ink-primary)] text-sm leading-relaxed"><strong>{b.title}</strong> {b.body}</p>
+            {STRESS_BOXES_V2.map((b) => (
+              <motion.div key={b.headline} variants={cF} className="bg-[#E8F5F8] rounded-xl p-6">
+                <p className="text-black text-[15px] leading-relaxed"><strong><u>{b.headline}</u></strong> {b.body}</p>
               </motion.div>
             ))}
           </Stagger>
         </div>
       </section>
 
-      {/* ═══ §05 OPERATORS WHO CRACK THE CODE — LIGHT ═══ */}
-      <section className="sec-light py-20 md:py-28">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <FadeUp>
-              {/* ASSET TODO: Replace with section-5-before-after-operator.png (1200x900, two halves 600x900 with vertical divider, plain white background) */}
-              <Skel label="section-5-before-after-operator.png (1200x900, before/after split)" mode="light" className="aspect-[4/3]" />
+      {/* ═══ §05 OPERATORS WHO CRACK THE CODE — WHITE (flush with §04) ═══ */}
+      <section className="bg-white" style={{ padding: "60px 60px 80px" }}>
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center lg:max-h-[600px]">
+            <FadeUp className="flex justify-center">
+              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={600} height={450} loading="lazy" className="max-w-[600px] w-full h-auto" />
             </FadeUp>
             <FadeUp delay={0.1}>
-              <p className={`${bodyL} text-lg leading-relaxed mb-6`}>The operators who finally crack the code &mdash; who get their brain back after years of stacks and apps and hacks not working &mdash; are the ones who fix the chemistry first.</p>
-              <p className={`${h2L} font-bold text-2xl mb-3`}>Restore the chemistry. Get the brain back.</p>
-              <p className={`${bodyL} text-lg`}>That&apos;s exactly what Genius Mind is built to do.</p>
+              <p className="text-black text-lg md:text-xl leading-[1.5] mb-8">The operators who finally crack the code &mdash; who get their brain back after years of stacks and apps and hacks not working &mdash; are the ones who fix the chemistry first.</p>
+              <p className="text-black font-[800] text-2xl md:text-[26px] leading-tight mb-5">Restore the chemistry. Get the brain back.</p>
+              <p className="text-black text-[17px]">That&apos;s exactly what Genius Mind is built to do.</p>
             </FadeUp>
           </div>
         </div>
@@ -835,10 +835,10 @@ const SYMPTOMS_ALERT = [
   { bold: "Word-finding gaps in important conversations", rest: "\u2014 names, terms, the right word for a Slack message" },
   { bold: "Brain output flatlining", rest: "even after sleep, training, and diet are sorted" },
 ];
-const STRESS_BOXES = [
-  { title: "More coffee spikes cortisol further.", body: "Caffeine works by triggering the stress response \u2014 the same system that\u2019s already overloaded. Your brain reads it as another threat and elevates cortisol on top of what\u2019s already there." },
-  { title: "Pushing harder adds fuel to the fire.", body: "Long, high-pressure deep work sessions done while cortisol is already elevated push it higher. Operators who grind through it end up with worse output the following day, not better." },
-  { title: "Stimulant nootropics work by triggering cortisol.", body: "The temporary energy and focus they deliver comes from spiking your stress hormones. You feel sharp for an hour. Then the chemistry your brain actually needs is depleted further." },
+const STRESS_BOXES_V2 = [
+  { headline: "More coffee spikes cortisol further.", body: " Caffeine works by triggering the stress response \u2014 the same system that\u2019s already overloaded. Your brain reads it as another threat and elevates cortisol on top of what\u2019s already there." },
+  { headline: "Pushing harder adds fuel to the fire.", body: " Long, high-pressure deep work sessions done while cortisol is already elevated push it higher. Operators who grind through it end up with worse output the following day, not better." },
+  { headline: "Stimulant nootropics work by triggering cortisol.", body: " The temporary energy and focus they deliver comes from spiking your stress hormones. You feel sharp for an hour. Then the chemistry your brain actually needs is depleted further." },
 ];
 const CAFFEINE_FAILS = [
   "Heart racing, jitters, anxiety \u2014 then a brutal crash by 3pm",
