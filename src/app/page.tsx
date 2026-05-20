@@ -408,10 +408,11 @@ export default function Page() {
               <p className="text-black font-bold body-mm mb-5">You didn&apos;t fail. The strategy failed you.</p>
               <p className="text-black/70 body-mm mb-6">Every nootropic stack and focus hack attacked the symptom. None went after the cause.</p>
               <p className="text-black font-bold body-mm mb-5">The cause is cortisol.</p>
+              <p className="text-black/50 body-mm mb-5">And the reason is simple:</p>
               <p className="breakout-line text-[var(--color-cyan)]">Your Brain Was Built for a World That No Longer Exists.</p>
             </FadeUp>
-            <FadeUp delay={0.1} className="flex justify-center">
-              <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={440} height={440} loading="lazy" className="w-full max-w-[440px] h-auto" />
+            <FadeUp>
+              <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={600} height={600} loading="lazy" className="w-full h-auto" />
             </FadeUp>
           </div>
         </div>
@@ -421,17 +422,20 @@ export default function Page() {
       <section className="bg-white sec-pad !pt-6 md:!pt-10">
         <div className="sec-container">
           <div className="flex flex-col lg:grid grid-mm items-center mb-10">
-            <FadeUp className="flex justify-center">
-              <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={440} height={440} loading="lazy" className="w-full max-w-[440px] h-auto" />
+            <FadeUp>
+              <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={600} height={600} loading="lazy" className="w-full h-auto" />
             </FadeUp>
             <FadeUp delay={0.1}>
-              <p className="text-black body-mm mb-4">For most of human history, stress was short. A threat appeared, cortisol spiked, the threat passed, cortisol dropped.</p>
+              <p className="text-black body-mm mb-4">For most of human history, stress was short. A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
               <p className="text-black font-bold body-mm mb-4">But now the threat never passes.</p>
-              <p className="text-black body-mm mb-4">Investor updates. The Slack ping at 10pm. Another notification. Then another.</p>
-              <p className="text-black font-bold body-mm">None of it is life or death. But your nervous system can&apos;t tell the difference.</p>
+              <p className="text-black body-mm mb-4">Investor updates. Cash-flow projections. The Slack ping at 10pm. The decision you&apos;ve been putting off. Another notification. Then another.</p>
+              <p className="text-black font-bold body-mm">None of it is life or death. But your nervous system can&apos;t tell the difference...</p>
             </FadeUp>
           </div>
 
+          <FadeUp>
+            <p className="text-black body-mm mb-8">And the harder you push your brain without addressing cortisol first, the more you&apos;re working against yourself:</p>
+          </FadeUp>
           <Stagger className="grid md:grid-cols-3 gap-6">
             {STRESS_BOXES_V2.map((b) => (
               <motion.div key={b.headline} variants={cF} className="bg-[#E8F5F8] border border-[rgba(0,166,210,0.25)] rounded-lg p-6">
@@ -446,8 +450,8 @@ export default function Page() {
       <section className="bg-white sec-pad">
         <div className="sec-container">
           <div className="flex flex-col lg:grid grid-mm items-center">
-            <FadeUp className="flex justify-center">
-              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={440} height={330} loading="lazy" className="w-full max-w-[440px] h-auto" />
+            <FadeUp>
+              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={600} height={450} loading="lazy" className="w-full h-auto" />
             </FadeUp>
             <FadeUp delay={0.1}>
               <p className="text-black body-mm mb-6">The operators who crack the code are the ones who fix the chemistry first.</p>
