@@ -317,16 +317,16 @@ export default function Page() {
       {/* ═══ §01 HERO + §02 SYMPTOMS — UNIFIED DARK CANVAS ═══ */}
       <div className="sec-dark">
         {/* §01 HERO */}
-        <div className="pt-16 pb-10 md:pt-20 md:pb-10 lg:pt-24 lg:pb-10 px-8 md:px-12 lg:px-16">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
+        <div className="sec-pad">
+          <div className="sec-container">
+            <div className="flex flex-col lg:grid grid-mm items-center">
               {/* Eyebrow + headline (order 1 on mobile) */}
               <FadeUp className="order-1 lg:order-none lg:row-span-1">
-                <p className="font-mono text-sm tracking-[0.1em] uppercase mb-6">
+                <p className="eyebrow-mm mb-6">
                   <span className="text-white/70">16 Ingredients. One Formula. </span>
                   <span className="text-[var(--color-cyan)]">Zero BS.</span>
                 </p>
-                <h1 className="text-[clamp(2.5rem,5.5vw,4.5rem)] font-[900] leading-[1.02] tracking-tight mb-0 lg:mb-8">
+                <h1 className="h1-mm mb-0 lg:mb-8">
                   <span className="text-white">Fix Your Cortisol Brain With This Natural </span>
                   <span className="text-[var(--color-cyan)]">Upgrade</span>
                 </h1>
@@ -356,16 +356,16 @@ export default function Page() {
         </div>
 
         {/* §02 SYMPTOMS */}
-        <div className="pt-10 pb-16 md:pb-20 lg:pb-24 px-4 md:px-10 lg:px-16">
-        <div className="max-w-7xl mx-auto px-4 md:px-10 lg:px-16">
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-10 lg:items-stretch lg:max-h-[720px]">
+        <div className="sec-pad">
+        <div className="sec-container">
+          <div className="flex flex-col lg:grid grid-mm lg:items-stretch">
             {/* Eyebrow + headline (mobile order 1) */}
             <div className="order-1 lg:hidden">
-              <p className="font-mono text-[13px] tracking-[0.08em] uppercase mb-3 text-center leading-snug">
+              <p className="eyebrow-mm mb-3 text-center leading-snug">
                 <span className="text-[#FFD700]">&#9888;&#65039;</span>{" "}
                 <span className="text-[var(--color-coral)]">Here&apos;s the Truth About Cognitive Decline in High-Output Operators</span>
               </p>
-              <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-[900] leading-[1.02] mb-0 text-white text-center">It&apos;s Not Just Burnout</h2>
+              <h2 className="h2-mm mb-0 text-white text-center">It&apos;s Not Just Burnout</h2>
             </div>
 
             {/* Image (mobile order 2, desktop left column) */}
@@ -375,24 +375,24 @@ export default function Page() {
 
             {/* Copy (mobile order 3, desktop right column) */}
             <FadeUp delay={0.1} className="flex flex-col justify-center order-3 lg:order-none">
-              {/* Desktop-only eyebrow+headline (hidden on mobile since shown above) */}
+              {/* Desktop-only eyebrow+headline */}
               <div className="hidden lg:block">
-                <p className="font-mono text-[13px] tracking-[0.08em] uppercase mb-3 text-left leading-snug">
+                <p className="eyebrow-mm mb-3 text-left leading-snug">
                   <span className="text-[#FFD700]">&#9888;&#65039;</span>{" "}
                   <span className="text-[var(--color-coral)]">Here&apos;s the Truth About Cognitive Decline in High-Output Operators</span>
                 </p>
-                <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-[900] leading-[1.02] mb-4 text-white text-left">It&apos;s Not Just Burnout</h2>
+                <h2 className="h2-mm mb-4 text-white text-left">It&apos;s Not Just Burnout</h2>
               </div>
-              <p className="text-white/80 mb-4 text-center lg:text-left text-[15px]">Many high-output operators in their 30s and 40s end up...</p>
+              <p className="body-mm text-white/80 mb-4 text-center lg:text-left">Many high-output operators in their 30s and 40s end up...</p>
               <div className="space-y-2 mb-4">
                 {SYMPTOMS_ALERT.map((s) => (
-                  <div key={s.bold} className="border border-[var(--color-coral)] rounded-lg py-2.5 px-3 flex items-start gap-2">
+                  <div key={s.bold} className="warn-box flex items-start gap-2">
                     <span className="text-sm mt-px shrink-0">&#9888;&#65039;</span>
-                    <p className="text-[14px] leading-snug"><strong className="text-white">{s.bold}</strong> <span className="text-white/60">{s.rest}</span></p>
+                    <p className="leading-snug"><strong className="text-white">{s.bold}</strong> <span className="text-white/60">{s.rest}</span></p>
                   </div>
                 ))}
               </div>
-              <p className="text-white/80 text-[14px] leading-[1.5]">&#128073; Your father at 50 probably had sharper recall than you have at 38. This isn&apos;t aging &mdash; this is what chronic cortisol does to the chemistry your brain runs on.</p>
+              <p className="body-mm text-white/80">&#128073; Your father at 50 probably had sharper recall than you have at 38. This isn&apos;t aging &mdash; this is what chronic cortisol does to the chemistry your brain runs on.</p>
             </FadeUp>
           </div>
         </div>
@@ -400,19 +400,19 @@ export default function Page() {
       </div>
 
       {/* ═══ §03 WHY EVERYTHING FAILED — WHITE ═══ */}
-      <section className="bg-white" style={{ padding: "80px 60px" }}>
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center lg:max-h-[700px]">
+      <section className="bg-white sec-pad">
+        <div className="sec-container">
+          <div className="flex flex-col lg:grid grid-mm items-center">
             {/* Headline + body (mobile order 1) — no eyebrow */}
             <div className="order-1 lg:order-none">
-              <h2 className="text-[clamp(2.8rem,5.5vw,4.8rem)] font-[900] leading-[1.0] tracking-[-0.025em] mb-0 lg:mb-6 text-black text-center lg:text-left">Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work</h2>
+              <h2 className="h2-mm mb-0 lg:mb-6 text-black text-center lg:text-left">Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work</h2>
               {/* Desktop body copy */}
               <div className="hidden lg:block mt-6">
                 <p className="text-black font-bold text-lg md:text-xl mb-6">You didn&apos;t fail. The strategy failed you.</p>
                 <p className="text-[#333] text-base leading-[1.5] mb-8">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
                 <p className="text-black font-bold text-lg mb-6">The cause is cortisol.</p>
                 <p className="text-[#666] mb-5">And the reason is simple:</p>
-                <p className="font-mono text-[clamp(1.6rem,3vw,2.8rem)] font-[900] leading-[1.05] tracking-[0.01em] text-[#00A6D2] uppercase">Your Brain Was Built for a World That No Longer Exists.</p>
+                <p className="breakout-line breakout-light">Your Brain Was Built for a World That No Longer Exists.</p>
               </div>
             </div>
 
@@ -434,8 +434,8 @@ export default function Page() {
       </section>
 
       {/* ═══ §04 STRESS WAS SHORT — WHITE (flush with §03) ═══ */}
-      <section className="bg-white" style={{ padding: "60px 60px 80px" }}>
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="bg-white sec-pad">
+        <div className="sec-container">
           {/* Top: illustration + body */}
           <div className="flex flex-col lg:grid lg:grid-cols-[0.3fr_0.7fr] gap-6 lg:gap-10 items-center mb-10">
             {/* Opening text — mobile order 1 */}
@@ -483,9 +483,9 @@ export default function Page() {
       </section>
 
       {/* ═══ §05 OPERATORS WHO CRACK THE CODE — WHITE (flush with §04) ═══ */}
-      <section className="bg-white" style={{ padding: "60px 60px 80px" }}>
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center lg:max-h-[600px]">
+      <section className="bg-white sec-pad">
+        <div className="sec-container">
+          <div className="flex flex-col lg:grid grid-mm items-center">
             {/* Image — first on mobile (order 1), desktop left column */}
             <FadeUp className="flex justify-center order-1 lg:order-none img-bleed lg:[all:unset] lg:flex lg:justify-center">
               <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={600} height={450} loading="lazy" className="lg:max-w-[600px] w-full h-auto" />
@@ -501,13 +501,13 @@ export default function Page() {
       </section>
 
       {/* ═══ §06 SAY NO TO CAFFEINE — DARK ═══ */}
-      <section className="sec-dark py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 md:px-10 lg:px-16">
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-10 lg:items-start">
+      <section className="sec-dark sec-pad">
+        <div className="sec-container">
+          <div className="flex flex-col lg:grid grid-mm lg:items-start">
             {/* Left column: eyebrow + headline + bullets */}
             <div className="order-1 lg:order-none">
-              <p className="label-mono text-[var(--color-coral)] text-xs mb-4 text-center lg:text-left">&#10067; And What About Other Options?</p>
-              <h2 className="text-[clamp(2rem,3.2vw,2.8rem)] font-[900] leading-[1.05] tracking-[-0.02em] mb-0 lg:mb-6 text-white text-center lg:text-left">
+              <p className="eyebrow-mm text-[var(--color-coral)] mb-4 text-center lg:text-left">&#10067; And What About Other Options?</p>
+              <h2 className="h2-mm mb-0 lg:mb-6 text-white text-center lg:text-left">
                 Say No to Caffeine Loops &amp;{" "}
                 <span className="inline-block bg-[#00A6D2] text-white px-[0.2em] py-[0.05em] leading-[0.95]">Underdosed</span>{" "}
                 Nootropic Stacks
@@ -515,7 +515,7 @@ export default function Page() {
 
               {/* Desktop: bullets below headline */}
               <div className="hidden lg:block mt-8">
-                <h3 className="text-white font-[800] text-[clamp(1.5rem,2.5vw,2rem)] tracking-tight leading-[1.1] mb-4">Caffeine &amp; Stimulant Stacks:</h3>
+                <h3 className="h3-mm text-white font-[800] mb-4">Caffeine &amp; Stimulant Stacks:</h3>
                 <div className="space-y-2.5 mb-8">
                   {CAFFEINE_FAILS.map((item) => (
                     <div key={item} className="border-2 border-[#E8283B] rounded-lg bg-black py-3.5 px-4 flex items-start gap-2.5">
@@ -524,7 +524,7 @@ export default function Page() {
                     </div>
                   ))}
                 </div>
-                <h3 className="text-white font-[800] text-[clamp(1.5rem,2.5vw,2rem)] tracking-tight leading-[1.1] mb-4">Underdosed Nootropic Stacks:</h3>
+                <h3 className="h3-mm text-white font-[800] mb-4">Underdosed Nootropic Stacks:</h3>
                 <div className="space-y-2.5">
                   {NOOTROPIC_FAILS.map((item) => (
                     <div key={item} className="border-2 border-[#E8283B] rounded-lg bg-black py-3.5 px-4 flex items-start gap-2.5">
@@ -544,7 +544,7 @@ export default function Page() {
 
             {/* Mobile: bullets + closer (order 3, hidden on desktop) */}
             <div className="order-3 lg:hidden">
-              <h3 className="text-white font-[800] text-[22px] tracking-tight leading-[1.1] mb-4">Caffeine &amp; Stimulant Stacks:</h3>
+              <h3 className="h3-mm text-white font-[800] mb-4">Caffeine &amp; Stimulant Stacks:</h3>
               <div className="space-y-2.5 mb-6">
                 {CAFFEINE_FAILS.map((item) => (
                   <div key={item} className="border-2 border-[#E8283B] rounded-lg bg-black py-3.5 px-4 flex items-start gap-2.5">
@@ -553,7 +553,7 @@ export default function Page() {
                   </div>
                 ))}
               </div>
-              <h3 className="text-white font-[800] text-[22px] tracking-tight leading-[1.1] mb-4">Underdosed Nootropic Stacks:</h3>
+              <h3 className="h3-mm text-white font-[800] mb-4">Underdosed Nootropic Stacks:</h3>
               <div className="space-y-2.5 mb-6">
                 {NOOTROPIC_FAILS.map((item) => (
                   <div key={item} className="border-2 border-[#E8283B] rounded-lg bg-black py-3.5 px-4 flex items-start gap-2.5">
