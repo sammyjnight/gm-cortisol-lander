@@ -312,7 +312,7 @@ export default function Page() {
       {/* ═══ §01 HERO + §02 SYMPTOMS — UNIFIED DARK CANVAS ═══ */}
       <div className="sec-dark">
         {/* §01 HERO */}
-        <div className="sec-pad">
+        <div className="sec-pad !pb-10">
           <div className="sec-container">
             <div className="flex flex-col lg:grid grid-mm lg:items-center">
               {/* Eyebrow + headline (order 1 on mobile) */}
@@ -321,15 +321,15 @@ export default function Page() {
                   <span className="text-white/70">16 Ingredients. One Formula. </span>
                   <span className="text-[var(--color-cyan)]">Zero BS.</span>
                 </p>
-                <h1 className="h1-mm mb-0 lg:mb-6">
+                <h1 className="h1-mm mb-3 lg:mb-4">
                   <span className="text-white">Fix Your Cortisol Brain With This </span>
                   <span className="text-[var(--color-cyan)]">Natural Upgrade</span>
                 </h1>
                 {/* Body copy — hidden on mobile, shown on desktop below headline */}
-                <div className="hidden lg:block mt-6">
+                <div className="hidden lg:block">
                   <p className="text-white font-bold body-mm mb-5">Your brain&apos;s not broken &mdash; your cortisol&apos;s just running the show.</p>
-                  <p className="text-[#B0B0B0] body-mm mb-5">The stress hormone that spikes every time a deadline lands is the same one quietly depleting the precursors your brain runs on.</p>
-                  <p className="text-[#B0B0B0] body-mm mb-5">It&apos;s why the focus window keeps shrinking, why the second coffee stops working, and why the operator in the mirror feels slower than the effort you&apos;re putting in.</p>
+                  <p className="text-[#B0B0B0] body-mm mb-5">The stress hormone that spikes whenever modern life hits you is the same one depleting the precursors your brain runs on and never letting go.</p>
+                  <p className="text-[#B0B0B0] body-mm mb-5">It&apos;s why the focus window keeps shrinking, the second coffee stops working, and the operator in the mirror feels slower than the effort you&apos;re putting in.</p>
                   <p className="text-white font-semibold body-mm">Restore the chemistry. Replenish the precursors.<br />Do that and the brain comes back, while focus skyrockets.</p>
                 </div>
               </FadeUp>
@@ -342,8 +342,7 @@ export default function Page() {
               {/* Body copy — mobile only (order 3), hidden on desktop */}
               <div className="order-3 lg:hidden">
                 <p className="text-white font-bold body-mm mb-4">Your brain&apos;s not broken &mdash; your cortisol&apos;s just running the show.</p>
-                <p className="text-[#B0B0B0] body-mm mb-4">The stress hormone that spikes every time a deadline lands is the same one quietly depleting the precursors your brain runs on.</p>
-                <p className="text-[#B0B0B0] body-mm mb-5">It&apos;s why the focus window keeps shrinking and why the second coffee stops working.</p>
+                <p className="text-[#B0B0B0] body-mm mb-4">The stress hormone depleting the precursors your brain runs on and never letting go.</p>
                 <p className="text-white font-semibold body-mm">Restore the chemistry. The brain comes back.</p>
               </div>
             </div>
