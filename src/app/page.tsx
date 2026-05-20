@@ -349,25 +349,34 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ §01 SYMPTOMS — DARK ═══ */}
-      <section className="sec-dark py-20 md:py-28">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <FadeUp><img src="/assets/gm-symptoms-desk.png" alt="Overhead view of operator at desk showing signs of cognitive fatigue" width={800} height={1000} loading="lazy" className="w-full rounded-xl object-cover aspect-[4/5]" /></FadeUp>
+      {/* ═══ §02 SYMPTOMS — DARK, 50/50, ONE-VIEWPORT ═══ */}
+      <section className="sec-dark py-12 md:py-16 lg:py-20">
+        <div className="max-w-7xl mx-auto px-4 md:px-10 lg:px-16">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+            {/* Left: image — square, fills column height */}
+            <FadeUp className="flex">
+              {/* <!-- NANOBANANA PROMPT (keyframe): Photorealistic candid photograph of a 38-year-old man at a wooden desk in a dim home office, late evening. SQUARE FRAMING 1:1. Single warm desk lamp creating dramatic pool of light. He is rubbing his closed eyes with the heel of his hand, visibly exhausted. Scattered papers, open laptop showing a Slack/project board interface, half-empty coffee cup, Apple Watch on left wrist showing late time (22:47). Tighter crop than landscape — head and upper body fill more of the frame, less foreground laptop. Cinematic, muted colour palette, deep shadows, shallow depth of field. Mood: quiet exhaustion, not theatrical. No facial expression of pain — just tired. --> */}
+              {/* <!-- KLING ANIMATION (for GIF): Slow head dip, eye-rub gesture (heel of hand to closed eyes), then return to neutral. 2-second subtle loop. Camera locked off, no pans or zooms. Square framing. --> */}
+              <img src="/assets/gm-symptoms-desk.png" alt="Operator at desk rubbing eyes in exhaustion, late evening, dim desk lamp" width={600} height={600} loading="lazy" className="w-full rounded-xl object-cover aspect-square" />
+            </FadeUp>
+
+            {/* Right: copy — tight spacing to fit one viewport */}
             <FadeUp delay={0.1}>
-              <div className="text-center md:text-left"><SN n="02" label="THE SYMPTOMS" mode="dark" /></div>
-              <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-6 text-center md:text-left ${h2D}`}>It&apos;s Not Just Burnout</h2>
-              <p className="text-white/90 mb-6 text-center md:text-left">Many high-output operators in their 30s and 40s end up...</p>
-              <Stagger className="space-y-2 mb-6">
+              <p className="font-mono text-xs tracking-[0.08em] uppercase mb-4 text-center md:text-left">
+                <span className="text-[#FFD700]">&#9888;&#65039;</span>{" "}
+                <span className="text-[var(--color-coral)]">Here&apos;s the Truth About Cognitive Decline in High-Output Operators</span>
+              </p>
+              <h2 className="text-[clamp(2.5rem,4.5vw,4rem)] font-[900] leading-[1.02] mb-5 text-white text-center md:text-left">It&apos;s Not Just Burnout</h2>
+              <p className="text-white/80 mb-5 text-center md:text-left text-[15px]">Many high-output operators in their 30s and 40s end up...</p>
+              <div className="space-y-2.5 mb-5">
                 {SYMPTOMS_ALERT.map((s) => (
-                  <motion.div key={s.bold} variants={cF} className="border border-[var(--color-coral)] rounded-xl p-4 flex items-start gap-3">
-                    <span className="text-lg mt-0.5 shrink-0">&#9888;&#65039;</span>
-                    <p className="text-sm"><strong className="text-white">{s.bold}</strong> <span className="text-white/70">{s.rest}</span></p>
-                  </motion.div>
+                  <div key={s.bold} className="border border-[var(--color-coral)] rounded-lg py-3 px-3.5 flex items-start gap-2.5">
+                    <span className="text-base mt-px shrink-0">&#9888;&#65039;</span>
+                    <p className="text-[15px] leading-snug"><strong className="text-white">{s.bold}</strong> <span className="text-white/60">{s.rest}</span></p>
+                  </div>
                 ))}
-              </Stagger>
-              <p className="text-white mb-4">&#128073; Your father at 50 probably had sharper recall than you have at 38. This isn&apos;t aging &mdash; this is what chronic cortisol does to the chemistry your brain runs on.</p>
-              <p className="label-mono text-[var(--color-cyan-bright)] text-[13px] tracking-[0.1em] text-center md:text-left">Your Hormones Control Your Brain&apos;s Chemistry. Fix the Chemistry. Restore the Brain.</p>
+              </div>
+              <p className="text-white/80 text-[15px] leading-[1.5]">&#128073; Your father at 50 probably had sharper recall than you have at 38. This isn&apos;t aging &mdash; this is what chronic cortisol does to the chemistry your brain runs on.</p>
             </FadeUp>
           </div>
         </div>
