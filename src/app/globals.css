@@ -55,9 +55,9 @@ body { background: var(--color-light-primary); color: var(--color-ink-primary); 
 
 /* ══════ TYPOGRAPHY (Mars Men scale) ══════ */
 /* H1/Display: 41px desktop, 24px mobile, weight 600, mono, -0.02em, 110% */
-.h1-mm { font-size: 41px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
-@media (max-width: 640px) { .h1-mm { font-size: 24px; } }
-@media (min-width: 641px) and (max-width: 1024px) { .h1-mm { font-size: 30px; } }
+.h1-mm { font-family: var(--font-mono); font-size: 52px; font-weight: 900; line-height: 1.05; letter-spacing: -0.02em; text-transform: uppercase; }
+@media (max-width: 640px) { .h1-mm { font-size: 28px; } }
+@media (min-width: 641px) and (max-width: 1024px) { .h1-mm { font-size: 38px; } }
 
 /* H2/Section: 48px desktop, 32px mobile, heavy weight, 100% line-height */
 .h2-mm { font-size: 48px; font-weight: 900; line-height: 1.0; }

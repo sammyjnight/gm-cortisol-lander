@@ -302,15 +302,10 @@ export default function Page() {
 
   return (
     <>
-      {/* ═══ HEADER ═══ */}
-      <header className="sec-light border-b border-[#e5e7eb] py-4 sticky top-0 z-40 bg-[var(--color-light-primary)]/95 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
-          <a href={SHOP} className={`${h2L} font-black text-lg tracking-[0.12em]`}>GENIUS MIND</a>
-          <nav className={`hidden md:flex items-center gap-6 text-sm ${bodyL}`}>
-            <a href={SHOP} className="hover:text-[var(--color-cyan)] transition-colors">Shop Now</a>
-            <a href="#formula" className="hover:text-[var(--color-cyan)] transition-colors">Science</a>
-            <a href="#faq" className="hover:text-[var(--color-cyan)] transition-colors">FAQ</a>
-          </nav>
+      {/* ═══ HEADER — thin brand bar like Mars Men ═══ */}
+      <header className="bg-[var(--color-dark-primary)] border-b border-[rgba(255,255,255,0.08)] py-3">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <a href={SHOP} className="text-white font-black text-base tracking-[0.2em]">GENIUS MIND</a>
         </div>
       </header>
 
@@ -326,15 +321,16 @@ export default function Page() {
                   <span className="text-white/70">16 Ingredients. One Formula. </span>
                   <span className="text-[var(--color-cyan)]">Zero BS.</span>
                 </p>
-                <h1 className="h1-mm mb-0 lg:mb-8">
-                  <span className="text-white">Fix Your Cortisol Brain With This Natural </span>
-                  <span className="text-[var(--color-cyan)]">Upgrade</span>
+                <h1 className="font-[var(--font-mono)] uppercase font-[900] text-[clamp(28px,5.5vw,56px)] leading-[1.05] tracking-[-0.02em] mb-0 lg:mb-6">
+                  <span className="text-white">Fix Your Cortisol Brain With This </span>
+                  <span className="text-[var(--color-cyan)]">Natural Upgrade</span>
                 </h1>
                 {/* Body copy — hidden on mobile, shown on desktop below headline */}
-                <div className="hidden lg:block mt-8">
-                  <p className="text-white font-semibold body-mm mb-5">Your brain&apos;s not broken &mdash; your cortisol&apos;s just running the show.</p>
-                  <p className="text-[#B0B0B0] body-mm mb-6">The stress hormone depleting the precursors your brain runs on. It&apos;s why the focus window keeps shrinking and the second coffee stops working.</p>
-                  <p className="text-white font-semibold body-mm">Restore the chemistry. The brain comes back.</p>
+                <div className="hidden lg:block mt-6">
+                  <p className="text-white font-bold body-mm mb-5">Your brain&apos;s not broken &mdash; your cortisol&apos;s just running the show.</p>
+                  <p className="text-[#B0B0B0] body-mm mb-5">The stress hormone that spikes every time a deadline lands is the same one quietly depleting the precursors your brain runs on.</p>
+                  <p className="text-[#B0B0B0] body-mm mb-5">It&apos;s why the focus window keeps shrinking, why the second coffee stops working, and why the operator in the mirror feels slower than the effort you&apos;re putting in.</p>
+                  <p className="text-white font-semibold body-mm">Restore the chemistry. Replenish the precursors.<br />Do that and the brain comes back, while focus skyrockets.</p>
                 </div>
               </FadeUp>
 
@@ -345,8 +341,9 @@ export default function Page() {
 
               {/* Body copy — mobile only (order 3), hidden on desktop */}
               <div className="order-3 lg:hidden">
-                <p className="text-white font-semibold body-mm mb-5">Your brain&apos;s not broken &mdash; your cortisol&apos;s just running the show.</p>
-                <p className="text-[#B0B0B0] body-mm mb-5">The stress hormone depleting the precursors your brain runs on. It&apos;s why the focus window keeps shrinking and the second coffee stops working.</p>
+                <p className="text-white font-bold body-mm mb-4">Your brain&apos;s not broken &mdash; your cortisol&apos;s just running the show.</p>
+                <p className="text-[#B0B0B0] body-mm mb-4">The stress hormone that spikes every time a deadline lands is the same one quietly depleting the precursors your brain runs on.</p>
+                <p className="text-[#B0B0B0] body-mm mb-5">It&apos;s why the focus window keeps shrinking and why the second coffee stops working.</p>
                 <p className="text-white font-semibold body-mm">Restore the chemistry. The brain comes back.</p>
               </div>
             </div>
