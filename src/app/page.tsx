@@ -341,7 +341,7 @@ export default function Page() {
 
               {/* Image (order 2 on mobile — between headline and body) */}
               <FadeUp delay={0.15} className="order-2 lg:order-none img-bleed lg:[all:unset]">
-                <img src="/assets/gm-hero-cortisol-transformation.png" alt="High-cortisol brain on the left, Genius Mind product bottle in the centre, low-cortisol brain on the right" width={1200} height={600} loading="eager" className="w-full lg:max-w-[600px] lg:mx-auto lg:rounded-xl" />
+                <img src="/assets/gm-hero-cortisol-transformation.png" alt="High-cortisol brain on the left, Genius Mind product bottle in the centre, low-cortisol brain on the right" width={1200} height={600} loading="eager" className="w-full lg:max-w-[440px] lg:mx-auto rounded-xl object-cover" />
               </FadeUp>
 
               {/* Body copy — mobile only (order 3), hidden on desktop */}
@@ -370,7 +370,7 @@ export default function Page() {
 
             {/* Image (mobile order 2, desktop left column) */}
             <FadeUp className="flex order-2 lg:order-none img-bleed lg:[all:unset] lg:flex">
-              <video src="/assets/section-2-operator-at-desk.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="High-output operator at desk, exhausted late at night" className="w-full h-full lg:rounded-xl object-cover" />
+              <video src="/assets/section-2-operator-at-desk.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="High-output operator at desk, exhausted late at night" className="w-full lg:max-w-[440px] lg:mx-auto rounded-xl object-cover" />
             </FadeUp>
 
             {/* Copy (mobile order 3, desktop right column) */}
@@ -418,7 +418,7 @@ export default function Page() {
 
             {/* Image (mobile order 2) */}
             <FadeUp delay={0.15} className="flex justify-center order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:justify-center">
-              <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={500} height={500} loading="lazy" className="lg:max-w-[500px] w-full h-auto" />
+              <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={500} height={500} loading="lazy" className="lg:max-w-[440px] w-full h-auto mx-auto rounded-xl" />
             </FadeUp>
 
             {/* Mobile body copy (order 3, hidden on desktop) */}
@@ -447,7 +447,7 @@ export default function Page() {
 
             {/* Image — mobile order 2, desktop left column */}
             <FadeUp className="flex justify-center order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:justify-center">
-              <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={280} height={280} loading="lazy" className="max-w-[70%] mx-auto lg:max-w-[280px] w-full h-auto" />
+              <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={280} height={280} loading="lazy" className="max-w-[60%] mx-auto lg:max-w-[280px] w-full h-auto" />
             </FadeUp>
 
             {/* Full body — desktop only (order none) */}
@@ -488,7 +488,7 @@ export default function Page() {
           <div className="flex flex-col lg:grid grid-mm items-center">
             {/* Image — first on mobile (order 1), desktop left column */}
             <FadeUp className="flex justify-center order-1 lg:order-none img-bleed lg:[all:unset] lg:flex lg:justify-center">
-              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={600} height={450} loading="lazy" className="lg:max-w-[600px] w-full h-auto" />
+              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={600} height={450} loading="lazy" className="lg:max-w-[440px] w-full h-auto mx-auto rounded-xl" />
             </FadeUp>
             {/* Copy — order 2 on mobile */}
             <FadeUp delay={0.1} className="order-2 lg:order-none">
@@ -538,7 +538,7 @@ export default function Page() {
 
             {/* Right column: image + closer (order 2 on mobile) */}
             <FadeUp delay={0.1} className="order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:flex-col lg:sticky lg:top-24">
-              <video src="/assets/section-6-coffee-loop-operator.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="Operator reaching for a fourth coffee, defeated" className="w-full lg:rounded-xl object-cover aspect-[4/5] lg:max-h-[600px] mb-6" />
+              <video src="/assets/section-6-coffee-loop-operator.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="Operator reaching for a fourth coffee, defeated" className="w-full lg:max-w-[440px] lg:mx-auto rounded-xl object-cover mb-6" />
               <p className="hidden lg:block text-white text-[15px] leading-[1.5]">&#128073; You deserve better than frying your nervous system with caffeine OR wasting money on underdosed stacks that don&apos;t address the ROOT of why your brain isn&apos;t delivering.</p>
             </FadeUp>
 
