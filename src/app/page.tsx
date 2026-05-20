@@ -339,24 +339,6 @@ export default function Page() {
         <motion.div className="flex justify-center mt-10" animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}><ChevronDown size={24} className={capL} /></motion.div>
       </section>
 
-      {/* ═══ GIF/VIDEO TRANSITION — DARK ═══ */}
-      <section className="sec-dark py-16 md:py-20">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <FadeUp>
-            <p className="label-mono text-[var(--color-coral)] text-xs mb-4">&#9888;&#65039; Here&apos;s the Truth About Cognitive Decline in High-Output Operators</p>
-            <h2 className="text-2xl md:text-3xl font-[800] text-white mb-8">It&apos;s Not &ldquo;Just Getting Older&rdquo;</h2>
-          </FadeUp>
-          <FadeUp delay={0.1}>
-            {/* ASSET TODO: Replace with /public/assets/gm-cortisol-brain-loop.mp4 when available */}
-            <video autoPlay loop muted playsInline className="w-full max-w-2xl mx-auto rounded-xl mb-6" poster="/assets/gm-symptoms-desk.png">
-              <source src="/assets/gm-cortisol-brain-loop.mp4" type="video/mp4" />
-              <img src="/assets/gm-symptoms-desk.png" alt="Cognitive decline visualization" width={800} height={600} className="w-full rounded-xl" />
-            </video>
-            <p className="text-white/70 text-base">And it&apos;s not &ldquo;just burnout&rdquo; either.</p>
-          </FadeUp>
-        </div>
-      </section>
-
       {/* ═══ §01 SYMPTOMS — DARK ═══ */}
       <section className="sec-dark py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4">
@@ -621,19 +603,6 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ BRAIN TRANSFORMATION PAIR ═══ */}
-      <section className="sec-light py-16 md:py-20">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="bg-[#fef3e8] rounded-xl p-4 mb-6">
-            <p className={`${h2L} text-sm`}><strong>Chronic cortisol depletes the chemistry your brain needs to think clearly.</strong> This is what we restore.</p>
-          </div>
-          <img src="/assets/gm-hero-cortisol-transformation.png" alt="Brain transformation: high-cortisol state to restored state with Genius Mind" width={1200} height={600} loading="lazy" className="w-full max-w-[720px] mx-auto rounded-2xl mb-8" />
-          <p className={`text-2xl md:text-3xl font-[800] ${h2L} mb-1`}>Restore the chemistry. Protect the window.</p>
-          <p className={`text-2xl md:text-3xl font-[800] ${h2L} mb-3`}>Get the brain back.</p>
-          <p className={`${bodyL} text-lg`}>That&apos;s exactly what Genius Mind is built to do.</p>
-        </div>
-      </section>
-
       {/* ═══ §10 THE OFFER — LIGHT ═══ */}
       <section id="offer" className="sec-light-alt py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4">
@@ -745,43 +714,6 @@ export default function Page() {
                 </div>
               </FadeUp>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ §15 STARTER KIT — LIGHT ═══ */}
-      <section className="sec-light py-20 md:py-28">
-        <div className="max-w-5xl mx-auto px-4 text-center">
-          <FadeUp>
-            <SN n="12" label="WHAT YOU GET" />
-            <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-12 ${h2L}`}>Your Starter Kit <span className={cyanL}>Includes:</span></h2>
-          </FadeUp>
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <FadeUp>
-              <img src="/assets/gm-welcome-offer.png" alt="Genius Mind welcome kit showing Brain Performance Digital Guide, Genius Mind bottle, and Magnesium 3-in-1 with £25 in welcome gifts" width={800} height={800} loading="lazy" className="w-full rounded-xl object-contain" />
-            </FadeUp>
-            <FadeUp delay={0.1}>
-              <div className="text-left space-y-3">
-                {KIT_REAL.map((k) => (
-                  <div key={k.name} className="flex items-center justify-between border-b border-[#e5e7eb] pb-3">
-                    <span className={`font-semibold text-sm ${h2L}`}>{k.name}</span>
-                    <div className="flex items-center gap-2">
-                      {k.was && <span className={`${capL} line-through text-xs`}>{k.was}</span>}
-                      <span className={`${cyanL} font-bold text-sm`}>{k.now}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="text-left mt-6 space-y-2">
-                <div className="flex items-center justify-between"><span className={`font-semibold text-sm ${bodyL}`}>Total Value</span><span className={`${capL} line-through text-sm`}>&pound;104.96</span></div>
-                <div className="flex items-center justify-between"><span className={`font-bold text-lg ${h2L}`}>You Pay Today</span><span className={`font-bold text-lg ${h2L}`}>&pound;50.99</span></div>
-                <p className={`${capL} text-xs`}>Equivalent to &pound;16.99/mo &middot; 60-Day+ subscribers only</p>
-              </div>
-              <div className="mt-6 text-center">
-                <a href="#offer" className={`${cyanL} underline text-sm hover:opacity-80 transition-opacity`}>&larr; Back to offer</a>
-              </div>
-              <p className={`${capL} text-xs text-center mt-4`}>90-Day Money Back &middot; Free UK Shipping &middot; Cancel Anytime</p>
-            </FadeUp>
           </div>
         </div>
       </section>
@@ -900,11 +832,4 @@ const FAQS = [
   { q: "Can I stack it with creatine, omega-3, magnesium?", a: "Yes. Genius Mind is the cognitive chemistry layer on top of an existing operator stack. It doesn\u2019t replace creatine, omega-3, or magnesium \u2014 those address different systems." },
   { q: "What happens if I stop taking it?", a: "Genius Mind isn\u2019t habit-forming and doesn\u2019t create withdrawal. The supportive effect depends on consistent intake \u2014 stop, and the cognitive chemistry support stops. Many long-term customers run it as a permanent part of their stack." },
   { q: "Is it safe for daily, long-term use?", a: "Yes. The formula is non-stimulant-dependent, made in a GMP-certified UK facility, third-party tested, and designed for daily intake. The ingredients are at clinical doses with no tolerance pathway." },
-];
-const KIT_REAL = [
-  { name: "Genius Mind Cognitive Stack (90-day)", was: "\u00A374.97", now: "\u00A350.99" },
-  { name: "Brain Performance Digital Guide", was: "\u00A310", now: "FREE" },
-  { name: "Magnesium 3-in-1", was: "\u00A315", now: "FREE" },
-  { name: "Free UK Shipping", was: "\u00A34.99", now: "FREE" },
-  { name: "90-Day Money-Back Guarantee", was: null, now: "INCLUDED" },
 ];
