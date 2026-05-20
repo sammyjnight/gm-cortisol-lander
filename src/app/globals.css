@@ -49,13 +49,13 @@ body { background: var(--color-light-primary); color: var(--color-ink-primary); 
 .sec-container { max-width: 1200px; margin: 0 auto; }
 
 /* Mars Men 2-column grid: 50/50, 48px gutter desktop, 20px mobile */
-.grid-mm { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: center; }
+.grid-mm { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 100px; align-items: center; }
 @media (max-width: 640px) { .grid-mm { display: flex; flex-direction: column; gap: 20px; } }
-@media (min-width: 641px) and (max-width: 1024px) { .grid-mm { gap: 24px; } }
+@media (min-width: 641px) and (max-width: 1024px) { .grid-mm { gap: 40px; } }
 
 /* ══════ TYPOGRAPHY (Mars Men scale) ══════ */
 /* H1/Display: 41px desktop, 24px mobile, weight 600, mono, -0.02em, 110% */
-.h1-mm { font-size: 41px; font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; }
+.h1-mm { font-size: 41px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
 @media (max-width: 640px) { .h1-mm { font-size: 24px; } }
 @media (min-width: 641px) and (max-width: 1024px) { .h1-mm { font-size: 30px; } }
 

@@ -332,24 +332,22 @@ export default function Page() {
                 </h1>
                 {/* Body copy — hidden on mobile, shown on desktop below headline */}
                 <div className="hidden lg:block mt-8">
-                  <p className="text-white font-bold text-lg md:text-xl mb-6">Your brain&apos;s not broken &mdash; your cortisol&apos;s just running the show.</p>
-                  <p className="text-[#B0B0B0] text-base leading-[1.5] mb-5">The stress hormone that spikes every time a deadline lands, a hire blows up, or a pivot has to be made under pressure is the same one quietly depleting the precursors your brain runs on.</p>
-                  <p className="text-[#B0B0B0] text-base leading-[1.5] mb-6">It&apos;s why the focus window keeps shrinking, why the second coffee stops working, and why the operator in the mirror feels slower than the effort you&apos;re putting in.</p>
-                  <p className="text-white font-semibold text-base leading-relaxed">Restore the chemistry. Replenish the precursors.<br />Do that and the brain comes back, while focus skyrockets.</p>
+                  <p className="text-white font-semibold body-mm mb-5">Your brain&apos;s not broken &mdash; your cortisol&apos;s just running the show.</p>
+                  <p className="text-[#B0B0B0] body-mm mb-6">The stress hormone depleting the precursors your brain runs on. It&apos;s why the focus window keeps shrinking and the second coffee stops working.</p>
+                  <p className="text-white font-semibold body-mm">Restore the chemistry. The brain comes back.</p>
                 </div>
               </FadeUp>
 
               {/* Image (order 2 on mobile — between headline and body) */}
-              <FadeUp delay={0.15} className="order-2 lg:order-none img-bleed lg:[all:unset]">
-                <img src="/assets/gm-hero-cortisol-transformation.png" alt="High-cortisol brain on the left, Genius Mind product bottle in the centre, low-cortisol brain on the right" width={1200} height={600} loading="eager" className="w-full rounded-xl object-cover" />
+              <FadeUp delay={0.15} className="order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:justify-center">
+                <img src="/assets/gm-hero-cortisol-transformation.png" alt="High-cortisol brain on the left, Genius Mind product bottle in the centre, low-cortisol brain on the right" width={1200} height={600} loading="eager" className="w-full max-w-[440px] rounded-xl object-cover" />
               </FadeUp>
 
               {/* Body copy — mobile only (order 3), hidden on desktop */}
               <div className="order-3 lg:hidden">
-                <p className="text-white font-bold text-lg mb-5">Your brain&apos;s not broken &mdash; your cortisol&apos;s just running the show.</p>
-                <p className="text-[#B0B0B0] text-base leading-[1.5] mb-4">The stress hormone that spikes every time a deadline lands, a hire blows up, or a pivot has to be made under pressure is the same one quietly depleting the precursors your brain runs on.</p>
-                <p className="text-[#B0B0B0] text-base leading-[1.5] mb-5">It&apos;s why the focus window keeps shrinking, why the second coffee stops working, and why the operator in the mirror feels slower than the effort you&apos;re putting in.</p>
-                <p className="text-white font-semibold text-base leading-relaxed">Restore the chemistry. Replenish the precursors.<br />Do that and the brain comes back, while focus skyrockets.</p>
+                <p className="text-white font-semibold body-mm mb-5">Your brain&apos;s not broken &mdash; your cortisol&apos;s just running the show.</p>
+                <p className="text-[#B0B0B0] body-mm mb-5">The stress hormone depleting the precursors your brain runs on. It&apos;s why the focus window keeps shrinking and the second coffee stops working.</p>
+                <p className="text-white font-semibold body-mm">Restore the chemistry. The brain comes back.</p>
               </div>
             </div>
           </div>
@@ -363,14 +361,14 @@ export default function Page() {
             <div className="order-1 lg:hidden">
               <p className="eyebrow-mm mb-3 text-center leading-snug">
                 <span className="text-[#FFD700]">&#9888;&#65039;</span>{" "}
-                <span className="text-[var(--color-coral)]">Here&apos;s the Truth About Cognitive Decline in High-Output Operators</span>
+                <span className="text-[var(--color-coral)]">The Truth About Cognitive Decline</span>
               </p>
               <h2 className="h2-mm mb-0 text-white text-center">It&apos;s Not Just Burnout</h2>
             </div>
 
             {/* Image (mobile order 2, desktop left column) */}
-            <FadeUp className="flex order-2 lg:order-none img-bleed lg:[all:unset] lg:flex">
-              <video src="/assets/section-2-operator-at-desk.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="High-output operator at desk, exhausted late at night" className="w-full rounded-xl object-cover" />
+            <FadeUp className="flex order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:justify-center">
+              <video src="/assets/section-2-operator-at-desk.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="High-output operator at desk, exhausted late at night" className="w-full max-w-[440px] rounded-xl object-cover" />
             </FadeUp>
 
             {/* Copy (mobile order 3, desktop right column) */}
@@ -379,11 +377,10 @@ export default function Page() {
               <div className="hidden lg:block">
                 <p className="eyebrow-mm mb-3 text-left leading-snug">
                   <span className="text-[#FFD700]">&#9888;&#65039;</span>{" "}
-                  <span className="text-[var(--color-coral)]">Here&apos;s the Truth About Cognitive Decline in High-Output Operators</span>
+                  <span className="text-[var(--color-coral)]">The Truth About Cognitive Decline</span>
                 </p>
                 <h2 className="h2-mm mb-4 text-white text-left">It&apos;s Not Just Burnout</h2>
               </div>
-              <p className="body-mm text-white/80 mb-4 text-center lg:text-left">Many high-output operators in their 30s and 40s end up...</p>
               <div className="space-y-2 mb-4">
                 {SYMPTOMS_ALERT.map((s) => (
                   <div key={s.bold} className="warn-box flex items-start gap-2">
@@ -392,7 +389,7 @@ export default function Page() {
                   </div>
                 ))}
               </div>
-              <p className="body-mm text-white/80">&#128073; Your father at 50 probably had sharper recall than you have at 38. This isn&apos;t aging &mdash; this is what chronic cortisol does to the chemistry your brain runs on.</p>
+              <p className="body-mm text-white/80">&#128073; This isn&apos;t aging &mdash; this is what chronic cortisol does to the chemistry your brain runs on.</p>
             </FadeUp>
           </div>
         </div>
@@ -402,22 +399,19 @@ export default function Page() {
       {/* ═══ §03 WHY EVERYTHING FAILED — WHITE, CENTRED ═══ */}
       <section className="bg-white sec-pad">
         <div className="sec-container">
-          {/* Centred headline */}
           <FadeUp>
-            <h2 className="h2-mm text-black text-center mb-10">Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work</h2>
+            <h2 className="h2-mm text-black text-center mb-10">Why Everything You&apos;ve Tried Still Didn&apos;t Work</h2>
           </FadeUp>
 
-          {/* Two-column: copy left, illustration right */}
-          <div className="grid lg:grid-cols-2 gap-12 items-start mb-10">
+          <div className="flex flex-col lg:grid grid-mm items-center">
             <FadeUp>
               <p className="text-black font-bold body-mm mb-5">You didn&apos;t fail. The strategy failed you.</p>
-              <p className="text-black/70 body-mm mb-6">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
+              <p className="text-black/70 body-mm mb-6">Every nootropic stack and focus hack attacked the symptom. None went after the cause.</p>
               <p className="text-black font-bold body-mm mb-5">The cause is cortisol.</p>
-              <p className="text-black/50 body-mm mb-5">And the reason is simple:</p>
               <p className="breakout-line text-[var(--color-cyan)]">Your Brain Was Built for a World That No Longer Exists.</p>
             </FadeUp>
-            <FadeUp delay={0.1}>
-              <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={500} height={500} loading="lazy" className="w-full h-auto" />
+            <FadeUp delay={0.1} className="flex justify-center">
+              <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={440} height={440} loading="lazy" className="w-full max-w-[440px] h-auto" />
             </FadeUp>
           </div>
         </div>
@@ -426,26 +420,18 @@ export default function Page() {
       {/* ═══ §04 STRESS WAS SHORT — WHITE, CENTRED ═══ */}
       <section className="bg-white sec-pad">
         <div className="sec-container">
-          {/* Two-column: illustration left, copy right */}
-          <div className="grid lg:grid-cols-[0.35fr_0.65fr] gap-12 items-center mb-10">
-            <FadeUp>
-              <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={280} height={280} loading="lazy" className="w-full max-w-[300px] mx-auto h-auto" />
+          <div className="flex flex-col lg:grid grid-mm items-center mb-10">
+            <FadeUp className="flex justify-center">
+              <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={440} height={440} loading="lazy" className="w-full max-w-[440px] h-auto" />
             </FadeUp>
             <FadeUp delay={0.1}>
-              <p className="text-black body-mm mb-4">For most of human history, stress was short.</p>
-              <p className="text-black body-mm mb-4">A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
+              <p className="text-black body-mm mb-4">For most of human history, stress was short. A threat appeared, cortisol spiked, the threat passed, cortisol dropped.</p>
               <p className="text-black font-bold body-mm mb-4">But now the threat never passes.</p>
-              <p className="text-black body-mm mb-4">Investor updates. Cash-flow projections. The Slack ping at 10pm. The decision you&apos;ve been putting off. Another notification. Then another.</p>
-              <p className="text-black font-bold body-mm">None of it is life or death. But your nervous system can&apos;t tell the difference...</p>
+              <p className="text-black body-mm mb-4">Investor updates. The Slack ping at 10pm. Another notification. Then another.</p>
+              <p className="text-black font-bold body-mm">None of it is life or death. But your nervous system can&apos;t tell the difference.</p>
             </FadeUp>
           </div>
 
-          {/* Bridge */}
-          <FadeUp>
-            <p className="text-black body-mm mb-8">And the harder you push your brain without addressing cortisol first, the more you&apos;re working against yourself:</p>
-          </FadeUp>
-
-          {/* 3 boxes — peach/cream tinted with brand border, matching Mars Men */}
           <Stagger className="grid md:grid-cols-3 gap-6">
             {STRESS_BOXES_V2.map((b) => (
               <motion.div key={b.headline} variants={cF} className="bg-[#FFF5EE] border border-[#F0D5C0] rounded-lg p-6">
@@ -459,12 +445,12 @@ export default function Page() {
       {/* ═══ §05 OPERATORS WHO CRACK THE CODE — WHITE ═══ */}
       <section className="bg-white sec-pad">
         <div className="sec-container">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <FadeUp>
-              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={600} height={450} loading="lazy" className="w-full h-auto" />
+          <div className="flex flex-col lg:grid grid-mm items-center">
+            <FadeUp className="flex justify-center">
+              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={440} height={330} loading="lazy" className="w-full max-w-[440px] h-auto" />
             </FadeUp>
             <FadeUp delay={0.1}>
-              <p className="text-black body-mm mb-8">The operators who finally crack the code &mdash; who get their brain back after years of stacks and apps and hacks not working &mdash; are the ones who fix the chemistry first.</p>
+              <p className="text-black body-mm mb-6">The operators who crack the code are the ones who fix the chemistry first.</p>
               <p className="text-black font-[800] text-2xl md:text-[26px] leading-tight mb-5">Restore the chemistry. Get the brain back.</p>
               <p className="text-black body-mm">That&apos;s exactly what Genius Mind is built to do.</p>
             </FadeUp>
@@ -509,9 +495,9 @@ export default function Page() {
             </div>
 
             {/* Right column: image + closer (order 2 on mobile) */}
-            <FadeUp delay={0.1} className="order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:flex-col lg:sticky lg:top-24">
-              <video src="/assets/section-6-coffee-loop-operator.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="Operator reaching for a fourth coffee, defeated" className="w-full rounded-xl object-cover mb-6" />
-              <p className="hidden lg:block text-white text-[15px] leading-[1.5]">&#128073; You deserve better than frying your nervous system with caffeine OR wasting money on underdosed stacks that don&apos;t address the ROOT of why your brain isn&apos;t delivering.</p>
+            <FadeUp delay={0.1} className="order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:flex-col lg:items-center lg:sticky lg:top-24">
+              <video src="/assets/section-6-coffee-loop-operator.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="Operator reaching for a fourth coffee, defeated" className="w-full max-w-[440px] rounded-xl object-cover mb-6" />
+              <p className="hidden lg:block text-white body-mm max-w-[440px]">&#128073; You deserve better than frying your nervous system with caffeine or wasting money on underdosed stacks.</p>
             </FadeUp>
 
             {/* Mobile: bullets + closer (order 3, hidden on desktop) */}
@@ -534,19 +520,19 @@ export default function Page() {
                   </div>
                 ))}
               </div>
-              <p className="text-white text-[15px] leading-[1.5]">&#128073; You deserve better than frying your nervous system with caffeine OR wasting money on underdosed stacks that don&apos;t address the ROOT of why your brain isn&apos;t delivering.</p>
+              <p className="text-white body-mm">&#128073; You deserve better than frying your nervous system with caffeine or wasting money on underdosed stacks.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* ═══ §07 PRODUCT REVEAL — LIGHT ═══ */}
-      <section id="mechanism" className="sec-light py-20 md:py-28">
-        <div className="max-w-5xl mx-auto px-4 text-center">
+      <section id="mechanism" className="sec-light sec-pad">
+        <div className="sec-container text-center">
           <FadeUp>
             <SN n="07" label="THE SOLUTION" />
-            <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-6 ${h2L}`}>Cognitive Chemistry Restored.<br /><span className={cyanL}>Sustained Focus, Replenished.</span></h2>
-            <p className={`${bodyL} mb-10 max-w-3xl mx-auto`}>Genius Mind isn&apos;t another nootropic &mdash; it&apos;s a complete cognitive stack engineered around the Cognisync Tri-Factor, working on three mechanisms simultaneously:</p>
+            <h2 className="h2-mm mb-6 text-black">Cognitive Chemistry Restored.<br /><span className={cyanL}>Sustained Focus, Replenished.</span></h2>
+            <p className={`${bodyL} body-mm mb-10 max-w-3xl mx-auto`}>A complete cognitive stack working on three mechanisms simultaneously:</p>
           </FadeUp>
           <Stagger className="grid md:grid-cols-3 gap-12 mb-12">
             {MECHS.map((m, i) => (
@@ -558,11 +544,6 @@ export default function Page() {
               </motion.div>
             ))}
           </Stagger>
-          <FadeUp>
-            <div className="max-w-2xl mx-auto">
-              <p className={`${bodyL} text-sm mb-4 leading-relaxed`}>Genius Mind is a precision-formulated stack of 16 clinically studied ingredients &mdash; high-ratio botanical extracts, amino acid precursors, and essential cofactors &mdash; designed to support sustained focus throughout the working day.</p>
-            </div>
-          </FadeUp>
         </div>
       </section>
 
@@ -894,9 +875,9 @@ const SYMPTOMS_ALERT = [
   { bold: "Brain output flatlining", rest: "even after sleep, training, and diet are sorted" },
 ];
 const STRESS_BOXES_V2 = [
-  { headline: "More coffee spikes cortisol further.", body: " Caffeine works by triggering the stress response \u2014 the same system that\u2019s already overloaded. Your brain reads it as another threat and elevates cortisol on top of what\u2019s already there." },
-  { headline: "Pushing harder adds fuel to the fire.", body: " Long, high-pressure deep work sessions done while cortisol is already elevated push it higher. Operators who grind through it end up with worse output the following day, not better." },
-  { headline: "Stimulant nootropics work by triggering cortisol.", body: " The temporary energy and focus they deliver comes from spiking your stress hormones. You feel sharp for an hour. Then the chemistry your brain actually needs is depleted further." },
+  { headline: "More coffee spikes cortisol further.", body: " Caffeine triggers the stress response \u2014 the same system that\u2019s already overloaded." },
+  { headline: "Pushing harder adds fuel to the fire.", body: " Grinding through elevated cortisol means worse output the following day, not better." },
+  { headline: "Stimulant nootropics trigger cortisol.", body: " You feel sharp for an hour. Then the chemistry your brain needs is depleted further." },
 ];
 const CAFFEINE_FAILS = [
   "Heart racing, jitters, anxiety \u2014 then a brutal crash by 3pm",
