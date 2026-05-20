@@ -314,7 +314,7 @@ export default function Page() {
         {/* §01 HERO */}
         <div className="sec-pad">
           <div className="sec-container">
-            <div className="flex flex-col lg:grid grid-mm items-center">
+            <div className="flex flex-col lg:grid grid-mm lg:items-center">
               {/* Eyebrow + headline (order 1 on mobile) */}
               <FadeUp className="order-1 lg:order-none lg:row-span-1">
                 <p className="eyebrow-mm mb-6">
@@ -364,8 +364,8 @@ export default function Page() {
             </div>
 
             {/* Image (mobile order 2, desktop left column) */}
-            <FadeUp className="flex order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:justify-center">
-              <video src="/assets/section-2-operator-at-desk.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="High-output operator at desk, exhausted late at night" className="w-full max-w-[440px] rounded-xl object-cover" />
+            <FadeUp className="flex order-2 lg:order-none img-bleed lg:[all:unset] lg:flex">
+              <video src="/assets/section-2-operator-at-desk.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="High-output operator at desk, exhausted late at night" className="w-full rounded-xl object-cover" />
             </FadeUp>
 
             {/* Copy (mobile order 3, desktop right column) */}
@@ -397,13 +397,13 @@ export default function Page() {
       <section className="bg-white sec-pad">
         <div className="sec-container">
           <FadeUp>
-            <h2 className="h2-mm text-black text-center mb-10">Why Everything You&apos;ve Tried Still Didn&apos;t Work</h2>
+            <h2 className="h2-mm text-black text-center mb-10">Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work</h2>
           </FadeUp>
 
-          <div className="flex flex-col lg:grid grid-mm items-center">
+          <div className="flex flex-col lg:grid grid-mm">
             <FadeUp>
               <p className="text-black font-bold body-mm mb-5">You didn&apos;t fail. The strategy failed you.</p>
-              <p className="text-black/70 body-mm mb-6">Every nootropic stack and focus hack attacked the symptom. None went after the cause.</p>
+              <p className="text-black/70 body-mm mb-6">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
               <p className="text-black font-bold body-mm mb-5">The cause is cortisol.</p>
               <p className="text-black/50 body-mm mb-5">And the reason is simple:</p>
               <p className="breakout-line text-[var(--color-cyan)]">Your Brain Was Built for a World That No Longer Exists.</p>
@@ -416,11 +416,11 @@ export default function Page() {
       </section>
 
       {/* ═══ §04 STRESS WAS SHORT — WHITE, CENTRED ═══ */}
-      <section className="bg-white sec-pad !pt-6 md:!pt-10">
+      <section className="bg-white sec-pad">
         <div className="sec-container">
-          <div className="flex flex-col lg:grid grid-mm items-center mb-10">
-            <FadeUp>
-              <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={600} height={600} loading="lazy" className="w-full h-auto" />
+          <div className="flex flex-col lg:grid grid-mm mb-10">
+            <FadeUp className="flex items-start justify-center">
+              <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={400} height={400} loading="lazy" className="w-full max-w-[380px] h-auto" />
             </FadeUp>
             <FadeUp delay={0.1}>
               <p className="text-black body-mm mb-4">For most of human history, stress was short. A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
@@ -446,7 +446,7 @@ export default function Page() {
       {/* ═══ §05 OPERATORS WHO CRACK THE CODE — WHITE ═══ */}
       <section className="bg-white sec-pad">
         <div className="sec-container">
-          <div className="flex flex-col lg:grid grid-mm items-center">
+          <div className="flex flex-col lg:grid grid-mm">
             <FadeUp>
               <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={600} height={450} loading="lazy" className="w-full h-auto" />
             </FadeUp>
