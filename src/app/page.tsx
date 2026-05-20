@@ -476,18 +476,18 @@ export default function Page() {
                 <h3 className="h3-mm text-white font-[800] mb-4">Caffeine &amp; Stimulant Stacks:</h3>
                 <div className="space-y-2.5 mb-8">
                   {CAFFEINE_FAILS.map((item) => (
-                    <div key={item} className="border-2 border-[#E8283B] rounded-lg bg-black py-3.5 px-4 flex items-start gap-2.5">
+                    <div key={item} className="border border-[#E8283B] rounded-[4px] bg-black py-[9px] px-[9px] flex items-start gap-2.5">
                       <span className="text-sm mt-px shrink-0">&#10060;</span>
-                      <p className="text-[14px] leading-snug"><strong className="text-white">{item.split("\u2014")[0]}</strong>{item.includes("\u2014") && <span className="text-[#B0B0B0]"> &mdash;{item.split("\u2014").slice(1).join("\u2014")}</span>}</p>
+                      <p className="text-[18px] leading-snug"><strong className="text-white">{item.split("\u2014")[0]}</strong>{item.includes("\u2014") && <span className="text-[#B0B0B0]"> &mdash;{item.split("\u2014").slice(1).join("\u2014")}</span>}</p>
                     </div>
                   ))}
                 </div>
                 <h3 className="h3-mm text-white font-[800] mb-4">Underdosed Nootropic Stacks:</h3>
                 <div className="space-y-2.5">
                   {NOOTROPIC_FAILS.map((item) => (
-                    <div key={item} className="border-2 border-[#E8283B] rounded-lg bg-black py-3.5 px-4 flex items-start gap-2.5">
+                    <div key={item} className="border border-[#E8283B] rounded-[4px] bg-black py-[9px] px-[9px] flex items-start gap-2.5">
                       <span className="text-sm mt-px shrink-0">&#10060;</span>
-                      <p className="text-[14px] leading-snug"><strong className="text-white">{item.split("\u2014")[0]}</strong>{item.includes("\u2014") && <span className="text-[#B0B0B0]"> &mdash;{item.split("\u2014").slice(1).join("\u2014")}</span>}</p>
+                      <p className="text-[18px] leading-snug"><strong className="text-white">{item.split("\u2014")[0]}</strong>{item.includes("\u2014") && <span className="text-[#B0B0B0]"> &mdash;{item.split("\u2014").slice(1).join("\u2014")}</span>}</p>
                     </div>
                   ))}
                 </div>
@@ -495,9 +495,9 @@ export default function Page() {
             </div>
 
             {/* Right column: image + closer (order 2 on mobile) */}
-            <FadeUp delay={0.1} className="order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:flex-col lg:items-center lg:sticky lg:top-24">
-              <video src="/assets/section-6-coffee-loop-operator.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="Operator reaching for a fourth coffee, defeated" className="w-full max-w-[440px] rounded-xl object-cover mb-6" />
-              <p className="hidden lg:block text-white body-mm max-w-[440px]">&#128073; You deserve better than frying your nervous system with caffeine or wasting money on underdosed stacks.</p>
+            <FadeUp delay={0.1} className="order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:flex-col lg:sticky lg:top-24">
+              <video src="/assets/section-6-coffee-loop-operator.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="Operator reaching for a fourth coffee, defeated" className="w-full rounded-xl object-cover mb-6" />
+              <p className="hidden lg:block text-white body-mm">&#128073; You deserve better than frying your nervous system with caffeine or wasting money on underdosed stacks.</p>
             </FadeUp>
 
             {/* Mobile: bullets + closer (order 3, hidden on desktop) */}
@@ -505,18 +505,18 @@ export default function Page() {
               <h3 className="h3-mm text-white font-[800] mb-4">Caffeine &amp; Stimulant Stacks:</h3>
               <div className="space-y-2.5 mb-6">
                 {CAFFEINE_FAILS.map((item) => (
-                  <div key={item} className="border-2 border-[#E8283B] rounded-lg bg-black py-3.5 px-4 flex items-start gap-2.5">
+                  <div key={item} className="border border-[#E8283B] rounded-[4px] bg-black py-[9px] px-[9px] flex items-start gap-2.5">
                     <span className="text-sm mt-px shrink-0">&#10060;</span>
-                    <p className="text-[14px] leading-snug"><strong className="text-white">{item.split("\u2014")[0]}</strong>{item.includes("\u2014") && <span className="text-[#B0B0B0]"> &mdash;{item.split("\u2014").slice(1).join("\u2014")}</span>}</p>
+                    <p className="text-[18px] leading-snug"><strong className="text-white">{item.split("\u2014")[0]}</strong>{item.includes("\u2014") && <span className="text-[#B0B0B0]"> &mdash;{item.split("\u2014").slice(1).join("\u2014")}</span>}</p>
                   </div>
                 ))}
               </div>
               <h3 className="h3-mm text-white font-[800] mb-4">Underdosed Nootropic Stacks:</h3>
               <div className="space-y-2.5 mb-6">
                 {NOOTROPIC_FAILS.map((item) => (
-                  <div key={item} className="border-2 border-[#E8283B] rounded-lg bg-black py-3.5 px-4 flex items-start gap-2.5">
+                  <div key={item} className="border border-[#E8283B] rounded-[4px] bg-black py-[9px] px-[9px] flex items-start gap-2.5">
                     <span className="text-sm mt-px shrink-0">&#10060;</span>
-                    <p className="text-[14px] leading-snug"><strong className="text-white">{item.split("\u2014")[0]}</strong>{item.includes("\u2014") && <span className="text-[#B0B0B0]"> &mdash;{item.split("\u2014").slice(1).join("\u2014")}</span>}</p>
+                    <p className="text-[18px] leading-snug"><strong className="text-white">{item.split("\u2014")[0]}</strong>{item.includes("\u2014") && <span className="text-[#B0B0B0]"> &mdash;{item.split("\u2014").slice(1).join("\u2014")}</span>}</p>
                   </div>
                 ))}
               </div>
