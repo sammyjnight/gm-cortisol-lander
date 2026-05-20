@@ -355,9 +355,18 @@ export default function Page() {
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-stretch lg:max-h-[720px]">
             {/* Left: image — covers column, cropped to fit */}
             <FadeUp className="flex">
-              {/* <!-- NANOBANANA PROMPT (keyframe): Photorealistic candid photograph of a 38-year-old man at a wooden desk in a dim home office, late evening. SQUARE FRAMING 1:1. Single warm desk lamp creating dramatic pool of light. He is rubbing his closed eyes with the heel of his hand, visibly exhausted. Scattered papers, open laptop showing a Slack/project board interface, half-empty coffee cup, Apple Watch on left wrist showing late time (22:47). Tighter crop than landscape — head and upper body fill more of the frame, less foreground laptop. Cinematic, muted colour palette, deep shadows, shallow depth of field. Mood: quiet exhaustion, not theatrical. No facial expression of pain — just tired. --> */}
-              {/* <!-- KLING ANIMATION (for GIF): Slow head dip, eye-rub gesture (heel of hand to closed eyes), then return to neutral. 2-second subtle loop. Camera locked off, no pans or zooms. Square framing. --> */}
-              <img src="/assets/section-2-operator-at-desk-square.gif" alt="Operator at desk rubbing eyes in exhaustion, late evening, dim desk lamp" width={600} height={600} loading="lazy" className="w-full h-full rounded-xl object-cover" />
+              {/* <!-- NANOBANANA PROMPT (keyframe): Photorealistic candid photograph of a 38-year-old man at a wooden desk in a dim home office, late evening. Square framing 1:1. Single warm desk lamp creating dramatic pool of light. He is rubbing his closed eyes with the heel of his hand, visibly exhausted. Scattered papers, open laptop showing a Slack/project board interface, half-empty coffee cup, Apple Watch on left wrist showing late time. Cinematic, muted colour palette, deep shadows. --> */}
+              {/* <!-- KLING ANIMATION: Slow head dip, eye-rub gesture, return to neutral. 2-second loop. Camera locked off. --> */}
+              <video
+                src="/assets/section-2-operator-at-desk.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="High-output operator at desk, exhausted late at night"
+                className="w-full h-full rounded-xl object-cover"
+              />
             </FadeUp>
 
             {/* Right: copy — tight spacing, fits within 720px cap */}
