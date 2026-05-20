@@ -418,7 +418,7 @@ export default function Page() {
       </section>
 
       {/* ═══ §04 STRESS WAS SHORT — WHITE, CENTRED ═══ */}
-      <section className="bg-white sec-pad">
+      <section className="bg-white sec-pad !pt-6 md:!pt-10">
         <div className="sec-container">
           <div className="flex flex-col lg:grid grid-mm items-center mb-10">
             <FadeUp className="flex justify-center">
@@ -434,7 +434,7 @@ export default function Page() {
 
           <Stagger className="grid md:grid-cols-3 gap-6">
             {STRESS_BOXES_V2.map((b) => (
-              <motion.div key={b.headline} variants={cF} className="bg-[#FFF5EE] border border-[#F0D5C0] rounded-lg p-6">
+              <motion.div key={b.headline} variants={cF} className="bg-[#E8F5F8] border border-[rgba(0,166,210,0.25)] rounded-lg p-6">
                 <p className="text-black body-mm leading-relaxed"><strong><u>{b.headline}</u></strong>{b.body}</p>
               </motion.div>
             ))}
