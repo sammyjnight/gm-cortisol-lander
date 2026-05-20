@@ -351,7 +351,7 @@ export default function Page() {
         </div>
 
         {/* §02 SYMPTOMS */}
-        <div className="sec-pad">
+        <div className="sec-pad !pt-0">
         <div className="sec-container">
           <div className="flex flex-col lg:grid grid-mm lg:items-stretch">
             {/* Eyebrow + headline (mobile order 1) */}
