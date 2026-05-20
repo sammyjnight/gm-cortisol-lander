@@ -403,17 +403,16 @@ export default function Page() {
       <section className="bg-white" style={{ padding: "80px 60px" }}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center lg:max-h-[700px]">
-            {/* Eyebrow + headline (mobile order 1) */}
+            {/* Headline + body (mobile order 1) — no eyebrow */}
             <div className="order-1 lg:order-none">
-              <p className="font-mono text-[14px] tracking-[0.1em] uppercase text-[#00A6D2] mb-4 text-center lg:text-left">03 &mdash; The Cause</p>
-              <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-[800] leading-[1.05] mb-0 lg:mb-6 text-black text-center lg:text-left">Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work</h2>
+              <h2 className="text-[clamp(2.8rem,5.5vw,4.8rem)] font-[900] leading-[1.0] tracking-[-0.025em] mb-0 lg:mb-6 text-black text-center lg:text-left">Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work</h2>
               {/* Desktop body copy */}
               <div className="hidden lg:block mt-6">
                 <p className="text-black font-bold text-lg md:text-xl mb-6">You didn&apos;t fail. The strategy failed you.</p>
                 <p className="text-[#333] text-base leading-[1.5] mb-8">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
                 <p className="text-black font-bold text-lg mb-6">The cause is cortisol.</p>
                 <p className="text-[#666] mb-5">And the reason is simple:</p>
-                <p className="font-mono text-[clamp(1.5rem,3vw,2.5rem)] font-[900] leading-[1.1] tracking-tight text-[#00A6D2] uppercase">Your Brain Was Built for a World That No Longer Exists.</p>
+                <p className="font-mono text-[clamp(1.6rem,3vw,2.8rem)] font-[900] leading-[1.05] tracking-[0.01em] text-[#00A6D2] uppercase">Your Brain Was Built for a World That No Longer Exists.</p>
               </div>
             </div>
 
@@ -428,7 +427,7 @@ export default function Page() {
               <p className="text-[#333] text-base leading-[1.5] mb-6">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
               <p className="text-black font-bold text-lg mb-5">The cause is cortisol.</p>
               <p className="text-[#666] mb-4">And the reason is simple:</p>
-              <p className="font-mono text-[clamp(1.5rem,3vw,2.5rem)] font-[900] leading-[1.1] tracking-tight text-[#00A6D2] uppercase">Your Brain Was Built for a World That No Longer Exists.</p>
+              <p className="font-mono text-[clamp(1.6rem,3vw,2.8rem)] font-[900] leading-[1.05] tracking-[0.01em] text-[#00A6D2] uppercase">Your Brain Was Built for a World That No Longer Exists.</p>
             </div>
           </div>
         </div>
@@ -504,11 +503,11 @@ export default function Page() {
       {/* ═══ §06 SAY NO TO CAFFEINE — DARK ═══ */}
       <section className="sec-dark py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 md:px-10 lg:px-16">
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 lg:items-start">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-10 lg:items-start">
             {/* Left column: eyebrow + headline + bullets */}
             <div className="order-1 lg:order-none">
               <p className="label-mono text-[var(--color-coral)] text-xs mb-4 text-center lg:text-left">&#10067; And What About Other Options?</p>
-              <h2 className="text-[clamp(2rem,5vw,4.5rem)] font-[900] leading-[1.0] tracking-tight mb-0 lg:mb-8 text-white text-center lg:text-left">
+              <h2 className="text-[clamp(2rem,3.2vw,2.8rem)] font-[900] leading-[1.05] tracking-[-0.02em] mb-0 lg:mb-6 text-white text-center lg:text-left">
                 Say No to Caffeine Loops &amp;{" "}
                 <span className="inline-block bg-[#00A6D2] text-white px-[0.2em] py-[0.05em] leading-[0.95]">Underdosed</span>{" "}
                 Nootropic Stacks
@@ -539,8 +538,7 @@ export default function Page() {
 
             {/* Right column: image + closer (order 2 on mobile) */}
             <FadeUp delay={0.1} className="order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:flex-col lg:sticky lg:top-24">
-              {/* ASSET TODO: Replace with /section-6-coffee-loop-operator.mp4 when uploaded */}
-              <Skel label="section-6-coffee-loop-operator.mp4" mode="dark" className="aspect-[5/6] mb-6" />
+              <video src="/assets/section-6-coffee-loop-operator.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="Operator reaching for a fourth coffee, defeated" className="w-full lg:rounded-xl object-cover aspect-[4/5] lg:max-h-[600px] mb-6" />
               <p className="hidden lg:block text-white text-[15px] leading-[1.5]">&#128073; You deserve better than frying your nervous system with caffeine OR wasting money on underdosed stacks that don&apos;t address the ROOT of why your brain isn&apos;t delivering.</p>
             </FadeUp>
 
