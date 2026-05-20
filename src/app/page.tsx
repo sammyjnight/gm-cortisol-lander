@@ -319,34 +319,38 @@ export default function Page() {
         {/* §01 HERO */}
         <div className="pt-16 pb-10 md:pt-20 md:pb-10 lg:pt-24 lg:pb-10 px-8 md:px-12 lg:px-16">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Left: copy block */}
-              <FadeUp>
+            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
+              {/* Eyebrow + headline (order 1 on mobile) */}
+              <FadeUp className="order-1 lg:order-none lg:row-span-1">
                 <p className="font-mono text-sm tracking-[0.1em] uppercase mb-6">
                   <span className="text-white/70">16 Ingredients. One Formula. </span>
                   <span className="text-[var(--color-cyan)]">Zero BS.</span>
                 </p>
-                <h1 className="text-[clamp(2.5rem,5.5vw,4.5rem)] font-[900] leading-[1.02] tracking-tight mb-8">
+                <h1 className="text-[clamp(2.5rem,5.5vw,4.5rem)] font-[900] leading-[1.02] tracking-tight mb-0 lg:mb-8">
                   <span className="text-white">Fix Your Cortisol Brain With This Natural </span>
                   <span className="text-[var(--color-cyan)]">Upgrade</span>
                 </h1>
-                <p className="text-white font-bold text-lg md:text-xl mb-6">Your brain&apos;s not broken &mdash; your cortisol&apos;s just running the show.</p>
-                <p className="text-[#B0B0B0] text-base leading-[1.5] mb-5">The stress hormone that spikes every time a deadline lands, a hire blows up, or a pivot has to be made under pressure is the same one quietly depleting the precursors your brain runs on.</p>
-                <p className="text-[#B0B0B0] text-base leading-[1.5] mb-6">It&apos;s why the focus window keeps shrinking, why the second coffee stops working, and why the operator in the mirror feels slower than the effort you&apos;re putting in.</p>
-                <p className="text-white font-semibold text-base leading-relaxed">Restore the chemistry. Replenish the precursors.<br />Do that and the brain comes back, while focus skyrockets.</p>
+                {/* Body copy — hidden on mobile, shown on desktop below headline */}
+                <div className="hidden lg:block mt-8">
+                  <p className="text-white font-bold text-lg md:text-xl mb-6">Your brain&apos;s not broken &mdash; your cortisol&apos;s just running the show.</p>
+                  <p className="text-[#B0B0B0] text-base leading-[1.5] mb-5">The stress hormone that spikes every time a deadline lands, a hire blows up, or a pivot has to be made under pressure is the same one quietly depleting the precursors your brain runs on.</p>
+                  <p className="text-[#B0B0B0] text-base leading-[1.5] mb-6">It&apos;s why the focus window keeps shrinking, why the second coffee stops working, and why the operator in the mirror feels slower than the effort you&apos;re putting in.</p>
+                  <p className="text-white font-semibold text-base leading-relaxed">Restore the chemistry. Replenish the precursors.<br />Do that and the brain comes back, while focus skyrockets.</p>
+                </div>
               </FadeUp>
 
-              {/* Right: brain-split image */}
-              <FadeUp delay={0.15}>
-                <img
-                  src="/assets/gm-hero-cortisol-transformation.png"
-                  alt="High-cortisol brain on the left, Genius Mind product bottle in the centre, low-cortisol brain on the right"
-                  width={1200}
-                  height={600}
-                  loading="eager"
-                  className="w-full max-w-[600px] mx-auto rounded-xl"
-                />
+              {/* Image (order 2 on mobile — between headline and body) */}
+              <FadeUp delay={0.15} className="order-2 lg:order-none">
+                <img src="/assets/gm-hero-cortisol-transformation.png" alt="High-cortisol brain on the left, Genius Mind product bottle in the centre, low-cortisol brain on the right" width={1200} height={600} loading="eager" className="w-full max-w-[600px] mx-auto rounded-xl" />
               </FadeUp>
+
+              {/* Body copy — mobile only (order 3), hidden on desktop */}
+              <div className="order-3 lg:hidden">
+                <p className="text-white font-bold text-lg mb-5">Your brain&apos;s not broken &mdash; your cortisol&apos;s just running the show.</p>
+                <p className="text-[#B0B0B0] text-base leading-[1.5] mb-4">The stress hormone that spikes every time a deadline lands, a hire blows up, or a pivot has to be made under pressure is the same one quietly depleting the precursors your brain runs on.</p>
+                <p className="text-[#B0B0B0] text-base leading-[1.5] mb-5">It&apos;s why the focus window keeps shrinking, why the second coffee stops working, and why the operator in the mirror feels slower than the effort you&apos;re putting in.</p>
+                <p className="text-white font-semibold text-base leading-relaxed">Restore the chemistry. Replenish the precursors.<br />Do that and the brain comes back, while focus skyrockets.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -354,31 +358,32 @@ export default function Page() {
         {/* §02 SYMPTOMS */}
         <div className="pt-10 pb-16 md:pb-20 lg:pb-24 px-4 md:px-10 lg:px-16">
         <div className="max-w-7xl mx-auto px-4 md:px-10 lg:px-16">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-stretch lg:max-h-[720px]">
-            {/* Left: image — covers column, cropped to fit */}
-            <FadeUp className="flex">
-              {/* <!-- NANOBANANA PROMPT (keyframe): Photorealistic candid photograph of a 38-year-old man at a wooden desk in a dim home office, late evening. Square framing 1:1. Single warm desk lamp creating dramatic pool of light. He is rubbing his closed eyes with the heel of his hand, visibly exhausted. Scattered papers, open laptop showing a Slack/project board interface, half-empty coffee cup, Apple Watch on left wrist showing late time. Cinematic, muted colour palette, deep shadows. --> */}
-              {/* <!-- KLING ANIMATION: Slow head dip, eye-rub gesture, return to neutral. 2-second loop. Camera locked off. --> */}
-              <video
-                src="/assets/section-2-operator-at-desk.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                aria-label="High-output operator at desk, exhausted late at night"
-                className="w-full h-full rounded-xl object-cover"
-              />
-            </FadeUp>
-
-            {/* Right: copy — tight spacing, fits within 720px cap */}
-            <FadeUp delay={0.1} className="flex flex-col justify-center">
-              <p className="font-mono text-[13px] tracking-[0.08em] uppercase mb-3 text-center md:text-left leading-snug">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-10 lg:items-stretch lg:max-h-[720px]">
+            {/* Eyebrow + headline (mobile order 1) */}
+            <div className="order-1 lg:hidden">
+              <p className="font-mono text-[13px] tracking-[0.08em] uppercase mb-3 text-center leading-snug">
                 <span className="text-[#FFD700]">&#9888;&#65039;</span>{" "}
                 <span className="text-[var(--color-coral)]">Here&apos;s the Truth About Cognitive Decline in High-Output Operators</span>
               </p>
-              <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-[900] leading-[1.02] mb-4 text-white text-center md:text-left">It&apos;s Not Just Burnout</h2>
-              <p className="text-white/80 mb-4 text-center md:text-left text-[15px]">Many high-output operators in their 30s and 40s end up...</p>
+              <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-[900] leading-[1.02] mb-0 text-white text-center">It&apos;s Not Just Burnout</h2>
+            </div>
+
+            {/* Image (mobile order 2, desktop left column) */}
+            <FadeUp className="flex order-2 lg:order-none">
+              <video src="/assets/section-2-operator-at-desk.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="High-output operator at desk, exhausted late at night" className="w-full h-full rounded-xl object-cover" />
+            </FadeUp>
+
+            {/* Copy (mobile order 3, desktop right column) */}
+            <FadeUp delay={0.1} className="flex flex-col justify-center order-3 lg:order-none">
+              {/* Desktop-only eyebrow+headline (hidden on mobile since shown above) */}
+              <div className="hidden lg:block">
+                <p className="font-mono text-[13px] tracking-[0.08em] uppercase mb-3 text-left leading-snug">
+                  <span className="text-[#FFD700]">&#9888;&#65039;</span>{" "}
+                  <span className="text-[var(--color-coral)]">Here&apos;s the Truth About Cognitive Decline in High-Output Operators</span>
+                </p>
+                <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-[900] leading-[1.02] mb-4 text-white text-left">It&apos;s Not Just Burnout</h2>
+              </div>
+              <p className="text-white/80 mb-4 text-center lg:text-left text-[15px]">Many high-output operators in their 30s and 40s end up...</p>
               <div className="space-y-2 mb-4">
                 {SYMPTOMS_ALERT.map((s) => (
                   <div key={s.bold} className="border border-[var(--color-coral)] rounded-lg py-2.5 px-3 flex items-start gap-2">
@@ -397,19 +402,34 @@ export default function Page() {
       {/* ═══ §03 WHY EVERYTHING FAILED — WHITE ═══ */}
       <section className="bg-white" style={{ padding: "80px 60px" }}>
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center lg:max-h-[700px]">
-            <FadeUp>
-              <p className="font-mono text-[14px] tracking-[0.1em] uppercase text-[#00A6D2] mb-4 text-center md:text-left">03 &mdash; The Cause</p>
-              <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-[800] leading-[1.05] mb-6 text-black text-center md:text-left">Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work</h2>
-              <p className="text-black font-bold text-lg md:text-xl mb-6">You didn&apos;t fail. The strategy failed you.</p>
-              <p className="text-[#333] text-base leading-[1.5] mb-8">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
-              <p className="text-black font-bold text-lg mb-6">The cause is cortisol.</p>
-              <p className="text-[#666] mb-5">And the reason is simple:</p>
-              <p className="font-mono text-[clamp(1.5rem,3vw,2.5rem)] font-[900] leading-[1.1] tracking-tight text-[#00A6D2] uppercase">Your Brain Was Built for a World That No Longer Exists.</p>
-            </FadeUp>
-            <FadeUp delay={0.15} className="flex justify-center">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center lg:max-h-[700px]">
+            {/* Eyebrow + headline (mobile order 1) */}
+            <div className="order-1 lg:order-none">
+              <p className="font-mono text-[14px] tracking-[0.1em] uppercase text-[#00A6D2] mb-4 text-center lg:text-left">03 &mdash; The Cause</p>
+              <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-[800] leading-[1.05] mb-0 lg:mb-6 text-black text-center lg:text-left">Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work</h2>
+              {/* Desktop body copy */}
+              <div className="hidden lg:block mt-6">
+                <p className="text-black font-bold text-lg md:text-xl mb-6">You didn&apos;t fail. The strategy failed you.</p>
+                <p className="text-[#333] text-base leading-[1.5] mb-8">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
+                <p className="text-black font-bold text-lg mb-6">The cause is cortisol.</p>
+                <p className="text-[#666] mb-5">And the reason is simple:</p>
+                <p className="font-mono text-[clamp(1.5rem,3vw,2.5rem)] font-[900] leading-[1.1] tracking-tight text-[#00A6D2] uppercase">Your Brain Was Built for a World That No Longer Exists.</p>
+              </div>
+            </div>
+
+            {/* Image (mobile order 2) */}
+            <FadeUp delay={0.15} className="flex justify-center order-2 lg:order-none">
               <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={500} height={500} loading="lazy" className="max-w-[500px] w-full h-auto" />
             </FadeUp>
+
+            {/* Mobile body copy (order 3, hidden on desktop) */}
+            <div className="order-3 lg:hidden">
+              <p className="text-black font-bold text-lg mb-5">You didn&apos;t fail. The strategy failed you.</p>
+              <p className="text-[#333] text-base leading-[1.5] mb-6">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
+              <p className="text-black font-bold text-lg mb-5">The cause is cortisol.</p>
+              <p className="text-[#666] mb-4">And the reason is simple:</p>
+              <p className="font-mono text-[clamp(1.5rem,3vw,2.5rem)] font-[900] leading-[1.1] tracking-tight text-[#00A6D2] uppercase">Your Brain Was Built for a World That No Longer Exists.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -418,17 +438,33 @@ export default function Page() {
       <section className="bg-white" style={{ padding: "60px 60px 80px" }}>
         <div className="max-w-7xl mx-auto px-4">
           {/* Top: illustration + body */}
-          <div className="grid lg:grid-cols-[0.3fr_0.7fr] gap-10 items-center mb-10">
-            <FadeUp className="flex justify-center">
-              <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={280} height={280} loading="lazy" className="max-w-[280px] w-full h-auto" />
+          <div className="flex flex-col lg:grid lg:grid-cols-[0.3fr_0.7fr] gap-6 lg:gap-10 items-center mb-10">
+            {/* Opening text — mobile order 1 */}
+            <div className="order-1 lg:hidden">
+              <p className="text-black text-[17px] leading-[1.5] mb-4">For most of human history, stress was short.</p>
+              <p className="text-black text-[17px] leading-[1.5] mb-4">A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
+              <p className="text-black font-bold text-[18px] mb-0">But now the threat never passes.</p>
+            </div>
+
+            {/* Image — mobile order 2, desktop left column */}
+            <FadeUp className="flex justify-center order-2 lg:order-none">
+              <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={280} height={280} loading="lazy" className="max-w-[200px] lg:max-w-[280px] w-full h-auto" />
             </FadeUp>
-            <FadeUp delay={0.1}>
+
+            {/* Full body — desktop only (order none) */}
+            <FadeUp delay={0.1} className="hidden lg:block">
               <p className="text-black text-[17px] leading-[1.5] mb-4">For most of human history, stress was short.</p>
               <p className="text-black text-[17px] leading-[1.5] mb-4">A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
               <p className="text-black font-bold text-[18px] mb-4">But now the threat never passes.</p>
               <p className="text-black text-[17px] leading-[1.5] mb-4">Investor updates. Cash-flow projections. The Slack ping at 10pm. The decision you&apos;ve been putting off. Another notification. Then another.</p>
               <p className="text-black font-bold text-[17px]">None of it is life or death. But your nervous system can&apos;t tell the difference...</p>
             </FadeUp>
+
+            {/* Continuing body — mobile order 3 */}
+            <div className="order-3 lg:hidden">
+              <p className="text-black text-[17px] leading-[1.5] mb-4">Investor updates. Cash-flow projections. The Slack ping at 10pm. The decision you&apos;ve been putting off. Another notification. Then another.</p>
+              <p className="text-black font-bold text-[17px]">None of it is life or death. But your nervous system can&apos;t tell the difference...</p>
+            </div>
           </div>
 
           {/* Bridge */}
@@ -450,11 +486,13 @@ export default function Page() {
       {/* ═══ §05 OPERATORS WHO CRACK THE CODE — WHITE (flush with §04) ═══ */}
       <section className="bg-white" style={{ padding: "60px 60px 80px" }}>
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center lg:max-h-[600px]">
-            <FadeUp className="flex justify-center">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center lg:max-h-[600px]">
+            {/* Image — first on mobile (order 1), desktop left column */}
+            <FadeUp className="flex justify-center order-1 lg:order-none">
               <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={600} height={450} loading="lazy" className="max-w-[600px] w-full h-auto" />
             </FadeUp>
-            <FadeUp delay={0.1}>
+            {/* Copy — order 2 on mobile */}
+            <FadeUp delay={0.1} className="order-2 lg:order-none">
               <p className="text-black text-lg md:text-xl leading-[1.5] mb-8">The operators who finally crack the code &mdash; who get their brain back after years of stacks and apps and hacks not working &mdash; are the ones who fix the chemistry first.</p>
               <p className="text-black font-[800] text-2xl md:text-[26px] leading-tight mb-5">Restore the chemistry. Get the brain back.</p>
               <p className="text-black text-[17px]">That&apos;s exactly what Genius Mind is built to do.</p>
