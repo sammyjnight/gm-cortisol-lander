@@ -345,7 +345,7 @@ export default function Page() {
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <FadeUp><img src="/assets/gm-symptoms-desk.png" alt="Overhead view of operator at desk showing signs of cognitive fatigue" width={800} height={1000} loading="lazy" className="w-full rounded-xl object-cover aspect-[4/5]" /></FadeUp>
             <FadeUp delay={0.1}>
-              <div className="text-center md:text-left"><SN n="01" label="THE SYMPTOMS" mode="dark" /></div>
+              <div className="text-center md:text-left"><SN n="02" label="THE SYMPTOMS" mode="dark" /></div>
               <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-6 text-center md:text-left ${h2D}`}>It&apos;s Not Just Burnout</h2>
               <p className="text-white/90 mb-6 text-center md:text-left">Many high-output operators in their 30s and 40s end up...</p>
               <Stagger className="space-y-2 mb-6">
@@ -363,68 +363,113 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ §02 THE CAUSE — HIPPOCAMPUS UMP — DARK ═══ */}
+      {/* ═══ §03 WHY EVERYTHING FAILED — DARK ═══ */}
       <section className="sec-dark py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4">
-          {/* Mobile: workspace image banner */}
-          <div className="md:hidden mb-8">
-            <img src="/assets/gm-enemy-workspace.png" alt="Chaotic workspace with empty coffee cups and supplement bottles" width={800} height={800} loading="lazy" className="w-full rounded-xl object-cover h-[280px]" />
-          </div>
-
-          <div className="grid md:grid-cols-[1.1fr_0.9fr] gap-10 md:gap-14">
-            <div>
-              <FadeUp>
-                <div className="text-center md:text-left"><SN n="02" label="THE CAUSE" mode="dark" /></div>
-                <h2 className="text-[clamp(28px,4.5vw,48px)] font-[800] leading-[1.05] mb-6 text-white text-center md:text-left">It&apos;s Not Aging. It&apos;s Hippocampus Damage.</h2>
-                <p className="text-white/90 mb-8 leading-relaxed">Your brain has a structure called the hippocampus. It runs memory consolidation, focus regulation, and the decision-quality you rely on under pressure. And it&apos;s the single brain region most vulnerable to chronic cortisol exposure.</p>
-              </FadeUp>
-
-              <FadeUp delay={0.1}>
-                <div className="grid sm:grid-cols-2 gap-6 mb-8">
-                  <p className="text-white/90 text-sm leading-relaxed">For most of human history, stress was short. A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. The hippocampus had time to recover. Clean cycle. Worked perfectly.</p>
-                  <p className="text-white/90 text-sm leading-relaxed">Now the threat never passes. The Slack message at 10pm. The funding round. The hire that isn&apos;t working out. None of it is life or death &mdash; but your nervous system can&apos;t tell the difference. Cortisol stays elevated. The hippocampus stays under fire. Damage compounds.</p>
-                </div>
-              </FadeUp>
-
-              {/* ASSET TODO: Replace with /public/assets/gm-cause-illustration.png when available — line illustration of brain with stress indicators */}
-              <FadeUp delay={0.15}>
-                <div className="flex justify-center mb-8">
-                  <img src="/assets/gm-symptoms-desk.png" alt="Operator at desk under cognitive pressure" width={400} height={300} loading="lazy" className="w-full max-w-[400px] rounded-xl object-cover aspect-[4/3] opacity-60" />
-                </div>
-              </FadeUp>
-
-              {/* Peach callout boxes */}
-              <Stagger className="space-y-4 mb-8">
-                {CALLOUTS.map((c) => (
-                  <motion.div key={c.bold} variants={cF} className="bg-[#fef3e8] border border-[#f5d5b5] rounded-xl p-5">
-                    <p className="text-[var(--color-ink-primary)] text-sm leading-relaxed"><strong className="underline">{c.bold}</strong> {c.body}</p>
-                  </motion.div>
-                ))}
-              </Stagger>
-
-              <FadeUp>
-                <p className="text-white mb-2">&#128073; You deserve better than frying your nervous system with stimulants OR wasting money on underdosed single-ingredient pills that don&apos;t address the ROOT of cognitive performance.</p>
-              </FadeUp>
-            </div>
-
-            {/* Right: sticky workspace image (desktop) */}
-            <div className="hidden md:block">
-              <div className="sticky top-24">
-                <div className="relative rounded-2xl overflow-hidden border border-[var(--color-dark-tertiary)]">
-                  <img src="/assets/gm-enemy-workspace.png" alt="Chaotic workspace with empty coffee cups and supplement bottles" width={800} height={800} loading="lazy" className="w-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-dark-primary)] via-transparent to-transparent opacity-60" />
-                </div>
-              </div>
-            </div>
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <FadeUp>
+              <div className="text-center md:text-left"><SN n="03" label="THE CAUSE" mode="dark" /></div>
+              <h2 className="text-[clamp(28px,4.5vw,48px)] font-[800] leading-[1.05] mb-6 text-white text-center md:text-left">Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work</h2>
+              <p className="text-white font-semibold text-lg mb-4">You didn&apos;t fail. The strategy failed you.</p>
+              <p className="text-white/80 mb-6 leading-relaxed">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
+              <p className="text-white font-bold text-lg mb-4">The cause is cortisol.</p>
+              <p className="text-white/70 mb-6">And the reason is simple:</p>
+              <p className="label-mono text-[var(--color-coral)] text-sm tracking-[0.08em] font-[800] uppercase">Your Brain Was Built for a World That No Longer Exists.</p>
+            </FadeUp>
+            <FadeUp delay={0.15}>
+              {/* ASSET TODO: Replace with section-3-illustration-collapsed-operator.png (1000x1000, B&W line art of operator collapsed at desk) */}
+              <Skel label="section-3-illustration-collapsed-operator.png (1000x1000, B&W line art)" mode="dark" className="aspect-square" />
+            </FadeUp>
           </div>
         </div>
       </section>
 
-      {/* ═══ §03 PRODUCT REVEAL — LIGHT ═══ */}
+      {/* ═══ §04 STRESS WAS SHORT — DARK ═══ */}
+      <section className="sec-dark py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid lg:grid-cols-[0.4fr_1fr] gap-12 items-start mb-12">
+            <FadeUp>
+              {/* ASSET TODO: Replace with section-4-illustration-couch-operator.png (600x600, B&W line art, same style as §3) */}
+              <Skel label="section-4-illustration-couch-operator.png (600x600, B&W line art)" mode="dark" className="aspect-square" />
+            </FadeUp>
+            <FadeUp delay={0.1}>
+              <p className="text-white/90 mb-4 leading-relaxed">For most of human history, stress was short.</p>
+              <p className="text-white/90 mb-4 leading-relaxed">A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
+              <p className="text-white font-bold mb-4">But now the threat never passes.</p>
+              <p className="text-white/80 mb-4 leading-relaxed">Investor updates. Cash-flow projections. The Slack ping at 10pm. The decision you&apos;ve been putting off. Another notification. Then another.</p>
+              <p className="text-white font-bold">None of it is life or death. But your nervous system can&apos;t tell the difference...</p>
+            </FadeUp>
+          </div>
+
+          <FadeUp>
+            <p className="text-white/80 mb-8 text-center">And the harder you push your brain without addressing cortisol first, the more you&apos;re working against yourself:</p>
+          </FadeUp>
+
+          <Stagger className="grid md:grid-cols-3 gap-6">
+            {STRESS_BOXES.map((b) => (
+              <motion.div key={b.title} variants={cF} className="bg-[#E8F5F8] border border-[#b5dfe8] rounded-xl p-5">
+                <p className="text-[var(--color-ink-primary)] text-sm leading-relaxed"><strong>{b.title}</strong> {b.body}</p>
+              </motion.div>
+            ))}
+          </Stagger>
+        </div>
+      </section>
+
+      {/* ═══ §05 OPERATORS WHO CRACK THE CODE — LIGHT ═══ */}
+      <section className="sec-light py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <FadeUp>
+              {/* ASSET TODO: Replace with section-5-before-after-operator.png (1200x900, two halves 600x900 with vertical divider, plain white background) */}
+              <Skel label="section-5-before-after-operator.png (1200x900, before/after split)" mode="light" className="aspect-[4/3]" />
+            </FadeUp>
+            <FadeUp delay={0.1}>
+              <p className={`${bodyL} text-lg leading-relaxed mb-6`}>The operators who finally crack the code &mdash; who get their brain back after years of stacks and apps and hacks not working &mdash; are the ones who fix the chemistry first.</p>
+              <p className={`${h2L} font-bold text-2xl mb-3`}>Restore the chemistry. Get the brain back.</p>
+              <p className={`${bodyL} text-lg`}>That&apos;s exactly what Genius Mind is built to do.</p>
+            </FadeUp>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ §06 SAY NO TO CAFFEINE — DARK ═══ */}
+      <section className="sec-dark py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12">
+            <FadeUp>
+              <p className="label-mono text-[var(--color-coral)] text-xs mb-4">&#10067; And What About Other Options?</p>
+              <h2 className="text-[clamp(28px,4.5vw,48px)] font-[800] leading-[1.05] mb-8 text-white">Say No to Caffeine Loops &amp; Underdosed Nootropic Stacks</h2>
+
+              <h3 className="text-[var(--color-coral)] font-bold mb-3 text-sm">Caffeine &amp; Stimulant Stacks:</h3>
+              {CAFFEINE_FAILS.map((item) => (
+                <div key={item} className="flex items-start gap-2 mb-2">
+                  <span className="text-[var(--color-coral)] mt-0.5 shrink-0">&#10060;</span>
+                  <p className="text-white/80 text-sm">{item}</p>
+                </div>
+              ))}
+
+              <h3 className="text-[var(--color-coral)] font-bold mb-3 mt-6 text-sm">Underdosed Nootropic Stacks:</h3>
+              {NOOTROPIC_FAILS.map((item) => (
+                <div key={item} className="flex items-start gap-2 mb-2">
+                  <span className="text-[var(--color-coral)] mt-0.5 shrink-0">&#10060;</span>
+                  <p className="text-white/80 text-sm">{item}</p>
+                </div>
+              ))}
+            </FadeUp>
+            <FadeUp delay={0.1}>
+              {/* ASSET TODO: Replace with section-6-coffee-loop-operator.png (1000x1200, operator reaching for coffee) */}
+              <Skel label="section-6-coffee-loop-operator.png (1000x1200)" mode="dark" className="aspect-[5/6] mb-6" />
+              <p className="text-white/80 text-sm">&#128073; You deserve better than frying your nervous system with caffeine OR wasting money on underdosed stacks that don&apos;t address the ROOT of why your brain isn&apos;t delivering.</p>
+            </FadeUp>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ §07 PRODUCT REVEAL — LIGHT ═══ */}
       <section id="mechanism" className="sec-light py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <FadeUp>
-            <SN n="03" label="THE SOLUTION" />
+            <SN n="07" label="THE SOLUTION" />
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-6 ${h2L}`}>Cognitive Chemistry Restored.<br /><span className={cyanL}>Sustained Focus, Replenished.</span></h2>
             <p className={`${bodyL} mb-10 max-w-3xl mx-auto`}>Genius Mind isn&apos;t another nootropic &mdash; it&apos;s a complete cognitive stack engineered around the Cognisync Tri-Factor, working on three mechanisms simultaneously:</p>
           </FadeUp>
@@ -449,7 +494,7 @@ export default function Page() {
       {/* ═══ §5 OUTCOMES (4 tiles) — LIGHT ═══ */}
       <section className="sec-light-alt py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-4">
-          <FadeUp><SN n="04" label="THE OUTCOMES" /></FadeUp>
+          <FadeUp><SN n="08" label="THE OUTCOMES" /></FadeUp>
           <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {BENEFITS.map((b) => (
               <motion.div key={b.title} variants={cF} className="card-light text-center !p-8">
@@ -467,7 +512,7 @@ export default function Page() {
       <section id="formula" className="sec-dark py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <FadeUp>
-            <SN n="05" label="THE FORMULA" mode="dark" />
+            <SN n="09" label="THE FORMULA" mode="dark" />
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-3 ${h2D}`}>16 Ingredients in 1 Powerful Formula</h2>
             <div className="mb-4"><span className="sticker sticker-cyan">Clinically Studied + High-Ratio Extracts</span></div>
             <div className="flex flex-wrap justify-center items-center gap-x-1 gap-y-2 mb-10">
@@ -506,7 +551,7 @@ export default function Page() {
       <section className="sec-light-alt py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <FadeUp>
-            <SN n="06" label="THE EVIDENCE" />
+            <SN n="10" label="THE EVIDENCE" />
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-10 ${h2L}`}>What Long-Term Customers Actually Report</h2>
           </FadeUp>
           <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -546,7 +591,7 @@ export default function Page() {
       <section className="sec-light py-20 md:py-28">
         <div className="max-w-4xl mx-auto px-4">
           <FadeUp>
-            <SN n="07" label="THE COMPARISON" />
+            <SN n="11" label="THE COMPARISON" />
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] text-center mb-3 ${h2L}`}>How Genius Mind Compares</h2>
             <p className={`${bodyL} text-center mb-10`}>Cognitive infrastructure, not a stimulant hit.</p>
           </FadeUp>
@@ -606,7 +651,7 @@ export default function Page() {
       {/* ═══ §10 THE OFFER — LIGHT ═══ */}
       <section id="offer" className="sec-light-alt py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4">
-          <FadeUp><SN n="08" label="THE OFFER" /></FadeUp>
+          <FadeUp><SN n="12" label="THE OFFER" /></FadeUp>
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <FadeUp><ProductCarousel /></FadeUp>
             <FadeUp delay={0.1}>
@@ -631,7 +676,7 @@ export default function Page() {
       <section className="sec-dark py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-4">
           <FadeUp>
-            <SN n="09" label="THE TIMELINE" mode="dark" />
+            <SN n="13" label="THE TIMELINE" mode="dark" />
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] text-center mb-12 ${h2D}`}>What Happens After You Start Restoring Cognitive Chemistry</h2>
           </FadeUp>
           <FadeUp delay={0.1}>
@@ -645,7 +690,7 @@ export default function Page() {
       <section className="sec-light-alt py-20 md:py-28">
         <div className="max-w-3xl mx-auto px-4">
           <FadeUp>
-            <SN n="10" label="NUTRITIONIST FORMULATED" />
+            <SN n="14" label="NUTRITIONIST FORMULATED" />
             <h2 className={`text-[clamp(28px,4.5vw,44px)] font-[800] leading-[1.05] text-center mb-10 ${h2L}`}>Nutritionist Formulated, Operator Tested.</h2>
           </FadeUp>
 
@@ -699,7 +744,7 @@ export default function Page() {
       <section id="faq" className="sec-light-alt py-20 md:py-28">
         <div className="max-w-3xl mx-auto px-4">
           <FadeUp>
-            <SN n="11" label="QUESTIONS" />
+            <SN n="15" label="QUESTIONS" />
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] text-center mb-10 ${h2L}`}>Frequently Asked Questions</h2>
           </FadeUp>
           <div className="space-y-3">
@@ -762,10 +807,20 @@ const SYMPTOMS_ALERT = [
   { bold: "Word-finding gaps in important conversations", rest: "\u2014 names, terms, the right word for a Slack message" },
   { bold: "Brain output flatlining", rest: "even after sleep, training, and diet are sorted" },
 ];
-const CALLOUTS = [
-  { bold: "Caffeine doesn\u2019t fix this \u2014 it accelerates it.", body: "Caffeine borrows against the dopamine you already have. The dose that worked in January barely works by March. You\u2019re not building tolerance to caffeine. You\u2019re depleting the system underneath." },
-  { bold: "Single-ingredient nootropics solve one thing \u2014 and focus isn\u2019t one thing.", body: "Lion\u2019s Mane alone addresses neurogenesis. It doesn\u2019t touch blood flow, dopamine depletion, or synaptic signal. The chemistry layer was never addressed." },
-  { bold: "Sleep, training, and diet won\u2019t restore what cortisol depleted.", body: "You\u2019ve done the work. The lifestyle is dialled. The cognitive output still plateaus \u2014 because the chemistry layer needs replenishing." },
+const STRESS_BOXES = [
+  { title: "More coffee spikes cortisol further.", body: "Caffeine works by triggering the stress response \u2014 the same system that\u2019s already overloaded. Your brain reads it as another threat and elevates cortisol on top of what\u2019s already there." },
+  { title: "Pushing harder adds fuel to the fire.", body: "Long, high-pressure deep work sessions done while cortisol is already elevated push it higher. Operators who grind through it end up with worse output the following day, not better." },
+  { title: "Stimulant nootropics work by triggering cortisol.", body: "The temporary energy and focus they deliver comes from spiking your stress hormones. You feel sharp for an hour. Then the chemistry your brain actually needs is depleted further." },
+];
+const CAFFEINE_FAILS = [
+  "Heart racing, jitters, anxiety \u2014 then a brutal crash by 3pm",
+  "Only work while you\u2019re taking them \u2014 stop and the brain fog comes back worse",
+  "Spike cortisol with every dose \u2014 the exact thing destroying your chemistry",
+];
+const NOOTROPIC_FAILS = [
+  "Proprietary blends hide worthless dosages",
+  "Dated formulas with single ingredients that don\u2019t reach therapeutic levels",
+  "Just expensive pee \u2014 no actual mechanism, no real cognitive impact",
 ];
 const MECHS = [
   { label: "BLOOD FLOW", title: "Blood Flow Activation", icon: <Zap size={32} />, iconLg: <Zap size={40} />, desc: "Ginkgo Biloba 50:1, Rosemary 5:1, Panax Ginseng 20:1. Researched for cerebral blood flow, oxygen and nutrient delivery." },
