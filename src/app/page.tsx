@@ -336,7 +336,7 @@ export default function Page() {
 
               {/* Image (order 2 on mobile — between headline and body) */}
               <FadeUp delay={0.15} className="order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:items-center">
-                <img src="/assets/gm-hero-cortisol-transformation.png" alt="High-cortisol brain on the left, Genius Mind product bottle in the centre, low-cortisol brain on the right" width={1200} height={600} loading="eager" className="w-full rounded-xl object-cover" />
+                <img src="/assets/gm-hero-cortisol-transformation-new.png" alt="High-cortisol brain on the left, Genius Mind product bottle in the centre, low-cortisol brain on the right" width={1200} height={600} loading="eager" className="w-full rounded-xl object-cover" />
               </FadeUp>
 
               {/* Body copy — mobile only (order 3), hidden on desktop */}
