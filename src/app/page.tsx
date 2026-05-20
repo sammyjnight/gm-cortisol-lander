@@ -341,7 +341,7 @@ export default function Page() {
 
               {/* Image (order 2 on mobile — between headline and body) */}
               <FadeUp delay={0.15} className="order-2 lg:order-none img-bleed lg:[all:unset]">
-                <img src="/assets/gm-hero-cortisol-transformation.png" alt="High-cortisol brain on the left, Genius Mind product bottle in the centre, low-cortisol brain on the right" width={1200} height={600} loading="eager" className="w-full lg:max-w-[440px] lg:mx-auto rounded-xl object-cover" />
+                <img src="/assets/gm-hero-cortisol-transformation.png" alt="High-cortisol brain on the left, Genius Mind product bottle in the centre, low-cortisol brain on the right" width={1200} height={600} loading="eager" className="w-full rounded-xl object-cover" />
               </FadeUp>
 
               {/* Body copy — mobile only (order 3), hidden on desktop */}
@@ -370,7 +370,7 @@ export default function Page() {
 
             {/* Image (mobile order 2, desktop left column) */}
             <FadeUp className="flex order-2 lg:order-none img-bleed lg:[all:unset] lg:flex">
-              <video src="/assets/section-2-operator-at-desk.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="High-output operator at desk, exhausted late at night" className="w-full lg:max-w-[440px] lg:mx-auto rounded-xl object-cover" />
+              <video src="/assets/section-2-operator-at-desk.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="High-output operator at desk, exhausted late at night" className="w-full rounded-xl object-cover" />
             </FadeUp>
 
             {/* Copy (mobile order 3, desktop right column) */}
@@ -399,50 +399,50 @@ export default function Page() {
         </div>
       </div>
 
-      {/* ═══ §03 WHY EVERYTHING FAILED — WHITE ═══ */}
-      <section className="bg-white sec-pad">
+      {/* ═══ §03 WHY EVERYTHING FAILED — DARK ═══ */}
+      <section className="sec-dark sec-pad">
         <div className="sec-container">
           <div className="flex flex-col lg:grid grid-mm items-center">
             {/* Headline + body (mobile order 1) — no eyebrow */}
             <div className="order-1 lg:order-none">
-              <h2 className="h2-mm mb-0 lg:mb-6 text-black text-center lg:text-left">Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work</h2>
+              <h2 className="h2-mm mb-0 lg:mb-6 text-white text-center lg:text-left">Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work</h2>
               {/* Desktop body copy */}
               <div className="hidden lg:block mt-6">
-                <p className="text-black font-bold text-lg md:text-xl mb-6">You didn&apos;t fail. The strategy failed you.</p>
-                <p className="text-[#333] text-base leading-[1.5] mb-8">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
-                <p className="text-black font-bold text-lg mb-6">The cause is cortisol.</p>
-                <p className="text-[#666] mb-5">And the reason is simple:</p>
+                <p className="text-white font-bold text-lg md:text-xl mb-6">You didn&apos;t fail. The strategy failed you.</p>
+                <p className="text-white/70 body-mm mb-8">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
+                <p className="text-white font-bold text-lg mb-6">The cause is cortisol.</p>
+                <p className="text-white/50 mb-5">And the reason is simple:</p>
                 <p className="breakout-line breakout-light">Your Brain Was Built for a World That No Longer Exists.</p>
               </div>
             </div>
 
             {/* Image (mobile order 2) */}
             <FadeUp delay={0.15} className="flex justify-center order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:justify-center">
-              <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={500} height={500} loading="lazy" className="lg:max-w-[440px] w-full h-auto mx-auto rounded-xl" />
+              <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={500} height={500} loading="lazy" className="w-full h-auto" />
             </FadeUp>
 
             {/* Mobile body copy (order 3, hidden on desktop) */}
             <div className="order-3 lg:hidden">
-              <p className="text-black font-bold text-lg mb-5">You didn&apos;t fail. The strategy failed you.</p>
-              <p className="text-[#333] text-base leading-[1.5] mb-6">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
-              <p className="text-black font-bold text-lg mb-5">The cause is cortisol.</p>
-              <p className="text-[#666] mb-4">And the reason is simple:</p>
+              <p className="text-white font-bold text-lg mb-5">You didn&apos;t fail. The strategy failed you.</p>
+              <p className="text-white/70 body-mm mb-6">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
+              <p className="text-white font-bold text-lg mb-5">The cause is cortisol.</p>
+              <p className="text-white/50 mb-4">And the reason is simple:</p>
               <p className="font-mono text-[clamp(1.6rem,3vw,2.8rem)] font-[900] leading-[1.05] tracking-[0.01em] text-[#00A6D2] uppercase">Your Brain Was Built for a World That No Longer Exists.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ═══ §04 STRESS WAS SHORT — WHITE (flush with §03) ═══ */}
-      <section className="bg-white sec-pad">
+      {/* ═══ §04 STRESS WAS SHORT — DARK (flush with §03) ═══ */}
+      <section className="sec-dark sec-pad">
         <div className="sec-container">
           {/* Top: illustration + body */}
           <div className="flex flex-col lg:grid lg:grid-cols-[0.3fr_0.7fr] gap-6 lg:gap-10 items-center mb-10">
             {/* Opening text — mobile order 1 */}
             <div className="order-1 lg:hidden">
-              <p className="text-black text-[17px] leading-[1.5] mb-4">For most of human history, stress was short.</p>
-              <p className="text-black text-[17px] leading-[1.5] mb-4">A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
-              <p className="text-black font-bold text-[18px] mb-0">But now the threat never passes.</p>
+              <p className="text-white/80 body-mm mb-4">For most of human history, stress was short.</p>
+              <p className="text-white/80 body-mm mb-4">A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
+              <p className="text-white font-bold body-mm mb-0">But now the threat never passes.</p>
             </div>
 
             {/* Image — mobile order 2, desktop left column */}
@@ -452,49 +452,49 @@ export default function Page() {
 
             {/* Full body — desktop only (order none) */}
             <FadeUp delay={0.1} className="hidden lg:block">
-              <p className="text-black text-[17px] leading-[1.5] mb-4">For most of human history, stress was short.</p>
-              <p className="text-black text-[17px] leading-[1.5] mb-4">A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
-              <p className="text-black font-bold text-[18px] mb-4">But now the threat never passes.</p>
-              <p className="text-black text-[17px] leading-[1.5] mb-4">Investor updates. Cash-flow projections. The Slack ping at 10pm. The decision you&apos;ve been putting off. Another notification. Then another.</p>
-              <p className="text-black font-bold text-[17px]">None of it is life or death. But your nervous system can&apos;t tell the difference...</p>
+              <p className="text-white/80 body-mm mb-4">For most of human history, stress was short.</p>
+              <p className="text-white/80 body-mm mb-4">A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
+              <p className="text-white font-bold body-mm mb-4">But now the threat never passes.</p>
+              <p className="text-white/80 body-mm mb-4">Investor updates. Cash-flow projections. The Slack ping at 10pm. The decision you&apos;ve been putting off. Another notification. Then another.</p>
+              <p className="text-white font-bold body-mm">None of it is life or death. But your nervous system can&apos;t tell the difference...</p>
             </FadeUp>
 
             {/* Continuing body — mobile order 3 */}
             <div className="order-3 lg:hidden">
-              <p className="text-black text-[17px] leading-[1.5] mb-4">Investor updates. Cash-flow projections. The Slack ping at 10pm. The decision you&apos;ve been putting off. Another notification. Then another.</p>
-              <p className="text-black font-bold text-[17px]">None of it is life or death. But your nervous system can&apos;t tell the difference...</p>
+              <p className="text-white/80 body-mm mb-4">Investor updates. Cash-flow projections. The Slack ping at 10pm. The decision you&apos;ve been putting off. Another notification. Then another.</p>
+              <p className="text-white font-bold body-mm">None of it is life or death. But your nervous system can&apos;t tell the difference...</p>
             </div>
           </div>
 
           {/* Bridge */}
           <FadeUp>
-            <p className="text-black text-[17px] mb-8 mt-10">And the harder you push your brain without addressing cortisol first, the more you&apos;re working against yourself:</p>
+            <p className="text-white/80 body-mm mb-8 mt-10">And the harder you push your brain without addressing cortisol first, the more you&apos;re working against yourself:</p>
           </FadeUp>
 
           {/* 3 teal boxes */}
           <Stagger className="grid md:grid-cols-3 gap-6">
             {STRESS_BOXES_V2.map((b) => (
-              <motion.div key={b.headline} variants={cF} className="bg-[#E8F5F8] rounded-xl p-6">
-                <p className="text-black text-[15px] leading-relaxed"><strong><u>{b.headline}</u></strong> {b.body}</p>
+              <motion.div key={b.headline} variants={cF} className="warn-box">
+                <p className="text-white/90 leading-relaxed"><strong className="text-white"><u>{b.headline}</u></strong> <span className="text-white/60">{b.body}</span></p>
               </motion.div>
             ))}
           </Stagger>
         </div>
       </section>
 
-      {/* ═══ §05 OPERATORS WHO CRACK THE CODE — WHITE (flush with §04) ═══ */}
-      <section className="bg-white sec-pad">
+      {/* ═══ §05 OPERATORS WHO CRACK THE CODE — DARK (flush with §04) ═══ */}
+      <section className="sec-dark sec-pad">
         <div className="sec-container">
           <div className="flex flex-col lg:grid grid-mm items-center">
             {/* Image — first on mobile (order 1), desktop left column */}
             <FadeUp className="flex justify-center order-1 lg:order-none img-bleed lg:[all:unset] lg:flex lg:justify-center">
-              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={600} height={450} loading="lazy" className="lg:max-w-[440px] w-full h-auto mx-auto rounded-xl" />
+              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={600} height={450} loading="lazy" className="w-full h-auto" />
             </FadeUp>
             {/* Copy — order 2 on mobile */}
             <FadeUp delay={0.1} className="order-2 lg:order-none">
-              <p className="text-black text-lg md:text-xl leading-[1.5] mb-8">The operators who finally crack the code &mdash; who get their brain back after years of stacks and apps and hacks not working &mdash; are the ones who fix the chemistry first.</p>
-              <p className="text-black font-[800] text-2xl md:text-[26px] leading-tight mb-5">Restore the chemistry. Get the brain back.</p>
-              <p className="text-black text-[17px]">That&apos;s exactly what Genius Mind is built to do.</p>
+              <p className="text-white/80 body-mm mb-8">The operators who finally crack the code &mdash; who get their brain back after years of stacks and apps and hacks not working &mdash; are the ones who fix the chemistry first.</p>
+              <p className="text-white font-[800] text-2xl md:text-[26px] leading-tight mb-5">Restore the chemistry. Get the brain back.</p>
+              <p className="text-white/80 body-mm">That&apos;s exactly what Genius Mind is built to do.</p>
             </FadeUp>
           </div>
         </div>
@@ -538,7 +538,7 @@ export default function Page() {
 
             {/* Right column: image + closer (order 2 on mobile) */}
             <FadeUp delay={0.1} className="order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:flex-col lg:sticky lg:top-24">
-              <video src="/assets/section-6-coffee-loop-operator.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="Operator reaching for a fourth coffee, defeated" className="w-full lg:max-w-[440px] lg:mx-auto rounded-xl object-cover mb-6" />
+              <video src="/assets/section-6-coffee-loop-operator.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="Operator reaching for a fourth coffee, defeated" className="w-full rounded-xl object-cover mb-6" />
               <p className="hidden lg:block text-white text-[15px] leading-[1.5]">&#128073; You deserve better than frying your nervous system with caffeine OR wasting money on underdosed stacks that don&apos;t address the ROOT of why your brain isn&apos;t delivering.</p>
             </FadeUp>
 
