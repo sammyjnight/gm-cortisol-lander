@@ -40,28 +40,37 @@ body { background: var(--color-light-primary); color: var(--color-ink-primary); 
 }
 .sec-dark > * { position: relative; z-index: 1; }
 
-/* Mars Men section spacing */
+/* Mars Men section spacing: 57px top, 88px bottom desktop; 14px top, 0 bottom mobile */
 .sec-pad { padding: 57px 20px 88px; }
 @media (max-width: 640px) { .sec-pad { padding: 14px 20px 0; } }
-@media (min-width: 641px) and (max-width: 1024px) { .sec-pad { padding: 50px 20px; } }
+@media (min-width: 641px) and (max-width: 1024px) { .sec-pad { padding: 42px 20px; } }
 
-/* Mars Men container */
-.sec-container { max-width: 1200px; margin: 0 auto; }
+/* Tighter section padding for white sections — 42px bottom like Mars Men */
+.sec-pad-tight { padding: 42px 20px 42px; }
+@media (max-width: 640px) { .sec-pad-tight { padding: 24px 20px 24px; } }
 
-/* Mars Men text column — 573px max inside 600px cell creates ~27px visual gap */
-.col-text-mm { max-width: 573px; }
-@media (max-width: 640px) { .col-text-mm { max-width: 100%; } }
+/* Mars Men container — 1136px for grid sections, 1200px hero */
+.sec-container { max-width: 1136px; margin: 0 auto; }
+.sec-container-wide { max-width: 1200px; margin: 0 auto; }
 
-/* Mars Men 2-column grid: 50/50, 48px gutter desktop, 20px mobile */
-.grid-mm { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; align-items: start; }
+/* Mars Men text column — 573px max with left padding */
+.col-text-mm { max-width: 573px; padding-left: 36px; }
+@media (max-width: 640px) { .col-text-mm { max-width: 100%; padding-left: 0; } }
+
+/* Mars Men 2-column grid: 50/50, 100px column gap desktop, 20px mobile */
+.grid-mm { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0px 100px; align-items: center; }
 @media (max-width: 640px) { .grid-mm { display: flex; flex-direction: column; gap: 20px; } }
-@media (min-width: 641px) and (max-width: 1024px) { .grid-mm { gap: 0; } }
+@media (min-width: 641px) and (max-width: 1024px) { .grid-mm { gap: 0px 20px; } }
+
+/* Constrain images in grid — max 440px like Mars Men */
+.grid-mm img, .grid-mm video { max-width: 440px; width: 100%; height: auto; object-fit: cover; border-radius: 12px; }
+@media (max-width: 640px) { .grid-mm img, .grid-mm video { max-width: 100%; border-radius: 0; } }
 
 /* ══════ TYPOGRAPHY (Mars Men scale) ══════ */
-/* H1/Display: 41px desktop, 24px mobile, weight 600, mono, -0.02em, 110% */
-.h1-mm { font-family: var(--font-sans); font-size: 48px; font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; text-transform: uppercase; }
-@media (max-width: 640px) { .h1-mm { font-size: 26px; } }
-@media (min-width: 641px) and (max-width: 1024px) { .h1-mm { font-size: 36px; } }
+/* H1/Display: 41px desktop, 24px mobile, mono, -0.02em, 110% */
+.h1-mm { font-family: var(--font-mono); font-size: 41px; font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; text-transform: uppercase; }
+@media (max-width: 640px) { .h1-mm { font-size: 24px; } }
+@media (min-width: 641px) and (max-width: 1024px) { .h1-mm { font-size: 32px; } }
 
 /* H2/Section: 48px desktop, 32px mobile, heavy weight, 100% line-height */
 .h2-mm { font-size: 48px; font-weight: 900; line-height: 1.0; }
@@ -151,8 +160,10 @@ body { background: var(--color-light-primary); color: var(--color-ink-primary); 
 /* ══════ EDGE-TO-EDGE IMAGES ON MOBILE ══════ */
 @media (max-width: 640px) {
   .img-bleed { margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); width: 100vw; border-radius: 0; }
-  .img-bleed img, .img-bleed video { border-radius: 0; width: 100%; }
+  .img-bleed img, .img-bleed video { border-radius: 0; width: 100% !important; max-width: 100% !important; }
   .mobile-cta-spacer { height: 80px; }
+  /* Override grid image constraints on mobile — full width */
+  .grid-mm img, .grid-mm video { max-width: 100% !important; }
 }
 @media (min-width: 641px) { .mobile-cta-spacer { display: none; } }
 

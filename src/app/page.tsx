@@ -335,8 +335,8 @@ export default function Page() {
               </FadeUp>
 
               {/* Image (order 2 on mobile — between headline and body) */}
-              <FadeUp delay={0.15} className="order-2 lg:order-none img-bleed lg:[all:unset] lg:flex">
-                <img src="/assets/gm-hero-cortisol-transformation-new.png" alt="High-cortisol brain on the left, Genius Mind product bottle in the centre, low-cortisol brain on the right" width={1200} height={600} loading="eager" className="w-full rounded-xl object-cover" />
+              <FadeUp delay={0.15} className="order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:justify-end">
+                <img src="/assets/gm-hero-cortisol-transformation-new.png" alt="High-cortisol brain on the left, Genius Mind product bottle in the centre, low-cortisol brain on the right" width={440} height={440} loading="eager" className="rounded-xl object-cover" style={{ maxWidth: 440, width: '100%' }} />
               </FadeUp>
 
               {/* Body copy — mobile only (order 3), hidden on desktop */}
@@ -365,7 +365,7 @@ export default function Page() {
 
             {/* Image (mobile order 2, desktop left column) */}
             <FadeUp className="flex order-2 lg:order-none img-bleed lg:[all:unset] lg:flex">
-              <video src="/assets/section-2-operator-at-desk.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="High-output operator at desk, exhausted late at night" className="w-full rounded-xl object-cover" />
+              <video src="/assets/section-2-operator-at-desk.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="High-output operator at desk, exhausted late at night" style={{ maxWidth: 440, width: '100%' }} className="rounded-xl object-cover" />
             </FadeUp>
 
             {/* Copy (mobile order 3, desktop right column) */}
@@ -396,7 +396,7 @@ export default function Page() {
       </div>
 
       {/* ═══ §03 WHY EVERYTHING FAILED — WHITE, CENTRED ═══ */}
-      <section className="bg-white sec-pad">
+      <section className="bg-white sec-pad-tight">
         <div className="sec-container">
           <FadeUp>
             <h2 className="h2-mm text-black text-center mb-10">Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work</h2>
@@ -410,19 +410,19 @@ export default function Page() {
               <p className="text-black/50 body-mm mb-5">And the reason is simple:</p>
               <p className="breakout-line text-[var(--color-cyan)]">Your Brain Was Built for a World That No Longer Exists.</p>
             </FadeUp>
-            <FadeUp>
-              <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={600} height={600} loading="lazy" className="w-full h-auto rounded-xl" />
+            <FadeUp className="flex justify-center lg:justify-end">
+              <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={440} height={440} loading="lazy" className="rounded-xl" style={{ maxWidth: 440, width: '100%', height: 'auto' }} />
             </FadeUp>
           </div>
         </div>
       </section>
 
       {/* ═══ §04 STRESS WAS SHORT — WHITE, CENTRED ═══ */}
-      <section className="bg-white sec-pad">
+      <section className="bg-white sec-pad-tight">
         <div className="sec-container">
           <div className="flex flex-col lg:grid grid-mm mb-10">
-            <FadeUp>
-              <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={500} height={500} loading="lazy" className="w-full h-auto rounded-xl" />
+            <FadeUp className="flex justify-center lg:justify-start">
+              <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={440} height={440} loading="lazy" className="rounded-xl" style={{ maxWidth: 440, width: '100%', height: 'auto' }} />
             </FadeUp>
             <FadeUp delay={0.1} className="col-text-mm">
               <p className="text-black body-mm mb-4">For most of human history, stress was short. A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
@@ -446,7 +446,7 @@ export default function Page() {
       </section>
 
       {/* ═══ §05 OPERATORS WHO CRACK THE CODE — WHITE ═══ */}
-      <section className="bg-white sec-pad">
+      <section className="bg-white sec-pad-tight">
         <div className="sec-container">
           <div className="flex flex-col lg:grid grid-mm">
             <FadeUp className="col-text-mm">
@@ -454,8 +454,8 @@ export default function Page() {
               <p className="text-black font-[800] text-2xl md:text-[26px] leading-tight mb-5">Restore the chemistry. Get the brain back.</p>
               <p className="text-black body-mm">That&apos;s exactly what Genius Mind is built to do.</p>
             </FadeUp>
-            <FadeUp delay={0.1}>
-              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={600} height={450} loading="lazy" className="w-full h-auto rounded-xl" />
+            <FadeUp delay={0.1} className="flex justify-center lg:justify-end">
+              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={440} height={340} loading="lazy" className="rounded-xl" style={{ maxWidth: 440, width: '100%', height: 'auto' }} />
             </FadeUp>
           </div>
         </div>
@@ -499,7 +499,7 @@ export default function Page() {
 
             {/* Desktop: image moves to LEFT column via order */}
             <FadeUp delay={0.1} className="order-2 lg:order-1 img-bleed lg:[all:unset] lg:flex lg:flex-col lg:sticky lg:top-24">
-              <video src="/assets/section-6-coffee-loop-operator.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="Operator reaching for a fourth coffee, defeated" className="w-full rounded-xl object-cover mb-6" />
+              <video src="/assets/section-6-coffee-loop-operator.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="Operator reaching for a fourth coffee, defeated" className="rounded-xl object-cover mb-6" style={{ maxWidth: 440, width: '100%' }} />
               <p className="hidden lg:block text-white body-mm">&#128073; You deserve better than frying your nervous system with caffeine or wasting money on underdosed stacks.</p>
             </FadeUp>
 
