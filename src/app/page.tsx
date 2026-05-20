@@ -314,26 +314,34 @@ export default function Page() {
         </div>
       </header>
 
-      {/* ═══ HERO — LIGHT ═══ */}
+      {/* ═══ HERO — LIGHT, VERTICALLY STACKED ═══ */}
       <section className="sec-light py-12 md:py-20 lg:py-24">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <FadeUp>
-              <p className={`label-mono ${cyanL} mb-4`}>16 Ingredients. One Formula. Zero BS.</p>
-              <h1 className={`text-3xl md:text-4xl lg:text-[2.75rem] font-[800] leading-[1.05] mb-5 tracking-tight ${h2L}`}>
-                Your Brain Isn&apos;t Tired. It&apos;s Running On What{" "}
-                <span className={cyanL}>Cortisol Left Behind.</span>
-              </h1>
-              <p className={`${bodyL} text-base mb-8 leading-relaxed`}>Your best thinking happens in a 2-hour window &mdash; and cortisol is shortening it. Replenish the precursors. Protect the window. Get the chemistry back.</p>
-              <PrimaryCTA href="#mechanism">See How It Works</PrimaryCTA>
-            </FadeUp>
-            <FadeUp delay={0.15}>
-              <img src="/assets/gm-hero-brain-comparison.png" alt="Anatomical illustration showing a brain split between high-cortisol and low-cortisol states" width={800} height={1000} loading="eager" className="w-full max-h-[420px] object-contain drop-shadow-2xl" />
-            </FadeUp>
-          </div>
+        <div className="max-w-[960px] mx-auto px-4 text-center">
+          <FadeUp>
+            <p className={`label-mono ${cyanL} mb-4`}>16 Ingredients. One Formula. Zero BS.</p>
+            <h1 className={`text-3xl md:text-4xl lg:text-[2.75rem] font-[800] leading-[1.05] mb-8 tracking-tight ${h2L}`}>
+              Your Brain Isn&apos;t Tired. It&apos;s Running On What{" "}
+              <span className={cyanL}>Cortisol Left Behind.</span>
+            </h1>
+          </FadeUp>
+          <FadeUp delay={0.1}>
+            <img src="/assets/gm-hero-cortisol-transformation.png" alt="High-cortisol brain on the left, Genius Mind product bottle in the centre, low-cortisol brain on the right" width={1200} height={600} loading="eager" className="w-full max-w-[1200px] mx-auto rounded-2xl mb-8" />
+          </FadeUp>
+          <FadeUp delay={0.2}>
+            <p className={`${bodyL} text-base md:text-lg mb-8 leading-relaxed max-w-[720px] mx-auto`}>Your best thinking happens in a 2-hour window &mdash; and cortisol is shortening it. Replenish the precursors. Protect the window. Get the chemistry back.</p>
+            <PrimaryCTA href="#mechanism">See How It Works</PrimaryCTA>
+          </FadeUp>
         </div>
-        <motion.div className="flex justify-center mt-12" animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}><ChevronDown size={24} className={capL} /></motion.div>
+        <motion.div className="flex justify-center mt-10" animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}><ChevronDown size={24} className={capL} /></motion.div>
       </section>
+
+      {/* ═══ INTERSTITIAL — DARK STRIP ═══ */}
+      <div className="sec-dark py-8">
+        <div className="max-w-3xl mx-auto px-4 text-center">
+          <p className="text-white text-base md:text-lg">What chronic cortisol does to the brain &mdash; and why everything you&apos;ve tried hasn&apos;t worked.</p>
+          <motion.div className="w-[120px] h-[2px] bg-[var(--color-cyan)] mx-auto mt-4" animate={{ opacity: [0.4, 1, 0.4] }} transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }} />
+        </div>
+      </div>
 
       {/* ═══ §01 SYMPTOMS — DARK ═══ */}
       <section className="sec-dark py-20 md:py-28">
@@ -341,9 +349,9 @@ export default function Page() {
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <FadeUp><img src="/assets/gm-symptoms-desk.png" alt="Overhead view of operator at desk showing signs of cognitive fatigue" width={800} height={1000} loading="lazy" className="w-full rounded-xl object-cover aspect-[4/5]" /></FadeUp>
             <FadeUp delay={0.1}>
-              <SN n="01" label="THE SYMPTOMS" mode="dark" />
-              <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-6 ${h2D}`}>It&apos;s Not Just Burnout</h2>
-              <p className={`${bodyD} mb-6`}>Many high-output operators in their 30s and 40s end up...</p>
+              <div className="text-center md:text-left"><SN n="01" label="THE SYMPTOMS" mode="dark" /></div>
+              <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-6 text-center md:text-left ${h2D}`}>It&apos;s Not Just Burnout</h2>
+              <p className={`text-white/90 mb-6 text-center md:text-left`}>Many high-output operators in their 30s and 40s end up...</p>
               <div className="space-y-0">
                 {SYMPTOMS_CLEAN.map((s, i) => (
                   <FadeUp key={s} delay={i * 0.05}>
@@ -354,54 +362,68 @@ export default function Page() {
                   </FadeUp>
                 ))}
               </div>
-              <p className={`${bodyD} text-sm mt-6`}>This isn&apos;t aging. This is chronic cortisol eating into the 2-hour window where your best thinking happens. The longer it goes, the more it compounds.</p>
+              <p className="text-white/70 text-sm mt-6 text-center md:text-left">This isn&apos;t aging. This is chronic cortisol eating into the 2-hour window where your best thinking happens. The longer it goes, the more it compounds.</p>
             </FadeUp>
           </div>
         </div>
       </section>
 
-      {/* ═══ §02 THE CAUSE (merged) — DARK ═══ */}
+      {/* ═══ §02 THE CAUSE — HIPPOCAMPUS UMP — DARK ═══ */}
       <section className="sec-dark py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4">
-          {/* Mobile: image banner at top */}
+          {/* Mobile: workspace image banner */}
           <div className="md:hidden mb-8">
             <img src="/assets/gm-enemy-workspace.png" alt="Chaotic workspace with empty coffee cups and supplement bottles" width={800} height={800} loading="lazy" className="w-full rounded-xl object-cover h-[280px]" />
           </div>
 
           <div className="grid md:grid-cols-[1.1fr_0.9fr] gap-10 md:gap-14">
-            {/* Left: all text content */}
             <div>
               <FadeUp>
-                <SN n="02" label="THE CAUSE" mode="dark" />
-                <h2 className={`text-[clamp(28px,4.5vw,48px)] font-[800] leading-[1.05] mb-6 ${h2D}`}>Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work</h2>
-                <p className={`${bodyD} mb-8`}>You didn&apos;t fail. The strategy failed you. Every caffeine protocol, productivity hack, and supplement attacked the symptom. The cause is cortisol &mdash; and your stress response was built for a world that no longer exists.</p>
+                <div className="text-center md:text-left"><SN n="02" label="THE CAUSE" mode="dark" /></div>
+                <h2 className="text-[clamp(28px,4.5vw,48px)] font-[800] leading-[1.05] mb-6 text-white text-center md:text-left">It&apos;s Not Aging. It&apos;s Hippocampus Damage.</h2>
+                <p className="text-white/90 mb-8 leading-relaxed">Your brain has a structure called the hippocampus. It runs memory consolidation, focus regulation, and the decision-quality you rely on under pressure. And it&apos;s the single brain region most vulnerable to chronic cortisol exposure.</p>
+              </FadeUp>
+
+              {/* Edinburgh callout */}
+              <FadeUp delay={0.1}>
+                <p className="label-mono text-[var(--color-cyan-bright)] text-[13px] tracking-[0.1em] mb-3">Over 1,000 Brains. 60 Years.</p>
+                <div className="border-l-[3px] border-[var(--color-cyan)] pl-5 mb-8">
+                  <p className="text-white font-bold mb-2">Researchers at the University of Edinburgh tracked over 1,000 brains for more than 60 years.</p>
+                  <p className="text-white/70 text-sm leading-relaxed mb-2">The finding: chronically elevated cortisol was linked to measurable cognitive decline across the lifespan &mdash; with brain structure mediating the damage. Separate research has shown chronic cortisol causes physical shrinkage of the hippocampus itself. The owners don&apos;t notice until output starts dropping.</p>
+                  <p className="text-white/40 text-xs">Sources: Cox et al., Neurobiology of Aging, 2015 (Lothian Birth Cohort 1936) &middot; Orihashi et al., BMC Geriatrics, 2022</p>
+                </div>
+              </FadeUp>
+
+              <FadeUp delay={0.15}>
+                <p className="text-white/90 mb-8 leading-relaxed">Once the hippocampus starts taking damage, the symptoms are predictable: the second coffee stops working. The recall slows. The hardest decisions land in the wrong part of the day. This is what&apos;s actually happening &mdash; and no caffeine protocol, no productivity hack, no generic nootropic touches this layer.</p>
               </FadeUp>
 
               <div className="grid sm:grid-cols-2 gap-6 mb-8">
-                <FadeUp>
-                  <p className={bodyD}>For most of human history, stress was short. A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
+                <FadeUp delay={0.2}>
+                  <p className="text-white/70 text-sm leading-relaxed">For most of human history, stress was short. A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. The hippocampus had time to recover. Clean cycle. Worked perfectly.</p>
                 </FadeUp>
-                <FadeUp delay={0.1}>
-                  <p className={bodyD}>But now the threat never passes. The Slack message at 10pm. The funding round. The hire that isn&apos;t working out. None of it is life or death. But your nervous system can&apos;t tell the difference.</p>
+                <FadeUp delay={0.25}>
+                  <p className="text-white/70 text-sm leading-relaxed">Now the threat never passes. The Slack message at 10pm. The funding round. The hire that isn&apos;t working out. None of it is life or death &mdash; but your nervous system can&apos;t tell the difference. Cortisol stays elevated. The hippocampus stays under fire. Damage compounds.</p>
                 </FadeUp>
               </div>
 
               <Stagger className="space-y-4 mb-8">
-                {FAILURES.map((f, i) => (
+                {FAILURES_V2.map((f, i) => (
                   <motion.div key={f.title} variants={cF} className="bg-[var(--color-dark-tertiary)] border border-[rgba(255,255,255,0.06)] rounded-xl p-5">
-                    <p className={`${cyanD} font-[800] text-2xl opacity-20 mb-1`}>0{i + 1}</p>
+                    <p className="text-[var(--color-cyan-bright)] font-[800] text-2xl opacity-20 mb-1">0{i + 1}</p>
                     <p className="font-bold text-sm text-white mb-1">{f.title}</p>
-                    <p className={`${bodyD} text-sm`}>{f.desc}</p>
+                    <p className="text-white/70 text-sm">{f.desc}</p>
                   </motion.div>
                 ))}
               </Stagger>
 
               <FadeUp>
-                <p className="text-white font-[800] uppercase tracking-wide text-sm">Restore the chemistry. Protect the window. Get the brain back. That&apos;s exactly what Genius Mind is built to do.</p>
+                <p className="text-white/80 text-sm mb-2">Restore the chemistry the hippocampus actually runs on. That&apos;s what Genius Mind is built to do.</p>
+                <p className="label-mono text-[var(--color-cyan-bright)] text-[13px] tracking-[0.1em]">Restore the Chemistry the Hippocampus Runs On.</p>
               </FadeUp>
             </div>
 
-            {/* Right: sticky workspace image (desktop only) */}
+            {/* Right: sticky workspace image (desktop) */}
             <div className="hidden md:block">
               <div className="sticky top-24">
                 <div className="relative rounded-2xl overflow-hidden border border-[var(--color-dark-tertiary)]">
@@ -435,12 +457,7 @@ export default function Page() {
           <FadeUp>
             <div className="max-w-2xl mx-auto">
               <p className={`${bodyL} text-sm mb-4 leading-relaxed`}>Genius Mind is a precision-formulated stack of 16 clinically studied ingredients &mdash; high-ratio botanical extracts, amino acid precursors, and essential cofactors &mdash; designed to support sustained focus throughout the working day.</p>
-              <BL mode="light">No prescription. No crashes. No tolerance. Daily use, safely.</BL>
             </div>
-            <div className="max-w-sm mx-auto mt-8 mb-8 bg-[#f5f0eb] rounded-2xl p-8">
-              <img src="/assets/hero-single.png" alt="Genius Mind product bottle on cream background" width={810} height={773} loading="lazy" className="w-full object-contain drop-shadow-xl" />
-            </div>
-            <PrimaryCTA block>TRY IT NOW</PrimaryCTA>
           </FadeUp>
         </div>
       </section>
@@ -603,7 +620,7 @@ export default function Page() {
       </section>
 
       {/* ═══ §10 THE OFFER — LIGHT ═══ */}
-      <section className="sec-light-alt py-20 md:py-28">
+      <section id="offer" className="sec-light-alt py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4">
           <FadeUp><SN n="08" label="THE OFFER" /></FadeUp>
           <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -745,7 +762,9 @@ export default function Page() {
                 <div className="flex items-center justify-between"><span className={`font-bold text-lg ${h2L}`}>You Pay Today</span><span className={`font-bold text-lg ${h2L}`}>&pound;50.99</span></div>
                 <p className={`${capL} text-xs`}>Equivalent to &pound;16.99/mo &middot; 60-Day+ subscribers only</p>
               </div>
-              <div className="mt-6"><PrimaryCTA block>TRY IT NOW</PrimaryCTA></div>
+              <div className="mt-6 text-center">
+                <a href="#offer" className={`${cyanL} underline text-sm hover:opacity-80 transition-opacity`}>&larr; Back to offer</a>
+              </div>
               <p className={`${capL} text-xs text-center mt-4`}>90-Day Money Back &middot; Free UK Shipping &middot; Cancel Anytime</p>
             </FadeUp>
           </div>
@@ -796,10 +815,10 @@ const SYMPTOMS_CLEAN = [
   "Word-finding gaps in important conversations",
   "Brain output flatlining even after you\u2019ve sorted sleep, training, diet",
 ];
-const FAILURES = [
-  { title: "More caffeine builds tolerance and depletes the system underneath.", desc: "Caffeine doesn\u2019t produce dopamine \u2014 it borrows against the dopamine you already have. The dose that worked in January barely works by March." },
-  { title: "Single-ingredient nootropics solve one thing. Focus isn\u2019t one thing.", desc: "Lion\u2019s Mane alone addresses neurogenesis. It doesn\u2019t touch blood flow, dopamine depletion, or synaptic signal." },
-  { title: "Sorting sleep, training, and diet won\u2019t fix chemistry depletion.", desc: "You\u2019ve done the work. The lifestyle is dialled. And the cognitive output still plateaus \u2014 because the chemistry layer was never addressed." },
+const FAILURES_V2 = [
+  { title: "More caffeine builds tolerance and accelerates the damage underneath.", desc: "Caffeine doesn\u2019t produce dopamine \u2014 it borrows against what you already have. The dose that worked in January barely works by March." },
+  { title: "Single-ingredient nootropics solve one thing. Hippocampus restoration isn\u2019t one thing.", desc: "Lion\u2019s Mane alone addresses neurogenesis. It doesn\u2019t touch blood flow, dopamine depletion, or synaptic signal." },
+  { title: "Sleep, training, and diet won\u2019t restore what cortisol depleted. Chemistry needs replenishing.", desc: "You\u2019ve done the work. The lifestyle is dialled. The cognitive output still plateaus \u2014 because the chemistry layer was never addressed." },
 ];
 const MECHS = [
   { label: "BLOOD FLOW", title: "Blood Flow Activation", icon: <Zap size={32} />, iconLg: <Zap size={40} />, desc: "Ginkgo Biloba 50:1, Rosemary 5:1, Panax Ginseng 20:1. Researched for cerebral blood flow, oxygen and nutrient delivery." },
