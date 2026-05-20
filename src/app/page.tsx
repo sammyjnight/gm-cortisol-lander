@@ -504,66 +504,67 @@ export default function Page() {
       {/* ═══ §06 SAY NO TO CAFFEINE — DARK ═══ */}
       <section className="sec-dark py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 md:px-10 lg:px-16">
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12">
-            {/* Mobile: eyebrow + headline first (order 1) */}
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 lg:items-start">
+            {/* Left column: eyebrow + headline + bullets */}
             <div className="order-1 lg:order-none">
               <p className="label-mono text-[var(--color-coral)] text-xs mb-4 text-center lg:text-left">&#10067; And What About Other Options?</p>
-              <h2 className="text-[clamp(1.75rem,4vw,3rem)] font-[800] leading-[1.05] mb-0 lg:mb-8 text-white text-center lg:text-left">Say No to Caffeine Loops &amp; Underdosed Nootropic Stacks</h2>
+              <h2 className="text-[clamp(2rem,5vw,4.5rem)] font-[900] leading-[1.0] tracking-tight mb-0 lg:mb-8 text-white text-center lg:text-left">
+                Say No to Caffeine Loops &amp;{" "}
+                <span className="inline-block bg-[#00A6D2] text-white px-[0.2em] py-[0.05em] leading-[0.95]">Underdosed</span>{" "}
+                Nootropic Stacks
+              </h2>
 
-              {/* Desktop: bullets inline below headline */}
+              {/* Desktop: bullets below headline */}
               <div className="hidden lg:block mt-8">
-                <h3 className="text-[var(--color-coral)] font-bold mb-3 text-sm">Caffeine &amp; Stimulant Stacks:</h3>
-                <div className="space-y-2.5 mb-6">
+                <h3 className="text-white font-[800] text-[clamp(1.5rem,2.5vw,2rem)] tracking-tight leading-[1.1] mb-4">Caffeine &amp; Stimulant Stacks:</h3>
+                <div className="space-y-2.5 mb-8">
                   {CAFFEINE_FAILS.map((item) => (
-                    <div key={item} className="border border-[#E8283B] rounded-lg py-3 px-3.5 flex items-start gap-2.5">
+                    <div key={item} className="border-2 border-[#E8283B] rounded-lg bg-black py-3.5 px-4 flex items-start gap-2.5">
                       <span className="text-sm mt-px shrink-0">&#10060;</span>
-                      <p className="text-[14px] leading-snug text-white/80">{item}</p>
+                      <p className="text-[14px] leading-snug"><strong className="text-white">{item.split("\u2014")[0]}</strong>{item.includes("\u2014") && <span className="text-[#B0B0B0]"> &mdash;{item.split("\u2014").slice(1).join("\u2014")}</span>}</p>
                     </div>
                   ))}
                 </div>
-                <h3 className="text-[var(--color-coral)] font-bold mb-3 text-sm">Underdosed Nootropic Stacks:</h3>
+                <h3 className="text-white font-[800] text-[clamp(1.5rem,2.5vw,2rem)] tracking-tight leading-[1.1] mb-4">Underdosed Nootropic Stacks:</h3>
                 <div className="space-y-2.5">
                   {NOOTROPIC_FAILS.map((item) => (
-                    <div key={item} className="border border-[#E8283B] rounded-lg py-3 px-3.5 flex items-start gap-2.5">
+                    <div key={item} className="border-2 border-[#E8283B] rounded-lg bg-black py-3.5 px-4 flex items-start gap-2.5">
                       <span className="text-sm mt-px shrink-0">&#10060;</span>
-                      <p className="text-[14px] leading-snug text-white/80">{item}</p>
+                      <p className="text-[14px] leading-snug"><strong className="text-white">{item.split("\u2014")[0]}</strong>{item.includes("\u2014") && <span className="text-[#B0B0B0]"> &mdash;{item.split("\u2014").slice(1).join("\u2014")}</span>}</p>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* Image/video (order 2 on mobile, desktop right column) */}
-            <FadeUp delay={0.1} className="order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:flex-col">
+            {/* Right column: image + closer (order 2 on mobile) */}
+            <FadeUp delay={0.1} className="order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:flex-col lg:sticky lg:top-24">
               {/* ASSET TODO: Replace with /section-6-coffee-loop-operator.mp4 when uploaded */}
-              {/* NANOBANANA PROMPT: Photorealistic candid shot of a 40-year-old male operator in business-casual (dark t-shirt), standing in modern home kitchen mid-afternoon, reaching toward coffee machine for fourth cup. Three empty espresso pods on counter. Apple Watch on wrist. Slight hunched posture, quietly resigned expression. Warm afternoon window light from left. Modern clean kitchen. 8k, shallow DOF, cinematic colour grade with cool teal-tinted shadows. */}
-              {/* KLING ANIMATION: 2-second subtle loop. Hand reaches toward coffee machine, pauses, shoulders drop slightly. Camera locked off. */}
-              <Skel label="section-6-coffee-loop-operator.mp4 (upload to repo root when ready)" mode="dark" className="aspect-[5/6] mb-6" />
-              {/* Desktop closer beneath image */}
-              <p className="hidden lg:block text-white/80 text-sm">&#128073; You deserve better than frying your nervous system with caffeine OR wasting money on underdosed stacks that don&apos;t address the ROOT of why your brain isn&apos;t delivering.</p>
+              <Skel label="section-6-coffee-loop-operator.mp4" mode="dark" className="aspect-[5/6] mb-6" />
+              <p className="hidden lg:block text-white text-[15px] leading-[1.5]">&#128073; You deserve better than frying your nervous system with caffeine OR wasting money on underdosed stacks that don&apos;t address the ROOT of why your brain isn&apos;t delivering.</p>
             </FadeUp>
 
             {/* Mobile: bullets + closer (order 3, hidden on desktop) */}
             <div className="order-3 lg:hidden">
-              <h3 className="text-[var(--color-coral)] font-bold mb-3 text-lg">Caffeine &amp; Stimulant Stacks:</h3>
+              <h3 className="text-white font-[800] text-[22px] tracking-tight leading-[1.1] mb-4">Caffeine &amp; Stimulant Stacks:</h3>
               <div className="space-y-2.5 mb-6">
                 {CAFFEINE_FAILS.map((item) => (
-                  <div key={item} className="border border-[#E8283B] rounded-lg py-3 px-3.5 flex items-start gap-2.5">
+                  <div key={item} className="border-2 border-[#E8283B] rounded-lg bg-black py-3.5 px-4 flex items-start gap-2.5">
                     <span className="text-sm mt-px shrink-0">&#10060;</span>
-                    <p className="text-[14px] leading-snug text-white/80">{item}</p>
+                    <p className="text-[14px] leading-snug"><strong className="text-white">{item.split("\u2014")[0]}</strong>{item.includes("\u2014") && <span className="text-[#B0B0B0]"> &mdash;{item.split("\u2014").slice(1).join("\u2014")}</span>}</p>
                   </div>
                 ))}
               </div>
-              <h3 className="text-[var(--color-coral)] font-bold mb-3 text-lg">Underdosed Nootropic Stacks:</h3>
+              <h3 className="text-white font-[800] text-[22px] tracking-tight leading-[1.1] mb-4">Underdosed Nootropic Stacks:</h3>
               <div className="space-y-2.5 mb-6">
                 {NOOTROPIC_FAILS.map((item) => (
-                  <div key={item} className="border border-[#E8283B] rounded-lg py-3 px-3.5 flex items-start gap-2.5">
+                  <div key={item} className="border-2 border-[#E8283B] rounded-lg bg-black py-3.5 px-4 flex items-start gap-2.5">
                     <span className="text-sm mt-px shrink-0">&#10060;</span>
-                    <p className="text-[14px] leading-snug text-white/80">{item}</p>
+                    <p className="text-[14px] leading-snug"><strong className="text-white">{item.split("\u2014")[0]}</strong>{item.includes("\u2014") && <span className="text-[#B0B0B0]"> &mdash;{item.split("\u2014").slice(1).join("\u2014")}</span>}</p>
                   </div>
                 ))}
               </div>
-              <p className="text-white/80 text-sm">&#128073; You deserve better than frying your nervous system with caffeine OR wasting money on underdosed stacks that don&apos;t address the ROOT of why your brain isn&apos;t delivering.</p>
+              <p className="text-white text-[15px] leading-[1.5]">&#128073; You deserve better than frying your nervous system with caffeine OR wasting money on underdosed stacks that don&apos;t address the ROOT of why your brain isn&apos;t delivering.</p>
             </div>
           </div>
         </div>
