@@ -336,7 +336,7 @@ export default function Page() {
 
               {/* Image (order 2 on mobile — between headline and body) */}
               <FadeUp delay={0.15} className="order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:items-center">
-                <img src="/assets/gm-hero-brain-comparison.png" alt="High-cortisol brain on the left, Genius Mind product bottle in the centre, low-cortisol brain on the right" width={1200} height={600} loading="eager" className="w-full rounded-xl object-cover" />
+                <img src="/assets/gm-hero-cortisol-transformation.png" alt="High-cortisol brain on the left, Genius Mind product bottle in the centre, low-cortisol brain on the right" width={1200} height={600} loading="eager" className="w-full rounded-xl object-cover" />
               </FadeUp>
 
               {/* Body copy — mobile only (order 3), hidden on desktop */}
@@ -359,7 +359,8 @@ export default function Page() {
                 <span className="text-[#FFD700]">&#9888;&#65039;</span>{" "}
                 <span className="text-[var(--color-coral)]">The Truth About Cognitive Decline</span>
               </p>
-              <h2 className="h2-mm mb-0 text-white text-center">It&apos;s Not Just Burnout</h2>
+              <h2 className="h2-mm mb-4 text-white text-center">It&apos;s Not Just Burnout</h2>
+              <p className="text-white font-bold body-mm mb-6 text-center">Many operators 30+ are quietly experiencing...</p>
             </div>
 
             {/* Image (mobile order 2, desktop left column) */}
@@ -375,8 +376,9 @@ export default function Page() {
                   <span className="text-[#FFD700]">&#9888;&#65039;</span>{" "}
                   <span className="text-[var(--color-coral)]">The Truth About Cognitive Decline</span>
                 </p>
-                <h2 className="h2-mm mb-4 text-white text-left">It&apos;s Not Just Burnout</h2>
+                <h2 className="h2-mm mb-6 text-white text-left">It&apos;s Not Just Burnout</h2>
               </div>
+              <p className="text-white font-bold body-mm mb-8">Many operators 30+ are quietly experiencing...</p>
               <div className="space-y-2 mb-4">
                 {SYMPTOMS_ALERT.map((s) => (
                   <div key={s.bold} className="warn-box flex items-start gap-2">
@@ -385,7 +387,8 @@ export default function Page() {
                   </div>
                 ))}
               </div>
-              <p className="body-mm text-white/80">&#128073; This isn&apos;t aging &mdash; this is what chronic cortisol does to the chemistry your brain runs on.</p>
+              <p className="body-mm text-white/80 mb-6">&#128073; This isn&apos;t aging &mdash; this is what chronic cortisol does to the chemistry your brain runs on.</p>
+              <p className="text-[var(--color-cyan)] font-[800] text-[22px] leading-[1.3]">Your cortisol controls your chemistry.<br />Fix the chemistry, get the brain back.</p>
             </FadeUp>
           </div>
         </div>
@@ -408,7 +411,7 @@ export default function Page() {
               <p className="breakout-line text-[var(--color-cyan)]">Your Brain Was Built for a World That No Longer Exists.</p>
             </FadeUp>
             <FadeUp>
-              <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={600} height={600} loading="lazy" className="w-full h-auto" />
+              <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={600} height={600} loading="lazy" className="w-full h-auto rounded-xl" />
             </FadeUp>
           </div>
         </div>
@@ -419,7 +422,7 @@ export default function Page() {
         <div className="sec-container">
           <div className="flex flex-col lg:grid grid-mm mb-10">
             <FadeUp>
-              <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={500} height={500} loading="lazy" className="w-full h-auto" />
+              <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={500} height={500} loading="lazy" className="w-full h-auto rounded-xl" />
             </FadeUp>
             <FadeUp delay={0.1} className="col-text-mm">
               <p className="text-black body-mm mb-4">For most of human history, stress was short. A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
@@ -446,13 +449,13 @@ export default function Page() {
       <section className="bg-white sec-pad">
         <div className="sec-container">
           <div className="flex flex-col lg:grid grid-mm">
-            <FadeUp>
-              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={600} height={450} loading="lazy" className="w-full h-auto" />
-            </FadeUp>
-            <FadeUp delay={0.1} className="col-text-mm">
+            <FadeUp className="col-text-mm">
               <p className="text-black body-mm mb-6">The operators who crack the code are the ones who fix the chemistry first.</p>
               <p className="text-black font-[800] text-2xl md:text-[26px] leading-tight mb-5">Restore the chemistry. Get the brain back.</p>
               <p className="text-black body-mm">That&apos;s exactly what Genius Mind is built to do.</p>
+            </FadeUp>
+            <FadeUp delay={0.1}>
+              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={600} height={450} loading="lazy" className="w-full h-auto rounded-xl" />
             </FadeUp>
           </div>
         </div>
@@ -462,8 +465,8 @@ export default function Page() {
       <section className="sec-dark sec-pad">
         <div className="sec-container">
           <div className="flex flex-col lg:grid grid-mm lg:items-start">
-            {/* Left column: eyebrow + headline + bullets */}
-            <div className="order-1 lg:order-none">
+            {/* Desktop: text moves to RIGHT column via order */}
+            <div className="order-1 lg:order-2">
               <p className="eyebrow-mm text-[var(--color-coral)] mb-4 text-center lg:text-left">&#10067; And What About Other Options?</p>
               <h2 className="h2-mm mb-0 lg:mb-6 text-white text-center lg:text-left">
                 Say No to Caffeine Loops &amp;{" "}
@@ -494,14 +497,14 @@ export default function Page() {
               </div>
             </div>
 
-            {/* Right column: image + closer (order 2 on mobile) */}
-            <FadeUp delay={0.1} className="order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:flex-col lg:sticky lg:top-24">
+            {/* Desktop: image moves to LEFT column via order */}
+            <FadeUp delay={0.1} className="order-2 lg:order-1 img-bleed lg:[all:unset] lg:flex lg:flex-col lg:sticky lg:top-24">
               <video src="/assets/section-6-coffee-loop-operator.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="Operator reaching for a fourth coffee, defeated" className="w-full rounded-xl object-cover mb-6" />
               <p className="hidden lg:block text-white body-mm">&#128073; You deserve better than frying your nervous system with caffeine or wasting money on underdosed stacks.</p>
             </FadeUp>
 
             {/* Mobile: bullets + closer (order 3, hidden on desktop) */}
-            <div className="order-3 lg:hidden">
+            <div className="order-3 lg:order-3 lg:hidden">
               <h3 className="h3-mm text-white font-[800] mb-4">Caffeine &amp; Stimulant Stacks:</h3>
               <div className="space-y-2.5 mb-6">
                 {CAFFEINE_FAILS.map((item) => (
