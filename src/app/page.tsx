@@ -321,7 +321,7 @@ export default function Page() {
                   <span className="text-white/70">16 Ingredients. One Formula. </span>
                   <span className="text-[var(--color-cyan)]">Zero BS.</span>
                 </p>
-                <h1 className="font-[var(--font-mono)] uppercase font-[900] text-[clamp(28px,5.5vw,56px)] leading-[1.05] tracking-[-0.02em] mb-0 lg:mb-6">
+                <h1 className="h1-mm mb-0 lg:mb-6">
                   <span className="text-white">Fix Your Cortisol Brain With This </span>
                   <span className="text-[var(--color-cyan)]">Natural Upgrade</span>
                 </h1>
