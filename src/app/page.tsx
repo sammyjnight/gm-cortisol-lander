@@ -314,29 +314,39 @@ export default function Page() {
         </div>
       </header>
 
-      {/* ═══ HERO — LIGHT, TWO-COLUMN ═══ */}
-      <section className="sec-light py-12 md:py-20 lg:py-24">
-        <div className="max-w-6xl mx-auto px-4">
-          <FadeUp>
-            <p className={`label-mono ${cyanL} mb-4 text-center md:text-left`}>16 Ingredients. One Formula. Zero BS.</p>
-            <h1 className={`text-3xl md:text-4xl lg:text-[2.75rem] font-[800] leading-[1.05] mb-8 tracking-tight text-center md:text-left ${h2L}`}>
-              Your Brain Isn&apos;t Tired. It&apos;s Running On What{" "}
-              <span className={cyanL}>Cortisol Left Behind.</span>
-            </h1>
-          </FadeUp>
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <FadeUp delay={0.1}>
-              <p className={`${bodyL} text-base mb-4 leading-relaxed`}>Your best thinking happens in a 2-hour window &mdash; and cortisol is shortening it. The stress hormone that spikes every time a deadline lands, a hire blows up, or a pivot has to be made under pressure &mdash; it&apos;s the same one quietly depleting the precursors your brain uses to build focus, recall, and drive.</p>
-              <p className={`${bodyL} text-base leading-relaxed`}>Replenish the precursors. Protect the window. Get the chemistry back.</p>
+      {/* ═══ §01 HERO — DARK, 50/50 TWO-COLUMN ═══ */}
+      <section className="sec-dark" style={{ padding: "80px 60px" }}>
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left: copy block */}
+            <FadeUp>
+              <p className="font-mono text-sm tracking-[0.1em] uppercase mb-6">
+                <span className="text-white/70">16 Ingredients. One Formula. </span>
+                <span className="text-[var(--color-cyan)]">Zero BS.</span>
+              </p>
+              <h1 className="text-[clamp(2.5rem,5.5vw,4.5rem)] font-[900] leading-[1.02] tracking-tight mb-8">
+                <span className="text-white">Fix Your Cortisol Brain With This Natural </span>
+                <span className="text-[var(--color-cyan)]">Upgrade</span>
+              </h1>
+              <p className="text-white font-bold text-lg md:text-xl mb-6">Your brain&apos;s not broken &mdash; your cortisol&apos;s just running the show.</p>
+              <p className="text-[#B0B0B0] text-base leading-[1.5] mb-5">The stress hormone that spikes every time a deadline lands, a hire blows up, or a pivot has to be made under pressure is the same one quietly depleting the precursors your brain runs on.</p>
+              <p className="text-[#B0B0B0] text-base leading-[1.5] mb-6">It&apos;s why the focus window keeps shrinking, why the second coffee stops working, and why the operator in the mirror feels slower than the effort you&apos;re putting in.</p>
+              <p className="text-white font-semibold text-base leading-relaxed">Restore the chemistry. Replenish the precursors.<br />Do that and the brain comes back, while focus skyrockets.</p>
             </FadeUp>
-            <FadeUp delay={0.2}>
-              <div className="relative">
-                <img src="/assets/gm-hero-cortisol-transformation.png" alt="High-cortisol brain on the left, Genius Mind product bottle in the centre, low-cortisol brain on the right" width={1200} height={600} loading="eager" className="w-full rounded-2xl" />
-              </div>
+
+            {/* Right: brain-split image */}
+            <FadeUp delay={0.15}>
+              <img
+                src="/assets/gm-hero-cortisol-transformation.png"
+                alt="High-cortisol brain on the left, Genius Mind product bottle in the centre, low-cortisol brain on the right"
+                width={1200}
+                height={600}
+                loading="eager"
+                className="w-full max-w-[600px] mx-auto rounded-xl"
+              />
             </FadeUp>
           </div>
         </div>
-        <motion.div className="flex justify-center mt-10" animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}><ChevronDown size={24} className={capL} /></motion.div>
       </section>
 
       {/* ═══ §01 SYMPTOMS — DARK ═══ */}
