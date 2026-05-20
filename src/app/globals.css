@@ -112,6 +112,25 @@ body { background: var(--color-light-primary); color: var(--color-ink-primary); 
 .skel-light::after, .skel-dark::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 0%, rgba(8,145,178,0.03) 50%, transparent 100%); animation: shimmer 2.5s ease-in-out infinite; }
 @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
+/* ══════ EDGE-TO-EDGE IMAGES ON MOBILE ══════ */
+@media (max-width: 768px) {
+  .img-bleed {
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    width: 100vw;
+    border-radius: 0;
+  }
+  .img-bleed img, .img-bleed video {
+    border-radius: 0;
+    width: 100%;
+  }
+  /* Bottom spacer so sticky CTA doesn't hide last content */
+  .mobile-cta-spacer { height: 80px; }
+}
+@media (min-width: 769px) {
+  .mobile-cta-spacer { display: none; }
+}
+
 /* ══════ TIMELINE CONNECTOR ══════ */
 .tl-grid { position: relative; }
 .tl-grid::before { content: ''; position: absolute; top: 28px; left: 16.67%; right: 16.67%; height: 2px; background: var(--color-cyan); z-index: 0; }

@@ -340,8 +340,8 @@ export default function Page() {
               </FadeUp>
 
               {/* Image (order 2 on mobile — between headline and body) */}
-              <FadeUp delay={0.15} className="order-2 lg:order-none">
-                <img src="/assets/gm-hero-cortisol-transformation.png" alt="High-cortisol brain on the left, Genius Mind product bottle in the centre, low-cortisol brain on the right" width={1200} height={600} loading="eager" className="w-full max-w-[600px] mx-auto rounded-xl" />
+              <FadeUp delay={0.15} className="order-2 lg:order-none img-bleed lg:[all:unset]">
+                <img src="/assets/gm-hero-cortisol-transformation.png" alt="High-cortisol brain on the left, Genius Mind product bottle in the centre, low-cortisol brain on the right" width={1200} height={600} loading="eager" className="w-full lg:max-w-[600px] lg:mx-auto lg:rounded-xl" />
               </FadeUp>
 
               {/* Body copy — mobile only (order 3), hidden on desktop */}
@@ -369,8 +369,8 @@ export default function Page() {
             </div>
 
             {/* Image (mobile order 2, desktop left column) */}
-            <FadeUp className="flex order-2 lg:order-none">
-              <video src="/assets/section-2-operator-at-desk.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="High-output operator at desk, exhausted late at night" className="w-full h-full rounded-xl object-cover" />
+            <FadeUp className="flex order-2 lg:order-none img-bleed lg:[all:unset] lg:flex">
+              <video src="/assets/section-2-operator-at-desk.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="High-output operator at desk, exhausted late at night" className="w-full h-full lg:rounded-xl object-cover" />
             </FadeUp>
 
             {/* Copy (mobile order 3, desktop right column) */}
@@ -418,8 +418,8 @@ export default function Page() {
             </div>
 
             {/* Image (mobile order 2) */}
-            <FadeUp delay={0.15} className="flex justify-center order-2 lg:order-none">
-              <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={500} height={500} loading="lazy" className="max-w-[500px] w-full h-auto" />
+            <FadeUp delay={0.15} className="flex justify-center order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:justify-center">
+              <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={500} height={500} loading="lazy" className="lg:max-w-[500px] w-full h-auto" />
             </FadeUp>
 
             {/* Mobile body copy (order 3, hidden on desktop) */}
@@ -447,8 +447,8 @@ export default function Page() {
             </div>
 
             {/* Image — mobile order 2, desktop left column */}
-            <FadeUp className="flex justify-center order-2 lg:order-none">
-              <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={280} height={280} loading="lazy" className="max-w-[200px] lg:max-w-[280px] w-full h-auto" />
+            <FadeUp className="flex justify-center order-2 lg:order-none img-bleed lg:[all:unset] lg:flex lg:justify-center">
+              <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={280} height={280} loading="lazy" className="max-w-[70%] mx-auto lg:max-w-[280px] w-full h-auto" />
             </FadeUp>
 
             {/* Full body — desktop only (order none) */}
@@ -488,8 +488,8 @@ export default function Page() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center lg:max-h-[600px]">
             {/* Image — first on mobile (order 1), desktop left column */}
-            <FadeUp className="flex justify-center order-1 lg:order-none">
-              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={600} height={450} loading="lazy" className="max-w-[600px] w-full h-auto" />
+            <FadeUp className="flex justify-center order-1 lg:order-none img-bleed lg:[all:unset] lg:flex lg:justify-center">
+              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={600} height={450} loading="lazy" className="lg:max-w-[600px] w-full h-auto" />
             </FadeUp>
             {/* Copy — order 2 on mobile */}
             <FadeUp delay={0.1} className="order-2 lg:order-none">
@@ -832,6 +832,9 @@ export default function Page() {
         </div>
       </section>
 
+      {/* Mobile bottom spacer — prevents sticky CTA from hiding last content */}
+      <div className="mobile-cta-spacer" />
+
       {/* ═══ FOOTER — DARK ═══ */}
       <footer className="sec-dark py-10">
         <div className="max-w-6xl mx-auto px-4 text-center">
@@ -847,20 +850,28 @@ export default function Page() {
         </div>
       </footer>
 
-      {/* ═══ STICKY CTA — DARK ═══ */}
-      <div className={`sticky-bar fixed bottom-0 left-0 right-0 bg-[var(--color-dark-primary)]/95 backdrop-blur-md border-t border-[rgba(255,255,255,0.08)] py-3 px-4 z-50 ${sticky ? "visible" : ""}`}>
+      {/* ═══ STICKY CTA — DESKTOP (scroll-based) ═══ */}
+      <div className={`hidden md:block sticky-bar fixed bottom-0 left-0 right-0 bg-[var(--color-dark-primary)]/95 backdrop-blur-md border-t border-[rgba(255,255,255,0.08)] py-3 px-4 z-50 ${sticky ? "visible" : ""}`}>
         <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <img src="/assets/hero-single.png" alt="Genius Mind bottle" width={40} height={38} className="hidden sm:block w-10 h-10 object-contain" />
-            <div className="hidden sm:block"><p className="text-sm font-bold text-white">Genius Mind</p><p className={`text-xs ${capD}`}>From &pound;16.99/mo &bull; 90-day guarantee</p></div>
+            <img src="/assets/hero-single.png" alt="Genius Mind bottle" width={40} height={38} className="w-10 h-10 object-contain" />
+            <div><p className="text-sm font-bold text-white">Genius Mind</p><p className={`text-xs ${capD}`}>From &pound;16.99/mo &bull; 90-day guarantee</p></div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="hidden md:block text-right"><span className="text-white font-bold">From &pound;16.99/mo</span></div>
+            <div className="text-right"><span className="text-white font-bold">From &pound;16.99/mo</span></div>
             <a href={SHOP} className="btn-primary !py-3 !px-6 !text-sm whitespace-nowrap">
               <span>ADD TO CART</span> <ArrowRight size={16} strokeWidth={2.5} />
             </a>
           </div>
         </div>
+      </div>
+
+      {/* ═══ STICKY CTA — MOBILE (always visible) ═══ */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-[100] bg-[#0a0a0f] border-t border-[rgba(0,166,210,0.3)]" style={{ padding: "12px 16px", paddingBottom: "calc(12px + env(safe-area-inset-bottom, 0px))", boxShadow: "0 -4px 12px rgba(0,0,0,0.3)" }} role="complementary" aria-label="Buy Genius Mind">
+        <p className="text-[#999] text-[12px] text-center mb-2">90-day money back guarantee</p>
+        <a href="#offer" className="flex items-center justify-center gap-2 w-full bg-[#00A6D2] text-white font-bold text-base py-3.5 px-4 rounded-lg">
+          Get Genius Mind &mdash; From &pound;20/bottle <ArrowRight size={16} strokeWidth={2.5} />
+        </a>
       </div>
     </>
   );
