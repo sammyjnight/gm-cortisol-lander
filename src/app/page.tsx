@@ -194,9 +194,9 @@ function TabbedTimeline() {
   const [active, setActive] = useState(0);
   const s = TL_STAGES[active];
   return (
-    <div className="bg-[var(--color-dark-secondary)] border border-[var(--color-dark-tertiary)] rounded-2xl p-6 md:p-10">
+    <div className="bg-[var(--color-dark-secondary)] border border-[var(--color-dark-tertiary)] rounded-2xl p-4 md:p-10">
       {/* Tab strip */}
-      <div className="flex flex-wrap gap-2 pb-4 mb-8">
+      <div className="flex flex-wrap gap-1.5 md:gap-2 pb-3 md:pb-4 mb-4 md:mb-8">
         {TL_STAGES.map((st, i) => (
           <button key={st.id} onClick={() => setActive(i)} className={`label-mono text-[10px] px-3 py-2 md:px-5 md:py-3 md:text-[11px] rounded-lg whitespace-nowrap transition-all shrink-0 ${i === active ? "bg-[var(--color-cyan)] text-white" : "bg-[var(--color-dark-tertiary)] text-[var(--color-dink-secondary)] hover:text-white hover:translate-y-[-1px]"}`}>
             {st.tab}
@@ -204,17 +204,15 @@ function TabbedTimeline() {
         ))}
       </div>
 
-      {/* Stage content + icon banner side by side */}
-      <div className="grid lg:grid-cols-[1.5fr_1fr] gap-8 mb-8">
+      {/* Stage content — fixed min-height to prevent layout shift */}
+      <div className="grid lg:grid-cols-[1.5fr_1fr] gap-4 md:gap-8 mb-4 md:mb-8 min-h-[280px] md:min-h-[320px]">
         <div>
-          <p className="text-[var(--color-cyan)] font-[800] text-[100px] leading-none opacity-10 select-none mb-[-40px]">{s.num}</p>
-          <h3 className="text-white font-bold text-2xl mb-3 relative">{s.title}</h3>
-          <p className="text-[var(--color-dink-secondary)] text-sm leading-relaxed mb-6">{s.sub}</p>
-          <p className="label-mono text-[var(--color-cyan-bright)] text-[10px] mb-3">Benefits</p>
-          <ul className="space-y-2">
+          <h3 className="text-white font-bold text-xl md:text-2xl mb-2 relative">{s.title}</h3>
+          <p className="text-[var(--color-dink-secondary)] text-xs md:text-sm leading-relaxed mb-4">{s.sub}</p>
+          <ul className="space-y-1.5">
             {s.benefits.map((b) => (
-              <li key={b} className="flex items-start gap-2 text-sm text-[var(--color-dink-secondary)]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-cyan)] mt-2 shrink-0" />{b}
+              <li key={b} className="flex items-start gap-2 text-xs md:text-sm text-[var(--color-dink-secondary)]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-cyan)] mt-1.5 shrink-0" />{b}
               </li>
             ))}
           </ul>
