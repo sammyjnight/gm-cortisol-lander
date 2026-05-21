@@ -615,7 +615,7 @@ export default function Page() {
       </section>
 
       {/* ═══ §5 OUTCOMES — DARK, ICON-LED ═══ */}
-      <section className="sec-dark" style={{ padding: "80px 20px" }}>
+      <section className="sec-dark" style={{ padding: "48px 20px" }}>
         <div className="max-w-[1200px] mx-auto px-4 text-center">
           <FadeUp>
             <p className="label-mono text-[var(--color-cyan)] text-[14px] mb-4">Natural Cognitive Support + Real Output</p>
@@ -623,7 +623,7 @@ export default function Page() {
             <p className="text-[#a0a8b0] text-[17px] leading-[1.5] max-w-[700px] mx-auto mb-4">Genius Mind isn&apos;t another nootropic stack &mdash; it&apos;s a complete cortisol-aware formula that works on multiple levels: clear the chemistry, restore the precursors, sustain the focus, protect the output.</p>
             <p className="text-[#a0a8b0] italic text-[14px]">No needles, prescriptions, or dependency.</p>
           </FadeUp>
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             {OUTCOME_ICONS.map((o) => (
               <FadeUp key={o.title}>
                 <div className="max-w-[300px] mx-auto">
