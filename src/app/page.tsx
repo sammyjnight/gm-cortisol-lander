@@ -328,8 +328,8 @@ export default function Page() {
                 {/* Body copy — hidden on mobile, shown on desktop below headline */}
                 <div className="hidden lg:block">
                   <p className="text-white font-bold text-[22px] leading-[1.3] mb-5">Your brain&apos;s not broken &mdash; your cortisol&apos;s just running the show.</p>
-                  <p className="text-[#B0B0B0] font-serif italic text-[18px] leading-[1.5] mb-5">The stress hormone that spikes whenever modern life hits you is the same one depleting the precursors your brain runs on and never letting go.</p>
-                  <p className="text-[#B0B0B0] font-serif italic text-[18px] leading-[1.5] mb-5">It&apos;s why the focus window keeps shrinking, the second coffee stops working, and the operator in the mirror feels slower than the effort you&apos;re putting in.</p>
+                  <p className="text-[#B0B0B0] text-[18px] leading-[1.5] mb-5">The stress hormone that spikes whenever modern life hits you is the same one depleting the precursors your brain runs on and never letting go.</p>
+                  <p className="text-[#B0B0B0] text-[18px] leading-[1.5] mb-5">It&apos;s why the focus window keeps shrinking, the second coffee stops working, and the operator in the mirror feels slower than the effort you&apos;re putting in.</p>
                   <p className="text-[var(--color-cyan)] font-bold text-[18px] leading-[1.3]">Restore the chemistry. Replenish the precursors.<br />Do that and the brain comes back, while focus skyrockets.</p>
                 </div>
               </FadeUp>
@@ -342,8 +342,9 @@ export default function Page() {
               {/* Body copy — mobile only (order 3), hidden on desktop */}
               <div className="order-3 lg:hidden">
                 <p className="text-white font-bold text-[18px] leading-[1.3] mb-4">Your brain&apos;s not broken &mdash; your cortisol&apos;s just running the show.</p>
-                <p className="text-[#B0B0B0] font-serif italic text-[16px] leading-[1.5] mb-4">The stress hormone depleting the precursors your brain runs on and never letting go.</p>
-                <p className="text-[var(--color-cyan)] font-bold text-[16px] leading-[1.3]">Restore the chemistry. The brain comes back.</p>
+                <p className="text-[#B0B0B0] text-[16px] leading-[1.5] mb-4">The stress hormone that spikes whenever modern life hits you is the same one depleting the precursors your brain runs on and never letting go.</p>
+                <p className="text-[#B0B0B0] text-[16px] leading-[1.5] mb-4">It&apos;s why the focus window keeps shrinking, the second coffee stops working, and the operator in the mirror feels slower than the effort you&apos;re putting in.</p>
+                <p className="text-[var(--color-cyan)] font-bold text-[16px] leading-[1.3]">Restore the chemistry. Replenish the precursors.<br />Do that and the brain comes back, while focus skyrockets.</p>
               </div>
             </div>
           </div>
