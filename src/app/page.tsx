@@ -315,11 +315,11 @@ export default function Page() {
             <div className="flex flex-col lg:grid grid-mm">
               {/* Eyebrow + headline (order 1 on mobile) */}
               <FadeUp className="order-1 lg:order-none lg:row-span-1 col-text-mm">
-                <p className="eyebrow-mm mb-6">
+                <p className="eyebrow-mm mb-3 lg:mb-6">
                   <span className="text-white/70">16 Ingredients. One Formula. </span>
                   <span className="text-[var(--color-cyan)]">Zero BS.</span>
                 </p>
-                <h1 className="h1-mm mb-3 lg:mb-4">
+                <h1 className="h1-mm mb-1 lg:mb-4">
                   <span className="text-white">Fix Your Cortisol Brain With This </span>
                   <span className="text-[var(--color-cyan)]">Natural Upgrade</span>
                 </h1>
