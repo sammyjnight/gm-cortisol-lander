@@ -64,7 +64,7 @@ body { background: var(--color-light-primary); color: var(--color-ink-primary); 
 @media (min-width: 641px) and (max-width: 1024px) { .grid-mm { gap: 0px 30px; } }
 
 /* White section images constrained to match text block height like Mars Men */
-.grid-mm img { width: 100%; height: auto; object-fit: contain; border-radius: 12px; margin: 0 auto; }
+.grid-mm img { max-width: 380px; max-height: 340px; width: 100%; height: auto; object-fit: contain; border-radius: 12px; margin: 0 auto; }
 /* Videos in dark sections fill their column naturally */
 .grid-mm video { width: 100%; height: auto; object-fit: cover; border-radius: 12px; }
 @media (max-width: 640px) { .grid-mm img { max-width: 100%; max-height: none; border-radius: 0; } }
