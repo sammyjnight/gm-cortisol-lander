@@ -476,7 +476,7 @@ export default function Page() {
       {/* ═══ §05 OPERATORS WHO CRACK THE CODE — WHITE ═══ */}
       <section className="bg-white sec-pad-tight">
         <div className="sec-container">
-          <div className="flex flex-col lg:grid grid-mm">
+          <div className="flex flex-col-reverse lg:grid grid-mm">
             <FadeUp className="col-text-mm">
               <p className="text-black body-mm mb-6">The operators who crack the code are the ones who fix the chemistry first.</p>
               <p className="text-black font-[800] text-2xl md:text-[26px] leading-tight mb-5">Restore the chemistry. Get the brain back.</p>
