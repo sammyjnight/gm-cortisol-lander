@@ -528,7 +528,7 @@ export default function Page() {
             {/* RIGHT column: image + caption */}
             <FadeUp delay={0.1} className="order-2 lg:order-2 img-bleed lg:[all:unset] lg:flex lg:flex-col">
               <video src="/assets/section-6-coffee-loop-operator.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="Operator reaching for a fourth coffee, defeated" className="w-full rounded-xl object-cover mb-4" />
-              <p className="text-white body-mm text-sm">&#128073; You deserve better than frying your nervous system with caffeine or wasting money on underdosed stacks.</p>
+              <p className="text-white body-mm text-sm text-center lg:text-left px-4 lg:px-0 mt-4 lg:mt-0">&#128073; You deserve better than frying your nervous system with caffeine or wasting money on underdosed stacks.</p>
             </FadeUp>
           </div>
         </div>
