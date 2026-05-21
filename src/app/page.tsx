@@ -401,7 +401,8 @@ export default function Page() {
             <h2 className="h2-mm text-black text-center mb-10">Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work</h2>
           </FadeUp>
 
-          <div className="flex flex-col lg:grid grid-mm">
+          {/* Desktop: text left, image right */}
+          <div className="hidden lg:grid grid-mm">
             <FadeUp className="col-text-mm">
               <p className="text-black font-bold body-mm mb-5">You didn&apos;t fail. The strategy failed you.</p>
               <p className="text-black/70 body-mm mb-6">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
@@ -411,6 +412,21 @@ export default function Page() {
             </FadeUp>
             <FadeUp>
               <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={380} height={340} loading="lazy" className="rounded-xl" />
+            </FadeUp>
+          </div>
+          {/* Mobile: text with small inline image next to "The cause is cortisol" */}
+          <div className="lg:hidden">
+            <FadeUp>
+              <p className="text-black font-bold body-mm mb-5">You didn&apos;t fail. The strategy failed you.</p>
+              <p className="text-black/70 body-mm mb-6">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
+              <div className="flex items-start gap-4 mb-5">
+                <div className="flex-1">
+                  <p className="text-black font-bold body-mm mb-3">The cause is cortisol.</p>
+                  <p className="text-black/50 body-mm">And the reason is simple:</p>
+                </div>
+                <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={120} height={120} loading="lazy" className="w-[120px] h-auto shrink-0 rounded-lg" />
+              </div>
+              <p className="breakout-line text-[var(--color-cyan)]">Your Brain Was Built for a World That No Longer Exists.</p>
             </FadeUp>
           </div>
         </div>
