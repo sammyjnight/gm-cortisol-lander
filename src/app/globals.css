@@ -165,14 +165,14 @@ body { background: var(--color-light-primary); color: var(--color-ink-primary); 
 .mobile-only { display: block; }
 @media (min-width: 1024px) { .desktop-only { display: grid; } .mobile-only { display: none !important; } }
 
-/* ══════ EDGE-TO-EDGE IMAGES ON MOBILE (only for dark sections with img-bleed) ══════ */
+/* ══════ MOBILE IMAGES: padded with rounded corners (like Mars Men) ══════ */
 @media (max-width: 640px) {
-  .img-bleed { margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); width: 100vw; border-radius: 0; }
-  .img-bleed img, .img-bleed video { border-radius: 0; width: 100% !important; max-width: 100% !important; }
+  .img-bleed { margin-left: 0; margin-right: 0; width: 100%; }
+  .img-bleed img, .img-bleed video { border-radius: 12px; width: 100% !important; max-width: 100% !important; }
   .mobile-cta-spacer { height: 80px; }
   /* White section images on mobile: contained, not full-width */
   .grid-mm img { max-width: 70%; margin: 0 auto; border-radius: 8px; }
-  .grid-mm video { max-width: 100%; }
+  .grid-mm video { max-width: 100%; border-radius: 12px; }
 }
 @media (min-width: 641px) { .mobile-cta-spacer { display: none; } }
 

@@ -196,9 +196,9 @@ function TabbedTimeline() {
   return (
     <div className="bg-[var(--color-dark-secondary)] border border-[var(--color-dark-tertiary)] rounded-2xl p-6 md:p-10">
       {/* Tab strip */}
-      <div className="flex gap-2 overflow-x-auto pb-4 mb-8 -mx-2 px-2 scrollbar-none">
+      <div className="flex flex-wrap gap-2 pb-4 mb-8">
         {TL_STAGES.map((st, i) => (
-          <button key={st.id} onClick={() => setActive(i)} className={`label-mono text-[11px] px-5 py-3 rounded-lg whitespace-nowrap transition-all shrink-0 ${i === active ? "bg-[var(--color-cyan)] text-white" : "bg-[var(--color-dark-tertiary)] text-[var(--color-dink-secondary)] hover:text-white hover:translate-y-[-1px]"}`}>
+          <button key={st.id} onClick={() => setActive(i)} className={`label-mono text-[10px] px-3 py-2 md:px-5 md:py-3 md:text-[11px] rounded-lg whitespace-nowrap transition-all shrink-0 ${i === active ? "bg-[var(--color-cyan)] text-white" : "bg-[var(--color-dark-tertiary)] text-[var(--color-dink-secondary)] hover:text-white hover:translate-y-[-1px]"}`}>
             {st.tab}
           </button>
         ))}
