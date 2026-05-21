@@ -19,7 +19,7 @@ const SHOP = "https://justfloow.com/products/genius-mind";
 /* ═══════ COMPONENTS ═══════ */
 
 function SN({ n, label, mode = "light" }: { n: string; label: string; mode?: "light" | "dark" }) {
-  return <p className={`label-mono ${mode === "light" ? "text-[var(--color-cyan)]" : "text-[var(--color-cyan-bright)]"} mb-4 text-xs`}>{n} &mdash; {label}</p>;
+  return <p className={`label-mono ${mode === "light" ? "text-[var(--color-cyan)]" : "text-[var(--color-cyan-bright)]"} mb-4 text-xs`}>{n} &ndash; {label}</p>;
 }
 
 function BL({ children, mode = "light" }: { children: React.ReactNode; mode?: "light" | "dark" }) {
@@ -166,13 +166,13 @@ function PricingCard({ highlighted = false, header, price, period, strikethrough
       {highlighted && (
         <div className="mb-4">
           <button onClick={() => setKitOpen(!kitOpen)} className="w-full text-left bg-[rgba(8,145,178,0.06)] rounded-lg px-4 py-3 flex items-center justify-between">
-            <span className={`label-mono text-[11px] ${cyanL}`}>Welcome Kit &mdash; Arrives With First Order</span>
+            <span className={`label-mono text-[11px] ${cyanL}`}>Welcome Kit &ndash; Arrives With First Order</span>
             <motion.span animate={{ rotate: kitOpen ? 180 : 0 }} transition={{ duration: 0.2 }}><ChevronDown size={16} className={cyanL} /></motion.span>
           </button>
           <div className={`overflow-hidden transition-all duration-300 ${kitOpen ? "max-h-40 mt-2" : "max-h-0"}`}>
             <div className="px-4 space-y-1.5">
-              <p className={`text-sm ${bodyL}`}><Check size={14} className="text-[var(--color-cyan)] inline mr-1.5" />Brain Performance Digital Guide <span className={capL}>(&pound;10 value)</span> &mdash; <span className={cyanL}>FREE</span></p>
-              <p className={`text-sm ${bodyL}`}><Check size={14} className="text-[var(--color-cyan)] inline mr-1.5" />Magnesium 3-in-1 <span className={capL}>(&pound;15 value)</span> &mdash; <span className={cyanL}>FREE</span></p>
+              <p className={`text-sm ${bodyL}`}><Check size={14} className="text-[var(--color-cyan)] inline mr-1.5" />Brain Performance Digital Guide <span className={capL}>(&pound;10 value)</span> &ndash; <span className={cyanL}>FREE</span></p>
+              <p className={`text-sm ${bodyL}`}><Check size={14} className="text-[var(--color-cyan)] inline mr-1.5" />Magnesium 3-in-1 <span className={capL}>(&pound;15 value)</span> &ndash; <span className={cyanL}>FREE</span></p>
               <p className={`${capL} text-[10px] mt-2`}>*60-Day+ Subscribers Only</p>
             </div>
           </div>
@@ -348,7 +348,7 @@ export default function Page() {
                 </h1>
                 {/* Body copy — hidden on mobile, shown on desktop below headline */}
                 <div className="hidden lg:block">
-                  <p className="text-white font-bold text-[22px] leading-[1.3] mb-5">Your brain&apos;s not broken &mdash; your cortisol&apos;s just running the show.</p>
+                  <p className="text-white font-bold text-[22px] leading-[1.3] mb-5">Your brain&apos;s not broken &ndash; your cortisol&apos;s just running the show.</p>
                   <p className="text-[#B0B0B0] text-[18px] leading-[1.5] mb-5">The stress hormone that spikes whenever modern life hits you is the same one depleting the precursors your brain runs on and never letting go.</p>
                   <p className="text-[#B0B0B0] text-[18px] leading-[1.5] mb-5">It&apos;s why the focus window keeps shrinking, the second coffee stops working, and the operator in the mirror feels slower than the effort you&apos;re putting in.</p>
                   <p className="text-[var(--color-cyan)] font-bold text-[18px] leading-[1.3]">Restore the chemistry. Replenish the precursors.<br />Do that and the brain comes back, while focus skyrockets.</p>
@@ -362,7 +362,7 @@ export default function Page() {
 
               {/* Body copy — mobile only (order 3), hidden on desktop */}
               <div className="order-3 lg:hidden">
-                <p className="text-white font-bold text-[18px] leading-[1.3] mb-4">Your brain&apos;s not broken &mdash; your cortisol&apos;s just running the show.</p>
+                <p className="text-white font-bold text-[18px] leading-[1.3] mb-4">Your brain&apos;s not broken &ndash; your cortisol&apos;s just running the show.</p>
                 <p className="text-[#B0B0B0] text-[16px] leading-[1.5] mb-4">The stress hormone that spikes whenever modern life hits you is the same one depleting the precursors your brain runs on and never letting go.</p>
                 <p className="text-[#B0B0B0] text-[16px] leading-[1.5] mb-4">It&apos;s why the focus window keeps shrinking, the second coffee stops working, and the operator in the mirror feels slower than the effort you&apos;re putting in.</p>
                 <p className="text-[var(--color-cyan)] font-bold text-[16px] leading-[1.3]">Restore the chemistry. Replenish the precursors.<br />Do that and the brain comes back, while focus skyrockets.</p>
@@ -408,7 +408,7 @@ export default function Page() {
                   </div>
                 ))}
               </div>
-              <p className="body-mm text-white/80 mb-6">&#128073; This isn&apos;t aging &mdash; this is what chronic cortisol does to the chemistry your brain runs on.</p>
+              <p className="body-mm text-white/80 mb-6">&#128073; This isn&apos;t aging &ndash; this is what chronic cortisol does to the chemistry your brain runs on.</p>
               <p className="text-[var(--color-cyan)] font-[800] text-[16px] md:text-[18px] leading-[1.3]">Your cortisol controls your chemistry.<br />Fix the chemistry, get the brain back.</p>
             </FadeUp>
           </div>
@@ -420,7 +420,7 @@ export default function Page() {
       <section className="bg-white sec-pad-tight">
         <div className="sec-container">
           <FadeUp>
-            <h2 className="h2-mm text-black text-center mb-10">Why Everything You&apos;ve Tried Made Logical Sense &mdash; And Still Didn&apos;t Work</h2>
+            <h2 className="h2-mm text-black text-center mb-10">Why Everything You&apos;ve Tried Made Logical Sense &ndash; And Still Didn&apos;t Work</h2>
           </FadeUp>
 
           {/* Desktop: text left, image right */}
@@ -501,13 +501,13 @@ export default function Page() {
               <p className="text-black body-mm">That&apos;s exactly what Genius Mind is built to do.</p>
             </FadeUp>
             <FadeUp delay={0.1}>
-              <img src="/assets/gm-operator-compare2.png" alt="Before and after comparison of operator — tired vs restored" width={380} height={340} loading="lazy" className="rounded-xl" />
+              <img src="/assets/gm-operator-compare2.png" alt="Before and after comparison of operator – tired vs restored" width={380} height={340} loading="lazy" className="rounded-xl" />
             </FadeUp>
           </div>
           {/* Mobile: image first, then text */}
           <div className="mobile-only">
             <FadeUp>
-              <img src="/assets/gm-operator-compare2.png" alt="Before and after comparison of operator — tired vs restored" width={380} height={280} loading="lazy" className="rounded-xl mx-auto mb-6" style={{ maxWidth: '90%' }} />
+              <img src="/assets/gm-operator-compare2.png" alt="Before and after comparison of operator – tired vs restored" width={380} height={280} loading="lazy" className="rounded-xl mx-auto mb-6" style={{ maxWidth: '90%' }} />
               <p className="text-black body-mm mb-6">The operators who crack the code are the ones who fix the chemistry first.</p>
               <p className="text-black font-[800] text-2xl leading-tight mb-5">Restore the chemistry. Get the brain back.</p>
               <p className="text-black body-mm">That&apos;s exactly what Genius Mind is built to do.</p>
@@ -604,7 +604,7 @@ export default function Page() {
           <Stagger className="grid md:grid-cols-3 gap-12 mb-12">
             {MECHS.map((m, i) => (
               <motion.div key={m.title} variants={cF} className="text-left border-l-[3px] border-[var(--color-cyan)] pl-6">
-                <p className={`label-mono ${cyanL} text-[10px] mb-3`}>0{i + 1} &mdash; {m.label}</p>
+                <p className={`label-mono ${cyanL} text-[10px] mb-3`}>0{i + 1} &ndash; {m.label}</p>
                 <div className={`${cyanL} mb-4`}>{m.iconLg}</div>
                 <h3 className={`font-bold text-2xl mb-3 ${h2L}`}>{m.title}</h3>
                 <p className={`${bodyL} text-sm leading-relaxed`}>{m.desc}</p>
@@ -620,7 +620,7 @@ export default function Page() {
           <FadeUp>
             <p className="label-mono text-[var(--color-cyan)] text-[14px] mb-4">Natural Cognitive Support + Real Output</p>
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-5 text-white`}>Restore The Chemistry. Get The Brain Back.</h2>
-            <p className="text-[#a0a8b0] text-[17px] leading-[1.5] max-w-[700px] mx-auto mb-4">Genius Mind isn&apos;t another nootropic stack &mdash; it&apos;s a complete cortisol-aware formula that works on multiple levels: clear the chemistry, restore the precursors, sustain the focus, protect the output.</p>
+            <p className="text-[#a0a8b0] text-[17px] leading-[1.5] max-w-[700px] mx-auto mb-4">Genius Mind isn&apos;t another nootropic stack &ndash; it&apos;s a complete cortisol-aware formula that works on multiple levels: clear the chemistry, restore the precursors, sustain the focus, protect the output.</p>
             <p className="text-[#a0a8b0] italic text-[14px]">No needles, prescriptions, or dependency.</p>
           </FadeUp>
           <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
@@ -784,8 +784,8 @@ export default function Page() {
             <FadeUp><ProductCarousel /></FadeUp>
             <FadeUp delay={0.1}>
               <h2 className={`text-[clamp(28px,4vw,44px)] font-[800] leading-[1.05] mb-4 ${h2L}`}>Cognitive Infrastructure for Operators</h2>
-              <p className={`${bodyL} mb-6`}>Genius Mind is a complete cognitive stack engineered around the Cognisync Tri-Factor &mdash; 16 clinically studied ingredients designed to support sustained focus throughout the working day.*</p>
-              <PricingCard highlighted header="90-Day Supply" price="16.99" period="/mo" strikethrough="£74.97" subtext="Billed £50.99 every 3 months · £0.57 per serving" savePill="Save 41%" benefits={["90 servings, only £0.57 per day", "NO CONTRACT — pause, skip & cancel anytime", "Fast & free shipping", "90-day money back guarantee"]} cta="primary" />
+              <p className={`${bodyL} mb-6`}>Genius Mind is a complete cognitive stack engineered around the Cognisync Tri-Factor &ndash; 16 clinically studied ingredients designed to support sustained focus throughout the working day.*</p>
+              <PricingCard highlighted header="90-Day Supply" price="16.99" period="/mo" strikethrough="£74.97" subtext="Billed £50.99 every 3 months · £0.57 per serving" savePill="Save 41%" benefits={["90 servings, only £0.57 per day", "NO CONTRACT – pause, skip & cancel anytime", "Fast & free shipping", "90-day money back guarantee"]} cta="primary" />
               <PricingCard header="30-Day Supply" price="21.24" period="/mo" strikethrough="£24.99" subtext="Billed £21.24 every 4 weeks · £0.71 per serving" savePill="Save 29%" benefits={[]} cta="secondary" />
               <div className="text-center mt-3 mb-8">
                 <a href={SHOP} className={`${bodyL} underline text-sm transition-colors`}>One Time Purchase &pound;24.99</a>
@@ -843,7 +843,7 @@ export default function Page() {
 
               {/* Quote */}
               <div className="border-l-[3px] border-[var(--color-cyan)] pl-5">
-                <p className={`${bodyL} italic text-base leading-relaxed`}>&ldquo;Genius Mind is built around the science of cognitive chemistry &mdash; a blend of clinically-studied, naturally-sourced ingredients designed to support focus, recall, and steady mental energy. Every dose is at the level the research actually requires.&rdquo;</p>
+                <p className={`${bodyL} italic text-base leading-relaxed`}>&ldquo;Genius Mind is built around the science of cognitive chemistry &ndash; a blend of clinically-studied, naturally-sourced ingredients designed to support focus, recall, and steady mental energy. Every dose is at the level the research actually requires.&rdquo;</p>
               </div>
             </div>
           </FadeUp>
@@ -926,7 +926,7 @@ export default function Page() {
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-[100] bg-[#0a0a0f] border-t border-[rgba(0,166,210,0.3)]" style={{ padding: "12px 16px", paddingBottom: "calc(12px + env(safe-area-inset-bottom, 0px))", boxShadow: "0 -4px 12px rgba(0,0,0,0.3)" }} role="complementary" aria-label="Buy Genius Mind">
         <p className="text-[#999] text-[12px] text-center mb-2">90-day money back guarantee</p>
         <a href="#offer" className="flex items-center justify-center gap-2 w-full bg-[#00A6D2] text-white font-bold text-base py-3.5 px-4 rounded-lg">
-          Get Genius Mind &mdash; From &pound;20/bottle <ArrowRight size={16} strokeWidth={2.5} />
+          Get Genius Mind &ndash; From &pound;20/bottle <ArrowRight size={16} strokeWidth={2.5} />
         </a>
       </div>
     </>
