@@ -45,22 +45,23 @@ body { background: var(--color-light-primary); color: var(--color-ink-primary); 
 @media (max-width: 640px) { .sec-pad { padding: 40px 20px 40px; } }
 @media (min-width: 641px) and (max-width: 1024px) { .sec-pad { padding: 42px 20px; } }
 
-/* Tighter section padding for white sections — 42px bottom like Mars Men */
-.sec-pad-tight { padding: 42px 20px 42px; }
+/* White section padding — generous vertical space like Mars Men */
+.sec-pad-tight { padding: 60px 40px 60px; }
 @media (max-width: 640px) { .sec-pad-tight { padding: 40px 20px 40px; } }
+@media (min-width: 641px) and (max-width: 1024px) { .sec-pad-tight { padding: 50px 30px 50px; } }
 
 /* Mars Men container — 1136px for grid sections, 1200px hero */
-.sec-container { max-width: 1136px; margin: 0 auto; }
+.sec-container { max-width: 1136px; margin: 0 auto; padding: 0 20px; }
 .sec-container-wide { max-width: 1200px; margin: 0 auto; }
 
 /* Mars Men text column — 573px max */
 .col-text-mm { max-width: 573px; }
 @media (max-width: 640px) { .col-text-mm { max-width: 100%; } }
 
-/* Mars Men 2-column grid: 50/50, 100px column gap desktop, 20px mobile */
-.grid-mm { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0px 100px; align-items: start; }
+/* Mars Men 2-column grid: 50/50, 60px column gap desktop, 20px mobile */
+.grid-mm { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0px 60px; align-items: start; }
 @media (max-width: 640px) { .grid-mm { display: flex; flex-direction: column; gap: 20px; } }
-@media (min-width: 641px) and (max-width: 1024px) { .grid-mm { gap: 0px 20px; } }
+@media (min-width: 641px) and (max-width: 1024px) { .grid-mm { gap: 0px 30px; } }
 
 /* White section images constrained to match text block height like Mars Men */
 .grid-mm img { max-width: 380px; max-height: 340px; width: 100%; height: auto; object-fit: contain; border-radius: 12px; margin: 0 auto; }
