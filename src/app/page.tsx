@@ -420,7 +420,8 @@ export default function Page() {
       {/* ═══ §04 STRESS WAS SHORT — WHITE, CENTRED ═══ */}
       <section className="bg-white sec-pad-tight">
         <div className="sec-container">
-          <div className="flex flex-col lg:grid grid-mm mb-10">
+          {/* Desktop: image left, text right. Mobile: text flows, small image inline with closing line */}
+          <div className="hidden lg:grid grid-mm mb-10">
             <FadeUp>
               <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={380} height={340} loading="lazy" className="rounded-xl" />
             </FadeUp>
@@ -429,6 +430,18 @@ export default function Page() {
               <p className="text-black font-bold body-mm mb-4">But now the threat never passes.</p>
               <p className="text-black body-mm mb-4">Investor updates. Cash-flow projections. The Slack ping at 10pm. The decision you&apos;ve been putting off. Another notification. Then another.</p>
               <p className="text-black font-bold body-mm">None of it is life or death. But your nervous system can&apos;t tell the difference...</p>
+            </FadeUp>
+          </div>
+          {/* Mobile: text then small inline image next to closing line */}
+          <div className="lg:hidden mb-10">
+            <FadeUp>
+              <p className="text-black body-mm mb-4">For most of human history, stress was short. A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
+              <p className="text-black font-bold body-mm mb-4">But now the threat never passes.</p>
+              <p className="text-black body-mm mb-4">Investor updates. Cash-flow projections. The Slack ping at 10pm. The decision you&apos;ve been putting off. Another notification. Then another.</p>
+              <div className="flex items-end gap-4">
+                <p className="text-black font-bold body-mm flex-1">None of it is life or death. But your nervous system can&apos;t tell the difference...</p>
+                <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={120} height={120} loading="lazy" className="w-[120px] h-auto shrink-0 rounded-lg" />
+              </div>
             </FadeUp>
           </div>
 

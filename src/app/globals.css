@@ -157,13 +157,14 @@ body { background: var(--color-light-primary); color: var(--color-ink-primary); 
 .skel-light::after, .skel-dark::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 0%, rgba(0,166,210,0.03) 50%, transparent 100%); animation: shimmer 2.5s ease-in-out infinite; }
 @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
-/* ══════ EDGE-TO-EDGE IMAGES ON MOBILE ══════ */
+/* ══════ EDGE-TO-EDGE IMAGES ON MOBILE (only for dark sections with img-bleed) ══════ */
 @media (max-width: 640px) {
   .img-bleed { margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); width: 100vw; border-radius: 0; }
   .img-bleed img, .img-bleed video { border-radius: 0; width: 100% !important; max-width: 100% !important; }
   .mobile-cta-spacer { height: 80px; }
-  /* Override grid image constraints on mobile — full width */
-  .grid-mm img, .grid-mm video { max-width: 100% !important; }
+  /* White section images on mobile: contained, not full-width */
+  .grid-mm img { max-width: 70%; margin: 0 auto; border-radius: 8px; }
+  .grid-mm video { max-width: 100%; }
 }
 @media (min-width: 641px) { .mobile-cta-spacer { display: none; } }
 
