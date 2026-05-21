@@ -11,7 +11,7 @@ import {
   AlertTriangle, X, Zap, Lightbulb, Shield, Target, Rocket,
   TrendingUp, Brain, ChevronDown, ChevronLeft, ChevronRight, Check, CheckCircle2, HelpCircle,
   Leaf, BookOpen, Award, ArrowRight, Eye, Factory, FlaskConical,
-  Package, ShieldCheck, Truck, Star, RotateCw, Layers, Anchor,
+  Package, ShieldCheck, Truck, Star, RotateCw, Layers, Anchor, Waves, BatteryFull,
 } from "lucide-react";
 
 const SHOP = "https://justfloow.com/products/genius-mind";
@@ -53,6 +53,29 @@ function Badge({ type }: { type: "check" | "x" | "q" }) {
   if (type === "x") return <div className="badge badge-x"><X size={18} strokeWidth={3} className="text-white" /></div>;
   return <div className="badge badge-q"><span className="text-[#dc2626] font-bold text-lg">?</span></div>;
 }
+
+/* ═══════ ANIMATED BENEFIT ICON ═══════ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function AnimatedIcon({ icon, variants }: { icon: React.ReactNode; variants: any }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: false, margin: "-100px" });
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => { setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches); }, []);
+  return (
+    <motion.div ref={ref} animate={reduced ? "initial" : inView ? "animate" : "initial"} variants={variants} className="flex justify-center mb-4">
+      {icon}
+    </motion.div>
+  );
+}
+
+const OUTCOME_ICONS = [
+  { icon: <Zap size={48} strokeWidth={2} color="#00A6D2" />, title: "SUSTAINED FOCUS", desc: "The 4-6hr decision window high-output work demands. No 2pm cliff.", variants: { initial: { scale: 1, opacity: 0.7 }, animate: { scale: [1, 1.08, 1], opacity: [0.7, 1, 0.7], transition: { duration: 2, repeat: Infinity, ease: "easeInOut" as const } } } },
+  { icon: <Brain size={48} strokeWidth={2} color="#00A6D2" />, title: "MENTAL CLARITY", desc: "Brain fog gone. Reading and writing land cleanly first time.", variants: { initial: { filter: "drop-shadow(0 0 0px rgba(0,166,210,0))" }, animate: { filter: ["drop-shadow(0 0 0px rgba(0,166,210,0))", "drop-shadow(0 0 12px rgba(0,166,210,0.8))", "drop-shadow(0 0 0px rgba(0,166,210,0))"], transition: { duration: 2.5, repeat: Infinity, ease: "easeInOut" as const } } } },
+  { icon: <Target size={48} strokeWidth={2} color="#00A6D2" />, title: "EASIER TO TAKE ACTION", desc: "The hard calls stop stalling. Decisions get made.", variants: { initial: { scale: 1.15, opacity: 0.6 }, animate: { scale: [1.15, 1, 1.15], opacity: [0.6, 1, 0.6], transition: { duration: 2.2, repeat: Infinity, ease: "easeInOut" as const } } } },
+  { icon: <Waves size={48} strokeWidth={2} color="#00A6D2" />, title: "REDUCED OVERWHELM", desc: "Cognitive load handled. Calm under pressure, not flooded by it.", variants: { initial: { x: 0 }, animate: { x: [-3, 3, -3], transition: { duration: 3, repeat: Infinity, ease: "easeInOut" as const } } } },
+  { icon: <BatteryFull size={48} strokeWidth={2} color="#00A6D2" />, title: "STAMINA & RECOVERY", desc: "Brain output sustained across the working day. Sleep restores you.", variants: { initial: { opacity: 0.6 }, animate: { opacity: [0.6, 1, 0.6], transition: { duration: 2.8, repeat: Infinity, ease: "easeInOut" as const } } } },
+  { icon: <Shield size={48} strokeWidth={2} color="#00A6D2" />, title: "STRESS RESILIENCE", desc: "Cortisol-aware formulation. Built for the operator's chemistry.", variants: { initial: { scale: 1 }, animate: { scale: [1, 1.06, 1], transition: { duration: 2.5, repeat: Infinity, ease: "easeInOut" as const } } } },
+];
 
 /* Primary CTA — mint green, centred text+arrow as single unit */
 function PrimaryCTA({ children, href = SHOP, block = false }: { children: React.ReactNode; href?: string; block?: boolean }) {
@@ -591,20 +614,26 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ §5 OUTCOMES (4 tiles) — LIGHT ═══ */}
-      <section className="sec-light-alt py-20 md:py-28">
-        <div className="max-w-5xl mx-auto px-4">
-          <FadeUp><></></FadeUp>
-          <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {BENEFITS.map((b) => (
-              <motion.div key={b.title} variants={cF} className="card-light text-center !p-8">
-                <div className="icon-box">{b.icon}</div>
-                <h3 className={`font-bold text-[22px] mb-3 ${h2L}`}>{b.title}</h3>
-                <p className={`${bodyL} text-sm mb-4`}>{b.desc}</p>
-                <p className={`label-mono ${cyanL} text-[10px] border-t border-[rgba(15,23,42,0.08)] pt-4`}>{b.survey}</p>
-              </motion.div>
+      {/* ═══ §5 OUTCOMES — DARK, ICON-LED ═══ */}
+      <section className="sec-dark" style={{ padding: "80px 20px" }}>
+        <div className="max-w-[1200px] mx-auto px-4 text-center">
+          <FadeUp>
+            <p className="label-mono text-[var(--color-cyan)] text-[14px] mb-4">Natural Cognitive Support + Real Output</p>
+            <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-5 text-white`}>Restore The Chemistry. Get The Brain Back.</h2>
+            <p className="text-[#a0a8b0] text-[17px] leading-[1.5] max-w-[700px] mx-auto mb-4">Genius Mind isn&apos;t another nootropic stack &mdash; it&apos;s a complete cortisol-aware formula that works on multiple levels: clear the chemistry, restore the precursors, sustain the focus, protect the output.</p>
+            <p className="text-[#a0a8b0] italic text-[14px]">No needles, prescriptions, or dependency.</p>
+          </FadeUp>
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+            {OUTCOME_ICONS.map((o) => (
+              <FadeUp key={o.title}>
+                <div className="max-w-[300px] mx-auto">
+                  <AnimatedIcon icon={o.icon} variants={o.variants} />
+                  <h3 className="text-white font-[800] text-[18px] tracking-[0.05em] uppercase mt-4 mb-3">{o.title}</h3>
+                  <p className="text-[#a0a8b0] text-[15px] leading-[1.5]">{o.desc}</p>
+                </div>
+              </FadeUp>
             ))}
-          </Stagger>
+          </div>
         </div>
       </section>
 
