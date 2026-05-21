@@ -411,7 +411,7 @@ export default function Page() {
               <p className="breakout-line text-[var(--color-cyan)]">Your Brain Was Built for a World That No Longer Exists.</p>
             </FadeUp>
             <FadeUp>
-              <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={600} height={600} loading="lazy" className="w-full rounded-xl" />
+              <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={380} height={340} loading="lazy" className="rounded-xl" />
             </FadeUp>
           </div>
         </div>
@@ -422,7 +422,7 @@ export default function Page() {
         <div className="sec-container">
           <div className="flex flex-col lg:grid grid-mm mb-10">
             <FadeUp>
-              <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={600} height={600} loading="lazy" className="w-full rounded-xl" />
+              <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={380} height={340} loading="lazy" className="rounded-xl" />
             </FadeUp>
             <FadeUp delay={0.1} className="col-text-mm">
               <p className="text-black body-mm mb-4">For most of human history, stress was short. A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
@@ -455,7 +455,7 @@ export default function Page() {
               <p className="text-black body-mm">That&apos;s exactly what Genius Mind is built to do.</p>
             </FadeUp>
             <FadeUp delay={0.1}>
-              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={600} height={450} loading="lazy" className="w-full rounded-xl" />
+              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={380} height={340} loading="lazy" className="rounded-xl" />
             </FadeUp>
           </div>
         </div>
