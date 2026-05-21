@@ -498,19 +498,18 @@ export default function Page() {
       {/* ═══ §06 SAY NO TO CAFFEINE — DARK ═══ */}
       <section className="sec-dark sec-pad">
         <div className="sec-container">
-          <div className="flex flex-col lg:grid grid-mm lg:items-start">
-            {/* LEFT column: eyebrow + headline + boxes */}
-            <div className="order-1 lg:order-1">
-              <p className="eyebrow-mm mb-4 text-center lg:text-left">
+          {/* Desktop: text+boxes LEFT, video+caption RIGHT */}
+          <div className="desktop-only grid-mm" style={{ alignItems: 'start' }}>
+            <div>
+              <p className="eyebrow-mm mb-4 text-left">
                 <span className="text-[var(--color-coral)]">&#10067;</span>{" "}
                 <span className="text-white">And What About Other Options?</span>
               </p>
-              <h2 className="h2-mm mb-6 text-white text-center lg:text-left">
+              <h2 className="h2-mm mb-6 text-white text-left">
                 Say No to Caffeine Loops &amp;{" "}
                 <span className="inline-block bg-[#00A6D2] text-white px-[0.2em] py-[0.05em] leading-[0.95]">Underdosed</span>{" "}
                 Nootropic Stacks
               </h2>
-
               <h3 className="h3-mm text-white font-[800] mb-3">Caffeine &amp; Stimulant Stacks:</h3>
               <div className="space-y-1.5 mb-6">
                 {CAFFEINE_FAILS.map((item) => (
@@ -530,12 +529,45 @@ export default function Page() {
                 ))}
               </div>
             </div>
-
-            {/* RIGHT column: image + caption */}
-            <FadeUp delay={0.1} className="order-2 lg:order-2 img-bleed lg:[all:unset] lg:flex lg:flex-col">
+            <FadeUp delay={0.1}>
               <video src="/assets/section-6-coffee-loop-operator.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="Operator reaching for a fourth coffee, defeated" className="w-full rounded-xl object-cover mb-4" />
-              <p className="text-white body-mm text-sm text-center lg:text-left px-4 lg:px-0 mt-4 lg:mt-0">&#128073; You deserve better than frying your nervous system with caffeine or wasting money on underdosed stacks.</p>
+              <p className="text-white body-mm text-sm">&#128073; You deserve better than frying your nervous system with caffeine or wasting money on underdosed stacks.</p>
             </FadeUp>
+          </div>
+
+          {/* Mobile: headline → video → boxes */}
+          <div className="mobile-only">
+            <p className="eyebrow-mm mb-4 text-center">
+              <span className="text-[var(--color-coral)]">&#10067;</span>{" "}
+              <span className="text-white">And What About Other Options?</span>
+            </p>
+            <h2 className="h2-mm mb-6 text-white text-center">
+              Say No to Caffeine Loops &amp;{" "}
+              <span className="inline-block bg-[#00A6D2] text-white px-[0.2em] py-[0.05em] leading-[0.95]">Underdosed</span>{" "}
+              Nootropic Stacks
+            </h2>
+            <div className="img-bleed mb-6">
+              <video src="/assets/section-6-coffee-loop-operator.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="Operator reaching for a fourth coffee, defeated" className="w-full object-cover" />
+            </div>
+            <h3 className="h3-mm text-white font-[800] mb-3">Caffeine &amp; Stimulant Stacks:</h3>
+            <div className="space-y-1.5 mb-6">
+              {CAFFEINE_FAILS.map((item) => (
+                <div key={item} className="border border-[#E8283B] rounded-[4px] py-[7px] px-[9px] flex items-start gap-2">
+                  <span className="text-xs mt-px shrink-0">&#10060;</span>
+                  <p className="text-[15px] leading-snug"><strong className="text-white">{item.split("\u2014")[0]}</strong>{item.includes("\u2014") && <span className="text-[#B0B0B0]"> &ndash; {item.split("\u2014").slice(1).join("\u2014")}</span>}</p>
+                </div>
+              ))}
+            </div>
+            <h3 className="h3-mm text-white font-[800] mb-3">Underdosed Nootropic Stacks:</h3>
+            <div className="space-y-1.5 mb-6">
+              {NOOTROPIC_FAILS.map((item) => (
+                <div key={item} className="border border-[#E8283B] rounded-[4px] py-[7px] px-[9px] flex items-start gap-2">
+                  <span className="text-xs mt-px shrink-0">&#10060;</span>
+                  <p className="text-[15px] leading-snug"><strong className="text-white">{item.split("\u2014")[0]}</strong>{item.includes("\u2014") && <span className="text-[#B0B0B0]"> &ndash; {item.split("\u2014").slice(1).join("\u2014")}</span>}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-white body-mm text-sm text-center px-4">&#128073; You deserve better than frying your nervous system with caffeine or wasting money on underdosed stacks.</p>
           </div>
         </div>
       </section>
