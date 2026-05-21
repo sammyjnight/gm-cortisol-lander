@@ -40,14 +40,14 @@ body { background: var(--color-light-primary); color: var(--color-ink-primary); 
 }
 .sec-dark > * { position: relative; z-index: 1; }
 
-/* Mars Men section spacing: 57px top, 88px bottom desktop; 14px top, 0 bottom mobile */
+/* Mars Men section spacing: 57px top, 88px bottom desktop; more breathing room mobile */
 .sec-pad { padding: 57px 20px 88px; }
-@media (max-width: 640px) { .sec-pad { padding: 14px 20px 0; } }
+@media (max-width: 640px) { .sec-pad { padding: 40px 20px 40px; } }
 @media (min-width: 641px) and (max-width: 1024px) { .sec-pad { padding: 42px 20px; } }
 
 /* Tighter section padding for white sections — 42px bottom like Mars Men */
 .sec-pad-tight { padding: 42px 20px 42px; }
-@media (max-width: 640px) { .sec-pad-tight { padding: 24px 20px 24px; } }
+@media (max-width: 640px) { .sec-pad-tight { padding: 40px 20px 40px; } }
 
 /* Mars Men container — 1136px for grid sections, 1200px hero */
 .sec-container { max-width: 1136px; margin: 0 auto; }

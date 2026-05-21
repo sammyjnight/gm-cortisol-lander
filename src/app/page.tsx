@@ -388,7 +388,7 @@ export default function Page() {
                 ))}
               </div>
               <p className="body-mm text-white/80 mb-6">&#128073; This isn&apos;t aging &mdash; this is what chronic cortisol does to the chemistry your brain runs on.</p>
-              <p className="text-[var(--color-cyan)] font-[800] text-[22px] leading-[1.3]">Your cortisol controls your chemistry.<br />Fix the chemistry, get the brain back.</p>
+              <p className="text-[var(--color-cyan)] font-[800] text-[16px] md:text-[18px] leading-[1.3]">Your cortisol controls your chemistry.<br />Fix the chemistry, get the brain back.</p>
             </FadeUp>
           </div>
         </div>
@@ -602,7 +602,6 @@ export default function Page() {
               </motion.div>
             ))}
           </Stagger>
-          <p className={`${capL} text-xs mt-6`}>Post-purchase subscriber survey &middot; 33 respondents using 3+ months</p>
         </div>
       </section>
 
