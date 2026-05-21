@@ -414,19 +414,18 @@ export default function Page() {
               <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={380} height={340} loading="lazy" className="rounded-xl" />
             </FadeUp>
           </div>
-          {/* Mobile: text with small inline image next to "The cause is cortisol" */}
+          {/* Mobile: text wraps around floated image */}
           <div className="mobile-only">
             <FadeUp>
-              <p className="text-black font-bold body-mm mb-5">You didn&apos;t fail. The strategy failed you.</p>
-              <p className="text-black/70 body-mm mb-6">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
-              <div className="flex items-start gap-4 mb-5">
-                <div className="flex-1">
-                  <p className="text-black font-bold body-mm mb-3">The cause is cortisol.</p>
-                  <p className="text-black/50 body-mm">And the reason is simple:</p>
-                </div>
-                <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={120} height={120} loading="lazy" className="w-[120px] h-auto shrink-0 rounded-lg" />
+              <p className="text-black font-bold body-mm mb-4">You didn&apos;t fail. The strategy failed you.</p>
+              <div>
+                <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={110} height={110} loading="lazy" className="float-right ml-4 mb-2 w-[110px] h-auto rounded-lg" />
+                <p className="text-black/70 body-mm mb-4">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
+                <p className="text-black font-bold body-mm mb-2">The cause is cortisol.</p>
+                <p className="text-black/50 body-mm mb-1">And the reason is simple:</p>
               </div>
-              <p className="breakout-line text-[var(--color-cyan)]">Your Brain Was Built for a World That No Longer Exists.</p>
+              <div style={{ clear: 'both' }} />
+              <p className="breakout-line text-[var(--color-cyan)] mt-4">Your Brain Was Built for a World That No Longer Exists.</p>
             </FadeUp>
           </div>
         </div>

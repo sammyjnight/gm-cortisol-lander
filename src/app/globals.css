@@ -47,7 +47,7 @@ body { background: var(--color-light-primary); color: var(--color-ink-primary); 
 
 /* White section padding — generous vertical space like Mars Men */
 .sec-pad-tight { padding: 60px 40px 60px; }
-@media (max-width: 640px) { .sec-pad-tight { padding: 40px 20px 40px; } }
+@media (max-width: 640px) { .sec-pad-tight { padding: 28px 16px 28px; } }
 @media (min-width: 641px) and (max-width: 1024px) { .sec-pad-tight { padding: 50px 30px 50px; } }
 
 /* Mars Men container — 1136px for grid sections, 1200px hero */
