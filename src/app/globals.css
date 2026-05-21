@@ -45,10 +45,10 @@ body { background: var(--color-light-primary); color: var(--color-ink-primary); 
 @media (max-width: 640px) { .sec-pad { padding: 40px 20px 40px; } }
 @media (min-width: 641px) and (max-width: 1024px) { .sec-pad { padding: 42px 20px; } }
 
-/* White section padding — generous vertical space like Mars Men */
-.sec-pad-tight { padding: 60px 40px 60px; }
+/* White section padding — snug for consecutive same-bg sections */
+.sec-pad-tight { padding: 32px 40px 32px; }
 @media (max-width: 640px) { .sec-pad-tight { padding: 28px 16px 28px; } }
-@media (min-width: 641px) and (max-width: 1024px) { .sec-pad-tight { padding: 50px 30px 50px; } }
+@media (min-width: 641px) and (max-width: 1024px) { .sec-pad-tight { padding: 32px 30px 32px; } }
 
 /* Mars Men container — 1136px for grid sections, 1200px hero */
 .sec-container { max-width: 1136px; margin: 0 auto; padding: 0 20px; }
