@@ -360,7 +360,6 @@ export default function Page() {
                 <span className="text-[var(--color-coral)]">The Truth About Cognitive Decline</span>
               </p>
               <h2 className="h2-mm mb-4 text-white text-center">It&apos;s Not Just Burnout</h2>
-              <p className="text-white font-bold body-mm mb-6 text-center">Many operators 30+ are quietly experiencing...</p>
             </div>
 
             {/* Image (mobile order 2, desktop left column) */}
