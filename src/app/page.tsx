@@ -402,7 +402,7 @@ export default function Page() {
           </FadeUp>
 
           {/* Desktop: text left, image right */}
-          <div className="hidden lg:grid grid-mm">
+          <div className="desktop-only grid-mm">
             <FadeUp className="col-text-mm">
               <p className="text-black font-bold body-mm mb-5">You didn&apos;t fail. The strategy failed you.</p>
               <p className="text-black/70 body-mm mb-6">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
@@ -415,7 +415,7 @@ export default function Page() {
             </FadeUp>
           </div>
           {/* Mobile: text with small inline image next to "The cause is cortisol" */}
-          <div className="lg:hidden">
+          <div className="mobile-only">
             <FadeUp>
               <p className="text-black font-bold body-mm mb-5">You didn&apos;t fail. The strategy failed you.</p>
               <p className="text-black/70 body-mm mb-6">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
@@ -435,8 +435,8 @@ export default function Page() {
       {/* ═══ §04 STRESS WAS SHORT — WHITE, CENTRED ═══ */}
       <section className="bg-white sec-pad-tight">
         <div className="sec-container">
-          {/* Desktop: image left, text right. Mobile: text flows, small image inline with closing line */}
-          <div className="hidden lg:grid grid-mm mb-10">
+          {/* Desktop: image left, text right */}
+          <div className="desktop-only grid-mm mb-10">
             <FadeUp>
               <img src="/assets/gm-illustration-2.png" alt="Operator slumped on couch" width={380} height={340} loading="lazy" className="rounded-xl" />
             </FadeUp>
@@ -448,7 +448,7 @@ export default function Page() {
             </FadeUp>
           </div>
           {/* Mobile: text then small inline image next to closing line */}
-          <div className="lg:hidden mb-10">
+          <div className="mobile-only mb-10">
             <FadeUp>
               <p className="text-black body-mm mb-4">For most of human history, stress was short. A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly.</p>
               <p className="text-black font-bold body-mm mb-4">But now the threat never passes.</p>
