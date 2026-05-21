@@ -419,13 +419,13 @@ export default function Page() {
             <FadeUp>
               <p className="text-black font-bold body-mm mb-4">You didn&apos;t fail. The strategy failed you.</p>
               <div>
-                <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={110} height={110} loading="lazy" className="float-right ml-4 mb-2 w-[110px] h-auto rounded-lg" />
+                <img src="/assets/gm-illustration-1.png" alt="Operator collapsed on floor of home office" width={150} height={150} loading="lazy" className="float-right ml-4 mb-2 w-[150px] h-auto rounded-lg" />
                 <p className="text-black/70 body-mm mb-4">Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&apos;ve tried attacked the symptom. None of them went after the cause.</p>
                 <p className="text-black font-bold body-mm mb-2">The cause is cortisol.</p>
                 <p className="text-black/50 body-mm mb-1">And the reason is simple:</p>
               </div>
               <div style={{ clear: 'both' }} />
-              <p className="breakout-line text-[var(--color-cyan)] mt-4">Your Brain Was Built for a World That No Longer Exists.</p>
+              <p className="breakout-line text-[var(--color-cyan)] mt-2 mb-2">Your Brain Was Built for a World That No Longer Exists.</p>
             </FadeUp>
           </div>
         </div>
