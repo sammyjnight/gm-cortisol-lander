@@ -533,7 +533,7 @@ export default function Page() {
       <section id="mechanism" className="sec-light sec-pad">
         <div className="sec-container text-center">
           <FadeUp>
-            <SN n="07" label="THE SOLUTION" />
+
             <h2 className="h2-mm mb-6 text-black">Cognitive Chemistry Restored.<br /><span className={cyanL}>Sustained Focus, Replenished.</span></h2>
             <p className={`${bodyL} body-mm mb-10 max-w-3xl mx-auto`}>A complete cognitive stack working on three mechanisms simultaneously:</p>
           </FadeUp>
@@ -553,7 +553,7 @@ export default function Page() {
       {/* ═══ §5 OUTCOMES (4 tiles) — LIGHT ═══ */}
       <section className="sec-light-alt py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-4">
-          <FadeUp><SN n="08" label="THE OUTCOMES" /></FadeUp>
+          <FadeUp><></></FadeUp>
           <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {BENEFITS.map((b) => (
               <motion.div key={b.title} variants={cF} className="card-light text-center !p-8">
@@ -571,7 +571,7 @@ export default function Page() {
       <section id="formula" className="sec-dark py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <FadeUp>
-            <SN n="09" label="THE FORMULA" mode="dark" />
+
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-3 ${h2D}`}>16 Ingredients in 1 Powerful Formula</h2>
             <div className="mb-4"><span className="sticker sticker-cyan">Clinically Studied + High-Ratio Extracts</span></div>
             <div className="flex flex-wrap justify-center items-center gap-x-1 gap-y-2 mb-10">
@@ -610,7 +610,7 @@ export default function Page() {
       <section className="sec-light-alt py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <FadeUp>
-            <SN n="10" label="THE EVIDENCE" />
+
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-10 ${h2L}`}>What Long-Term Customers Actually Report</h2>
           </FadeUp>
           <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -650,7 +650,7 @@ export default function Page() {
       <section className="sec-light py-20 md:py-28">
         <div className="max-w-4xl mx-auto px-4">
           <FadeUp>
-            <SN n="11" label="THE COMPARISON" />
+
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] text-center mb-3 ${h2L}`}>How Genius Mind Compares</h2>
             <p className={`${bodyL} text-center mb-10`}>Cognitive infrastructure, not a stimulant hit.</p>
           </FadeUp>
@@ -710,7 +710,7 @@ export default function Page() {
       {/* ═══ §10 THE OFFER — LIGHT ═══ */}
       <section id="offer" className="sec-light-alt py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4">
-          <FadeUp><SN n="12" label="THE OFFER" /></FadeUp>
+          <FadeUp><></></FadeUp>
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <FadeUp><ProductCarousel /></FadeUp>
             <FadeUp delay={0.1}>
@@ -735,7 +735,7 @@ export default function Page() {
       <section className="sec-dark py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-4">
           <FadeUp>
-            <SN n="13" label="THE TIMELINE" mode="dark" />
+
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] text-center mb-12 ${h2D}`}>What Happens After You Start Restoring Cognitive Chemistry</h2>
           </FadeUp>
           <FadeUp delay={0.1}>
@@ -749,7 +749,7 @@ export default function Page() {
       <section className="sec-light-alt py-20 md:py-28">
         <div className="max-w-3xl mx-auto px-4">
           <FadeUp>
-            <SN n="14" label="NUTRITIONIST FORMULATED" />
+
             <h2 className={`text-[clamp(28px,4.5vw,44px)] font-[800] leading-[1.05] text-center mb-10 ${h2L}`}>Nutritionist Formulated, Operator Tested.</h2>
           </FadeUp>
 
@@ -803,7 +803,7 @@ export default function Page() {
       <section id="faq" className="sec-light-alt py-20 md:py-28">
         <div className="max-w-3xl mx-auto px-4">
           <FadeUp>
-            <SN n="15" label="QUESTIONS" />
+
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] text-center mb-10 ${h2L}`}>Frequently Asked Questions</h2>
           </FadeUp>
           <div className="space-y-3">
