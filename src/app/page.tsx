@@ -477,7 +477,7 @@ export default function Page() {
       <section className="bg-white sec-pad-tight">
         <div className="sec-container">
           {/* Desktop: text left, image right */}
-          <div className="desktop-only grid-mm">
+          <div className="desktop-only grid-mm" style={{ alignItems: 'center' }}>
             <FadeUp className="col-text-mm">
               <p className="text-black body-mm mb-6">The operators who crack the code are the ones who fix the chemistry first.</p>
               <p className="text-black font-[800] text-2xl md:text-[26px] leading-tight mb-5">Restore the chemistry. Get the brain back.</p>
