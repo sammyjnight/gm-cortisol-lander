@@ -429,12 +429,8 @@ export default function Page() {
               <p className="breakout-line text-[var(--color-cyan)] mt-2 mb-2">Your Brain Was Built for a World That No Longer Exists.</p>
             </FadeUp>
           </div>
-        </div>
-      </section>
 
-      {/* ═══ §04 STRESS WAS SHORT — WHITE, CENTRED ═══ */}
-      <section className="bg-white sec-pad-tight">
-        <div className="sec-container">
+          {/* §04 STRESS WAS SHORT — continues in same section */}
           {/* Desktop: image left, text right */}
           <div className="desktop-only grid-mm mb-10">
             <FadeUp>
