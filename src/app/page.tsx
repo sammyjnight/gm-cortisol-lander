@@ -335,7 +335,7 @@ export default function Page() {
         {/* §01 HERO */}
         <div className="sec-pad !pb-16">
           <div className="sec-container">
-            <div className="flex flex-col lg:grid grid-mm">
+            <div className="flex flex-col lg:grid grid-mm" style={{ alignItems: 'center' }}>
               {/* Eyebrow + headline (order 1 on mobile) */}
               <FadeUp className="order-1 lg:order-none lg:row-span-1 col-text-mm">
                 <p className="eyebrow-mm mb-3 lg:mb-6">
@@ -902,12 +902,6 @@ export default function Page() {
         <div className="max-w-6xl mx-auto px-4 text-center">
           <p className="text-white font-black text-lg tracking-[0.12em] mb-2">GENIUS MIND</p>
           <p className={`${capD} text-xs mb-4 font-serif italic`}>For Those Who Demand More.</p>
-          <div className={`flex flex-wrap justify-center gap-6 text-sm ${bodyD} mb-6`}>
-            <a href={SHOP} className="hover:text-white transition-colors">Shop</a>
-            <a href="#formula" className="hover:text-white transition-colors">Science</a>
-            <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
-            <a href="mailto:support@justfloow.com" className="hover:text-white transition-colors">Contact</a>
-          </div>
           <p className={`${capD} text-[10px] max-w-xl mx-auto`}>*These statements have not been evaluated by the MHRA. This product is not intended to diagnose, treat, cure or prevent any disease. Individual results may vary.</p>
         </div>
       </footer>
