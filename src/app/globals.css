@@ -62,9 +62,9 @@ body { background: var(--color-light-primary); color: var(--color-ink-primary); 
 @media (max-width: 640px) { .grid-mm { display: flex; flex-direction: column; gap: 20px; } }
 @media (min-width: 641px) and (max-width: 1024px) { .grid-mm { gap: 0px 20px; } }
 
-/* Images fill their column naturally — grid column width constrains them */
-.grid-mm img, .grid-mm video { width: 100%; height: auto; object-fit: cover; border-radius: 12px; }
-@media (max-width: 640px) { .grid-mm img, .grid-mm video { border-radius: 0; } }
+/* Images constrained to ~340px max height to match text block height like Mars Men */
+.grid-mm img, .grid-mm video { max-width: 380px; max-height: 340px; width: 100%; height: auto; object-fit: contain; border-radius: 12px; margin: 0 auto; }
+@media (max-width: 640px) { .grid-mm img, .grid-mm video { max-width: 100%; max-height: none; border-radius: 0; } }
 
 /* ══════ TYPOGRAPHY (Mars Men scale) ══════ */
 /* H1/Display: 41px desktop, 24px mobile, mono, -0.02em, 110% */
