@@ -476,7 +476,8 @@ export default function Page() {
       {/* ═══ §05 OPERATORS WHO CRACK THE CODE — WHITE ═══ */}
       <section className="bg-white sec-pad-tight">
         <div className="sec-container">
-          <div className="flex flex-col-reverse lg:grid grid-mm">
+          {/* Desktop: text left, image right */}
+          <div className="desktop-only grid-mm">
             <FadeUp className="col-text-mm">
               <p className="text-black body-mm mb-6">The operators who crack the code are the ones who fix the chemistry first.</p>
               <p className="text-black font-[800] text-2xl md:text-[26px] leading-tight mb-5">Restore the chemistry. Get the brain back.</p>
@@ -484,6 +485,15 @@ export default function Page() {
             </FadeUp>
             <FadeUp delay={0.1}>
               <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={380} height={340} loading="lazy" className="rounded-xl" />
+            </FadeUp>
+          </div>
+          {/* Mobile: image first, then text */}
+          <div className="mobile-only">
+            <FadeUp>
+              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={380} height={280} loading="lazy" className="rounded-xl mx-auto mb-6" style={{ maxWidth: '70%' }} />
+              <p className="text-black body-mm mb-6">The operators who crack the code are the ones who fix the chemistry first.</p>
+              <p className="text-black font-[800] text-2xl leading-tight mb-5">Restore the chemistry. Get the brain back.</p>
+              <p className="text-black body-mm">That&apos;s exactly what Genius Mind is built to do.</p>
             </FadeUp>
           </div>
         </div>
