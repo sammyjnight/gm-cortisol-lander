@@ -478,13 +478,13 @@ export default function Page() {
               <p className="text-black body-mm">That&apos;s exactly what Genius Mind is built to do.</p>
             </FadeUp>
             <FadeUp delay={0.1}>
-              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={380} height={340} loading="lazy" className="rounded-xl" />
+              <img src="/assets/gm-operator-compare2.png" alt="Before and after comparison of operator — tired vs restored" width={380} height={340} loading="lazy" className="rounded-xl" />
             </FadeUp>
           </div>
           {/* Mobile: image first, then text */}
           <div className="mobile-only">
             <FadeUp>
-              <img src="/assets/gm-operator-compare.png" alt="Before and after comparison of operator — tired vs restored" width={380} height={280} loading="lazy" className="rounded-xl mx-auto mb-6" style={{ maxWidth: '90%' }} />
+              <img src="/assets/gm-operator-compare2.png" alt="Before and after comparison of operator — tired vs restored" width={380} height={280} loading="lazy" className="rounded-xl mx-auto mb-6" style={{ maxWidth: '90%' }} />
               <p className="text-black body-mm mb-6">The operators who crack the code are the ones who fix the chemistry first.</p>
               <p className="text-black font-[800] text-2xl leading-tight mb-5">Restore the chemistry. Get the brain back.</p>
               <p className="text-black body-mm">That&apos;s exactly what Genius Mind is built to do.</p>
