@@ -150,46 +150,145 @@ function ProductCarousel() {
   );
 }
 
-/* ═══════ PRICING CARD ═══════ */
-function PricingCard({ highlighted = false, header, price, period, strikethrough, subtext, savePill, benefits, cta }: { highlighted?: boolean; header: string; price: string; period: string; strikethrough: string; subtext: string; savePill: string; benefits: string[]; cta: "primary" | "secondary" }) {
-  const [kitOpen, setKitOpen] = useState(false);
+/* ═══════ ACCORDION PLAN CARD (Primal Brain FM style) ═══════ */
+function PlanCard({ active, onSelect, featured, title, price, period, was, billing, perServing, savePill, perks, welcomeKit, cta }: {
+  active: boolean; onSelect: () => void; featured?: boolean; title: string; price: string; period: string; was: string; billing: string; perServing: string; savePill: string; perks: string[]; welcomeKit?: boolean; cta: string;
+}) {
+  const [giftsOpen, setGiftsOpen] = useState(false);
   return (
-    <div className={`card-light relative mb-4 ${highlighted ? "card-light-featured !border-[var(--color-cyan)] ring-1 ring-[var(--color-cyan)]/20" : ""}`}>
-      <div className="flex items-start justify-between mb-3">
-        <h3 className={`font-bold text-lg ${h2L}`}>{header}</h3>
-        <span className="sticker sticker-cyan !text-[10px] !py-1">{savePill}</span>
-      </div>
-      <div className="flex items-baseline gap-2 mb-1">
-        <span className={`text-3xl font-[800] ${h2L}`}>&pound;{price}</span>
-        <span className={`${capL} text-sm`}>{period}</span>
-        <span className={`${capL} line-through text-sm ml-2`}>{strikethrough}</span>
-      </div>
-      <p className={`${capL} text-xs mb-4`}>{subtext}</p>
-      {benefits.length > 0 && (
-        <ul className="space-y-2 mb-4">
-          {benefits.map((b) => (<li key={b} className={`flex items-start gap-2 text-sm ${bodyL}`}><Check size={16} className="text-[var(--color-cyan)] mt-0.5 shrink-0" />{b}</li>))}
-        </ul>
-      )}
-      {highlighted && (
-        <div className="mb-4">
-          <button onClick={() => setKitOpen(!kitOpen)} className="w-full text-left bg-[rgba(8,145,178,0.06)] rounded-lg px-4 py-3 flex items-center justify-between">
-            <span className={`label-mono text-[11px] ${cyanL}`}>Welcome Kit &ndash; Arrives With First Order</span>
-            <motion.span animate={{ rotate: kitOpen ? 180 : 0 }} transition={{ duration: 0.2 }}><ChevronDown size={16} className={cyanL} /></motion.span>
-          </button>
-          <div className={`overflow-hidden transition-all duration-300 ${kitOpen ? "max-h-40 mt-2" : "max-h-0"}`}>
-            <div className="px-4 space-y-1.5">
-              <p className={`text-sm ${bodyL}`}><Check size={14} className="text-[var(--color-cyan)] inline mr-1.5" />Brain Performance Digital Guide <span className={capL}>(&pound;10 value)</span> &ndash; <span className={cyanL}>FREE</span></p>
-              <p className={`text-sm ${bodyL}`}><Check size={14} className="text-[var(--color-cyan)] inline mr-1.5" />Magnesium 3-in-1 <span className={capL}>(&pound;15 value)</span> &ndash; <span className={cyanL}>FREE</span></p>
-              <p className={`${capL} text-[10px] mt-2`}>*60-Day+ Subscribers Only</p>
-            </div>
+    <div onClick={onSelect} className={`relative rounded-xl border-2 bg-white cursor-pointer transition-all duration-200 mb-3 ${active ? "border-[var(--color-ink-primary)]" : "border-[#e5e7eb] hover:border-[#c0c5cc]"}`}>
+      {featured && <span className="absolute -top-2.5 right-4 bg-[#1bb88a] text-white text-[9px] font-bold uppercase tracking-wide px-3 py-1 rounded">Best Value</span>}
+
+      {/* Header — always visible */}
+      <div className="px-5 py-4">
+        <div className="flex items-center gap-2.5 mb-2">
+          <div className={`w-[18px] h-[18px] rounded-full border-2 flex items-center justify-center shrink-0 ${active ? "border-[var(--color-ink-primary)]" : "border-[#d0d0d0]"}`}>
+            {active && <div className="w-[10px] h-[10px] rounded-full bg-[var(--color-ink-primary)]" />}
           </div>
+          <span className={`font-bold text-[15px] ${h2L}`}>{title}</span>
+          <span className="bg-[#1bb88a] text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">{savePill}</span>
         </div>
-      )}
-      {cta === "primary" ? (
-        <PrimaryCTA block>ADD TO CART</PrimaryCTA>
-      ) : (
-        <a href={SHOP} className="btn-secondary" style={{ width: "100%", maxWidth: 500, margin: "0 auto", justifyContent: "center" }}><span>Add to Cart</span> <ArrowRight size={16} /></a>
-      )}
+        <div className="flex items-baseline gap-2">
+          <span className={`text-[28px] font-[800] leading-none ${h2L}`}>&pound;{price}</span>
+          <span className={`text-base ${capL}`}>{period}</span>
+          <span className={`text-sm ${capL} line-through ml-1`}>&pound;{was}</span>
+        </div>
+        <div className="flex justify-between items-center mt-1">
+          <span className={`text-[11px] ${capL}`}>{billing}</span>
+          <span className={`text-[11px] font-semibold ${capL}`}>{perServing}</span>
+        </div>
+      </div>
+
+      {/* Body — expands when active */}
+      <div className={`overflow-hidden transition-all duration-400 ${active ? "max-h-[800px]" : "max-h-0"}`}>
+        <div className="px-5 pb-5 pt-3 border-t border-[rgba(0,0,0,0.06)]">
+          <ul className={`grid ${perks.length > 2 ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1"} gap-x-5 gap-y-1.5 mb-4`}>
+            {perks.map((p) => <li key={p} className={`flex items-center gap-2 text-[13px] font-medium ${bodyL}`}><Check size={13} className="text-[var(--color-cyan)] shrink-0" strokeWidth={3} />{p}</li>)}
+          </ul>
+
+          {welcomeKit && (
+            <>
+              <div className="border-t border-[rgba(0,0,0,0.06)] pt-3 mb-3">
+                <p className={`text-center text-[10px] font-bold uppercase tracking-widest ${h2L} mb-3`}>Welcome Kit &ndash; Arrives With First Order</p>
+                <div className="flex justify-center gap-4">
+                  {[{ img: "/assets/gift-magnesium.png", name: "Magnesium 3-in-1", price: "15" }, { img: "/assets/gift-welcome-pack.png", name: "Brain Performance Guide", price: "10" }].map((g) => (
+                    <div key={g.name} className="text-center w-[90px]">
+                      <div className="w-[90px] h-[90px] bg-[rgba(0,166,210,0.06)] rounded-lg overflow-hidden mb-1.5 flex items-center justify-center">
+                        <img src={g.img} alt={g.name} className="w-full h-full object-cover" />
+                      </div>
+                      <p className="text-[12px] font-bold text-[var(--color-cyan)]"><s className={`${capL} font-normal mr-1`}>&pound;{g.price}</s>FREE</p>
+                      <p className={`text-[11px] font-semibold ${h2L}`}>{g.name}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <button onClick={(e) => { e.stopPropagation(); setGiftsOpen(!giftsOpen); }} className={`w-full flex items-center justify-center gap-2 bg-[rgba(0,0,0,0.03)] border border-[rgba(0,0,0,0.08)] rounded-full px-4 py-2 text-[12px] font-bold uppercase tracking-wide ${h2L} hover:bg-[rgba(0,166,210,0.06)] transition-colors mb-3`}>
+                Future Monthly Gifts <motion.span animate={{ rotate: giftsOpen ? 180 : 0 }} transition={{ duration: 0.2 }}><ChevronDown size={12} /></motion.span>
+              </button>
+              <div className={`overflow-hidden transition-all duration-300 ${giftsOpen ? "max-h-40 mb-3" : "max-h-0"}`}>
+                <div className="flex justify-center gap-4 pt-2">
+                  {[{ label: "Month 3", img: "/assets/gift-genius-zen.png", name: "Genius Zen" }, { label: "Month 6", img: "/assets/gift-magnesium.png", name: "Mystery Gift" }].map((g) => (
+                    <div key={g.label} className="text-center">
+                      <p className={`text-[12px] font-bold uppercase ${h2L} mb-2`}>{g.label}</p>
+                      <div className="w-[90px] h-[90px] bg-[rgba(0,166,210,0.06)] rounded-lg overflow-hidden mb-1.5 mx-auto flex items-center justify-center">
+                        <img src={g.img} alt={g.name} className="w-full h-full object-cover" />
+                      </div>
+                      <p className={`text-[11px] font-semibold ${h2L}`}>{g.name}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
+
+          <PrimaryCTA block>{cta}</PrimaryCTA>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════ PDP INFO BLOCK ═══════ */
+function PdpInfo() {
+  return (
+    <div className="text-left">
+      <div className="flex items-center gap-1.5 mb-3 pb-3 border-b border-[rgba(0,0,0,0.08)]">
+        <span className="text-[#f5a623] text-base tracking-wider">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span className={`font-bold text-sm ${h2L}`}>4.8</span>
+        <span className={`text-[13px] ${capL}`}>from 127 Reviews</span>
+      </div>
+      <p className={`text-[11px] font-bold uppercase tracking-widest ${cyanL} mb-1.5`}>All-In-One Cognitive Supplement</p>
+      <h3 className={`text-[clamp(22px,3vw,28px)] font-bold ${h2L} mb-2.5`}>Genius Mind</h3>
+      <p className={`text-sm ${bodyL} leading-relaxed mb-5`}>16 clinically-dosed ingredients in one daily capsule. Formulated by leading UK nutritionist Shona Wilkinson for operators who demand more.</p>
+      <div className="flex flex-wrap gap-2 mb-6">
+        {["16 researched ingredients in one capsule", "89% felt sharper focus. 76% better recall.", "Made in the UK to GMP standard", "90 days to feel it. Or your money back."].map((pill) => (
+          <div key={pill} className={`inline-flex items-center gap-2 px-4 py-2.5 bg-[rgba(0,0,0,0.03)] border border-[rgba(0,0,0,0.06)] rounded-full text-[13px] font-medium ${h2L}`}>
+            <Check size={14} className="text-[var(--color-cyan)] shrink-0" strokeWidth={2.5} />{pill}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ═══════ OFFER PRICING ACCORDION ═══════ */
+function OfferAccordion() {
+  const [activePlan, setActivePlan] = useState(0);
+  return (
+    <div>
+      <p className={`text-[11px] font-bold uppercase tracking-widest ${capL} mb-3`}>Subscribe &amp; Save:</p>
+      <PlanCard
+        active={activePlan === 0}
+        onSelect={() => setActivePlan(0)}
+        featured
+        title="90-Day Supply"
+        price="16.99"
+        period="/mo"
+        was="74.97"
+        billing="Billed £50.99 every 3 months"
+        perServing="£0.57 per serving"
+        savePill="Save 41%"
+        perks={["90 servings, only £0.57 per day", "Fast & free shipping", "NO CONTRACT – pause, skip & cancel anytime", "90-day money back guarantee"]}
+        welcomeKit
+        cta="SAVE 41% + FREE GIFTS"
+      />
+      <PlanCard
+        active={activePlan === 1}
+        onSelect={() => setActivePlan(1)}
+        title="30-Day Supply"
+        price="21.24"
+        period="/mo"
+        was="29.99"
+        billing="Billed £21.24 every month"
+        perServing="£0.71 per serving"
+        savePill="Save 29%"
+        perks={["30 servings, only £0.71 per day", "Fast & free shipping", "NO CONTRACT – pause, skip & cancel anytime", "90-day money back guarantee"]}
+        cta="TRY FOR 30 DAYS"
+      />
+      <div className="text-center mt-3">
+        <a href={SHOP} className={`${bodyL} underline text-sm font-semibold transition-colors`}>One Time Purchase &pound;24.99</a>
+      </div>
     </div>
   );
 }
@@ -860,21 +959,18 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ §10 THE OFFER — LIGHT ═══ */}
+      {/* ═══ §10 THE OFFER — LIGHT (PDP style) ═══ */}
       <section id="offer" className="sec-light-alt py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4">
-          <FadeUp><></></FadeUp>
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+            {/* Left: Carousel */}
             <FadeUp><ProductCarousel /></FadeUp>
+
+            {/* Right: PDP info + Accordion pricing */}
             <FadeUp delay={0.1}>
-              <h2 className={`text-[clamp(28px,4vw,44px)] font-[800] leading-[1.05] mb-4 ${h2L}`}>Cognitive Infrastructure for Operators</h2>
-              <p className={`${bodyL} mb-6`}>Genius Mind is a complete cognitive stack engineered around the Cognisync Tri-Factor &ndash; 16 clinically studied ingredients designed to support sustained focus throughout the working day.*</p>
-              <PricingCard highlighted header="90-Day Supply" price="16.99" period="/mo" strikethrough="£74.97" subtext="Billed £50.99 every 3 months · £0.57 per serving" savePill="Save 41%" benefits={["90 servings, only £0.57 per day", "NO CONTRACT – pause, skip & cancel anytime", "Fast & free shipping", "90-day money back guarantee"]} cta="primary" />
-              <PricingCard header="30-Day Supply" price="21.24" period="/mo" strikethrough="£24.99" subtext="Billed £21.24 every 4 weeks · £0.71 per serving" savePill="Save 29%" benefits={[]} cta="secondary" />
-              <div className="text-center mt-3 mb-8">
-                <a href={SHOP} className={`${bodyL} underline text-sm transition-colors`}>One Time Purchase &pound;24.99</a>
-              </div>
-              <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[11px]">
+              <PdpInfo />
+              <OfferAccordion />
+              <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[11px] mt-6">
                 {[[ShieldCheck, "90-day money back guarantee"], [Factory, "GMP certified"], [FlaskConical, "Made in UK"], [Star, "1000+ five-star reviews"]].map(([Icon, label]) => (
                   <div key={label as string} className={`flex items-center gap-1.5 ${capL}`}><Icon size={14} className={capL} /><span>{label as string}</span></div>
                 ))}
