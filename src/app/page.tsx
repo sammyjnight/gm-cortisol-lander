@@ -593,47 +593,37 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ §07 PRODUCT REVEAL — LIGHT ═══ */}
-      <section id="mechanism" className="sec-light sec-pad">
-        <div className="sec-container text-center">
+      {/* ═══ §07 PRODUCT REVEAL — DARK, MARS MEN STYLE ═══ */}
+      <section id="mechanism" className="sec-dark sec-pad">
+        <div className="max-w-[1200px] mx-auto px-4 text-center">
           <FadeUp>
-
-            <h2 className="h2-mm mb-6 text-black">Cognitive Chemistry Restored.<br /><span className={cyanL}>Sustained Focus, Replenished.</span></h2>
-            <p className={`${bodyL} body-mm mb-10 max-w-3xl mx-auto`}>A complete cognitive stack working on three mechanisms simultaneously:</p>
+            <p className="label-mono text-[var(--color-cyan)] text-[14px] mb-4">Make The Smart Choice</p>
+            <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-5 text-white`}>Natural Cognitive Support<br />+ Real Output</h2>
+            <p className="text-[#a0a8b0] text-[17px] leading-[1.5] max-w-[700px] mx-auto mb-4">&#128073; Genius Mind isn&apos;t another nootropic stack &ndash; it&apos;s a complete cortisol-aware formula that works on FOUR levels: <u>clear the chemistry, restore the precursors, sustain the focus, and protect the output.</u></p>
+            <p className="text-[#a0a8b0] italic text-[14px]">No needles, prescriptions, or dependency.</p>
           </FadeUp>
-          <Stagger className="grid md:grid-cols-3 gap-12 mb-12">
-            {MECHS.map((m, i) => (
-              <motion.div key={m.title} variants={cF} className="text-left border-l-[3px] border-[var(--color-cyan)] pl-6">
-                <p className={`label-mono ${cyanL} text-[10px] mb-3`}>0{i + 1} &ndash; {m.label}</p>
-                <div className={`${cyanL} mb-4`}>{m.iconLg}</div>
-                <h3 className={`font-bold text-2xl mb-3 ${h2L}`}>{m.title}</h3>
-                <p className={`${bodyL} text-sm leading-relaxed`}>{m.desc}</p>
+
+          {/* Hand + product hero image */}
+          <FadeUp>
+            <div className="relative mt-10 mb-0 mx-auto max-w-[800px]">
+              <img src="/assets/gm-hand-product.png" alt="Hand holding Genius Mind bottle" width={800} height={600} loading="lazy" className="w-full h-auto object-contain" style={{ maxWidth: 'none', maxHeight: 'none' }} />
+              {/* Bottom fade into benefit cards */}
+              <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[var(--color-dark-primary)] to-transparent" />
+            </div>
+          </FadeUp>
+
+          {/* 6 benefit cards — 2x3 grid */}
+          <Stagger className="grid grid-cols-2 gap-4 md:gap-6 max-w-[800px] mx-auto -mt-8 relative z-10">
+            {OUTCOME_ICONS.map((o) => (
+              <motion.div key={o.title} variants={cF} className="bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] rounded-xl p-5 md:p-6 text-center">
+                <div className="flex justify-center mb-3">
+                  <AnimatedIcon icon={o.icon} variants={o.variants} />
+                </div>
+                <h3 className="text-white font-[800] text-[14px] md:text-[16px] tracking-[0.05em] uppercase mb-2">{o.title}</h3>
+                <p className="text-[#a0a8b0] text-[13px] md:text-[14px] leading-[1.5]">{o.desc}</p>
               </motion.div>
             ))}
           </Stagger>
-        </div>
-      </section>
-
-      {/* ═══ §5 OUTCOMES — DARK, ICON-LED ═══ */}
-      <section className="sec-dark" style={{ padding: "48px 20px" }}>
-        <div className="max-w-[1200px] mx-auto px-4 text-center">
-          <FadeUp>
-            <p className="label-mono text-[var(--color-cyan)] text-[14px] mb-4">Natural Cognitive Support + Real Output</p>
-            <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-5 text-white`}>Restore The Chemistry. Get The Brain Back.</h2>
-            <p className="text-[#a0a8b0] text-[17px] leading-[1.5] max-w-[700px] mx-auto mb-4">Genius Mind isn&apos;t another nootropic stack &ndash; it&apos;s a complete cortisol-aware formula that works on multiple levels: clear the chemistry, restore the precursors, sustain the focus, protect the output.</p>
-            <p className="text-[#a0a8b0] italic text-[14px]">No needles, prescriptions, or dependency.</p>
-          </FadeUp>
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-            {OUTCOME_ICONS.map((o) => (
-              <FadeUp key={o.title}>
-                <div className="max-w-[300px] mx-auto">
-                  <AnimatedIcon icon={o.icon} variants={o.variants} />
-                  <h3 className="text-white font-[800] text-[18px] tracking-[0.05em] uppercase mt-4 mb-3">{o.title}</h3>
-                  <p className="text-[#a0a8b0] text-[15px] leading-[1.5]">{o.desc}</p>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
         </div>
       </section>
 
