@@ -171,6 +171,27 @@ function ReviewCarousel() {
 }
 
 /* ═══════ TRUSTPILOT REVIEW GRID ═══════ */
+/* Trustpilot green square star boxes (official style) */
+function TpSquareStars({ size = 24, halfStar = false }: { size?: number; halfStar?: boolean }) {
+  const fullCount = halfStar ? 4 : 5;
+  return (
+    <div className="inline-flex gap-[2px]">
+      {[...Array(fullCount)].map((_, i) => (
+        <span key={i} className="inline-flex items-center justify-center bg-[#00b67a]" style={{ width: size, height: size }}>
+          <svg viewBox="0 0 24 24" width={size * 0.55} height={size * 0.55} className="fill-white"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </span>
+      ))}
+      {halfStar && (
+        <span className="inline-flex items-center justify-center bg-[#dcdce6] relative overflow-hidden" style={{ width: size, height: size }}>
+          <span className="absolute left-0 top-0 bottom-0 w-[60%] bg-[#00b67a]" />
+          <svg viewBox="0 0 24 24" width={size * 0.55} height={size * 0.55} className="fill-white relative z-[1]"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </span>
+      )}
+    </div>
+  );
+}
+
+/* Simple green star row (for inside review cards) */
 function TrustpilotStars({ count = 5, size = 18 }: { count?: number; size?: number }) {
   return (
     <div className="flex gap-0.5">
@@ -199,7 +220,7 @@ function TrustpilotReviewCarousel() {
       <div className="max-w-3xl mx-auto px-4">
         {/* Trustpilot eyebrow */}
         <FadeUp>
-          <div className="flex justify-center mb-8"><TrustpilotEyebrow mode="light" /></div>
+          <div className="flex justify-center mb-8"><TrustpilotEyebrow mode="light" centered /></div>
         </FadeUp>
 
         {/* Review carousel */}
@@ -250,19 +271,22 @@ const MINI_REVIEWS = [
   { title: "Sharper than I\u2019ve been in years", body: "At 55, I was worried about my memory declining. After 6 weeks on Genius Mind, I\u2019m sharper than I\u2019ve been in years.", name: "Lucy K." },
 ];
 
-function TrustpilotEyebrow({ mode = "dark" }: { mode?: "dark" | "light" }) {
-  const textCol = mode === "dark" ? "text-white" : h2L;
-  const subCol = mode === "dark" ? "text-white/50" : capL;
+function TrustpilotEyebrow({ mode = "dark", centered = false }: { mode?: "dark" | "light"; centered?: boolean }) {
+  const textCol = mode === "dark" ? "text-white" : "text-[#191919]";
+  const subCol = mode === "dark" ? "text-white/60" : "text-[#191919]";
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      <span className={`${textCol} font-bold text-sm`}>Excellent</span>
-      <TrustpilotStars count={5} size={16} />
-      <span className={`${subCol} text-xs`}>|</span>
-      <div className="flex items-center gap-1 text-[#00b67a] text-xs font-semibold">
-        <svg viewBox="0 0 24 24" width={14} height={14} className="fill-[#00b67a]"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        Trustpilot
+    <div className={`flex flex-col items-${centered ? "center" : "start"} gap-2`}>
+      <div className="flex items-center gap-2.5">
+        <span className={`${textCol} font-[700] text-[clamp(20px,3vw,28px)]`}>Excellent</span>
+        <TpSquareStars size={28} halfStar />
       </div>
-      <span className={`${subCol} text-xs`}>127 reviews</span>
+      <p className={`${subCol} text-[13px]`}>
+        Rated <strong>4.3</strong> / 5 based on <a href="https://uk.trustpilot.com/review/justfloow.com" target="_blank" rel="noopener noreferrer" className={`${subCol} font-bold underline underline-offset-2`}>141 reviews</a> on{" "}
+        <span className="inline-flex items-center gap-1 font-[900] tracking-[-0.02em]">
+          <svg viewBox="0 0 24 24" width={16} height={16} className="fill-[#00b67a] inline"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Trustpilot
+        </span>
+      </p>
     </div>
   );
 }
