@@ -657,12 +657,12 @@ export default function Page() {
       </section>
 
       {/* Trust badges */}
-      <div className="bg-[var(--color-light-secondary)] py-10 md:py-14">
+      <div className="bg-[var(--color-dark-primary)] py-10 md:py-14">
         <div className="max-w-5xl mx-auto px-4 flex flex-wrap justify-center gap-x-10 md:gap-x-16 gap-y-6 text-center">
           {TRUST.map((b) => (
             <div key={b.label} className="flex flex-col items-center gap-2 min-w-[80px]">
-              <span className="text-[var(--color-ink-primary)] opacity-80">{b.icon}</span>
-              <p className="font-mono text-[10px] md:text-[11px] font-bold tracking-[0.12em] uppercase text-[var(--color-ink-primary)] whitespace-pre-line leading-tight">{b.label}</p>
+              <span className="text-white opacity-80">{b.icon}</span>
+              <p className="font-mono text-[10px] md:text-[11px] font-bold tracking-[0.12em] uppercase text-white whitespace-pre-line leading-tight">{b.label}</p>
             </div>
           ))}
         </div>
