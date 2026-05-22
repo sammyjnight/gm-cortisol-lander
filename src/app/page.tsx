@@ -142,29 +142,29 @@ function ReviewCarousel() {
 
   return (
     <div className="mt-6">
-      <div className="relative">
-        <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex gap-3">
-            {TRUSTPILOT_REVIEWS.map((r) => (
-              <div key={r.name} className="flex-[0_0_85%] sm:flex-[0_0_48%] min-w-0 bg-white rounded-xl p-4 border border-[rgba(0,0,0,0.06)]">
-                <div className="flex gap-0.5 mb-2">
-                  {[...Array(5)].map((_, i) => <Star key={i} size={12} className="fill-[#00b67a] text-[#00b67a]" />)}
-                </div>
-                <p className={`text-xs ${capL} mb-1`}>{r.name} &middot; {r.time}</p>
-                <p className={`font-bold text-sm ${h2L} mb-1.5`}>{r.title}</p>
-                <p className={`text-[13px] leading-relaxed ${bodyL} line-clamp-3`}>&ldquo;{r.body}&rdquo;</p>
-                <p className="text-[11px] text-[#00b67a] font-semibold mt-2 flex items-center gap-1"><Check size={11} strokeWidth={3} />Verified</p>
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex gap-3">
+          {TRUSTPILOT_REVIEWS.map((r) => (
+            <div key={r.name} className="flex-[0_0_85%] sm:flex-[0_0_48%] min-w-0 bg-white rounded-xl p-4 border border-[rgba(0,0,0,0.06)]">
+              <div className="flex gap-0.5 mb-2">
+                {[...Array(5)].map((_, i) => <Star key={i} size={12} className="fill-[#00b67a] text-[#00b67a]" />)}
               </div>
-            ))}
-          </div>
+              <p className={`text-xs ${capL} mb-1`}>{r.name} &middot; {r.time}</p>
+              <p className={`font-bold text-sm ${h2L} mb-1.5`}>{r.title}</p>
+              <p className={`text-[13px] leading-relaxed ${bodyL} line-clamp-3`}>&ldquo;{r.body}&rdquo;</p>
+              <p className="text-[11px] text-[#00b67a] font-semibold mt-2 flex items-center gap-1"><Check size={11} strokeWidth={3} />Verified</p>
+            </div>
+          ))}
         </div>
-        <button onClick={scrollPrev} aria-label="Previous review" className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center z-10 hover:bg-gray-50 transition-colors"><ChevronLeft size={16} /></button>
-        <button onClick={scrollNext} aria-label="Next review" className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center z-10 hover:bg-gray-50 transition-colors"><ChevronRight size={16} /></button>
       </div>
-      <div className="flex justify-center gap-1.5 mt-3">
-        {TRUSTPILOT_REVIEWS.map((_, i) => (
-          <button key={i} onClick={() => emblaApi?.scrollTo(i)} className={`w-2 h-2 rounded-full transition-all ${i === sel ? "bg-[var(--color-cyan)]" : "bg-[var(--color-ink-tertiary)]/30"}`} />
-        ))}
+      <div className="flex items-center justify-center gap-3 mt-3">
+        <button onClick={scrollPrev} aria-label="Previous review" className="w-7 h-7 rounded-full bg-white shadow-sm border border-[rgba(0,0,0,0.08)] flex items-center justify-center hover:bg-gray-50 transition-colors shrink-0"><ChevronLeft size={14} /></button>
+        <div className="flex gap-1.5">
+          {TRUSTPILOT_REVIEWS.map((_, i) => (
+            <button key={i} onClick={() => emblaApi?.scrollTo(i)} className={`w-2 h-2 rounded-full transition-all ${i === sel ? "bg-[var(--color-cyan)]" : "bg-[var(--color-ink-tertiary)]/30"}`} />
+          ))}
+        </div>
+        <button onClick={scrollNext} aria-label="Next review" className="w-7 h-7 rounded-full bg-white shadow-sm border border-[rgba(0,0,0,0.08)] flex items-center justify-center hover:bg-gray-50 transition-colors shrink-0"><ChevronRight size={14} /></button>
       </div>
     </div>
   );
@@ -214,9 +214,9 @@ function ProductCarousel() {
       </div>
       <button onClick={scrollPrev} aria-label="Previous slide" className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors z-10"><ChevronLeft size={18} className="text-[var(--color-ink-secondary)]" /></button>
       <button onClick={scrollNext} aria-label="Next slide" className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors z-10"><ChevronRight size={18} className="text-[var(--color-ink-secondary)]" /></button>
-      <div className="flex justify-center gap-2 mt-4">
+      <div className="flex justify-center gap-1.5 sm:gap-2 mt-4 overflow-x-auto px-1">
         {CAROUSEL_SLIDES.map((slide, i) => (
-          <button key={i} aria-label={`Go to slide ${i + 1}`} onClick={() => emblaApi?.scrollTo(i)} className={`w-[52px] h-[52px] rounded-lg overflow-hidden border-2 transition-all ${i === selectedIndex ? "border-[var(--color-cyan)]" : "border-transparent hover:border-[#c0c5cc]"}`}>
+          <button key={i} aria-label={`Go to slide ${i + 1}`} onClick={() => emblaApi?.scrollTo(i)} className={`w-[42px] h-[42px] sm:w-[52px] sm:h-[52px] rounded-lg overflow-hidden border-2 shrink-0 transition-all ${i === selectedIndex ? "border-[var(--color-cyan)]" : "border-transparent hover:border-[#c0c5cc]"}`}>
             <img src={slide.src} alt={slide.alt} className="w-full h-full object-cover" />
           </button>
         ))}
@@ -235,8 +235,8 @@ function PlanCard({ active, onSelect, featured, title, price, period, was, billi
       {featured && <span className="absolute -top-2.5 right-4 bg-[#1bb88a] text-white text-[9px] font-bold uppercase tracking-wide px-3 py-1 rounded">Best Value</span>}
 
       {/* Header — always visible */}
-      <div className="px-5 py-4">
-        <div className="flex items-center gap-2.5 mb-2">
+      <div className="px-4 sm:px-5 py-4">
+        <div className="flex items-center flex-wrap gap-x-2.5 gap-y-1 mb-2">
           <div className={`w-[18px] h-[18px] rounded-full border-2 flex items-center justify-center shrink-0 ${active ? "border-[var(--color-ink-primary)]" : "border-[#d0d0d0]"}`}>
             {active && <div className="w-[10px] h-[10px] rounded-full bg-[var(--color-ink-primary)]" />}
           </div>
@@ -256,7 +256,7 @@ function PlanCard({ active, onSelect, featured, title, price, period, was, billi
 
       {/* Body — expands when active */}
       <div className={`overflow-hidden transition-all duration-400 ${active ? "max-h-[800px]" : "max-h-0"}`}>
-        <div className="px-5 pb-5 pt-3 border-t border-[rgba(0,0,0,0.06)]">
+        <div className="px-4 sm:px-5 pb-5 pt-3 border-t border-[rgba(0,0,0,0.06)]">
           <ul className={`grid ${perks.length > 2 ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1"} gap-x-5 gap-y-1.5 mb-4`}>
             {perks.map((p) => <li key={p} className={`flex items-center gap-2 text-[13px] font-medium ${bodyL}`}><Check size={13} className="text-[var(--color-cyan)] shrink-0" strokeWidth={3} />{p}</li>)}
           </ul>
@@ -265,10 +265,10 @@ function PlanCard({ active, onSelect, featured, title, price, period, was, billi
             <>
               <div className="border-t border-[rgba(0,0,0,0.06)] pt-3 mb-3">
                 <p className={`text-center text-[10px] font-bold uppercase tracking-widest ${h2L} mb-3`}>Welcome Kit &ndash; Arrives With First Order</p>
-                <div className="flex justify-center gap-4">
+                <div className="flex justify-center gap-3 sm:gap-4">
                   {[{ img: "/assets/gift-magnesium.png", name: "Magnesium 3-in-1", price: "15" }, { img: "/assets/gift-welcome-pack.png", name: "Brain Performance Guide", price: "10" }].map((g) => (
-                    <div key={g.name} className="text-center w-[90px]">
-                      <div className="w-[90px] h-[90px] bg-[rgba(0,166,210,0.06)] rounded-lg overflow-hidden mb-1.5 flex items-center justify-center">
+                    <div key={g.name} className="text-center w-[75px] sm:w-[90px]">
+                      <div className="w-[75px] h-[75px] sm:w-[90px] sm:h-[90px] bg-[rgba(0,166,210,0.06)] rounded-lg overflow-hidden mb-1.5 flex items-center justify-center">
                         <img src={g.img} alt={g.name} className="w-full h-full object-cover" />
                       </div>
                       <p className="text-[12px] font-bold text-[var(--color-cyan)]"><s className={`${capL} font-normal mr-1`}>&pound;{g.price}</s>FREE</p>
@@ -282,11 +282,11 @@ function PlanCard({ active, onSelect, featured, title, price, period, was, billi
                 Future Monthly Gifts <motion.span animate={{ rotate: giftsOpen ? 180 : 0 }} transition={{ duration: 0.2 }}><ChevronDown size={12} /></motion.span>
               </button>
               <div className={`overflow-hidden transition-all duration-300 ${giftsOpen ? "max-h-40 mb-3" : "max-h-0"}`}>
-                <div className="flex justify-center gap-4 pt-2">
+                <div className="flex justify-center gap-3 sm:gap-4 pt-2">
                   {[{ label: "Month 3", img: "/assets/gift-genius-zen.png", name: "Genius Zen" }, { label: "Month 6", img: "/assets/gift-magnesium.png", name: "Mystery Gift" }].map((g) => (
                     <div key={g.label} className="text-center">
                       <p className={`text-[12px] font-bold uppercase ${h2L} mb-2`}>{g.label}</p>
-                      <div className="w-[90px] h-[90px] bg-[rgba(0,166,210,0.06)] rounded-lg overflow-hidden mb-1.5 mx-auto flex items-center justify-center">
+                      <div className="w-[75px] h-[75px] sm:w-[90px] sm:h-[90px] bg-[rgba(0,166,210,0.06)] rounded-lg overflow-hidden mb-1.5 mx-auto flex items-center justify-center">
                         <img src={g.img} alt={g.name} className="w-full h-full object-cover" />
                       </div>
                       <p className={`text-[11px] font-semibold ${h2L}`}>{g.name}</p>
@@ -319,9 +319,9 @@ function PdpInfo({ onViewLabel }: { onViewLabel: () => void }) {
       <p className={`text-[11px] font-bold uppercase tracking-widest ${cyanL} mb-1.5`}>All-In-One Cognitive Supplement</p>
       <h3 className={`text-[clamp(22px,3vw,28px)] font-bold ${h2L} mb-2.5`}>Genius Mind</h3>
       <p className={`text-sm ${bodyL} leading-relaxed mb-5`}>16 clinically-dosed ingredients in one daily capsule. Formulated by leading UK nutritionist Shona Wilkinson for operators who demand more.</p>
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="flex flex-col gap-2 mb-6">
         {["16 researched ingredients in one capsule", "89% felt sharper focus. 76% better recall.", "Made in the UK to GMP standard", "90 days to feel it. Or your money back."].map((pill) => (
-          <div key={pill} className={`inline-flex items-center gap-2 px-4 py-2.5 bg-[rgba(0,0,0,0.03)] border border-[rgba(0,0,0,0.06)] rounded-full text-[13px] font-medium ${h2L}`}>
+          <div key={pill} className={`inline-flex items-center gap-2 px-4 py-2.5 bg-[rgba(0,0,0,0.03)] border border-[rgba(0,0,0,0.06)] rounded-full text-[13px] font-medium ${h2L} w-fit`}>
             <Check size={14} className="text-[var(--color-cyan)] shrink-0" strokeWidth={2.5} />{pill}
           </div>
         ))}
@@ -377,7 +377,7 @@ function OfferSection() {
   return (
     <>
       <NutritionModal open={labelOpen} onClose={() => setLabelOpen(false)} />
-      <section id="offer" className="sec-light-alt py-20 md:py-28">
+      <section id="offer" className="sec-light-alt py-20 md:py-28 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
             {/* Left: Carousel + Review carousel */}
