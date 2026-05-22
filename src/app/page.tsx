@@ -181,76 +181,84 @@ function TrustpilotStars({ count = 5, size = 18 }: { count?: number; size?: numb
   );
 }
 
-function TrustpilotReviewGrid() {
-  const [showAll, setShowAll] = useState(false);
-  const [openReply, setOpenReply] = useState<number | null>(null);
-  const visible = showAll ? TP_REVIEWS : TP_REVIEWS.slice(0, 4);
+function TrustpilotReviewCarousel() {
+  const [emblaRef2, emblaApi2] = useEmblaCarousel({ loop: true, align: "start", slidesToScroll: 1 });
+  const [selRev, setSelRev] = useState(0);
+  const scrollPrevR = useCallback(() => emblaApi2?.scrollPrev(), [emblaApi2]);
+  const scrollNextR = useCallback(() => emblaApi2?.scrollNext(), [emblaApi2]);
+  useEffect(() => {
+    if (!emblaApi2) return;
+    const onSelect = () => setSelRev(emblaApi2.selectedScrollSnap());
+    emblaApi2.on("select", onSelect);
+    onSelect();
+    return () => { emblaApi2.off("select", onSelect); };
+  }, [emblaApi2]);
 
   return (
-    <section className="sec-light-alt py-14 md:py-20">
-      <div className="max-w-6xl mx-auto px-4">
+    <section className="sec-dark py-14 md:py-20">
+      <div className="max-w-3xl mx-auto px-4">
         {/* Trustpilot badge */}
         <FadeUp>
-          <div className="text-center mb-10">
+          <div className="text-center mb-8">
             <div className="flex items-center justify-center gap-3 mb-2">
-              <span className={`${h2L} text-2xl md:text-3xl font-[800]`}>Excellent</span>
+              <span className="text-white text-2xl md:text-3xl font-[800]">Excellent</span>
               <TrustpilotStars count={5} size={28} />
             </div>
-            <p className={`${capL} text-sm mb-2`}>
-              Rating <strong className={h2L}>4.8</strong> out of 5 based on{" "}
-              <strong className={`${h2L} underline`}>127 reviews</strong>
+            <p className="text-white/60 text-sm mb-2">
+              Rating <strong className="text-white">4.8</strong> out of 5 based on{" "}
+              <strong className="text-white underline">127 reviews</strong>
             </p>
             <div className="flex items-center justify-center gap-1.5 text-[#00b67a] text-sm font-semibold">
               <svg viewBox="0 0 24 24" width={20} height={20} className="fill-[#00b67a]"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               Trustpilot
             </div>
           </div>
-          <p className={`text-center ${capL} text-sm italic mb-8`}>Showing our 5 star reviews</p>
         </FadeUp>
 
-        {/* Review grid */}
-        <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-8" s={0.06}>
-          {visible.map((r, i) => (
-            <motion.div key={r.name} variants={cF} className="bg-white border border-[rgba(0,0,0,0.08)] rounded-xl p-5 shadow-sm">
-              <TrustpilotStars count={5} size={16} />
-              <div className="flex flex-wrap items-center gap-2 mt-3 mb-3 text-[13px]">
-                <strong className={`${h2L} text-sm`}>{r.name}</strong>
-                <span className="inline-flex items-center gap-1 text-[#00b67a] text-[12px]">
-                  <svg viewBox="0 0 24 24" width={14} height={14} className="fill-[#00b67a]"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                  Verified
-                </span>
-                <span className={capL}>{r.time}</span>
-              </div>
-              <p className={`${h2L} font-bold text-[15px] mb-2`}>{r.title}</p>
-              <p className={`${bodyL} text-[13px] leading-relaxed mb-3`}>{r.body}</p>
-              {r.reply && (
-                <>
-                  <button onClick={() => setOpenReply(openReply === i ? null : i)} className="text-[#00b67a] text-[13px] font-medium hover:underline">
-                    {openReply === i ? "Show less" : "Read reply"}
-                  </button>
-                  {openReply === i && (
-                    <div className="mt-3 bg-[#f5f7f9] border-l-[3px] border-[#00b67a] rounded-r-md p-3.5">
-                      <div className="flex items-center justify-between text-[12px] text-[var(--color-ink-tertiary)] mb-2">
-                        <strong className={h2L}>Reply from JustFloow</strong>
-                        {r.replyTime && <span>{r.replyTime}</span>}
-                      </div>
-                      <p className={`${bodyL} text-[13px] leading-relaxed`}>{r.reply}</p>
-                    </div>
-                  )}
-                </>
-              )}
-            </motion.div>
-          ))}
-        </Stagger>
+        {/* Review carousel */}
+        <div className="overflow-hidden rounded-2xl" ref={emblaRef2}>
+          <div className="flex">
+            {TP_REVIEWS.map((r) => (
+              <div key={r.name} className="flex-[0_0_100%] min-w-0 px-1">
+                <div className="bg-[var(--color-dark-secondary)] border border-[rgba(255,255,255,0.08)] rounded-2xl p-6 md:p-8">
+                  {/* Name + verified */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-white font-bold text-lg">{r.name}</span>
+                    <span className="text-[#00b67a] text-lg">&#x2705;</span>
+                    <span className="inline-flex items-center text-[var(--color-cyan)] text-[12px] font-semibold border border-[var(--color-cyan)]/40 rounded-full px-3 py-1">Verified buyer</span>
+                  </div>
 
-        {/* Show more */}
-        {!showAll && TP_REVIEWS.length > 4 && (
-          <div className="text-center">
-            <button onClick={() => setShowAll(true)} className={`bg-transparent ${h2L} border border-[#d0d5dd] rounded-lg px-10 py-3.5 text-[15px] font-semibold hover:border-[#00b67a] hover:bg-[rgba(0,182,122,0.06)] transition-all`}>
-              Show More Reviews
-            </button>
+                  {/* Stars */}
+                  <div className="flex gap-1 mb-3">
+                    {[...Array(5)].map((_, i) => <span key={i} className="text-[#f5a623] text-xl">&#9733;</span>)}
+                  </div>
+
+                  {/* Title + body */}
+                  <p className="text-white font-[800] text-lg md:text-xl mb-3">{r.title}</p>
+                  <p className="text-white/80 text-[15px] md:text-base leading-relaxed">&ldquo;{r.body}&rdquo;</p>
+                </div>
+              </div>
+            ))}
           </div>
-        )}
+        </div>
+
+        {/* Dots */}
+        <div className="flex justify-center gap-2 mt-5">
+          {TP_REVIEWS.map((_, i) => (
+            <button key={i} onClick={() => emblaApi2?.scrollTo(i)} className={`w-2.5 h-2.5 rounded-full transition-all ${i === selRev ? "bg-white" : "bg-white/30"}`} />
+          ))}
+        </div>
+
+        {/* Swipe nav */}
+        <div className="flex items-center justify-center gap-4 mt-4">
+          <button onClick={scrollPrevR} aria-label="Previous review" className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:border-white/60 transition-colors">
+            <ChevronLeft size={20} className="text-white" />
+          </button>
+          <span className="label-mono text-white/60 text-[11px] tracking-[0.15em]">SWIPE TO SEE MORE</span>
+          <button onClick={scrollNextR} aria-label="Next review" className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:border-white/60 transition-colors">
+            <ChevronRight size={20} className="text-white" />
+          </button>
+        </div>
       </div>
     </section>
   );
@@ -1293,47 +1301,33 @@ export default function Page() {
       </section>
 
       {/* ═══ TRUSTPILOT REVIEWS ═══ */}
-      <TrustpilotReviewGrid />
+      <TrustpilotReviewCarousel />
 
-      {/* ═══ §10 MEET OUR NUTRITIONIST — LIGHT ═══ */}
-      <section className="sec-light py-14 md:py-20">
+      {/* ═══ §10 MEET OUR NUTRITIONIST — DARK (Mars Men advisory board style) ═══ */}
+      <section className="sec-dark py-14 md:py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <FadeUp>
-            <h2 className={`text-[clamp(32px,5vw,52px)] font-[900] leading-[1.05] mb-12 ${h2L}`}>Meet Our Nutritionist</h2>
+            <h2 className="text-[clamp(32px,5vw,52px)] font-[900] leading-[1.05] mb-12 text-white">Meet Our Nutritionist</h2>
           </FadeUp>
 
           <FadeUp delay={0.1}>
-            {/* Circular headshot */}
+            {/* Circular headshot — white ring on dark bg like Mars Men */}
             <div className="flex justify-center mb-6">
-              <div className="w-[160px] h-[160px] md:w-[200px] md:h-[200px] rounded-full overflow-hidden border-4 border-[rgba(0,166,210,0.2)] shadow-[0_0_40px_rgba(0,166,210,0.1)]">
-                <img src="/assets/shona-wilkinson.png" alt="Shona Wilkinson, Registered Nutritionist" width={200} height={200} loading="lazy" className="w-full h-full object-cover" />
+              <div className="w-[180px] h-[180px] md:w-[220px] md:h-[220px] rounded-full overflow-hidden border-[5px] border-white/20 bg-white">
+                <img src="/assets/shona-wilkinson.png" alt="Shona Wilkinson, Registered Nutritionist" width={220} height={220} loading="lazy" className="w-full h-full object-cover" />
               </div>
             </div>
 
-            {/* Name + title */}
-            <h3 className={`${h2L} font-[900] text-2xl md:text-3xl mb-2`}>Shona Wilkinson, RNutr</h3>
-            <p className="font-mono text-[var(--color-cyan)] tracking-[0.15em] uppercase text-[12px] md:text-[13px] font-bold mb-6">Lead Nutritionist at JustFloow</p>
+            {/* Name — large bold white like Mars Men */}
+            <h3 className="text-white font-[900] text-[28px] md:text-[36px] mb-2">Shona Wilkinson, RNutr</h3>
 
-            {/* Credentials */}
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-              {["BANT Registered", "CNHC Accredited", "Royal Society for Medicine"].map((cred) => (
-                <span key={cred} className="inline-flex items-center gap-1.5 bg-[rgba(0,166,210,0.06)] border border-[rgba(0,166,210,0.15)] text-[var(--color-ink-primary)] text-[12px] font-semibold px-4 py-2 rounded-full">
-                  <Check size={12} strokeWidth={3} className="text-[var(--color-cyan)]" />{cred}
-                </span>
-              ))}
-            </div>
+            {/* Subtitle — cyan mono uppercase like Mars Men orange */}
+            <p className="font-mono text-[var(--color-cyan)] tracking-[0.15em] uppercase text-[13px] md:text-[14px] font-bold mb-8">Lead Nutritionist at JustFloow</p>
 
-            {/* Bio */}
-            <p className={`${bodyL} text-[15px] md:text-[17px] leading-relaxed max-w-2xl mx-auto mb-8`}>
+            {/* Bio — white readable text */}
+            <p className="text-white/90 text-[16px] md:text-[18px] leading-relaxed max-w-2xl mx-auto mb-0">
               Shona is a registered nutritionist with over 15 years of experience in clinical nutrition and supplement formulation. She has worked with elite athletes, executives, and health brands to develop evidence-based solutions for cognitive performance.
             </p>
-
-            {/* Quote */}
-            <div className="max-w-2xl mx-auto bg-white border border-[rgba(0,0,0,0.08)] rounded-xl p-6 md:p-8 shadow-sm">
-              <div className="border-l-[3px] border-[var(--color-cyan)] pl-5 text-left">
-                <p className={`${bodyL} italic text-[15px] md:text-base leading-relaxed`}>&ldquo;Genius Mind is built around the science of cognitive chemistry &ndash; a blend of clinically-studied, naturally-sourced ingredients designed to support focus, recall, and steady mental energy. Every dose is at the level the research actually requires.&rdquo;</p>
-              </div>
-            </div>
           </FadeUp>
         </div>
       </section>
