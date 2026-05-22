@@ -25,8 +25,8 @@
   --font-mono: 'SF Mono', 'Fira Code', 'Fira Mono', monospace;
 }
 
-html { scroll-behavior: smooth; }
-body { background: var(--color-light-primary); color: var(--color-ink-primary); font-family: var(--font-sans); font-size: 20px; line-height: 1.15; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body { background: var(--color-light-primary); color: var(--color-ink-primary); font-family: var(--font-sans); font-size: 20px; line-height: 1.15; overflow-x: hidden; }
 @media (max-width: 640px) { body { font-size: 16px; } }
 
 /* ══════ SECTIONS (Mars Men: 57px top, 88px bottom desktop; 14px/0 mobile; 0 gap between) ══════ */

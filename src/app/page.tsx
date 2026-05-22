@@ -145,13 +145,13 @@ function ReviewCarousel() {
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
           {TRUSTPILOT_REVIEWS.map((r) => (
-            <div key={r.name} className="flex-[0_0_100%] min-w-0 bg-white rounded-xl p-4 border border-[rgba(0,0,0,0.06)]">
+            <div key={r.name} className="flex-[0_0_100%] min-w-0 bg-white rounded-xl p-4 border border-[rgba(0,0,0,0.06)] overflow-hidden">
               <div className="flex gap-0.5 mb-2">
                 {[...Array(5)].map((_, i) => <Star key={i} size={12} className="fill-[#00b67a] text-[#00b67a]" />)}
               </div>
               <p className={`text-xs ${capL} mb-1`}>{r.name} &middot; {r.time}</p>
               <p className={`font-bold text-sm ${h2L} mb-1.5`}>{r.title}</p>
-              <p className={`text-[13px] leading-relaxed ${bodyL} line-clamp-3`}>&ldquo;{r.body}&rdquo;</p>
+              <p className={`text-[13px] leading-relaxed ${bodyL} line-clamp-3 break-words`}>&ldquo;{r.body}&rdquo;</p>
               <p className="text-[11px] text-[#00b67a] font-semibold mt-2 flex items-center gap-1"><Check size={11} strokeWidth={3} />Verified</p>
             </div>
           ))}
@@ -214,9 +214,9 @@ function ProductCarousel() {
       </div>
       <button onClick={scrollPrev} aria-label="Previous slide" className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors z-10"><ChevronLeft size={18} className="text-[var(--color-ink-secondary)]" /></button>
       <button onClick={scrollNext} aria-label="Next slide" className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors z-10"><ChevronRight size={18} className="text-[var(--color-ink-secondary)]" /></button>
-      <div className="flex justify-center gap-1.5 sm:gap-2 mt-4 overflow-x-auto px-1">
+      <div className="flex justify-center gap-1 sm:gap-2 mt-3 flex-wrap">
         {CAROUSEL_SLIDES.map((slide, i) => (
-          <button key={i} aria-label={`Go to slide ${i + 1}`} onClick={() => emblaApi?.scrollTo(i)} className={`w-[42px] h-[42px] sm:w-[52px] sm:h-[52px] rounded-lg overflow-hidden border-2 shrink-0 transition-all ${i === selectedIndex ? "border-[var(--color-cyan)]" : "border-transparent hover:border-[#c0c5cc]"}`}>
+          <button key={i} aria-label={`Go to slide ${i + 1}`} onClick={() => emblaApi?.scrollTo(i)} className={`w-10 h-10 sm:w-[52px] sm:h-[52px] rounded-lg overflow-hidden border-2 transition-all ${i === selectedIndex ? "border-[var(--color-cyan)]" : "border-transparent hover:border-[#c0c5cc]"}`}>
             <img src={slide.src} alt={slide.alt} className="w-full h-full object-cover" />
           </button>
         ))}
@@ -243,12 +243,12 @@ function PlanCard({ active, onSelect, featured, title, price, period, was, billi
           <span className={`font-bold text-[15px] ${h2L}`}>{title}</span>
           <span className="bg-[#1bb88a] text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">{savePill}</span>
         </div>
-        <div className="flex items-baseline gap-2">
-          <span className={`text-[28px] font-[800] leading-none ${h2L}`}>&pound;{price}</span>
-          <span className={`text-base ${capL}`}>{period}</span>
-          <span className={`text-sm ${capL} line-through ml-1`}>&pound;{was}</span>
+        <div className="flex items-baseline gap-1.5 flex-wrap">
+          <span className={`text-[24px] sm:text-[28px] font-[800] leading-none ${h2L}`}>&pound;{price}</span>
+          <span className={`text-sm sm:text-base ${capL}`}>{period}</span>
+          <span className={`text-xs sm:text-sm ${capL} line-through`}>&pound;{was}</span>
         </div>
-        <div className="flex justify-between items-center mt-1">
+        <div className="flex flex-wrap justify-between items-center mt-1 gap-x-2">
           <span className={`text-[11px] ${capL}`}>{billing}</span>
           <span className={`text-[11px] font-semibold ${capL}`}>{perServing}</span>
         </div>
@@ -264,7 +264,7 @@ function PlanCard({ active, onSelect, featured, title, price, period, was, billi
           {welcomeKit && (
             <>
               <div className="border-t border-[rgba(0,0,0,0.06)] pt-3 mb-3">
-                <p className={`text-center text-[10px] font-bold uppercase tracking-widest ${h2L} mb-3`}>Welcome Kit &ndash; Arrives With First Order</p>
+                <p className={`text-center text-[10px] font-bold uppercase tracking-wider ${h2L} mb-3`}>Welcome Kit &ndash; Arrives With First Order</p>
                 <div className="flex justify-center gap-3 sm:gap-4">
                   {[{ img: "/assets/gift-magnesium.png", name: "Magnesium 3-in-1", price: "15" }, { img: "/assets/gift-welcome-pack.png", name: "Brain Performance Guide", price: "10" }].map((g) => (
                     <div key={g.name} className="text-center w-[75px] sm:w-[90px]">
@@ -308,7 +308,7 @@ function PlanCard({ active, onSelect, featured, title, price, period, was, billi
 function PdpInfo({ onViewLabel }: { onViewLabel: () => void }) {
   return (
     <div className="text-left">
-      <button onClick={onViewLabel} className={`w-full flex items-center justify-center gap-2 px-5 py-3 bg-[rgba(0,166,210,0.06)] border border-[rgba(0,166,210,0.15)] rounded-full text-sm font-semibold ${h2L} hover:bg-[rgba(0,166,210,0.12)] transition-colors mb-4`}>
+      <button onClick={onViewLabel} className={`w-full flex items-center justify-center gap-2 px-4 py-3 bg-[rgba(0,166,210,0.06)] border border-[rgba(0,166,210,0.15)] rounded-full text-[13px] sm:text-sm font-semibold ${h2L} hover:bg-[rgba(0,166,210,0.12)] transition-colors mb-4`}>
         <BookOpen size={16} className={capL} /> View Nutrition Label
       </button>
       <div className="flex items-center gap-1.5 mb-3 pb-3 border-b border-[rgba(0,0,0,0.08)]">
@@ -318,7 +318,7 @@ function PdpInfo({ onViewLabel }: { onViewLabel: () => void }) {
       </div>
       <p className={`text-[11px] font-bold uppercase tracking-widest ${cyanL} mb-1.5`}>All-In-One Cognitive Supplement</p>
       <h3 className={`text-[clamp(22px,3vw,28px)] font-bold ${h2L} mb-2.5`}>Genius Mind</h3>
-      <p className={`text-sm ${bodyL} leading-relaxed mb-5`}>16 clinically-dosed ingredients in one daily capsule. Formulated by leading UK nutritionist Shona Wilkinson for operators who demand more.</p>
+      <p className={`text-sm ${bodyL} leading-relaxed mb-5 break-words`}>16 clinically-dosed ingredients in one daily capsule. Formulated by leading UK nutritionist Shona Wilkinson for operators who demand more.</p>
       <div className="flex flex-col gap-2 mb-6">
         {["16 researched ingredients in one capsule", "89% felt sharper focus. 76% better recall.", "Made in the UK to GMP standard", "90 days to feel it. Or your money back."].map((pill) => (
           <div key={pill} className={`inline-flex items-center gap-2 px-4 py-2.5 bg-[rgba(0,0,0,0.03)] border border-[rgba(0,0,0,0.06)] rounded-full text-[13px] font-medium ${h2L} w-fit`}>
@@ -335,7 +335,7 @@ function OfferAccordion() {
   const [activePlan, setActivePlan] = useState(0);
   return (
     <div>
-      <p className={`text-[11px] font-bold uppercase tracking-widest ${capL} mb-3`}>Subscribe &amp; Save:</p>
+      <p className={`text-[11px] font-bold uppercase tracking-wider ${capL} mb-3`}>Subscribe &amp; Save:</p>
       <PlanCard
         active={activePlan === 0}
         onSelect={() => setActivePlan(0)}
@@ -378,8 +378,8 @@ function OfferSection() {
     <>
       <NutritionModal open={labelOpen} onClose={() => setLabelOpen(false)} />
       <section id="offer" className="sec-light-alt py-20 md:py-28 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+        <div className="max-w-6xl mx-auto px-4 overflow-hidden">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start min-w-0">
             {/* Left: Carousel + Review carousel */}
             <FadeUp>
               <ProductCarousel />
