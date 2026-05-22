@@ -708,27 +708,61 @@ export default function Page() {
       {/* ═══ §8b PRODUCT CTA + REVIEW + FEATURED IN ═══ */}
       <section className="sec-dark py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-            {/* Left — Product image with stat */}
+
+          {/* Mobile: heading first, then image, then CTA */}
+          <div className="md:hidden text-center">
             <FadeUp>
-              <div className="relative flex justify-center">
-                <img src="/assets/gm-static-stack.png" alt="Genius Mind product stack" className="max-w-[400px] w-full h-auto" />
-                <div className="absolute bottom-6 left-6 md:left-0">
-                  <p className="text-[var(--color-cyan)] text-[clamp(48px,8vw,72px)] font-[900] leading-none">4.6<span className="text-2xl">/5</span></p>
-                  <p className="text-white font-bold text-sm md:text-base mt-1">Across 2,655+<br />Verified Reviews*</p>
-                  <p className="text-white/50 text-[10px] mt-1">*Based on verified customer reviews</p>
+              <h2 className="text-[clamp(28px,8vw,40px)] font-[900] leading-[1.05] text-white mb-8">Try Genius Mind Risk-Free</h2>
+            </FadeUp>
+            <FadeUp>
+              <div className="relative mb-8">
+                <img src="/assets/gm-static-stack.png" alt="Genius Mind product stack" className="w-full h-auto" />
+                <div className="absolute bottom-4 left-4 text-left">
+                  <p className="text-[var(--color-cyan)] text-[48px] font-[900] leading-none">70<span className="text-xl">%</span></p>
+                  <p className="text-white font-bold text-xs mt-1">of Customers Reported<br />Sharper Mental Clarity*</p>
+                  <p className="text-[var(--color-cyan)] text-[36px] font-[900] leading-none mt-3">4.6<span className="text-lg">/5</span></p>
+                  <p className="text-white font-bold text-xs mt-1">Across 2,655+<br />Verified Reviews*</p>
+                  <p className="text-white/40 text-[9px] mt-1">*Results may vary. Based on survey of 928<br />verified Genius Mind customers.</p>
+                </div>
+              </div>
+            </FadeUp>
+            <FadeUp>
+              <PrimaryCTA block>SHOP NOW</PrimaryCTA>
+              <div className="mt-6 bg-white rounded-xl p-5 text-[var(--color-ink-primary)] text-left">
+                <div className="flex gap-0.5 mb-2">
+                  {[...Array(5)].map((_, i) => <Star key={i} size={14} className="fill-orange-500 text-orange-500" />)}
+                </div>
+                <p className="font-bold text-sm mb-2">Fog Has Lifted</p>
+                <p className="text-sm leading-relaxed text-[var(--color-ink-secondary)] mb-3">
+                  &ldquo;I run a record label pretty much on my own. I was putting everything off — the little things, the big things. Since taking Genius Mind the fog has lifted. I&rsquo;m actually getting through decisions instead of circling them.&rdquo;
+                </p>
+                <p className="text-xs font-bold">Mark D. <span className="font-normal text-[var(--color-ink-tertiary)]">&ndash; Verified Buyer</span></p>
+              </div>
+            </FadeUp>
+          </div>
+
+          {/* Desktop: 2-col — image left, CTA right */}
+          <div className="hidden md:grid md:grid-cols-[1.2fr_1fr] gap-12 items-center">
+            <FadeUp>
+              <div className="relative">
+                <img src="/assets/gm-static-stack.png" alt="Genius Mind product stack" className="w-full h-auto" />
+                <div className="absolute bottom-8 left-6">
+                  <p className="text-[var(--color-cyan)] text-[72px] font-[900] leading-none">70<span className="text-2xl">%</span></p>
+                  <p className="text-white font-bold text-sm mt-1">of Customers Reported<br />Sharper Mental Clarity*</p>
+                  <p className="text-white/40 text-[10px] mt-2">*Results may vary. Based on survey of 928<br />verified Genius Mind customers.</p>
+                  <p className="text-[var(--color-cyan)] text-[52px] font-[900] leading-none mt-4">4.6<span className="text-xl">/5</span></p>
+                  <p className="text-white font-bold text-sm mt-1">Across 2,655+<br />Verified Reviews*</p>
+                  <p className="text-white/40 text-[10px] mt-1">*Based on verified customer reviews</p>
                 </div>
               </div>
             </FadeUp>
 
-            {/* Right — CTA + review */}
             <FadeUp delay={0.1}>
-              <h2 className="text-[clamp(28px,5vw,44px)] font-[900] leading-[1.05] text-white mb-4">Try Genius Mind Risk-Free</h2>
-              <p className="text-white/70 text-sm mb-6">90-day money back guarantee. No questions asked.</p>
+              <h2 className="text-[clamp(32px,4vw,48px)] font-[900] leading-[1.05] text-white mb-3">Try Genius Mind Risk-Free</h2>
+              <p className="text-white/60 text-sm mb-6">90-day money back guarantee. No questions asked.</p>
               <PrimaryCTA block>SHOP NOW</PrimaryCTA>
 
-              {/* Featured review */}
-              <div className="mt-8 bg-white rounded-xl p-5 md:p-6 text-[var(--color-ink-primary)]">
+              <div className="mt-6 bg-white rounded-xl p-6 text-[var(--color-ink-primary)]">
                 <div className="flex gap-0.5 mb-2">
                   {[...Array(5)].map((_, i) => <Star key={i} size={16} className="fill-orange-500 text-orange-500" />)}
                 </div>
