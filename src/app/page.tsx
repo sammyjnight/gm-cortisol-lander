@@ -142,8 +142,10 @@ function ProductCarousel() {
       <button onClick={scrollPrev} aria-label="Previous slide" className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors z-10"><ChevronLeft size={18} className="text-[var(--color-ink-secondary)]" /></button>
       <button onClick={scrollNext} aria-label="Next slide" className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-colors z-10"><ChevronRight size={18} className="text-[var(--color-ink-secondary)]" /></button>
       <div className="flex justify-center gap-2 mt-4">
-        {CAROUSEL_SLIDES.map((_, i) => (
-          <button key={i} aria-label={`Go to slide ${i + 1}`} onClick={() => emblaApi?.scrollTo(i)} className={`w-2.5 h-2.5 rounded-full transition-all ${i === selectedIndex ? "bg-[var(--color-cyan)] scale-110" : "bg-[var(--color-ink-tertiary)]/40 hover:bg-[var(--color-ink-tertiary)]"}`} />
+        {CAROUSEL_SLIDES.map((slide, i) => (
+          <button key={i} aria-label={`Go to slide ${i + 1}`} onClick={() => emblaApi?.scrollTo(i)} className={`w-[52px] h-[52px] rounded-lg overflow-hidden border-2 transition-all ${i === selectedIndex ? "border-[var(--color-cyan)]" : "border-transparent hover:border-[#c0c5cc]"}`}>
+            <img src={slide.src} alt={slide.alt} className="w-full h-full object-cover" />
+          </button>
         ))}
       </div>
     </div>
