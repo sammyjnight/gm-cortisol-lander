@@ -606,9 +606,9 @@ export default function Page() {
         </div>
 
         {/* Image as CSS background — benefit icons flow naturally on top */}
-        <div className="relative bg-black bg-[url('/assets/gm-hand-product.png')] bg-[length:90%_auto] md:bg-[length:50%_auto] bg-[position:center_top] bg-no-repeat pt-[75vw] md:pt-[30vw]">
-          {/* Gradient for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black from-40% via-black/70 via-65% to-transparent pointer-events-none" />
+        <div className="relative bg-black bg-[url('/assets/gm-hand-product.png')] bg-[length:100%_auto] md:bg-[length:50%_auto] bg-[position:center_top] bg-no-repeat pt-[85vw] md:pt-[30vw]">
+          {/* Gradient — lighter on desktop so image stays vibrant */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black from-30% via-black/60 via-55% to-transparent md:from-black md:from-25% md:via-black/40 md:via-50% md:to-transparent pointer-events-none" />
           {/* Benefit grid in normal flow */}
           <div className="relative z-[2] max-w-[900px] mx-auto px-6 pb-14 md:pb-20">
             <Stagger className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-8 md:gap-x-12 md:gap-y-10">
