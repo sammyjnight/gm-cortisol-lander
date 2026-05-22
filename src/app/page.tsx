@@ -605,29 +605,28 @@ export default function Page() {
           </FadeUp>
         </div>
 
-        {/* Hand image + overlapping benefit icons — seamless canvas */}
-        <div className="relative max-w-[1200px] mx-auto px-4">
-          {/* Product image — bleeds naturally, no container */}
+        {/* Hand image — full width, prominent, soft bottom fade */}
+        <div className="relative max-w-[1200px] mx-auto mt-10">
           <FadeUp>
-            <img src="/assets/gm-hand-product.png" alt="Hand holding Genius Mind bottle" width={800} height={600} loading="lazy" className="w-full max-w-[700px] mx-auto h-auto object-contain relative z-0" style={{ maxWidth: '700px', maxHeight: 'none' }} />
+            <img src="/assets/gm-hand-product.png" alt="Hand holding Genius Mind bottle" width={800} height={600} loading="lazy" className="w-full mx-auto h-auto object-contain" style={{ maxWidth: 'none', maxHeight: 'none' }} />
           </FadeUp>
-          {/* Gradient overlay fading image into benefit area */}
-          <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-gradient-to-t from-[var(--color-dark-primary)] via-[var(--color-dark-primary)]/80 to-transparent z-[1] pointer-events-none" />
+          {/* Subtle bottom fade so image melts into background */}
+          <div className="absolute bottom-0 left-0 right-0 h-[30%] bg-gradient-to-t from-[var(--color-dark-primary)] to-transparent pointer-events-none" />
+        </div>
 
-          {/* 6 benefit icons overlapping into the image — no card backgrounds, just floating on the canvas */}
-          <div className="relative z-[2] -mt-[180px] md:-mt-[220px] pb-16 md:pb-20">
-            <Stagger className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10 md:gap-x-12 md:gap-y-14 max-w-[900px] mx-auto">
-              {OUTCOME_ICONS.map((o) => (
-                <motion.div key={o.title} variants={cF} className="text-center">
-                  <div className="flex justify-center mb-3">
-                    <AnimatedIcon icon={o.icon} variants={o.variants} />
-                  </div>
-                  <h3 className="text-white font-[800] text-[14px] md:text-[16px] tracking-[0.05em] uppercase mb-2">{o.title}</h3>
-                  <p className="text-[#a0a8b0] text-[13px] md:text-[14px] leading-[1.5]">{o.desc}</p>
-                </motion.div>
-              ))}
-            </Stagger>
-          </div>
+        {/* 6 benefit icons — clean grid below image, no overlap */}
+        <div className="max-w-[900px] mx-auto px-4 pb-16 md:pb-20">
+          <Stagger className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10 md:gap-x-12 md:gap-y-14">
+            {OUTCOME_ICONS.map((o) => (
+              <motion.div key={o.title} variants={cF} className="text-center">
+                <div className="flex justify-center mb-3">
+                  <AnimatedIcon icon={o.icon} variants={o.variants} />
+                </div>
+                <h3 className="text-white font-[800] text-[14px] md:text-[16px] tracking-[0.05em] uppercase mb-2">{o.title}</h3>
+                <p className="text-[#a0a8b0] text-[13px] md:text-[14px] leading-[1.5]">{o.desc}</p>
+              </motion.div>
+            ))}
+          </Stagger>
         </div>
       </section>
 
