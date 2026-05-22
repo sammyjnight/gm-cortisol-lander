@@ -657,9 +657,14 @@ export default function Page() {
       </section>
 
       {/* Trust badges */}
-      <div className="sec-dark border-y border-white/10 py-6">
-        <div className="max-w-6xl mx-auto px-4 flex flex-wrap justify-center gap-x-10 gap-y-3 text-center">
-          {TRUST.map((b) => <div key={b.label} className="flex items-center gap-2 text-white/80"><span>{b.icon}</span><p className="label-mono text-[11px] text-white/90 font-semibold">{b.label}</p></div>)}
+      <div className="bg-[var(--color-light-secondary)] py-10 md:py-14">
+        <div className="max-w-5xl mx-auto px-4 flex flex-wrap justify-center gap-x-10 md:gap-x-16 gap-y-6 text-center">
+          {TRUST.map((b) => (
+            <div key={b.label} className="flex flex-col items-center gap-2 min-w-[80px]">
+              <span className="text-[var(--color-ink-primary)] opacity-80">{b.icon}</span>
+              <p className="font-mono text-[10px] md:text-[11px] font-bold tracking-[0.12em] uppercase text-[var(--color-ink-primary)] whitespace-pre-line leading-tight">{b.label}</p>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -955,10 +960,12 @@ const BENEFITS = [
   { icon: <TrendingUp size={28} className="text-[var(--color-cyan)]" />, title: "Sharper Under Pressure", desc: "The mental edge that holds when the stakes are highest.", survey: "17 of 33 long-term customers report this" },
 ];
 const TRUST = [
-  { icon: <Factory size={16} />, label: "GMP Certified" },
-  { icon: <FlaskConical size={16} />, label: "Lab Tested" },
-  { icon: "\uD83C\uDDEC\uD83C\uDDE7", label: "Made in UK" },
-  { icon: <Leaf size={16} />, label: "Vegan" },
+  { icon: <Factory size={28} />, label: "GMP Certified" },
+  { icon: <FlaskConical size={28} />, label: "Third Party\nTested" },
+  { icon: <ShieldCheck size={28} />, label: "Hormone-\nFree" },
+  { icon: <span className="text-2xl">🇬🇧</span>, label: "Made in UK" },
+  { icon: <Leaf size={28} />, label: "Vegan" },
+  { icon: <Package size={28} />, label: "Non-GMO" },
 ];
 const SURVEY = [
   { label: "Sustained Focus", pct: 70, subtitle: "long-term customers report sustained focus" },
