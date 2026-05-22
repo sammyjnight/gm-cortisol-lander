@@ -170,6 +170,92 @@ function ReviewCarousel() {
   );
 }
 
+/* ═══════ TRUSTPILOT REVIEW GRID ═══════ */
+function TrustpilotStars({ count = 5, size = 18 }: { count?: number; size?: number }) {
+  return (
+    <div className="flex gap-0.5">
+      {[...Array(count)].map((_, i) => (
+        <svg key={i} viewBox="0 0 24 24" width={size} height={size} className="fill-[#00b67a]"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      ))}
+    </div>
+  );
+}
+
+function TrustpilotReviewGrid() {
+  const [showAll, setShowAll] = useState(false);
+  const [openReply, setOpenReply] = useState<number | null>(null);
+  const visible = showAll ? TP_REVIEWS : TP_REVIEWS.slice(0, 4);
+
+  return (
+    <section className="sec-dark py-14 md:py-20">
+      <div className="max-w-6xl mx-auto px-4">
+        {/* Trustpilot badge */}
+        <FadeUp>
+          <div className="text-center mb-10">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <span className="text-white text-2xl md:text-3xl font-[800]">Excellent</span>
+              <TrustpilotStars count={5} size={28} />
+            </div>
+            <p className="text-[#aaa] text-sm mb-2">
+              Rating <strong className="text-white">4.8</strong> out of 5 based on{" "}
+              <strong className="text-white underline">127 reviews</strong>
+            </p>
+            <div className="flex items-center justify-center gap-1.5 text-[#00b67a] text-sm font-semibold">
+              <svg viewBox="0 0 24 24" width={20} height={20} className="fill-[#00b67a]"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Trustpilot
+            </div>
+          </div>
+          <p className="text-center text-[#888] text-sm italic mb-8">Showing our 5 star reviews</p>
+        </FadeUp>
+
+        {/* Review grid */}
+        <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-8" s={0.06}>
+          {visible.map((r, i) => (
+            <motion.div key={r.name} variants={cF} className="bg-[var(--color-dark-secondary)] border border-[var(--color-dark-tertiary)] rounded-xl p-5">
+              <TrustpilotStars count={5} size={16} />
+              <div className="flex flex-wrap items-center gap-2 mt-3 mb-3 text-[13px]">
+                <strong className="text-white text-sm">{r.name}</strong>
+                <span className="inline-flex items-center gap-1 text-[#00b67a] text-[12px]">
+                  <svg viewBox="0 0 24 24" width={14} height={14} className="fill-[#00b67a]"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                  Verified
+                </span>
+                <span className="text-[#999]">{r.time}</span>
+              </div>
+              <p className="text-white font-bold text-[15px] mb-2">{r.title}</p>
+              <p className="text-[#bbb] text-[13px] leading-relaxed mb-3">{r.body}</p>
+              {r.reply && (
+                <>
+                  <button onClick={() => setOpenReply(openReply === i ? null : i)} className="text-[#00b67a] text-[13px] font-medium hover:underline">
+                    {openReply === i ? "Show less" : "Read reply"}
+                  </button>
+                  {openReply === i && (
+                    <div className="mt-3 bg-[var(--color-dark-tertiary)] border-l-[3px] border-[#00b67a] rounded-r-md p-3.5">
+                      <div className="flex items-center justify-between text-[12px] text-[#999] mb-2">
+                        <strong className="text-white">Reply from JustFloow</strong>
+                        {r.replyTime && <span>{r.replyTime}</span>}
+                      </div>
+                      <p className="text-[#aaa] text-[13px] leading-relaxed">{r.reply}</p>
+                    </div>
+                  )}
+                </>
+              )}
+            </motion.div>
+          ))}
+        </Stagger>
+
+        {/* Show more */}
+        {!showAll && TP_REVIEWS.length > 4 && (
+          <div className="text-center">
+            <button onClick={() => setShowAll(true)} className="bg-transparent text-white border border-[#444] rounded-lg px-10 py-3.5 text-[15px] font-semibold hover:border-[#00b67a] hover:bg-[rgba(0,182,122,0.08)] transition-all">
+              Show More Reviews
+            </button>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 /* ═══════ NUTRITION LABEL MODAL ═══════ */
 function NutritionModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   useEffect(() => {
@@ -1206,36 +1292,46 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ §10 NUTRITIONIST FORMULATED — LIGHT ═══ */}
-      <section className="sec-light-alt py-20 md:py-28">
-        <div className="max-w-3xl mx-auto px-4">
-          <FadeUp>
+      {/* ═══ TRUSTPILOT REVIEWS ═══ */}
+      <TrustpilotReviewGrid />
 
-            <h2 className={`text-[clamp(28px,4.5vw,44px)] font-[800] leading-[1.05] text-center mb-10 ${h2L}`}>Nutritionist Formulated, Operator Tested.</h2>
+      {/* ═══ §10 MEET OUR NUTRITIONIST — DARK (Mars Men advisory board style) ═══ */}
+      <section className="sec-dark py-14 md:py-20">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <FadeUp>
+            <h2 className={`text-[clamp(32px,5vw,52px)] font-[900] leading-[1.05] mb-12 text-white`}>Meet Our Nutritionist</h2>
           </FadeUp>
 
           <FadeUp delay={0.1}>
-            <div className="card-light !p-8 md:!p-10">
-              {/* Expert verified pill */}
-              <div className="flex justify-center mb-6">
-                <span className="inline-flex items-center gap-1.5 bg-[var(--color-cyan)] text-white label-mono text-[11px] px-3 py-1.5 rounded-full">
-                  <Check size={12} strokeWidth={3} /> Expert Verified
+            {/* Circular headshot */}
+            <div className="flex justify-center mb-6">
+              <div className="w-[160px] h-[160px] md:w-[200px] md:h-[200px] rounded-full overflow-hidden border-4 border-white/15 shadow-[0_0_40px_rgba(0,166,210,0.15)]">
+                <img src="/assets/shona-wilkinson.png" alt="Shona Wilkinson, Registered Nutritionist" width={200} height={200} loading="lazy" className="w-full h-full object-cover" />
+              </div>
+            </div>
+
+            {/* Name + title */}
+            <h3 className="text-white font-[900] text-2xl md:text-3xl mb-2">Shona Wilkinson, RNutr</h3>
+            <p className="font-mono text-[var(--color-cyan)] tracking-[0.15em] uppercase text-[12px] md:text-[13px] font-bold mb-6">Lead Nutritionist at JustFloow</p>
+
+            {/* Credentials */}
+            <div className="flex flex-wrap justify-center gap-3 mb-8">
+              {["BANT Registered", "CNHC Accredited", "Royal Society for Medicine"].map((cred) => (
+                <span key={cred} className="inline-flex items-center gap-1.5 bg-[var(--color-dark-tertiary)] border border-[var(--color-dark-tertiary)] text-white/80 text-[12px] font-semibold px-4 py-2 rounded-full">
+                  <Check size={12} strokeWidth={3} className="text-[var(--color-cyan)]" />{cred}
                 </span>
-              </div>
+              ))}
+            </div>
 
-              {/* Headshot + name row */}
-              <div className="flex items-center gap-5 mb-6">
-                <img src="/assets/shona-wilkinson.png" alt="Shona Wilkinson, Registered Nutritionist" width={140} height={140} loading="lazy" className="w-[100px] h-[100px] md:w-[140px] md:h-[140px] rounded-full object-cover border border-[#e5e7eb] shrink-0" />
-                <div>
-                  <p className={`font-bold text-lg ${h2L}`}>Shona Wilkinson, RNutr</p>
-                  <p className={`${bodyL} text-sm`}>Lead Nutritionist at JustFloow</p>
-                  <p className={`label-mono ${capL} text-[10px] mt-1`}>BANT &middot; CNHC &middot; Royal Society for Medicine</p>
-                </div>
-              </div>
+            {/* Bio */}
+            <p className={`${bodyD} text-[15px] md:text-[17px] leading-relaxed max-w-2xl mx-auto mb-8`}>
+              Shona is a registered nutritionist with over 15 years of experience in clinical nutrition and supplement formulation. She has worked with elite athletes, executives, and health brands to develop evidence-based solutions for cognitive performance.
+            </p>
 
-              {/* Quote */}
-              <div className="border-l-[3px] border-[var(--color-cyan)] pl-5">
-                <p className={`${bodyL} italic text-base leading-relaxed`}>&ldquo;Genius Mind is built around the science of cognitive chemistry &ndash; a blend of clinically-studied, naturally-sourced ingredients designed to support focus, recall, and steady mental energy. Every dose is at the level the research actually requires.&rdquo;</p>
+            {/* Quote */}
+            <div className="max-w-2xl mx-auto bg-[var(--color-dark-secondary)] border border-[var(--color-dark-tertiary)] rounded-xl p-6 md:p-8">
+              <div className="border-l-[3px] border-[var(--color-cyan)] pl-5 text-left">
+                <p className="text-white/90 italic text-[15px] md:text-base leading-relaxed">&ldquo;Genius Mind is built around the science of cognitive chemistry &ndash; a blend of clinically-studied, naturally-sourced ingredients designed to support focus, recall, and steady mental energy. Every dose is at the level the research actually requires.&rdquo;</p>
               </div>
             </div>
           </FadeUp>
@@ -1383,6 +1479,16 @@ const INGS = [
   { name: "Niacin (B3)", dose: "32 mg", desc: "Studied for NAD+ production and cellular brain energy.", img: "gm-ingredients-niacin.png" },
   { name: "Thiamine (B1)", dose: "2.2 mg", desc: "Studied for neural communication and energy metabolism.", img: "gm-ingredients-thiamine.png" },
   { name: "Pantothenic Acid (B5)", dose: "12 mg", desc: "Studied for neurotransmitter synthesis and stress resilience.", img: "gm-ingredients-pantothenic.png" },
+];
+const TP_REVIEWS = [
+  { name: "Mark D.", time: "2 days ago", title: "Fog has completely lifted", body: "I run a small business and the mental demands are relentless. Within a week of taking Genius Mind, the brain fog I\u2019d been battling for months completely lifted. I\u2019m sharper in meetings, quicker with decisions, and I actually feel like myself again.", reply: "Thanks so much for sharing this, Mark. Running a business takes serious mental stamina and we\u2019re glad Genius Mind is helping you stay sharp when it matters most.", replyTime: "1 day ago" },
+  { name: "Sarah K.", time: "4 days ago", title: "The 3pm slump is gone", body: "I used to hit a wall every afternoon and reach for another coffee. Since starting Genius Mind, my energy and focus stay consistent throughout the entire day. The quality of my decisions in the afternoon is noticeably better. This stuff actually works.", reply: "Love hearing this, Sarah! That afternoon consistency is exactly what the formula is designed for. No crashes, no jitters, just sustained clarity.", replyTime: "3 days ago" },
+  { name: "James T.", time: "1 week ago", title: "First thing that actually worked", body: "I\u2019ve tried AG1, excessive caffeine, all sorts of nootropic stacks. Nothing ever made a real difference until Genius Mind. It\u2019s subtle but unmistakable \u2014 my recall is better, I can focus for longer, and I don\u2019t feel wired or anxious. Just clean, steady mental performance.", reply: "James, we hear this a lot from people who\u2019ve tried everything else. The difference is in the research-backed dosing and the quality of ingredients. Glad you\u2019re feeling the benefits!", replyTime: "6 days ago" },
+  { name: "Lucy W.", time: "1 week ago", title: "Noticed a difference within days", body: "I was sceptical but gave it a shot. By day three I noticed my energy levels were more stable and I wasn\u2019t reaching for sugar to get through the afternoon. A month in and I genuinely feel like a sharper version of myself. Really impressed.", reply: "Thanks Lucy! We love hearing from the initial sceptics turned believers. The early results you noticed tend to compound over time, so it only gets better from here.", replyTime: "6 days ago" },
+  { name: "Tom R.", time: "2 weeks ago", title: "Best nootropic I've tried", body: "I\u2019ve been through a fair few brain supplements over the years and most of them are overhyped nonsense. Genius Mind is the first one where I\u2019ve noticed a sustained, genuine difference. My focus is sharper, my memory feels more reliable, and I just feel more switched on day to day." },
+  { name: "Emma H.", time: "2 weeks ago", title: "Great product, great company", body: "Ordered the 90-day supply and it arrived quickly with lovely packaging. The product itself has been brilliant \u2014 I feel more focused at work and my mood has genuinely improved. Customer service was also really helpful when I had a question. Will definitely be reordering." },
+  { name: "Dan P.", time: "3 weeks ago", title: "Exactly what I needed", body: "Running two businesses meant I was mentally drained by midday. A friend recommended Genius Mind and I\u2019m so glad I listened. I can work deeper for longer and I\u2019m making better decisions under pressure. It\u2019s become a non-negotiable part of my morning routine." },
+  { name: "Rachel M.", time: "3 weeks ago", title: "Impressed with the transparency", body: "What sold me on Genius Mind was the transparency around ingredients and dosing. No proprietary blends, no hidden fillers. And the results have matched the claims \u2014 better focus, more mental clarity, and I sleep well too. It\u2019s refreshing to find a supplement company that actually delivers." },
 ];
 const FAQS = [
   { q: "What is Genius Mind?", a: "Genius Mind is a cognitive stack with 16 clinically studied ingredients \u2014 including high-ratio botanical extracts, amino acid precursors, and essential cofactors \u2014 designed to support sustained focus throughout the working day. No stimulant dependency, no crashes." },
