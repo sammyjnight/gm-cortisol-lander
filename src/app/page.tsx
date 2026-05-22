@@ -627,17 +627,15 @@ export default function Page() {
       </section>
 
       {/* ═══ §6 INGREDIENTS — DARK (photo-backed) ═══ */}
-      <section id="formula" className="sec-dark py-20 md:py-28">
+      <section id="formula" className="sec-dark py-14 md:py-20">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <FadeUp>
-
-            <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-3 ${h2D}`}>16 Ingredients in 1 Powerful Formula</h2>
-            <div className="mb-4"><span className="sticker sticker-cyan">Clinically Studied + High-Ratio Extracts</span></div>
-            <div className="flex flex-wrap justify-center items-center gap-x-1 gap-y-2 mb-10">
-              {["No Proprietary Blends", "No Fillers", "No Synthetic Stimulants", "No Cheap Powders"].map((item, i) => (
-                <span key={item} className="flex items-center gap-1">
-                  {i > 0 && <span className={`mx-2 ${bodyD} opacity-30`}>|</span>}
-                  <CheckCircle2 size={12} className={cyanD} />
+            <p className={`${capL} !text-[var(--color-cyan)] tracking-[0.2em] uppercase text-xs mb-3`}>Ingredients</p>
+            <h2 className={`text-[clamp(28px,5vw,48px)] font-[800] leading-[1.05] mb-6 ${h2D}`}>Fuel Your Body the Clean Way</h2>
+            <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-3 mb-8">
+              {["No proprietary blends", "No fillers", "No synthetic stimulants", "No BS", "No cheap powders"].map((item) => (
+                <span key={item} className="flex flex-col items-center gap-1.5">
+                  <span className="text-red-500 text-2xl font-bold">✕</span>
                   <span className={`${bodyD} text-xs tracking-wide`}>{item}</span>
                 </span>
               ))}
