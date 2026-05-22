@@ -657,45 +657,43 @@ export default function Page() {
       </section>
 
       {/* Trust badges */}
-      <div className="sec-light-alt border-y border-[#e5e7eb] py-6">
+      <div className="sec-dark border-y border-white/10 py-6">
         <div className="max-w-6xl mx-auto px-4 flex flex-wrap justify-center gap-x-10 gap-y-3 text-center">
-          {TRUST.map((b) => <div key={b.label} className={`flex items-center gap-2 ${capL}`}><span>{b.icon}</span><p className="label-mono text-[10px]">{b.label}</p></div>)}
+          {TRUST.map((b) => <div key={b.label} className="flex items-center gap-2 text-white/80"><span>{b.icon}</span><p className="label-mono text-[11px] text-white/90 font-semibold">{b.label}</p></div>)}
         </div>
       </div>
 
-      {/* ═══ §7 SURVEY — BIG NUMBER PANELS — LIGHT ═══ */}
-      <section className="sec-light-alt py-20 md:py-28">
-        <div className="max-w-5xl mx-auto px-4 text-center">
-          <FadeUp>
-
-            <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-10 ${h2L}`}>What Long-Term Customers Actually Report</h2>
-          </FadeUp>
-          <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {SURVEY.map((s, i) => (
-              <motion.div key={s.label} variants={cF} className="card-light text-center !p-6">
-                <p className="text-5xl md:text-6xl font-[800] leading-none mb-1">
-                  <span className={cyanL}><CountUp target={s.pct} delay={i * 0.1} /></span>
-                  <span className={`text-2xl ${capL}`}>%</span>
-                </p>
-                <div className="w-8 h-0.5 bg-[var(--color-cyan)] mx-auto my-3" />
-                <p className={`${bodyL} text-sm`}>{s.subtitle}</p>
-              </motion.div>
-            ))}
-          </Stagger>
-        </div>
-      </section>
-
-      {/* ═══ §8 VIDEO TESTIMONIALS — DARK ═══ */}
-      <section className="sec-dark py-20 md:py-28">
+      {/* ═══ §8 VIDEO TESTIMONIALS — DARK (Mars Men style) ═══ */}
+      <section className="sec-dark py-14 md:py-20">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <FadeUp><h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-10 ${h2D}`}>What Operators Are Saying</h2></FadeUp>
-          <Stagger className="grid grid-cols-2 md:grid-cols-4 gap-5">
+          <FadeUp>
+            <p className="font-mono text-[var(--color-cyan)] tracking-[0.25em] uppercase text-[13px] font-semibold mb-4">Real Results</p>
+            <h2 className="text-[clamp(32px,6vw,56px)] font-[900] leading-[1.0] mb-10 text-white">What Operators Are Saying</h2>
+          </FadeUp>
+          <Stagger className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
             {VIDS.map((v) => (
-              <motion.div key={v.label} variants={cF} className="aspect-[9/16] relative rounded-xl overflow-hidden">
-                <img src={v.img} alt={`Video testimonial: ${v.label}`} width={360} height={640} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 z-[1]" />
-                <div className="absolute top-3 left-3 right-3 z-[2]"><span className="sticker sticker-cyan !text-[10px] !py-1 !px-3">{v.label}</span></div>
-                <p className="absolute bottom-3 left-3 right-3 text-white text-xs font-semibold z-[2]">{v.caption}</p>
+              <motion.div key={v.label} variants={cF} className="aspect-[9/16] relative rounded-2xl overflow-hidden bg-[var(--color-dark-tertiary)] group cursor-pointer">
+                {/* Placeholder background */}
+                <div className="absolute inset-0 bg-gradient-to-b from-[#1a2030] to-[#0d1117]" />
+                {/* Label tag */}
+                <div className="absolute top-3 left-3 z-[2]">
+                  <span className="inline-block bg-[var(--color-cyan)] text-white font-mono font-bold text-[10px] md:text-[11px] tracking-[0.1em] uppercase px-3 py-1.5 rounded-sm">{v.label}</span>
+                </div>
+                {/* Play button */}
+                <div className="absolute inset-0 flex items-center justify-center z-[2]">
+                  <div className="w-14 h-14 md:w-16 md:h-16 bg-white/90 rounded-full flex items-center justify-center group-hover:bg-white transition-colors">
+                    <svg viewBox="0 0 24 24" fill="var(--color-dark-primary)" className="w-6 h-6 md:w-7 md:h-7 ml-1"><polygon points="5,3 19,12 5,21" /></svg>
+                  </div>
+                </div>
+                {/* Bottom caption */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 z-[2]">
+                  <p className="text-white text-[11px] md:text-xs font-bold uppercase tracking-wide">{v.caption}</p>
+                </div>
+                {/* Bottom controls */}
+                <div className="absolute bottom-3 left-3 right-3 flex justify-between items-center z-[3]">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="w-5 h-5 opacity-70"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.08"/></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="w-5 h-5 opacity-70"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                </div>
               </motion.div>
             ))}
           </Stagger>
