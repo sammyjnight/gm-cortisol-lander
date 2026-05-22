@@ -187,54 +187,54 @@ function TrustpilotReviewGrid() {
   const visible = showAll ? TP_REVIEWS : TP_REVIEWS.slice(0, 4);
 
   return (
-    <section className="sec-dark py-14 md:py-20">
+    <section className="sec-light-alt py-14 md:py-20">
       <div className="max-w-6xl mx-auto px-4">
         {/* Trustpilot badge */}
         <FadeUp>
           <div className="text-center mb-10">
             <div className="flex items-center justify-center gap-3 mb-2">
-              <span className="text-white text-2xl md:text-3xl font-[800]">Excellent</span>
+              <span className={`${h2L} text-2xl md:text-3xl font-[800]`}>Excellent</span>
               <TrustpilotStars count={5} size={28} />
             </div>
-            <p className="text-[#aaa] text-sm mb-2">
-              Rating <strong className="text-white">4.8</strong> out of 5 based on{" "}
-              <strong className="text-white underline">127 reviews</strong>
+            <p className={`${capL} text-sm mb-2`}>
+              Rating <strong className={h2L}>4.8</strong> out of 5 based on{" "}
+              <strong className={`${h2L} underline`}>127 reviews</strong>
             </p>
             <div className="flex items-center justify-center gap-1.5 text-[#00b67a] text-sm font-semibold">
               <svg viewBox="0 0 24 24" width={20} height={20} className="fill-[#00b67a]"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               Trustpilot
             </div>
           </div>
-          <p className="text-center text-[#888] text-sm italic mb-8">Showing our 5 star reviews</p>
+          <p className={`text-center ${capL} text-sm italic mb-8`}>Showing our 5 star reviews</p>
         </FadeUp>
 
         {/* Review grid */}
         <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-8" s={0.06}>
           {visible.map((r, i) => (
-            <motion.div key={r.name} variants={cF} className="bg-[var(--color-dark-secondary)] border border-[var(--color-dark-tertiary)] rounded-xl p-5">
+            <motion.div key={r.name} variants={cF} className="bg-white border border-[rgba(0,0,0,0.08)] rounded-xl p-5 shadow-sm">
               <TrustpilotStars count={5} size={16} />
               <div className="flex flex-wrap items-center gap-2 mt-3 mb-3 text-[13px]">
-                <strong className="text-white text-sm">{r.name}</strong>
+                <strong className={`${h2L} text-sm`}>{r.name}</strong>
                 <span className="inline-flex items-center gap-1 text-[#00b67a] text-[12px]">
                   <svg viewBox="0 0 24 24" width={14} height={14} className="fill-[#00b67a]"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
                   Verified
                 </span>
-                <span className="text-[#999]">{r.time}</span>
+                <span className={capL}>{r.time}</span>
               </div>
-              <p className="text-white font-bold text-[15px] mb-2">{r.title}</p>
-              <p className="text-[#bbb] text-[13px] leading-relaxed mb-3">{r.body}</p>
+              <p className={`${h2L} font-bold text-[15px] mb-2`}>{r.title}</p>
+              <p className={`${bodyL} text-[13px] leading-relaxed mb-3`}>{r.body}</p>
               {r.reply && (
                 <>
                   <button onClick={() => setOpenReply(openReply === i ? null : i)} className="text-[#00b67a] text-[13px] font-medium hover:underline">
                     {openReply === i ? "Show less" : "Read reply"}
                   </button>
                   {openReply === i && (
-                    <div className="mt-3 bg-[var(--color-dark-tertiary)] border-l-[3px] border-[#00b67a] rounded-r-md p-3.5">
-                      <div className="flex items-center justify-between text-[12px] text-[#999] mb-2">
-                        <strong className="text-white">Reply from JustFloow</strong>
+                    <div className="mt-3 bg-[#f5f7f9] border-l-[3px] border-[#00b67a] rounded-r-md p-3.5">
+                      <div className="flex items-center justify-between text-[12px] text-[var(--color-ink-tertiary)] mb-2">
+                        <strong className={h2L}>Reply from JustFloow</strong>
                         {r.replyTime && <span>{r.replyTime}</span>}
                       </div>
-                      <p className="text-[#aaa] text-[13px] leading-relaxed">{r.reply}</p>
+                      <p className={`${bodyL} text-[13px] leading-relaxed`}>{r.reply}</p>
                     </div>
                   )}
                 </>
@@ -246,7 +246,7 @@ function TrustpilotReviewGrid() {
         {/* Show more */}
         {!showAll && TP_REVIEWS.length > 4 && (
           <div className="text-center">
-            <button onClick={() => setShowAll(true)} className="bg-transparent text-white border border-[#444] rounded-lg px-10 py-3.5 text-[15px] font-semibold hover:border-[#00b67a] hover:bg-[rgba(0,182,122,0.08)] transition-all">
+            <button onClick={() => setShowAll(true)} className={`bg-transparent ${h2L} border border-[#d0d5dd] rounded-lg px-10 py-3.5 text-[15px] font-semibold hover:border-[#00b67a] hover:bg-[rgba(0,182,122,0.06)] transition-all`}>
               Show More Reviews
             </button>
           </div>
@@ -1295,43 +1295,43 @@ export default function Page() {
       {/* ═══ TRUSTPILOT REVIEWS ═══ */}
       <TrustpilotReviewGrid />
 
-      {/* ═══ §10 MEET OUR NUTRITIONIST — DARK (Mars Men advisory board style) ═══ */}
-      <section className="sec-dark py-14 md:py-20">
+      {/* ═══ §10 MEET OUR NUTRITIONIST — LIGHT ═══ */}
+      <section className="sec-light py-14 md:py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <FadeUp>
-            <h2 className={`text-[clamp(32px,5vw,52px)] font-[900] leading-[1.05] mb-12 text-white`}>Meet Our Nutritionist</h2>
+            <h2 className={`text-[clamp(32px,5vw,52px)] font-[900] leading-[1.05] mb-12 ${h2L}`}>Meet Our Nutritionist</h2>
           </FadeUp>
 
           <FadeUp delay={0.1}>
             {/* Circular headshot */}
             <div className="flex justify-center mb-6">
-              <div className="w-[160px] h-[160px] md:w-[200px] md:h-[200px] rounded-full overflow-hidden border-4 border-white/15 shadow-[0_0_40px_rgba(0,166,210,0.15)]">
+              <div className="w-[160px] h-[160px] md:w-[200px] md:h-[200px] rounded-full overflow-hidden border-4 border-[rgba(0,166,210,0.2)] shadow-[0_0_40px_rgba(0,166,210,0.1)]">
                 <img src="/assets/shona-wilkinson.png" alt="Shona Wilkinson, Registered Nutritionist" width={200} height={200} loading="lazy" className="w-full h-full object-cover" />
               </div>
             </div>
 
             {/* Name + title */}
-            <h3 className="text-white font-[900] text-2xl md:text-3xl mb-2">Shona Wilkinson, RNutr</h3>
+            <h3 className={`${h2L} font-[900] text-2xl md:text-3xl mb-2`}>Shona Wilkinson, RNutr</h3>
             <p className="font-mono text-[var(--color-cyan)] tracking-[0.15em] uppercase text-[12px] md:text-[13px] font-bold mb-6">Lead Nutritionist at JustFloow</p>
 
             {/* Credentials */}
             <div className="flex flex-wrap justify-center gap-3 mb-8">
               {["BANT Registered", "CNHC Accredited", "Royal Society for Medicine"].map((cred) => (
-                <span key={cred} className="inline-flex items-center gap-1.5 bg-[var(--color-dark-tertiary)] border border-[var(--color-dark-tertiary)] text-white/80 text-[12px] font-semibold px-4 py-2 rounded-full">
+                <span key={cred} className="inline-flex items-center gap-1.5 bg-[rgba(0,166,210,0.06)] border border-[rgba(0,166,210,0.15)] text-[var(--color-ink-primary)] text-[12px] font-semibold px-4 py-2 rounded-full">
                   <Check size={12} strokeWidth={3} className="text-[var(--color-cyan)]" />{cred}
                 </span>
               ))}
             </div>
 
             {/* Bio */}
-            <p className={`${bodyD} text-[15px] md:text-[17px] leading-relaxed max-w-2xl mx-auto mb-8`}>
+            <p className={`${bodyL} text-[15px] md:text-[17px] leading-relaxed max-w-2xl mx-auto mb-8`}>
               Shona is a registered nutritionist with over 15 years of experience in clinical nutrition and supplement formulation. She has worked with elite athletes, executives, and health brands to develop evidence-based solutions for cognitive performance.
             </p>
 
             {/* Quote */}
-            <div className="max-w-2xl mx-auto bg-[var(--color-dark-secondary)] border border-[var(--color-dark-tertiary)] rounded-xl p-6 md:p-8">
+            <div className="max-w-2xl mx-auto bg-white border border-[rgba(0,0,0,0.08)] rounded-xl p-6 md:p-8 shadow-sm">
               <div className="border-l-[3px] border-[var(--color-cyan)] pl-5 text-left">
-                <p className="text-white/90 italic text-[15px] md:text-base leading-relaxed">&ldquo;Genius Mind is built around the science of cognitive chemistry &ndash; a blend of clinically-studied, naturally-sourced ingredients designed to support focus, recall, and steady mental energy. Every dose is at the level the research actually requires.&rdquo;</p>
+                <p className={`${bodyL} italic text-[15px] md:text-base leading-relaxed`}>&ldquo;Genius Mind is built around the science of cognitive chemistry &ndash; a blend of clinically-studied, naturally-sourced ingredients designed to support focus, recall, and steady mental energy. Every dose is at the level the research actually requires.&rdquo;</p>
               </div>
             </div>
           </FadeUp>
