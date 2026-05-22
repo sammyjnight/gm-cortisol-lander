@@ -596,37 +596,39 @@ export default function Page() {
       {/* ═══ §07 PRODUCT REVEAL — DARK, MARS MEN STYLE ═══ */}
       <section id="mechanism" className="sec-dark overflow-hidden">
         {/* Text block */}
-        <div className="max-w-[1200px] mx-auto px-4 text-center pt-16 md:pt-20">
+        <div className="max-w-[1200px] mx-auto px-4 text-center pt-16 md:pt-20 pb-0">
           <FadeUp>
             <p className="label-mono text-[var(--color-cyan)] text-[14px] mb-4">Make The Smart Choice</p>
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-5 text-white`}>Natural Cognitive Support<br />+ Real Output</h2>
-            <p className="text-[#a0a8b0] text-[17px] leading-[1.5] max-w-[700px] mx-auto mb-4">&#128073; Genius Mind isn&apos;t another nootropic stack &ndash; it&apos;s a complete cortisol-aware formula that works on FOUR levels: <u>clear the chemistry, restore the precursors, sustain the focus, and protect the output.</u></p>
-            <p className="text-[#a0a8b0] italic text-[14px]">No needles, prescriptions, or dependency.</p>
+            <p className="text-[#a0a8b0] text-[17px] leading-[1.5] max-w-[700px] mx-auto mb-3">&#128073; Genius Mind isn&apos;t another nootropic stack &ndash; it&apos;s a complete cortisol-aware formula that works on FOUR levels: <u>clear the chemistry, restore the precursors, sustain the focus, and protect the output.</u></p>
+            <p className="text-[#a0a8b0] italic text-[14px] mb-0">No needles, prescriptions, or dependency.</p>
           </FadeUp>
         </div>
 
-        {/* Hand image — full width, prominent, soft bottom fade */}
-        <div className="relative max-w-[1200px] mx-auto mt-10">
+        {/* Hand image + benefit icons — seamless blended canvas */}
+        <div className="relative mx-auto max-w-[1200px]">
+          {/* Image container — edge-to-edge mobile, capped desktop */}
           <FadeUp>
-            <img src="/assets/gm-hand-product.png" alt="Hand holding Genius Mind bottle" width={800} height={600} loading="lazy" className="w-full mx-auto h-auto object-contain" style={{ maxWidth: 'none', maxHeight: 'none' }} />
+            <img src="/assets/gm-hand-product.png" alt="Hand holding Genius Mind bottle" width={800} height={600} loading="lazy" className="w-full md:w-[60%] mx-auto h-auto object-contain relative z-0" style={{ maxHeight: 'none' }} />
           </FadeUp>
-          {/* Subtle bottom fade so image melts into background */}
-          <div className="absolute bottom-0 left-0 right-0 h-[30%] bg-gradient-to-t from-[var(--color-dark-primary)] to-transparent pointer-events-none" />
-        </div>
+          {/* All-edge fades so image melts into the dark background with no hard borders */}
+          <div className="absolute inset-0 pointer-events-none z-[1]" style={{ boxShadow: 'inset 0 -80px 60px -20px var(--color-dark-primary), inset 0 80px 60px -20px var(--color-dark-primary), inset 80px 0 60px -20px var(--color-dark-primary), inset -80px 0 60px -20px var(--color-dark-primary)' }} />
 
-        {/* 6 benefit icons — clean grid below image, no overlap */}
-        <div className="max-w-[900px] mx-auto px-4 pb-16 md:pb-20">
-          <Stagger className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10 md:gap-x-12 md:gap-y-14">
-            {OUTCOME_ICONS.map((o) => (
-              <motion.div key={o.title} variants={cF} className="text-center">
-                <div className="flex justify-center mb-3">
-                  <AnimatedIcon icon={o.icon} variants={o.variants} />
-                </div>
-                <h3 className="text-white font-[800] text-[14px] md:text-[16px] tracking-[0.05em] uppercase mb-2">{o.title}</h3>
-                <p className="text-[#a0a8b0] text-[13px] md:text-[14px] leading-[1.5]">{o.desc}</p>
-              </motion.div>
-            ))}
-          </Stagger>
+          {/* First row of icons overlaps the bottom of the image slightly */}
+          <div className="relative z-[2] -mt-16 md:-mt-12">
+            <Stagger className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10 md:gap-x-12 md:gap-y-14 max-w-[900px] mx-auto px-4">
+              {OUTCOME_ICONS.map((o) => (
+                <motion.div key={o.title} variants={cF} className="text-center">
+                  <div className="flex justify-center mb-3">
+                    <AnimatedIcon icon={o.icon} variants={o.variants} />
+                  </div>
+                  <h3 className="text-white font-[800] text-[14px] md:text-[16px] tracking-[0.05em] uppercase mb-2">{o.title}</h3>
+                  <p className="text-[#a0a8b0] text-[13px] md:text-[14px] leading-[1.5]">{o.desc}</p>
+                </motion.div>
+              ))}
+            </Stagger>
+          </div>
+          <div className="h-16 md:h-20" />
         </div>
       </section>
 
