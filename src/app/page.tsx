@@ -316,12 +316,12 @@ function PdpInfo({ onViewLabel }: { onViewLabel: () => void }) {
         <span className={`font-bold text-sm ${h2L}`}>4.8</span>
         <span className={`text-[13px] ${capL}`}>from 127 Reviews</span>
       </div>
-      <p className={`text-[11px] font-bold uppercase tracking-widest ${cyanL} mb-1.5`}>All-In-One Cognitive Supplement</p>
+      <p className={`text-[11px] font-bold uppercase tracking-wider ${cyanL} mb-1.5`}>All-In-One Cognitive Supplement</p>
       <h3 className={`text-[clamp(22px,3vw,28px)] font-bold ${h2L} mb-2.5`}>Genius Mind</h3>
       <p className={`text-sm ${bodyL} leading-relaxed mb-5 break-words`}>16 clinically-dosed ingredients in one daily capsule. Formulated by leading UK nutritionist Shona Wilkinson for operators who demand more.</p>
       <div className="flex flex-col gap-2 mb-6">
         {["16 researched ingredients in one capsule", "89% felt sharper focus. 76% better recall.", "Made in the UK to GMP standard", "90 days to feel it. Or your money back."].map((pill) => (
-          <div key={pill} className={`inline-flex items-center gap-2 px-4 py-2.5 bg-[rgba(0,0,0,0.03)] border border-[rgba(0,0,0,0.06)] rounded-full text-[13px] font-medium ${h2L} w-fit`}>
+          <div key={pill} className={`inline-flex items-center gap-2 px-4 py-2.5 bg-[rgba(0,0,0,0.03)] border border-[rgba(0,0,0,0.06)] rounded-full text-[13px] font-medium ${h2L} max-w-full`}>
             <Check size={14} className="text-[var(--color-cyan)] shrink-0" strokeWidth={2.5} />{pill}
           </div>
         ))}
@@ -378,16 +378,16 @@ function OfferSection() {
     <>
       <NutritionModal open={labelOpen} onClose={() => setLabelOpen(false)} />
       <section id="offer" className="sec-light-alt py-20 md:py-28 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 overflow-hidden">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start min-w-0">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
             {/* Left: Carousel + Review carousel */}
-            <FadeUp>
+            <FadeUp className="min-w-0 overflow-hidden">
               <ProductCarousel />
               <ReviewCarousel />
             </FadeUp>
 
             {/* Right: PDP info + Accordion pricing */}
-            <FadeUp delay={0.1}>
+            <FadeUp delay={0.1} className="min-w-0 overflow-hidden">
               <PdpInfo onViewLabel={() => setLabelOpen(true)} />
               <OfferAccordion />
               <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[11px] mt-6">
