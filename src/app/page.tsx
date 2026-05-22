@@ -512,12 +512,116 @@ function TabbedTimeline() {
   );
 }
 
+/* ═══════ COMBINED TABBED SECTION (Mars Men style) ═══════ */
+const TABBED_REVIEWS = [
+  { title: "Fog has completely lifted", body: "I run a small business on my own. I was putting everything off... Since taking Genius Mind the fog has lifted. I'm actually getting through decisions instead of circling them.", name: "Mark D." },
+  { title: "The 3pm slump is gone", body: "The 3pm slump was killing my output. Two months in and I'm making the same quality decisions at 4pm that I was making at 9.", name: "Sarah K." },
+  { title: "First thing that actually worked", body: "I've tried the usual stack — AG1, caffeine protocols, the whole thing. This is the first supplement that's actually moved the needle on how long I can sustain focus.", name: "James T." },
+  { title: "Best nootropic I've tried", body: "This is the first one where I actually feel a sustained difference rather than a short spike. The ingredient quality is clearly a step above.", name: "Tom R." },
+  { title: "Great product, great company", body: "Ordered the 90-day supply and haven't looked back. Focus is sharper, I'm sleeping better, and the customer service was brilliant.", name: "Emma H." },
+];
+
+function CombinedTabbedSection() {
+  const [tab, setTab] = useState<"expect" | "faq" | "reviews">("expect");
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [openReview, setOpenReview] = useState<number | null>(null);
+  const tabs = [
+    { id: "expect" as const, label: "What to Expect" },
+    { id: "faq" as const, label: "FAQs" },
+    { id: "reviews" as const, label: "Reviews" },
+  ];
+
+  return (
+    <div className="bg-[var(--color-dark-secondary)] border border-[var(--color-dark-tertiary)] rounded-2xl p-4 md:p-10">
+      {/* Tab strip */}
+      <div className="flex mb-6 md:mb-8 bg-[var(--color-dark-tertiary)] rounded-xl overflow-hidden">
+        {tabs.map((t) => (
+          <button key={t.id} onClick={() => setTab(t.id)} className={`flex-1 py-3 md:py-4 text-center text-sm md:text-base font-bold transition-all ${tab === t.id ? "bg-[var(--color-dark-primary)] text-white border-b-2 border-[var(--color-cyan)]" : "text-[var(--color-dink-secondary)] hover:text-white"}`}>
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      {/* What to Expect tab */}
+      {tab === "expect" && (
+        <div>
+          <h3 className={`text-[clamp(20px,3.5vw,28px)] font-[800] ${h2D} mb-6`}>What Happens After You Start Restoring Cognitive Chemistry</h3>
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              { day: "Day 1", title: "Activation", icon: <Zap size={24} className="text-[var(--color-cyan)]" />, points: ["Guarana and B vitamins provide an initial lift", "L-Tyrosine begins supporting dopamine pathways", "Most users feel slightly more present", "The cognitive foundation starts building"] },
+              { day: "Day 30", title: "The Hold", icon: <Anchor size={24} className="text-[var(--color-cyan)]" />, points: ["Bacopa and Lion\u2019s Mane reach effective levels", "The afternoon crash flattens", "Focus extends naturally, less forced", "Word-finding and recall feel sharper"] },
+              { day: "Day 90", title: "Lock-In", icon: <Rocket size={24} className="text-[var(--color-cyan)]" />, points: ["All 16 ingredients working synergistically", "Cognitive infrastructure, fully built", "Decision stamina across the full working day", "This is your new cognitive baseline"] },
+            ].map((stage) => (
+              <div key={stage.day} className="bg-[var(--color-dark-tertiary)] rounded-xl p-5">
+                <div className="flex items-center gap-2 mb-3">
+                  {stage.icon}
+                  <span className="label-mono text-[var(--color-cyan)] text-[13px] font-bold">{stage.day}</span>
+                  <span className={`font-[800] text-lg ${h2D}`}>{stage.title}</span>
+                </div>
+                <ul className="space-y-1.5">
+                  {stage.points.map((p) => (
+                    <li key={p} className={`flex items-start gap-2 text-[13px] ${bodyD}`}>
+                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-cyan)] mt-1.5 shrink-0" />{p}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <p className={`${capD} text-xs text-center mt-4`}>*Individual results may vary.</p>
+        </div>
+      )}
+
+      {/* FAQs tab */}
+      {tab === "faq" && (
+        <div className="space-y-2">
+          {FAQS.map((f, i) => (
+            <div key={i} className="bg-[var(--color-dark-tertiary)] rounded-xl overflow-hidden">
+              <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full text-left px-5 py-4 flex items-center justify-between">
+                <span className={`font-[800] text-sm md:text-base uppercase tracking-wide ${h2D}`}>{f.q}</span>
+                <motion.span animate={{ rotate: openFaq === i ? 180 : 0 }} transition={{ duration: 0.2 }}><ChevronDown size={18} className={capD} /></motion.span>
+              </button>
+              <div className={`overflow-hidden transition-all duration-300 ${openFaq === i ? "max-h-[300px]" : "max-h-0"}`}>
+                <div className={`px-5 pb-4 text-sm ${bodyD} leading-relaxed`}>{f.a}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Reviews tab */}
+      {tab === "reviews" && (
+        <div>
+          <div className="space-y-2 mb-6">
+            {TABBED_REVIEWS.map((r, i) => (
+              <div key={i} className="bg-[var(--color-dark-tertiary)] rounded-xl overflow-hidden">
+                <button onClick={() => setOpenReview(openReview === i ? null : i)} className="w-full text-left px-5 py-4 flex items-center justify-between gap-3">
+                  <div>
+                    <div className="flex gap-0.5 mb-1">{[...Array(5)].map((_, j) => <Star key={j} size={12} className="fill-[#f5a623] text-[#f5a623]" />)}</div>
+                    <span className={`font-[800] text-sm md:text-base uppercase tracking-wide ${h2D}`}>&ldquo;{r.title}&rdquo;</span>
+                  </div>
+                  <motion.span animate={{ rotate: openReview === i ? 180 : 0 }} transition={{ duration: 0.2 }} className="shrink-0"><ChevronDown size={18} className={capD} /></motion.span>
+                </button>
+                <div className={`overflow-hidden transition-all duration-300 ${openReview === i ? "max-h-[300px]" : "max-h-0"}`}>
+                  <div className={`px-5 pb-4 text-sm ${bodyD} leading-relaxed`}>&ldquo;{r.body}&rdquo;<br /><span className="text-xs text-[var(--color-cyan)] font-bold mt-2 inline-block">&mdash; {r.name}, Verified Buyer</span></div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center">
+            <PrimaryCTA>READ MORE</PrimaryCTA>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* ═══════════════════════════════════════════════════════════════
    PAGE
    ═══════════════════════════════════════════════════════════════ */
 export default function Page() {
   const [sticky, setSticky] = useState(false);
-  const [faq, setFaq] = useState<number | null>(null);
   useEffect(() => { const fn = () => setSticky(window.scrollY > 800); window.addEventListener("scroll", fn, { passive: true }); return () => window.removeEventListener("scroll", fn); }, []);
 
   return (
@@ -1057,17 +1161,33 @@ export default function Page() {
       {/* ═══ §10 THE OFFER — LIGHT (PDP style) ═══ */}
       <OfferSection />
 
-      {/* ═══ §11 TIMELINE — INTERACTIVE TABBED — DARK ═══ */}
+      {/* ═══ §11 COMBINED TABS — DARK (Mars Men style) ═══ */}
       <section className="sec-dark py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-4">
           <FadeUp>
+            <CombinedTabbedSection />
+          </FadeUp>
+        </div>
+      </section>
 
-            <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] text-center mb-12 ${h2D}`}>What Happens After You Start Restoring Cognitive Chemistry</h2>
+      {/* ═══ §11b INGREDIENTS GRID (repeat) — DARK ═══ */}
+      <section className="sec-dark pb-20 md:pb-28">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <FadeUp>
+            <p className="font-mono text-[var(--color-cyan)] tracking-[0.25em] uppercase text-[13px] font-semibold mb-4">16 Clinically Dosed Ingredients</p>
+            <h2 className={`text-[clamp(28px,5vw,48px)] font-[900] leading-[1.0] mb-10 text-white`}>What&rsquo;s Inside Genius Mind</h2>
           </FadeUp>
-          <FadeUp delay={0.1}>
-            <TabbedTimeline />
-          </FadeUp>
-          <p className={`${capD} text-xs text-center mt-6`}>*Individual results may vary. Based on customer reports and ingredient research timelines.</p>
+          <Stagger className="grid grid-cols-2 md:grid-cols-4 gap-3" s={0.04}>
+            {INGS.map((ing) => (
+              <motion.div key={ing.name} variants={cF} className="ing-card" style={{ backgroundImage: `url(/assets/${ing.img})` }}>
+                <span className="absolute top-3 right-3 z-[2] bg-white/90 text-[var(--color-ink-primary)] font-mono font-semibold text-[10px] px-2 py-1 rounded">{ing.dose}</span>
+                <div className="ing-inner !justify-end">
+                  <h4 className="text-white font-[900] text-lg md:text-xl uppercase tracking-wide mb-0.5">{ing.name}</h4>
+                  <p className="text-white/85 text-[12px] md:text-[13px] leading-snug font-medium">{ing.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </Stagger>
         </div>
       </section>
 
@@ -1125,31 +1245,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ §14 FAQ — LIGHT ═══ */}
-      <section id="faq" className="sec-light-alt py-20 md:py-28">
-        <div className="max-w-3xl mx-auto px-4">
-          <FadeUp>
-
-            <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] text-center mb-10 ${h2L}`}>Frequently Asked Questions</h2>
-          </FadeUp>
-          <div className="space-y-3">
-            {FAQS.map((f, i) => (
-              <FadeUp key={i} delay={i * 0.04}>
-                <div className={`card-light overflow-hidden ${faq === i ? "!border-l-[3px] !border-l-[var(--color-cyan)]" : ""}`}>
-                  <button onClick={() => setFaq(faq === i ? null : i)} className={`w-full text-left p-5 flex items-center justify-between font-semibold text-sm ${h2L} transition-colors`}>
-                    <span>{f.q}</span>
-                    <motion.span animate={{ rotate: faq === i ? 180 : 0 }} transition={{ duration: 0.25 }}><ChevronDown size={18} className={cyanL} /></motion.span>
-                  </button>
-                  <div className={`faq-body ${faq === i ? "open" : ""}`}><div className={`px-5 pb-5 text-sm ${bodyL} leading-relaxed`}>{f.a}</div></div>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-          <div className="text-center mt-10">
-            <PrimaryCTA href="#offer">SEE THE OFFER</PrimaryCTA>
-          </div>
-        </div>
-      </section>
+      {/* FAQ is now inside the combined tabbed section above */}
 
       {/* Mobile bottom spacer — prevents sticky CTA from hiding last content */}
       <div className="mobile-cta-spacer" />
