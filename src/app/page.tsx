@@ -721,7 +721,7 @@ export default function Page() {
               <PrimaryCTA block>SHOP NOW</PrimaryCTA>
               <div className="mt-6 bg-white rounded-xl p-5 text-[var(--color-ink-primary)] text-left">
                 <div className="flex gap-0.5 mb-2">
-                  {[...Array(5)].map((_, i) => <Star key={i} size={14} className="fill-orange-500 text-orange-500" />)}
+                  {[...Array(5)].map((_, i) => <Star key={i} size={14} className="fill-[var(--color-cyan)] text-[var(--color-cyan)]" />)}
                 </div>
                 <p className="font-bold text-sm mb-2">Fog Has Lifted</p>
                 <p className="text-sm leading-relaxed text-[var(--color-ink-secondary)] mb-3">
@@ -745,7 +745,7 @@ export default function Page() {
 
               <div className="mt-6 bg-white rounded-xl p-6 text-[var(--color-ink-primary)]">
                 <div className="flex gap-0.5 mb-2">
-                  {[...Array(5)].map((_, i) => <Star key={i} size={16} className="fill-orange-500 text-orange-500" />)}
+                  {[...Array(5)].map((_, i) => <Star key={i} size={16} className="fill-[var(--color-cyan)] text-[var(--color-cyan)]" />)}
                 </div>
                 <p className="font-bold text-sm mb-2">Fog Has Lifted</p>
                 <p className="text-sm leading-relaxed text-[var(--color-ink-secondary)] mb-3">
@@ -777,7 +777,7 @@ export default function Page() {
             ].map((r) => (
               <div key={r.name} className="bg-[var(--color-dark-tertiary)] rounded-xl p-5">
                 <div className="flex gap-0.5 mb-2">
-                  {[...Array(5)].map((_, i) => <Star key={i} size={12} className="fill-orange-500 text-orange-500" />)}
+                  {[...Array(5)].map((_, i) => <Star key={i} size={12} className="fill-[var(--color-cyan)] text-[var(--color-cyan)]" />)}
                 </div>
                 <p className="text-white/90 text-[13px] leading-relaxed mb-3">&ldquo;{r.quote}&rdquo;</p>
                 <p className="text-white/60 text-xs font-bold">{r.name} <span className="font-normal">&ndash; {r.meta}</span></p>
