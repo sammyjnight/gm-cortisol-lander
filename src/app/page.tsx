@@ -594,7 +594,7 @@ export default function Page() {
       </section>
 
       {/* ═══ §07 PRODUCT REVEAL — DARK, MARS MEN STYLE ═══ */}
-      <section id="mechanism" className="sec-dark overflow-hidden">
+      <section id="mechanism" className="sec-dark overflow-hidden" style={{ background: '#000' }}>
         {/* Text block */}
         <div className="max-w-[1200px] mx-auto px-4 text-center pt-16 md:pt-20 pb-0">
           <FadeUp>
@@ -605,30 +605,26 @@ export default function Page() {
           </FadeUp>
         </div>
 
-        {/* Hand image + benefit icons — seamless blended canvas */}
-        <div className="relative mx-auto max-w-[1200px]">
-          {/* Image container — edge-to-edge mobile, capped desktop */}
+        {/* Hand image — no overlays, image bg matches section via bg-black */}
+        <div className="bg-black">
           <FadeUp>
-            <img src="/assets/gm-hand-product.png" alt="Hand holding Genius Mind bottle" width={800} height={600} loading="lazy" className="w-full md:w-[60%] mx-auto h-auto object-contain relative z-0" style={{ maxHeight: 'none' }} />
+            <img src="/assets/gm-hand-product.png" alt="Hand holding Genius Mind bottle" width={800} height={600} loading="lazy" className="w-full md:w-[55%] mx-auto h-auto object-contain" style={{ maxHeight: 'none' }} />
           </FadeUp>
-          {/* All-edge fades so image melts into the dark background with no hard borders */}
-          <div className="absolute inset-0 pointer-events-none z-[1]" style={{ boxShadow: 'inset 0 -80px 60px -20px var(--color-dark-primary), inset 0 80px 60px -20px var(--color-dark-primary), inset 80px 0 60px -20px var(--color-dark-primary), inset -80px 0 60px -20px var(--color-dark-primary)' }} />
+        </div>
 
-          {/* First row of icons overlaps the bottom of the image slightly */}
-          <div className="relative z-[2] -mt-16 md:-mt-12">
-            <Stagger className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10 md:gap-x-12 md:gap-y-14 max-w-[900px] mx-auto px-4">
-              {OUTCOME_ICONS.map((o) => (
-                <motion.div key={o.title} variants={cF} className="text-center">
-                  <div className="flex justify-center mb-3">
-                    <AnimatedIcon icon={o.icon} variants={o.variants} />
-                  </div>
-                  <h3 className="text-white font-[800] text-[14px] md:text-[16px] tracking-[0.05em] uppercase mb-2">{o.title}</h3>
-                  <p className="text-[#a0a8b0] text-[13px] md:text-[14px] leading-[1.5]">{o.desc}</p>
-                </motion.div>
-              ))}
-            </Stagger>
-          </div>
-          <div className="h-16 md:h-20" />
+        {/* 6 benefit icons — clean grid below image */}
+        <div className="max-w-[900px] mx-auto px-4 pt-10 md:pt-14 pb-16 md:pb-20">
+          <Stagger className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10 md:gap-x-12 md:gap-y-14">
+            {OUTCOME_ICONS.map((o) => (
+              <motion.div key={o.title} variants={cF} className="text-center">
+                <div className="flex justify-center mb-3">
+                  <AnimatedIcon icon={o.icon} variants={o.variants} />
+                </div>
+                <h3 className="text-white font-[800] text-[14px] md:text-[16px] tracking-[0.05em] uppercase mb-2">{o.title}</h3>
+                <p className="text-[#a0a8b0] text-[13px] md:text-[14px] leading-[1.5]">{o.desc}</p>
+              </motion.div>
+            ))}
+          </Stagger>
         </div>
       </section>
 
