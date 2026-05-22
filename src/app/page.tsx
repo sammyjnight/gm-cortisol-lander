@@ -630,13 +630,13 @@ export default function Page() {
       <section id="formula" className="sec-dark py-14 md:py-20">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <FadeUp>
-            <p className={`${capL} !text-[var(--color-cyan)] tracking-[0.2em] uppercase text-xs mb-3`}>Ingredients</p>
-            <h2 className={`text-[clamp(28px,5vw,48px)] font-[800] leading-[1.05] mb-6 ${h2D}`}>Fuel Your Body the Clean Way</h2>
-            <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-3 mb-8">
-              {["No proprietary blends", "No fillers", "No synthetic stimulants", "No BS", "No cheap powders"].map((item) => (
-                <span key={item} className="flex flex-col items-center gap-1.5">
-                  <span className="text-red-500 text-2xl font-bold">✕</span>
-                  <span className={`${bodyD} text-xs tracking-wide`}>{item}</span>
+            <p className="font-mono text-[var(--color-cyan)] tracking-[0.25em] uppercase text-[13px] font-semibold mb-4">Ingredients</p>
+            <h2 className={`text-[clamp(32px,6vw,56px)] font-[900] leading-[1.0] mb-8 text-white`}>Fuel Your Body the<br className="hidden md:block" /> Clean Way</h2>
+            <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 mb-10">
+              {["No proprietary\nblends", "No fillers", "No synthetic\nhormones", "No BS", "No cheap\npowders"].map((item) => (
+                <span key={item} className="flex flex-col items-center gap-2">
+                  <span className="text-red-600 text-3xl md:text-4xl font-[900] leading-none">✕</span>
+                  <span className="text-white/90 text-[13px] md:text-[14px] font-semibold tracking-wide whitespace-pre-line text-center">{item}</span>
                 </span>
               ))}
             </div>
@@ -647,8 +647,8 @@ export default function Page() {
                 {/* Dose pill top-right */}
                 <span className="absolute top-3 right-3 z-[2] bg-white/90 text-[var(--color-ink-primary)] font-mono font-semibold text-[10px] px-2 py-1 rounded">{ing.dose}</span>
                 <div className="ing-inner !justify-end">
-                  <h4 className="text-white font-bold text-lg mb-0.5">{ing.name}</h4>
-                  <p className="text-white/80 text-[11px] leading-relaxed">{ing.desc}</p>
+                  <h4 className="text-white font-[900] text-lg md:text-xl uppercase tracking-wide mb-0.5">{ing.name}</h4>
+                  <p className="text-white/85 text-[12px] md:text-[13px] leading-snug font-medium">{ing.desc}</p>
                 </div>
               </motion.div>
             ))}
