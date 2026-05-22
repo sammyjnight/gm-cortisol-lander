@@ -143,9 +143,9 @@ function ReviewCarousel() {
   return (
     <div className="mt-6">
       <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex gap-3">
+        <div className="flex">
           {TRUSTPILOT_REVIEWS.map((r) => (
-            <div key={r.name} className="flex-[0_0_85%] sm:flex-[0_0_48%] min-w-0 bg-white rounded-xl p-4 border border-[rgba(0,0,0,0.06)]">
+            <div key={r.name} className="flex-[0_0_100%] min-w-0 bg-white rounded-xl p-4 border border-[rgba(0,0,0,0.06)]">
               <div className="flex gap-0.5 mb-2">
                 {[...Array(5)].map((_, i) => <Star key={i} size={12} className="fill-[#00b67a] text-[#00b67a]" />)}
               </div>
