@@ -705,6 +705,72 @@ export default function Page() {
         </div>
       </section>
 
+      {/* ═══ §8b PRODUCT CTA + REVIEW + FEATURED IN ═══ */}
+      <section className="sec-dark py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+            {/* Left — Product image with stat */}
+            <FadeUp>
+              <div className="relative flex justify-center">
+                <img src="/assets/gm-static-stack.png" alt="Genius Mind product stack" className="max-w-[400px] w-full h-auto" />
+                <div className="absolute bottom-6 left-6 md:left-0">
+                  <p className="text-[var(--color-cyan)] text-[clamp(48px,8vw,72px)] font-[900] leading-none">4.6<span className="text-2xl">/5</span></p>
+                  <p className="text-white font-bold text-sm md:text-base mt-1">Across 2,655+<br />Verified Reviews*</p>
+                  <p className="text-white/50 text-[10px] mt-1">*Based on verified customer reviews</p>
+                </div>
+              </div>
+            </FadeUp>
+
+            {/* Right — CTA + review */}
+            <FadeUp delay={0.1}>
+              <h2 className="text-[clamp(28px,5vw,44px)] font-[900] leading-[1.05] text-white mb-4">Try Genius Mind Risk-Free</h2>
+              <p className="text-white/70 text-sm mb-6">90-day money back guarantee. No questions asked.</p>
+              <PrimaryCTA block>SHOP NOW</PrimaryCTA>
+
+              {/* Featured review */}
+              <div className="mt-8 bg-white rounded-xl p-5 md:p-6 text-[var(--color-ink-primary)]">
+                <div className="flex gap-0.5 mb-2">
+                  {[...Array(5)].map((_, i) => <Star key={i} size={16} className="fill-orange-500 text-orange-500" />)}
+                </div>
+                <p className="font-bold text-sm mb-2">Fog Has Lifted</p>
+                <p className="text-sm leading-relaxed text-[var(--color-ink-secondary)] mb-3">
+                  &ldquo;I run a record label pretty much on my own. I was putting everything off — the little things, the big things. Since taking Genius Mind the fog has lifted. I&rsquo;m actually getting through decisions instead of circling them.&rdquo;
+                </p>
+                <p className="text-xs font-bold">Mark D. <span className="font-normal text-[var(--color-ink-tertiary)]">&ndash; Verified Buyer</span></p>
+              </div>
+            </FadeUp>
+          </div>
+
+          {/* Featured In */}
+          <div className="mt-16 text-center">
+            <p className="font-mono text-[11px] font-bold tracking-[0.2em] uppercase text-white/50 mb-6">Featured In</p>
+            <div className="flex flex-wrap justify-center items-center gap-x-12 md:gap-x-16 gap-y-4">
+              <span className="text-white/40 font-serif text-2xl md:text-3xl font-bold italic">GQ</span>
+              <span className="text-white/40 font-sans text-xl md:text-2xl font-[900] tracking-tight">Men&rsquo;s Health</span>
+              <span className="text-white/40 font-serif text-2xl md:text-3xl font-bold">Forbes</span>
+            </div>
+          </div>
+
+          {/* Review cards row */}
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { quote: "The 3pm slump was killing my output. Two months in and I'm making the same quality decisions at 4pm that I was making at 9.", name: "Sarah K.", meta: "Verified Buyer" },
+              { quote: "I've tried the usual stack — AG1, caffeine protocols, the whole thing. This is the first supplement that's actually moved the needle.", name: "James T.", meta: "Verified Buyer" },
+              { quote: "Replaced my 4-coffees-a-day habit. Cleaner energy, no jitters, no crash. My afternoon slump has disappeared entirely.", name: "Mark D.", meta: "Verified Buyer" },
+              { quote: "At 55, I was worried about my memory declining. After 6 weeks on Genius Mind, I'm sharper than I've been in years.", name: "Lucy K.", meta: "Verified Buyer" },
+            ].map((r) => (
+              <div key={r.name} className="bg-[var(--color-dark-tertiary)] rounded-xl p-5">
+                <div className="flex gap-0.5 mb-2">
+                  {[...Array(5)].map((_, i) => <Star key={i} size={12} className="fill-orange-500 text-orange-500" />)}
+                </div>
+                <p className="text-white/90 text-[13px] leading-relaxed mb-3">&ldquo;{r.quote}&rdquo;</p>
+                <p className="text-white/60 text-xs font-bold">{r.name} <span className="font-normal">&ndash; {r.meta}</span></p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ═══ §9 COMPARISON TABLE — LIGHT ═══ */}
       <section className="sec-light py-20 md:py-28">
         <div className="max-w-4xl mx-auto px-4">
