@@ -709,22 +709,13 @@ export default function Page() {
       <section className="sec-dark py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4">
 
-          {/* Mobile: heading first, then image, then CTA */}
+          {/* Mobile: heading → image → CTA → review */}
           <div className="md:hidden text-center">
             <FadeUp>
-              <h2 className="text-[clamp(28px,8vw,40px)] font-[900] leading-[1.05] text-white mb-8">Try Genius Mind Risk-Free</h2>
+              <h2 className="text-[clamp(28px,8vw,40px)] font-[900] leading-[1.05] text-white mb-6">Try Genius Mind Risk-Free</h2>
             </FadeUp>
             <FadeUp>
-              <div className="relative mb-8">
-                <img src="/assets/gm-static-stack.png" alt="Genius Mind product stack" className="w-full h-auto" />
-                <div className="absolute bottom-4 left-4 text-left">
-                  <p className="text-[var(--color-cyan)] text-[48px] font-[900] leading-none">70<span className="text-xl">%</span></p>
-                  <p className="text-white font-bold text-xs mt-1">of Customers Reported<br />Sharper Mental Clarity*</p>
-                  <p className="text-[var(--color-cyan)] text-[36px] font-[900] leading-none mt-3">4.6<span className="text-lg">/5</span></p>
-                  <p className="text-white font-bold text-xs mt-1">Across 2,655+<br />Verified Reviews*</p>
-                  <p className="text-white/40 text-[9px] mt-1">*Results may vary. Based on survey of 928<br />verified Genius Mind customers.</p>
-                </div>
-              </div>
+              <img src="/assets/gm-static-stack.png" alt="Genius Mind product stack" className="w-full h-auto mb-6" />
             </FadeUp>
             <FadeUp>
               <PrimaryCTA block>SHOP NOW</PrimaryCTA>
@@ -741,20 +732,10 @@ export default function Page() {
             </FadeUp>
           </div>
 
-          {/* Desktop: 2-col — image left, CTA right */}
-          <div className="hidden md:grid md:grid-cols-[1.2fr_1fr] gap-12 items-center">
+          {/* Desktop: image left (larger), CTA + review right */}
+          <div className="hidden md:grid md:grid-cols-[1.3fr_1fr] gap-10 items-center">
             <FadeUp>
-              <div className="relative">
-                <img src="/assets/gm-static-stack.png" alt="Genius Mind product stack" className="w-full h-auto" />
-                <div className="absolute bottom-8 left-6">
-                  <p className="text-[var(--color-cyan)] text-[72px] font-[900] leading-none">70<span className="text-2xl">%</span></p>
-                  <p className="text-white font-bold text-sm mt-1">of Customers Reported<br />Sharper Mental Clarity*</p>
-                  <p className="text-white/40 text-[10px] mt-2">*Results may vary. Based on survey of 928<br />verified Genius Mind customers.</p>
-                  <p className="text-[var(--color-cyan)] text-[52px] font-[900] leading-none mt-4">4.6<span className="text-xl">/5</span></p>
-                  <p className="text-white font-bold text-sm mt-1">Across 2,655+<br />Verified Reviews*</p>
-                  <p className="text-white/40 text-[10px] mt-1">*Based on verified customer reviews</p>
-                </div>
-              </div>
+              <img src="/assets/gm-static-stack.png" alt="Genius Mind product stack" className="w-full h-auto" />
             </FadeUp>
 
             <FadeUp delay={0.1}>
