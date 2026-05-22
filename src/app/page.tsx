@@ -1029,15 +1029,15 @@ export default function Page() {
           <FadeUp>
             <p className="label-mono text-[var(--color-cyan)] text-[14px] mb-4">Make The Smart Choice</p>
             <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] mb-5 text-white`}>Natural Cognitive Support<br />+ Real Output</h2>
-            <p className="text-[#a0a8b0] text-[17px] leading-[1.5] max-w-[700px] mx-auto mb-3">&#128073; Genius Mind isn&apos;t another nootropic stack &ndash; it&apos;s a complete cortisol-aware formula that works on FOUR levels: <u>clear the chemistry, restore the precursors, sustain the focus, and protect the output.</u></p>
-            <p className="text-[#a0a8b0] italic text-[14px] mb-0">No needles, prescriptions, or dependency.</p>
+            <p className="text-white text-[17px] leading-[1.5] max-w-[700px] mx-auto mb-3">&#128073; Genius Mind isn&apos;t another nootropic stack &ndash; it&apos;s a complete cortisol-aware formula that works on FOUR levels: <u>clear the chemistry, restore the precursors, sustain the focus, and protect the output.</u></p>
+            <p className="text-white/70 italic text-[14px] mb-0">No needles, prescriptions, or dependency.</p>
           </FadeUp>
         </div>
 
         {/* Image as CSS background — benefit icons flow naturally on top */}
-        <div className="relative bg-black bg-[url('/assets/gm-hand-product.png')] bg-[length:100%_auto] md:bg-[length:50%_auto] bg-[position:center_top] bg-no-repeat pt-[60vw] md:pt-[25vw]">
+        <div className="relative bg-black bg-[url('/assets/gm-hand-product.png')] bg-[length:120%_auto] md:bg-[length:60%_auto] bg-[position:center_top] bg-no-repeat pt-[75vw] md:pt-[30vw]">
           {/* Gradient — lighter on desktop so image stays vibrant */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black from-30% via-black/60 via-55% to-transparent md:from-black md:from-25% md:via-black/40 md:via-50% md:to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black from-25% via-black/50 via-50% to-transparent md:from-black md:from-20% md:via-black/30 md:via-45% md:to-transparent pointer-events-none" />
           {/* Benefit grid in normal flow */}
           <div className="relative z-[2] max-w-[900px] mx-auto px-6 pb-14 md:pb-20">
             <Stagger className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-8 md:gap-x-12 md:gap-y-10">
@@ -1047,7 +1047,7 @@ export default function Page() {
                     <AnimatedIcon icon={o.icon} variants={o.variants} />
                   </div>
                   <h3 className="text-white font-[800] text-[14px] md:text-[16px] tracking-[0.05em] uppercase mb-1">{o.title}</h3>
-                  <p className="text-[#c0c8d0] text-[12px] md:text-[14px] leading-[1.4]">{o.desc}</p>
+                  <p className="text-white/80 text-[12px] md:text-[14px] leading-[1.4]">{o.desc}</p>
                 </motion.div>
               ))}
             </Stagger>
