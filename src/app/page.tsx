@@ -54,6 +54,12 @@ function Badge({ type }: { type: "check" | "x" | "q" }) {
   return <div className="badge badge-q"><span className="text-[#dc2626] font-bold text-lg">?</span></div>;
 }
 
+function CompIcon({ type }: { type: "check" | "x" | "q" }) {
+  if (type === "check") return <span className="text-3xl leading-none" aria-label="Yes">&#x2705;</span>;
+  if (type === "x") return <span className="text-3xl leading-none text-[#dc2626] font-[900]" aria-label="No">&#x274C;</span>;
+  return <span className="text-3xl leading-none text-[#dc2626] font-[900]" aria-label="Maybe">&#x2753;</span>;
+}
+
 /* ═══════ ANIMATED BENEFIT ICON ═══════ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function AnimatedIcon({ icon, variants }: { icon: React.ReactNode; variants: any }) {
@@ -787,60 +793,65 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ §9 COMPARISON TABLE — LIGHT ═══ */}
-      <section className="sec-light py-20 md:py-28">
+      {/* ═══ §9 COMPARISON TABLE — DARK (Mars Men style) ═══ */}
+      <section className="sec-dark py-20 md:py-28">
         <div className="max-w-4xl mx-auto px-4">
           <FadeUp>
-
-            <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] text-center mb-3 ${h2L}`}>How Genius Mind Compares</h2>
-            <p className={`${bodyL} text-center mb-10`}>Cognitive infrastructure, not a stimulant hit.</p>
+            <p className={`label-mono text-[11px] tracking-[0.2em] text-center mb-4 ${capD}`}>GENIUS MIND VS CAFFEINE STACKS VS GENERIC NOOTROPICS</p>
+            <h2 className={`text-[clamp(32px,5vw,52px)] font-[800] leading-[1.05] text-center mb-3 ${h2D}`}>How Genius Mind Compares</h2>
+            <p className={`${bodyD} text-center mb-12`}>Cognitive infrastructure, not a stimulant hit.</p>
           </FadeUp>
           <FadeUp>
             {/* Desktop: 3-column table */}
-            <div className="hidden md:block card-light !p-0 overflow-x-auto">
-              <table className="w-full text-sm">
+            <div className="hidden md:block overflow-x-auto">
+              <table className="w-full text-sm border-collapse">
                 <thead>
-                  <tr className="border-b border-[#e5e7eb]">
-                    <th className={`py-4 px-5 text-left label-mono text-[10px] ${capL}`}></th>
-                    <th className={`py-4 px-5 text-center font-[800] text-lg ${cyanL} bg-[rgba(8,145,178,0.12)] border-x border-[rgba(8,145,178,0.2)]`}>Genius Mind</th>
-                    <th className={`py-4 px-5 text-center ${bodyL}`}>Caffeine Stacks</th>
-                    <th className={`py-4 px-5 text-center ${bodyL}`}>Generic Nootropics</th>
+                  <tr>
+                    <th className="py-5 px-5 text-left"></th>
+                    <th className="py-5 px-5 text-center bg-[rgba(0,166,210,0.15)] rounded-t-xl">
+                      <span className={`font-[800] text-lg ${cyanD}`}>Genius Mind</span>
+                    </th>
+                    <th className={`py-5 px-5 text-center font-[600] text-base ${bodyD}`}>Caffeine Stacks</th>
+                    <th className={`py-5 px-5 text-center font-[600] text-base ${bodyD}`}>Generic Nootropics</th>
                   </tr>
                 </thead>
                 <tbody>
                   {COMP.map((r, i) => (
-                    <tr key={r.label} className={i % 2 === 1 ? "bg-[var(--color-light-secondary)]" : ""}>
-                      <td className={`py-5 px-5 label-mono text-[11px] font-medium ${bodyL}`}>{r.label}</td>
-                      <td className="py-5 px-5 text-center bg-[rgba(8,145,178,0.06)] border-x border-[rgba(8,145,178,0.1)]"><Badge type="check" /></td>
-                      <td className="py-5 px-5 text-center"><Badge type={r.caff === "x" ? "x" : "q"} /></td>
-                      <td className="py-5 px-5 text-center"><Badge type={r.generic === "x" ? "x" : "q"} /></td>
+                    <tr key={r.label} className={`border-t border-[rgba(255,255,255,0.08)] ${i % 2 === 0 ? "bg-[rgba(255,255,255,0.03)]" : ""}`}>
+                      <td className={`py-5 px-5 label-mono text-[12px] font-bold tracking-wide ${h2D}`}>{r.label.toUpperCase()}</td>
+                      <td className="py-5 px-5 text-center bg-[rgba(0,166,210,0.08)]"><CompIcon type="check" /></td>
+                      <td className="py-5 px-5 text-center"><CompIcon type={r.caff === "x" ? "x" : "q"} /></td>
+                      <td className="py-5 px-5 text-center"><CompIcon type={r.generic === "x" ? "x" : "q"} /></td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
 
-            {/* Mobile: stacked feature cards */}
-            <div className="md:hidden space-y-3">
-              {COMP.map((r) => (
-                <div key={r.label} className="card-light !p-4">
-                  <p className={`label-mono text-[11px] font-bold ${h2L} mb-3`}>{r.label}</p>
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className={`text-sm ${cyanL} font-semibold`}>Genius Mind</span>
-                      <CheckCircle2 size={18} className={cyanL} />
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className={`text-sm ${bodyL}`}>Caffeine Stacks</span>
-                      {r.caff === "x" ? <X size={18} className="text-[var(--color-coral-deep)]" /> : <HelpCircle size={16} className={capL} />}
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className={`text-sm ${bodyL}`}>Generic Nootropics</span>
-                      {r.generic === "x" ? <X size={18} className="text-[var(--color-coral-deep)]" /> : <HelpCircle size={16} className={capL} />}
-                    </div>
-                  </div>
-                </div>
-              ))}
+            {/* Mobile: full table (same layout, scrollable) */}
+            <div className="md:hidden overflow-x-auto -mx-4 px-4">
+              <table className="w-full text-sm border-collapse min-w-[480px]">
+                <thead>
+                  <tr>
+                    <th className="py-4 px-3 text-left"></th>
+                    <th className="py-4 px-3 text-center bg-[rgba(0,166,210,0.15)] rounded-t-lg">
+                      <span className={`font-[800] text-base ${cyanD}`}>Genius Mind</span>
+                    </th>
+                    <th className={`py-4 px-3 text-center font-[600] text-sm ${bodyD}`}>Caffeine Stacks</th>
+                    <th className={`py-4 px-3 text-center font-[600] text-sm ${bodyD}`}>Generic Nootropics</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {COMP.map((r, i) => (
+                    <tr key={r.label} className={`border-t border-[rgba(255,255,255,0.08)] ${i % 2 === 0 ? "bg-[rgba(255,255,255,0.03)]" : ""}`}>
+                      <td className={`py-4 px-3 label-mono text-[11px] font-bold tracking-wide ${h2D}`}>{r.label.toUpperCase()}</td>
+                      <td className="py-4 px-3 text-center bg-[rgba(0,166,210,0.08)]"><CompIcon type="check" /></td>
+                      <td className="py-4 px-3 text-center"><CompIcon type={r.caff === "x" ? "x" : "q"} /></td>
+                      <td className="py-4 px-3 text-center"><CompIcon type={r.generic === "x" ? "x" : "q"} /></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
 
             <div className="text-center mt-10"><PrimaryCTA block>TRY IT NOW</PrimaryCTA></div>
