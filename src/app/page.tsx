@@ -606,7 +606,7 @@ export default function Page() {
         </div>
 
         {/* Image as CSS background — benefit icons flow naturally on top */}
-        <div className="relative bg-black bg-[url('/assets/gm-hand-product.png')] bg-[length:100%_auto] md:bg-[length:50%_auto] bg-[position:center_top] bg-no-repeat pt-[85vw] md:pt-[30vw]">
+        <div className="relative bg-black bg-[url('/assets/gm-hand-product.png')] bg-[length:100%_auto] md:bg-[length:50%_auto] bg-[position:center_top] bg-no-repeat pt-[60vw] md:pt-[25vw]">
           {/* Gradient — lighter on desktop so image stays vibrant */}
           <div className="absolute inset-0 bg-gradient-to-t from-black from-30% via-black/60 via-55% to-transparent md:from-black md:from-25% md:via-black/40 md:via-50% md:to-transparent pointer-events-none" />
           {/* Benefit grid in normal flow */}
