@@ -809,8 +809,8 @@ export default function Page() {
                 <thead>
                   <tr className="border-b-2 border-white/20">
                     <th className="py-5 px-6 text-left" style={{ width: "44%" }}></th>
-                    <th className="py-5 px-4 text-center bg-[rgba(0,166,210,0.12)]" style={{ width: "18%" }}>
-                      <span className={`font-[900] text-xl ${cyanD}`}>Genius Mind</span>
+                    <th className="py-3 px-4 text-center bg-[rgba(0,166,210,0.12)]" style={{ width: "18%" }}>
+                      <img src="/assets/gm-bottle-cutout.png" alt="Genius Mind" width={90} height={120} className="mx-auto object-contain" style={{ maxHeight: 120 }} />
                     </th>
                     <th className={`py-5 px-4 text-center font-[800] text-base ${h2D}`} style={{ width: "19%" }}>Caffeine Stacks</th>
                     <th className={`py-5 px-4 text-center font-[800] text-base ${h2D}`} style={{ width: "19%" }}>Generic Nootropics</th>
@@ -835,8 +835,8 @@ export default function Page() {
                 <thead>
                   <tr className="border-b-2 border-white/20">
                     <th className="py-3 px-2 text-left" style={{ width: "40%" }}></th>
-                    <th className="py-3 px-1 text-center bg-[rgba(0,166,210,0.12)]" style={{ width: "20%" }}>
-                      <span className={`font-[900] text-[13px] leading-tight block ${cyanD}`}>Genius Mind</span>
+                    <th className="py-2 px-1 text-center bg-[rgba(0,166,210,0.12)]" style={{ width: "20%" }}>
+                      <img src="/assets/gm-bottle-cutout.png" alt="Genius Mind" width={56} height={75} className="mx-auto object-contain" style={{ maxHeight: 75 }} />
                     </th>
                     <th className={`py-3 px-1 text-center font-[800] text-[11px] leading-tight ${h2D}`} style={{ width: "20%" }}>Caffeine Stacks</th>
                     <th className={`py-3 px-1 text-center font-[800] text-[11px] leading-tight ${h2D}`} style={{ width: "20%" }}>Generic Nootropics</th>
