@@ -225,13 +225,11 @@ function TrustpilotReviewCarousel() {
                   <div className="flex items-center gap-3 mb-3">
                     <span className={`${h2L} font-bold text-lg`}>{r.name}</span>
                     <span className="text-[#00b67a] text-lg">&#x2705;</span>
-                    <span className="inline-flex items-center text-[var(--color-cyan)] text-[12px] font-semibold border border-[var(--color-cyan)]/40 rounded-full px-3 py-1">Verified buyer</span>
+                    <span className="inline-flex items-center text-[#00b67a] text-[12px] font-semibold border border-[#00b67a]/40 rounded-full px-3 py-1">Verified buyer</span>
                   </div>
 
                   {/* Stars */}
-                  <div className="flex gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => <span key={i} className="text-[#f5a623] text-xl">&#9733;</span>)}
-                  </div>
+                  <TrustpilotStars count={5} size={18} />
 
                   {/* Title + body */}
                   <p className={`${h2L} font-[800] text-lg md:text-xl mb-3`}>{r.title}</p>
@@ -307,12 +305,14 @@ function MiniReviewScroller() {
           {MINI_REVIEWS.map((r) => (
             <div key={r.name + r.title} className="flex-[0_0_100%] min-w-0 pr-2">
               <div className="bg-[var(--color-dark-tertiary)] rounded-xl p-5">
-                <div className="flex gap-0.5 mb-2">
-                  {[...Array(5)].map((_, i) => <Star key={i} size={14} className="fill-[var(--color-cyan)] text-[var(--color-cyan)]" />)}
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="text-white font-bold text-sm">{r.name}</span>
+                  <span className="text-[#00b67a] text-sm">&#x2705;</span>
+                  <span className="inline-flex items-center text-[#00b67a] text-[11px] font-semibold border border-[#00b67a]/40 rounded-full px-2.5 py-0.5">Verified buyer</span>
                 </div>
-                <p className="font-bold text-sm text-white mb-1.5">{r.title}</p>
-                <p className="text-[13px] leading-relaxed text-white/80 mb-2">&ldquo;{r.body}&rdquo;</p>
-                <p className="text-xs font-bold text-white/60">{r.name} <span className="font-normal">&ndash; Verified Buyer</span></p>
+                <TrustpilotStars count={5} size={14} />
+                <p className="font-bold text-sm text-white mt-2 mb-1.5">{r.title}</p>
+                <p className="text-[13px] leading-relaxed text-white/80">&ldquo;{r.body}&rdquo;</p>
               </div>
             </div>
           ))}
@@ -578,7 +578,7 @@ const TL_STAGES = [
   { id: "day_14", tab: "Day 14", num: "03", title: "Foundation", clipPct: 25, icon: <Layers size={48} />,
     sub: "Two weeks in, the supporting compounds reach effective levels. The chemistry your brain runs on is being rebuilt.",
     benefits: ["Lion\u2019s Mane begins supporting nerve growth factor activity", "Sustained focus reported by many users for the first time", "Mental fatigue may feel less compounding day-to-day", "Cognitive endurance begins to lengthen"] },
-  { id: "day_30", tab: "Day 30", num: "04", title: "The Hold", clipPct: 50, icon: <Anchor size={48} />,
+  { id: "day_30", tab: "Day 30", num: "04", title: "The Momentum", clipPct: 50, icon: <TrendingUp size={48} />,
     sub: "One month in. The afternoon crash flattens for many users. The focus that used to require effort becomes the baseline.",
     benefits: ["Bacopa and Lion\u2019s Mane may reach effective levels", "The afternoon crash may flatten", "Focus may extend naturally, less forced", "Word-finding and recall may feel sharper"] },
   { id: "day_60", tab: "Day 60", num: "05", title: "Compounding", clipPct: 80, icon: <TrendingUp size={48} />,
@@ -739,7 +739,7 @@ function CombinedTabbedSection() {
           <div className="grid md:grid-cols-3 gap-4">
             {[
               { day: "DAY", num: "1", title: "Activation", icon: <Zap size={36} strokeWidth={2.5} className="text-[var(--color-cyan)]" />, points: ["Guarana and B vitamins provide an initial lift", "L-Tyrosine begins supporting dopamine pathways", "Most users feel slightly more present", "The cognitive foundation starts building"] },
-              { day: "DAY", num: "30", title: "The Hold", icon: <Anchor size={36} strokeWidth={2.5} className="text-[var(--color-cyan)]" />, points: ["Bacopa and Lion\u2019s Mane reach effective levels", "The afternoon crash flattens", "Focus extends naturally, less forced", "Word-finding and recall feel sharper"] },
+              { day: "DAY", num: "30", title: "The Momentum", icon: <TrendingUp size={36} strokeWidth={2.5} className="text-[var(--color-cyan)]" />, points: ["Bacopa and Lion\u2019s Mane reach effective levels", "The afternoon crash flattens", "Focus extends naturally, less forced", "Word-finding and recall feel sharper"] },
               { day: "DAY", num: "90", title: "Lock-In", icon: <Rocket size={36} strokeWidth={2.5} className="text-[var(--color-cyan)]" />, points: ["All 16 ingredients working synergistically", "Cognitive infrastructure, fully built", "Decision stamina across the full working day", "This is your new cognitive baseline"] },
             ].map((stage) => (
               <div key={stage.num} className="bg-[var(--color-dark-tertiary)] rounded-xl p-5 md:p-6">
