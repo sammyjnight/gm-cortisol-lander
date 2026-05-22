@@ -605,26 +605,29 @@ export default function Page() {
           </FadeUp>
         </div>
 
-        {/* Hand image — no overlays, image bg matches section via bg-black */}
-        <div className="bg-black">
-          <FadeUp>
-            <img src="/assets/gm-hand-product.png" alt="Hand holding Genius Mind bottle" width={800} height={600} loading="lazy" className="w-full md:w-[55%] mx-auto h-auto object-contain" style={{ maxHeight: 'none' }} />
-          </FadeUp>
-        </div>
+        {/* Hand image as background with benefit icons overlaid — Mars Men style */}
+        <div className="relative bg-black">
+          {/* Product image — sits behind the benefit grid */}
+          <img src="/assets/gm-hand-product.png" alt="Hand holding Genius Mind bottle" width={800} height={600} loading="lazy" className="w-full md:w-[55%] mx-auto h-auto object-contain" style={{ maxHeight: 'none' }} />
 
-        {/* 6 benefit icons — clean grid below image */}
-        <div className="max-w-[900px] mx-auto px-4 pt-10 md:pt-14 pb-16 md:pb-20">
-          <Stagger className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10 md:gap-x-12 md:gap-y-14">
-            {OUTCOME_ICONS.map((o) => (
-              <motion.div key={o.title} variants={cF} className="text-center">
-                <div className="flex justify-center mb-3">
-                  <AnimatedIcon icon={o.icon} variants={o.variants} />
-                </div>
-                <h3 className="text-white font-[800] text-[14px] md:text-[16px] tracking-[0.05em] uppercase mb-2">{o.title}</h3>
-                <p className="text-[#a0a8b0] text-[13px] md:text-[14px] leading-[1.5]">{o.desc}</p>
-              </motion.div>
-            ))}
-          </Stagger>
+          {/* Benefit grid overlaid on the lower half of the image */}
+          <div className="absolute bottom-0 left-0 right-0 z-[2]">
+            {/* Gradient so white text is readable over the image */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none" />
+            <div className="relative z-[3] max-w-[900px] mx-auto px-4 pt-6 pb-10 md:pb-14">
+              <Stagger className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-8 md:gap-x-12 md:gap-y-10">
+                {OUTCOME_ICONS.map((o) => (
+                  <motion.div key={o.title} variants={cF} className="text-center">
+                    <div className="flex justify-center mb-2">
+                      <AnimatedIcon icon={o.icon} variants={o.variants} />
+                    </div>
+                    <h3 className="text-white font-[800] text-[14px] md:text-[16px] tracking-[0.05em] uppercase mb-1">{o.title}</h3>
+                    <p className="text-[#c0c8d0] text-[12px] md:text-[14px] leading-[1.4]">{o.desc}</p>
+                  </motion.div>
+                ))}
+              </Stagger>
+            </div>
+          </div>
         </div>
       </section>
 
