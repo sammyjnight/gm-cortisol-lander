@@ -229,7 +229,6 @@ function ProductCarousel() {
 function PlanCard({ active, onSelect, featured, title, price, period, was, billing, perServing, savePill, perks, welcomeKit, cta }: {
   active: boolean; onSelect: () => void; featured?: boolean; title: string; price: string; period: string; was: string; billing: string; perServing: string; savePill: string; perks: string[]; welcomeKit?: boolean; cta: string;
 }) {
-  const [giftsOpen, setGiftsOpen] = useState(false);
   return (
     <div onClick={onSelect} className={`relative rounded-xl border-2 bg-white cursor-pointer transition-all duration-200 mb-3 ${active ? "border-[var(--color-ink-primary)]" : "border-[#e5e7eb] hover:border-[#c0c5cc]"}`}>
       {featured && <span className="absolute -top-2.5 right-4 bg-[#1bb88a] text-white text-[9px] font-bold uppercase tracking-wide px-3 py-1 rounded">Best Value</span>}
@@ -278,22 +277,6 @@ function PlanCard({ active, onSelect, featured, title, price, period, was, billi
                 </div>
               </div>
 
-              <button onClick={(e) => { e.stopPropagation(); setGiftsOpen(!giftsOpen); }} className={`w-full flex items-center justify-center gap-2 bg-[rgba(0,0,0,0.03)] border border-[rgba(0,0,0,0.08)] rounded-full px-4 py-2 text-[12px] font-bold uppercase tracking-wide ${h2L} hover:bg-[rgba(0,166,210,0.06)] transition-colors mb-3`}>
-                Future Monthly Gifts <motion.span animate={{ rotate: giftsOpen ? 180 : 0 }} transition={{ duration: 0.2 }}><ChevronDown size={12} /></motion.span>
-              </button>
-              <div className={`overflow-hidden transition-all duration-300 ${giftsOpen ? "max-h-40 mb-3" : "max-h-0"}`}>
-                <div className="flex justify-center gap-3 sm:gap-4 pt-2">
-                  {[{ label: "Month 3", img: "/assets/gift-genius-zen.png", name: "Genius Zen" }, { label: "Month 6", img: "/assets/gift-magnesium.png", name: "Mystery Gift" }].map((g) => (
-                    <div key={g.label} className="text-center">
-                      <p className={`text-[12px] font-bold uppercase ${h2L} mb-2`}>{g.label}</p>
-                      <div className="w-[75px] h-[75px] sm:w-[90px] sm:h-[90px] bg-[rgba(0,166,210,0.06)] rounded-lg overflow-hidden mb-1.5 mx-auto flex items-center justify-center">
-                        <img src={g.img} alt={g.name} className="w-full h-full object-cover" />
-                      </div>
-                      <p className={`text-[11px] font-semibold ${h2L}`}>{g.name}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </>
           )}
 
@@ -308,9 +291,6 @@ function PlanCard({ active, onSelect, featured, title, price, period, was, billi
 function PdpInfo({ onViewLabel }: { onViewLabel: () => void }) {
   return (
     <div className="text-left">
-      <button onClick={onViewLabel} className={`w-full flex items-center justify-center gap-2 px-4 py-3 bg-[rgba(0,166,210,0.06)] border border-[rgba(0,166,210,0.15)] rounded-full text-[13px] sm:text-sm font-semibold ${h2L} hover:bg-[rgba(0,166,210,0.12)] transition-colors mb-4`}>
-        <BookOpen size={16} className={capL} /> View Nutrition Label
-      </button>
       <div className="flex items-center gap-1.5 mb-3 pb-3 border-b border-[rgba(0,0,0,0.08)]">
         <span className="text-[#f5a623] text-base tracking-wider">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
         <span className={`font-bold text-sm ${h2L}`}>4.8</span>
@@ -318,7 +298,10 @@ function PdpInfo({ onViewLabel }: { onViewLabel: () => void }) {
       </div>
       <p className={`text-[11px] font-bold uppercase tracking-wider ${cyanL} mb-1.5`}>All-In-One Cognitive Supplement</p>
       <h3 className={`text-[clamp(22px,3vw,28px)] font-bold ${h2L} mb-2.5`}>Genius Mind</h3>
-      <p className={`text-sm ${bodyL} leading-relaxed mb-5 break-words`}>16 clinically-dosed ingredients in one daily capsule. Formulated by leading UK nutritionist Shona Wilkinson for operators who demand more.</p>
+      <p className={`text-sm ${bodyL} leading-relaxed mb-4 break-words`}>16 clinically-dosed ingredients in one daily capsule. Formulated by leading UK nutritionist Shona Wilkinson for operators who demand more.</p>
+      <button onClick={onViewLabel} className={`inline-flex items-center gap-2 px-4 py-2.5 bg-[rgba(0,166,210,0.06)] border border-[rgba(0,166,210,0.15)] rounded-full text-[13px] font-semibold ${h2L} hover:bg-[rgba(0,166,210,0.12)] transition-colors mb-5`}>
+        <BookOpen size={14} className={capL} /> View Nutrition Label
+      </button>
       <div className="flex flex-col gap-2 mb-6">
         {["16 researched ingredients in one capsule", "89% felt sharper focus. 76% better recall.", "Made in the UK to GMP standard", "90 days to feel it. Or your money back."].map((pill) => (
           <div key={pill} className={`inline-flex items-center gap-2 px-4 py-2.5 bg-[rgba(0,0,0,0.03)] border border-[rgba(0,0,0,0.06)] rounded-full text-[13px] font-medium ${h2L} max-w-full`}>
