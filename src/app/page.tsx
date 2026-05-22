@@ -360,7 +360,7 @@ function OfferSection() {
   return (
     <>
       <NutritionModal open={labelOpen} onClose={() => setLabelOpen(false)} />
-      <section id="offer" className="sec-light-alt py-20 md:py-28 overflow-hidden">
+      <section id="offer" className="sec-light-alt py-14 md:py-20 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
             {/* Left: Carousel + Review carousel */}
@@ -536,7 +536,7 @@ function CombinedTabbedSection() {
       {/* Tab strip */}
       <div className="flex mb-6 md:mb-8 bg-[var(--color-dark-tertiary)] rounded-xl overflow-hidden">
         {tabs.map((t) => (
-          <button key={t.id} onClick={() => setTab(t.id)} className={`flex-1 py-3 md:py-4 text-center text-sm md:text-base font-bold transition-all ${tab === t.id ? "bg-[var(--color-dark-primary)] text-white border-b-2 border-[var(--color-cyan)]" : "text-[var(--color-dink-secondary)] hover:text-white"}`}>
+          <button key={t.id} onClick={() => setTab(t.id)} className={`flex-1 py-3.5 md:py-5 text-center text-base md:text-xl font-[900] tracking-wide transition-all ${tab === t.id ? "bg-[var(--color-dark-primary)] text-white border-b-3 border-[var(--color-cyan)]" : "text-[var(--color-dink-secondary)] hover:text-white"}`}>
             {t.label}
           </button>
         ))}
@@ -545,23 +545,33 @@ function CombinedTabbedSection() {
       {/* What to Expect tab */}
       {tab === "expect" && (
         <div>
-          <h3 className={`text-[clamp(20px,3.5vw,28px)] font-[800] ${h2D} mb-6`}>What Happens After You Start Restoring Cognitive Chemistry</h3>
+          <h3 className={`text-[clamp(24px,4vw,36px)] font-[900] ${h2D} mb-4`}>What Happens After You Start Restoring Cognitive Chemistry</h3>
+
+          {/* Progress line */}
+          <div className="relative flex items-center justify-between mb-6 mx-4 md:mx-8">
+            <div className="absolute left-0 right-0 top-1/2 h-[3px] bg-[var(--color-cyan)]" />
+            {[0, 1, 2].map((i) => (
+              <div key={i} className="relative w-3 h-3 rounded-full bg-[var(--color-cyan)] border-2 border-[var(--color-cyan)] z-[1]" />
+            ))}
+          </div>
+
           <div className="grid md:grid-cols-3 gap-4">
             {[
-              { day: "Day 1", title: "Activation", icon: <Zap size={24} className="text-[var(--color-cyan)]" />, points: ["Guarana and B vitamins provide an initial lift", "L-Tyrosine begins supporting dopamine pathways", "Most users feel slightly more present", "The cognitive foundation starts building"] },
-              { day: "Day 30", title: "The Hold", icon: <Anchor size={24} className="text-[var(--color-cyan)]" />, points: ["Bacopa and Lion\u2019s Mane reach effective levels", "The afternoon crash flattens", "Focus extends naturally, less forced", "Word-finding and recall feel sharper"] },
-              { day: "Day 90", title: "Lock-In", icon: <Rocket size={24} className="text-[var(--color-cyan)]" />, points: ["All 16 ingredients working synergistically", "Cognitive infrastructure, fully built", "Decision stamina across the full working day", "This is your new cognitive baseline"] },
+              { day: "DAY", num: "1", title: "Activation", icon: <Zap size={36} strokeWidth={2.5} className="text-[var(--color-cyan)]" />, points: ["Guarana and B vitamins provide an initial lift", "L-Tyrosine begins supporting dopamine pathways", "Most users feel slightly more present", "The cognitive foundation starts building"] },
+              { day: "DAY", num: "30", title: "The Hold", icon: <Anchor size={36} strokeWidth={2.5} className="text-[var(--color-cyan)]" />, points: ["Bacopa and Lion\u2019s Mane reach effective levels", "The afternoon crash flattens", "Focus extends naturally, less forced", "Word-finding and recall feel sharper"] },
+              { day: "DAY", num: "90", title: "Lock-In", icon: <Rocket size={36} strokeWidth={2.5} className="text-[var(--color-cyan)]" />, points: ["All 16 ingredients working synergistically", "Cognitive infrastructure, fully built", "Decision stamina across the full working day", "This is your new cognitive baseline"] },
             ].map((stage) => (
-              <div key={stage.day} className="bg-[var(--color-dark-tertiary)] rounded-xl p-5">
-                <div className="flex items-center gap-2 mb-3">
+              <div key={stage.num} className="bg-[var(--color-dark-tertiary)] rounded-xl p-5 md:p-6">
+                <div className="flex items-center gap-2.5 mb-4">
                   {stage.icon}
-                  <span className="label-mono text-[var(--color-cyan)] text-[13px] font-bold">{stage.day}</span>
-                  <span className={`font-[800] text-lg ${h2D}`}>{stage.title}</span>
+                  <span className="font-mono text-[var(--color-cyan)] text-sm font-[900] tracking-[0.1em] uppercase">{stage.day}</span>
+                  <span className="font-mono text-[var(--color-cyan)] text-[28px] md:text-[32px] font-[900] leading-none">{stage.num}</span>
+                  <span className={`font-[900] text-xl md:text-2xl ${h2D}`}>{stage.title}</span>
                 </div>
-                <ul className="space-y-1.5">
+                <ul className="space-y-2">
                   {stage.points.map((p) => (
-                    <li key={p} className={`flex items-start gap-2 text-[13px] ${bodyD}`}>
-                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-cyan)] mt-1.5 shrink-0" />{p}
+                    <li key={p} className={`flex items-start gap-2.5 text-[14px] md:text-[15px] font-semibold text-white/85`}>
+                      <span className="w-2 h-2 rounded-full bg-[var(--color-cyan)] mt-1.5 shrink-0" />{p}
                     </li>
                   ))}
                 </ul>
@@ -578,8 +588,8 @@ function CombinedTabbedSection() {
           {FAQS.map((f, i) => (
             <div key={i} className="bg-[var(--color-dark-tertiary)] rounded-xl overflow-hidden">
               <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full text-left px-5 py-4 flex items-center justify-between">
-                <span className={`font-[800] text-sm md:text-base uppercase tracking-wide ${h2D}`}>{f.q}</span>
-                <motion.span animate={{ rotate: openFaq === i ? 180 : 0 }} transition={{ duration: 0.2 }}><ChevronDown size={18} className={capD} /></motion.span>
+                <span className={`font-[900] text-base md:text-xl uppercase tracking-wide text-white`}>{f.q}</span>
+                <motion.span animate={{ rotate: openFaq === i ? 180 : 0 }} transition={{ duration: 0.2 }}><ChevronDown size={24} strokeWidth={3} className="text-white/60" /></motion.span>
               </button>
               <div className={`overflow-hidden transition-all duration-300 ${openFaq === i ? "max-h-[300px]" : "max-h-0"}`}>
                 <div className={`px-5 pb-4 text-sm ${bodyD} leading-relaxed`}>{f.a}</div>
@@ -597,10 +607,10 @@ function CombinedTabbedSection() {
               <div key={i} className="bg-[var(--color-dark-tertiary)] rounded-xl overflow-hidden">
                 <button onClick={() => setOpenReview(openReview === i ? null : i)} className="w-full text-left px-5 py-4 flex items-center justify-between gap-3">
                   <div>
-                    <div className="flex gap-0.5 mb-1">{[...Array(5)].map((_, j) => <Star key={j} size={12} className="fill-[#f5a623] text-[#f5a623]" />)}</div>
-                    <span className={`font-[800] text-sm md:text-base uppercase tracking-wide ${h2D}`}>&ldquo;{r.title}&rdquo;</span>
+                    <div className="flex gap-0.5 mb-1.5">{[...Array(5)].map((_, j) => <Star key={j} size={18} className="fill-[#f5a623] text-[#f5a623]" />)}</div>
+                    <span className={`font-[900] text-base md:text-xl uppercase tracking-wide text-white`}>&ldquo;{r.title}&rdquo;</span>
                   </div>
-                  <motion.span animate={{ rotate: openReview === i ? 180 : 0 }} transition={{ duration: 0.2 }} className="shrink-0"><ChevronDown size={18} className={capD} /></motion.span>
+                  <motion.span animate={{ rotate: openReview === i ? 180 : 0 }} transition={{ duration: 0.2 }} className="shrink-0"><ChevronDown size={24} strokeWidth={3} className="text-white/60" /></motion.span>
                 </button>
                 <div className={`overflow-hidden transition-all duration-300 ${openReview === i ? "max-h-[300px]" : "max-h-0"}`}>
                   <div className={`px-5 pb-4 text-sm ${bodyD} leading-relaxed`}>&ldquo;{r.body}&rdquo;<br /><span className="text-xs text-[var(--color-cyan)] font-bold mt-2 inline-block">&mdash; {r.name}, Verified Buyer</span></div>
@@ -1162,7 +1172,7 @@ export default function Page() {
       <OfferSection />
 
       {/* ═══ §11 COMBINED TABS — DARK (Mars Men style) ═══ */}
-      <section className="sec-dark py-20 md:py-28">
+      <section className="sec-dark py-10 md:py-14">
         <div className="max-w-5xl mx-auto px-4">
           <FadeUp>
             <CombinedTabbedSection />
@@ -1171,11 +1181,11 @@ export default function Page() {
       </section>
 
       {/* ═══ §11b INGREDIENTS GRID (repeat) — DARK ═══ */}
-      <section className="sec-dark pb-20 md:pb-28">
+      <section className="sec-dark pt-4 md:pt-6 pb-14 md:pb-20">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <FadeUp>
             <p className="font-mono text-[var(--color-cyan)] tracking-[0.25em] uppercase text-[13px] font-semibold mb-4">16 Clinically Dosed Ingredients</p>
-            <h2 className={`text-[clamp(28px,5vw,48px)] font-[900] leading-[1.0] mb-10 text-white`}>What&rsquo;s Inside Genius Mind</h2>
+            <h2 className={`text-[clamp(28px,5vw,48px)] font-[900] leading-[1.0] mb-8 text-white`}>What&rsquo;s Inside Genius Mind</h2>
           </FadeUp>
           <Stagger className="grid grid-cols-2 md:grid-cols-4 gap-3" s={0.04}>
             {INGS.map((ing) => (
@@ -1188,6 +1198,11 @@ export default function Page() {
               </motion.div>
             ))}
           </Stagger>
+          <FadeUp>
+            <p className={`${bodyD} text-[15px] md:text-[17px] leading-relaxed max-w-3xl mx-auto mt-8 md:mt-10`}>
+              Genius Mind is a unique blend of natural, clinically-studied ingredients designed to support sustained cognitive performance. Most nootropic supplements don&rsquo;t contain proper dosages. We use clinical doses of each ingredient to deliver real, measurable results.
+            </p>
+          </FadeUp>
         </div>
       </section>
 
