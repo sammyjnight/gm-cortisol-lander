@@ -115,6 +115,79 @@ const CAROUSEL_SLIDES = [
   { src: "/assets/carousel_5.webp", alt: "Genius Mind usage instructions" },
 ];
 
+/* ═══════ TRUSTPILOT REVIEW CAROUSEL ═══════ */
+const TRUSTPILOT_REVIEWS = [
+  { name: "Mark D.", time: "2 days ago", title: "Fog has completely lifted", body: "I run a small business on my own. I was putting everything off... Since taking Genius Mind the fog has lifted. I'm actually getting through decisions instead of circling them. Genuinely impressed." },
+  { name: "Sarah K.", time: "4 days ago", title: "The 3pm slump is gone", body: "The 3pm slump was killing my output. I'd make solid calls in the morning and then spend the afternoon second-guessing them. Two months in and I'm making the same quality decisions at 4pm." },
+  { name: "James T.", time: "1 week ago", title: "First thing that actually worked", body: "I've tried the usual stack — AG1, caffeine protocols, the whole thing. This is the first supplement that's actually moved the needle on how long I can sustain focus in a day." },
+  { name: "Lucy W.", time: "1 week ago", title: "Noticed a difference within days", body: "Was sceptical but gave it a go. Within the first week my energy was more consistent and I wasn't reaching for coffee by 2pm. Really good product." },
+  { name: "Tom R.", time: "2 weeks ago", title: "Best nootropic I've tried", body: "I've tried a lot of nootropics over the years. This is the first one where I actually feel a sustained difference rather than a short spike. The ingredient quality is clearly a step above." },
+  { name: "Emma H.", time: "2 weeks ago", title: "Great product, great company", body: "Ordered the 90-day supply and haven't looked back. Focus is sharper, I'm sleeping better, and the customer service when I had a question was brilliant." },
+  { name: "Dan P.", time: "3 weeks ago", title: "Exactly what I needed", body: "Running two businesses and my brain was fried by midweek. Genius Mind has noticeably extended how long I can think clearly each day. The compound effect is real." },
+  { name: "Rachel M.", time: "3 weeks ago", title: "Impressed with the transparency", body: "Love that every ingredient and dosage is on the label. No proprietary blends. I can actually see what I'm taking and research it myself. Brilliant for focus and mood." },
+];
+
+function ReviewCarousel() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start", slidesToScroll: 1 });
+  const [sel, setSel] = useState(0);
+  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+  useEffect(() => {
+    if (!emblaApi) return;
+    const onSelect = () => setSel(emblaApi.selectedScrollSnap());
+    emblaApi.on("select", onSelect);
+    onSelect();
+    return () => { emblaApi.off("select", onSelect); };
+  }, [emblaApi]);
+
+  return (
+    <div className="mt-6">
+      <div className="relative">
+        <div className="overflow-hidden" ref={emblaRef}>
+          <div className="flex gap-3">
+            {TRUSTPILOT_REVIEWS.map((r) => (
+              <div key={r.name} className="flex-[0_0_85%] sm:flex-[0_0_48%] min-w-0 bg-white rounded-xl p-4 border border-[rgba(0,0,0,0.06)]">
+                <div className="flex gap-0.5 mb-2">
+                  {[...Array(5)].map((_, i) => <Star key={i} size={12} className="fill-[#00b67a] text-[#00b67a]" />)}
+                </div>
+                <p className={`text-xs ${capL} mb-1`}>{r.name} &middot; {r.time}</p>
+                <p className={`font-bold text-sm ${h2L} mb-1.5`}>{r.title}</p>
+                <p className={`text-[13px] leading-relaxed ${bodyL} line-clamp-3`}>&ldquo;{r.body}&rdquo;</p>
+                <p className="text-[11px] text-[#00b67a] font-semibold mt-2 flex items-center gap-1"><Check size={11} strokeWidth={3} />Verified</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <button onClick={scrollPrev} aria-label="Previous review" className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center z-10 hover:bg-gray-50 transition-colors"><ChevronLeft size={16} /></button>
+        <button onClick={scrollNext} aria-label="Next review" className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center z-10 hover:bg-gray-50 transition-colors"><ChevronRight size={16} /></button>
+      </div>
+      <div className="flex justify-center gap-1.5 mt-3">
+        {TRUSTPILOT_REVIEWS.map((_, i) => (
+          <button key={i} onClick={() => emblaApi?.scrollTo(i)} className={`w-2 h-2 rounded-full transition-all ${i === sel ? "bg-[var(--color-cyan)]" : "bg-[var(--color-ink-tertiary)]/30"}`} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ═══════ NUTRITION LABEL MODAL ═══════ */
+function NutritionModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  useEffect(() => {
+    if (open) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={onClose}>
+      <div className="relative max-w-lg w-full" onClick={(e) => e.stopPropagation()}>
+        <button onClick={onClose} className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center z-10 hover:bg-gray-100 transition-colors"><X size={18} /></button>
+        <img src="/assets/nutrition-label.png" alt="Genius Mind Nutritional Information" className="w-full rounded-xl" />
+      </div>
+    </div>
+  );
+}
+
 function ProductCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -232,9 +305,12 @@ function PlanCard({ active, onSelect, featured, title, price, period, was, billi
 }
 
 /* ═══════ PDP INFO BLOCK ═══════ */
-function PdpInfo() {
+function PdpInfo({ onViewLabel }: { onViewLabel: () => void }) {
   return (
     <div className="text-left">
+      <button onClick={onViewLabel} className={`w-full flex items-center justify-center gap-2 px-5 py-3 bg-[rgba(0,166,210,0.06)] border border-[rgba(0,166,210,0.15)] rounded-full text-sm font-semibold ${h2L} hover:bg-[rgba(0,166,210,0.12)] transition-colors mb-4`}>
+        <BookOpen size={16} className={capL} /> View Nutrition Label
+      </button>
       <div className="flex items-center gap-1.5 mb-3 pb-3 border-b border-[rgba(0,0,0,0.08)]">
         <span className="text-[#f5a623] text-base tracking-wider">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
         <span className={`font-bold text-sm ${h2L}`}>4.8</span>
@@ -292,6 +368,38 @@ function OfferAccordion() {
         <a href={SHOP} className={`${bodyL} underline text-sm font-semibold transition-colors`}>One Time Purchase &pound;24.99</a>
       </div>
     </div>
+  );
+}
+
+/* ═══════ OFFER SECTION (wraps carousel, reviews, PDP, pricing) ═══════ */
+function OfferSection() {
+  const [labelOpen, setLabelOpen] = useState(false);
+  return (
+    <>
+      <NutritionModal open={labelOpen} onClose={() => setLabelOpen(false)} />
+      <section id="offer" className="sec-light-alt py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+            {/* Left: Carousel + Review carousel */}
+            <FadeUp>
+              <ProductCarousel />
+              <ReviewCarousel />
+            </FadeUp>
+
+            {/* Right: PDP info + Accordion pricing */}
+            <FadeUp delay={0.1}>
+              <PdpInfo onViewLabel={() => setLabelOpen(true)} />
+              <OfferAccordion />
+              <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[11px] mt-6">
+                {[[ShieldCheck, "90-day money back guarantee"], [Factory, "GMP certified"], [FlaskConical, "Made in UK"], [Star, "1000+ five-star reviews"]].map(([Icon, label]) => (
+                  <div key={label as string} className={`flex items-center gap-1.5 ${capL}`}><Icon size={14} className={capL} /><span>{label as string}</span></div>
+                ))}
+              </div>
+            </FadeUp>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
 
@@ -956,31 +1064,15 @@ export default function Page() {
               </table>
             </div>
 
-            <div className="text-center mt-10"><PrimaryCTA block>TRY IT NOW</PrimaryCTA></div>
+            <p className={`${h2D} text-[clamp(16px,2.5vw,20px)] font-[700] leading-relaxed text-center mt-10 max-w-2xl mx-auto`}>
+              Bottom Line: Genius Mind delivers real cognitive support through clinically dosed ingredients &ndash; without the crashes, jitters, or underdosed proprietary blend nonsense.
+            </p>
           </FadeUp>
         </div>
       </section>
 
       {/* ═══ §10 THE OFFER — LIGHT (PDP style) ═══ */}
-      <section id="offer" className="sec-light-alt py-20 md:py-28">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
-            {/* Left: Carousel */}
-            <FadeUp><ProductCarousel /></FadeUp>
-
-            {/* Right: PDP info + Accordion pricing */}
-            <FadeUp delay={0.1}>
-              <PdpInfo />
-              <OfferAccordion />
-              <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[11px] mt-6">
-                {[[ShieldCheck, "90-day money back guarantee"], [Factory, "GMP certified"], [FlaskConical, "Made in UK"], [Star, "1000+ five-star reviews"]].map(([Icon, label]) => (
-                  <div key={label as string} className={`flex items-center gap-1.5 ${capL}`}><Icon size={14} className={capL} /><span>{label as string}</span></div>
-                ))}
-              </div>
-            </FadeUp>
-          </div>
-        </div>
-      </section>
+      <OfferSection />
 
       {/* ═══ §11 TIMELINE — INTERACTIVE TABBED — DARK ═══ */}
       <section className="sec-dark py-20 md:py-28">
