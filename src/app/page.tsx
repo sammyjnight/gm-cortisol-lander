@@ -264,6 +264,71 @@ function TrustpilotReviewCarousel() {
   );
 }
 
+/* ═══════ MINI REVIEW SCROLLER (below CTA) ═══════ */
+const MINI_REVIEWS = [
+  { title: "Fog Has Lifted", body: "I run a record label pretty much on my own. I was putting everything off \u2014 the little things, the big things. Since taking Genius Mind the fog has lifted. I\u2019m actually getting through decisions instead of circling them.", name: "Mark D." },
+  { title: "The 3pm slump is gone", body: "The 3pm slump was killing my output. Two months in and I\u2019m making the same quality decisions at 4pm that I was making at 9.", name: "Sarah K." },
+  { title: "First thing that actually worked", body: "I\u2019ve tried the usual stack \u2014 AG1, caffeine protocols, the whole thing. This is the first supplement that\u2019s actually moved the needle.", name: "James T." },
+  { title: "Replaced my coffee habit", body: "Replaced my 4-coffees-a-day habit. Cleaner energy, no jitters, no crash. My afternoon slump has disappeared entirely.", name: "Mark D." },
+  { title: "Sharper than I\u2019ve been in years", body: "At 55, I was worried about my memory declining. After 6 weeks on Genius Mind, I\u2019m sharper than I\u2019ve been in years.", name: "Lucy K." },
+];
+
+function MiniReviewScroller() {
+  const [ref, api] = useEmblaCarousel({ loop: true, align: "start", slidesToScroll: 1 });
+  const [sel, setSel] = useState(0);
+  useEffect(() => {
+    if (!api) return;
+    const onSelect = () => setSel(api.selectedScrollSnap());
+    api.on("select", onSelect);
+    onSelect();
+    return () => { api.off("select", onSelect); };
+  }, [api]);
+
+  return (
+    <div className="mt-6 text-left">
+      {/* Trustpilot header */}
+      <div className="flex items-center gap-2 mb-3">
+        <span className="text-white font-bold text-sm">Excellent</span>
+        <div className="flex gap-0.5">
+          {[...Array(5)].map((_, i) => (
+            <svg key={i} viewBox="0 0 24 24" width={14} height={14} className="fill-[#00b67a]"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          ))}
+        </div>
+        <span className="text-white/50 text-xs">on</span>
+        <div className="flex items-center gap-1 text-[#00b67a] text-xs font-semibold">
+          <svg viewBox="0 0 24 24" width={12} height={12} className="fill-[#00b67a]"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Trustpilot
+        </div>
+      </div>
+
+      {/* Carousel */}
+      <div className="overflow-hidden rounded-xl" ref={ref}>
+        <div className="flex">
+          {MINI_REVIEWS.map((r) => (
+            <div key={r.name + r.title} className="flex-[0_0_100%] min-w-0 pr-2">
+              <div className="bg-[var(--color-dark-tertiary)] rounded-xl p-5">
+                <div className="flex gap-0.5 mb-2">
+                  {[...Array(5)].map((_, i) => <Star key={i} size={14} className="fill-[var(--color-cyan)] text-[var(--color-cyan)]" />)}
+                </div>
+                <p className="font-bold text-sm text-white mb-1.5">{r.title}</p>
+                <p className="text-[13px] leading-relaxed text-white/80 mb-2">&ldquo;{r.body}&rdquo;</p>
+                <p className="text-xs font-bold text-white/60">{r.name} <span className="font-normal">&ndash; Verified Buyer</span></p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Dots */}
+      <div className="flex justify-center gap-1.5 mt-3">
+        {MINI_REVIEWS.map((_, i) => (
+          <button key={i} onClick={() => api?.scrollTo(i)} className={`w-2 h-2 rounded-full transition-all ${i === sel ? "bg-[var(--color-cyan)]" : "bg-white/20"}`} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ═══════ STANDALONE FAQ ACCORDION ═══════ */
 function FaqAccordion() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
@@ -1138,7 +1203,7 @@ export default function Page() {
       <section className="sec-dark py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4">
 
-          {/* Mobile: heading → image → CTA → review */}
+          {/* Mobile: heading → image → CTA → reviews */}
           <div className="md:hidden text-center">
             <FadeUp>
               <h2 className="text-[clamp(28px,8vw,40px)] font-[900] leading-[1.05] text-white mb-6">Try Genius Mind Risk-Free</h2>
@@ -1148,20 +1213,11 @@ export default function Page() {
             </FadeUp>
             <FadeUp>
               <PrimaryCTA block>SHOP NOW</PrimaryCTA>
-              <div className="mt-6 bg-white rounded-xl p-5 text-[var(--color-ink-primary)] text-left">
-                <div className="flex gap-0.5 mb-2">
-                  {[...Array(5)].map((_, i) => <Star key={i} size={14} className="fill-[var(--color-cyan)] text-[var(--color-cyan)]" />)}
-                </div>
-                <p className="font-bold text-sm mb-2">Fog Has Lifted</p>
-                <p className="text-sm leading-relaxed text-[var(--color-ink-secondary)] mb-3">
-                  &ldquo;I run a record label pretty much on my own. I was putting everything off — the little things, the big things. Since taking Genius Mind the fog has lifted. I&rsquo;m actually getting through decisions instead of circling them.&rdquo;
-                </p>
-                <p className="text-xs font-bold">Mark D. <span className="font-normal text-[var(--color-ink-tertiary)]">&ndash; Verified Buyer</span></p>
-              </div>
+              <MiniReviewScroller />
             </FadeUp>
           </div>
 
-          {/* Desktop: image left (larger), CTA + review right */}
+          {/* Desktop: image left (larger), CTA + reviews right */}
           <div className="hidden md:grid md:grid-cols-[1.3fr_1fr] gap-10 items-center">
             <FadeUp>
               <img src="/assets/gm-static-stack.png" alt="Genius Mind product stack" className="w-full h-auto" />
@@ -1171,17 +1227,7 @@ export default function Page() {
               <h2 className="text-[clamp(32px,4vw,48px)] font-[900] leading-[1.05] text-white mb-3">Try Genius Mind Risk-Free</h2>
               <p className="text-white/60 text-sm mb-6">90-day money back guarantee. No questions asked.</p>
               <PrimaryCTA block>SHOP NOW</PrimaryCTA>
-
-              <div className="mt-6 bg-white rounded-xl p-6 text-[var(--color-ink-primary)]">
-                <div className="flex gap-0.5 mb-2">
-                  {[...Array(5)].map((_, i) => <Star key={i} size={16} className="fill-[var(--color-cyan)] text-[var(--color-cyan)]" />)}
-                </div>
-                <p className="font-bold text-sm mb-2">Fog Has Lifted</p>
-                <p className="text-sm leading-relaxed text-[var(--color-ink-secondary)] mb-3">
-                  &ldquo;I run a record label pretty much on my own. I was putting everything off — the little things, the big things. Since taking Genius Mind the fog has lifted. I&rsquo;m actually getting through decisions instead of circling them.&rdquo;
-                </p>
-                <p className="text-xs font-bold">Mark D. <span className="font-normal text-[var(--color-ink-tertiary)]">&ndash; Verified Buyer</span></p>
-              </div>
+              <MiniReviewScroller />
             </FadeUp>
           </div>
 
@@ -1194,24 +1240,6 @@ export default function Page() {
               <img src="https://justfloow.com/cdn/shop/files/Wired_logo_1_medium.svg?v=1729155439" alt="Wired" className="h-6 md:h-7 opacity-50 brightness-200" />
               <img src="https://justfloow.com/cdn/shop/files/Fast_Company_logo_1_medium.svg?v=1729155439" alt="Fast Company" className="h-6 md:h-7 opacity-50 brightness-200" />
             </div>
-          </div>
-
-          {/* Review cards row */}
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              { quote: "The 3pm slump was killing my output. Two months in and I'm making the same quality decisions at 4pm that I was making at 9.", name: "Sarah K.", meta: "Verified Buyer" },
-              { quote: "I've tried the usual stack — AG1, caffeine protocols, the whole thing. This is the first supplement that's actually moved the needle.", name: "James T.", meta: "Verified Buyer" },
-              { quote: "Replaced my 4-coffees-a-day habit. Cleaner energy, no jitters, no crash. My afternoon slump has disappeared entirely.", name: "Mark D.", meta: "Verified Buyer" },
-              { quote: "At 55, I was worried about my memory declining. After 6 weeks on Genius Mind, I'm sharper than I've been in years.", name: "Lucy K.", meta: "Verified Buyer" },
-            ].map((r) => (
-              <div key={r.name} className="bg-[var(--color-dark-tertiary)] rounded-xl p-5">
-                <div className="flex gap-0.5 mb-2">
-                  {[...Array(5)].map((_, i) => <Star key={i} size={12} className="fill-[var(--color-cyan)] text-[var(--color-cyan)]" />)}
-                </div>
-                <p className="text-white/90 text-[13px] leading-relaxed mb-3">&ldquo;{r.quote}&rdquo;</p>
-                <p className="text-white/60 text-xs font-bold">{r.name} <span className="font-normal">&ndash; {r.meta}</span></p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
