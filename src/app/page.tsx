@@ -744,10 +744,11 @@ export default function Page() {
           {/* Featured In */}
           <div className="mt-16 text-center">
             <p className="font-mono text-[11px] font-bold tracking-[0.2em] uppercase text-white/50 mb-6">Featured In</p>
-            <div className="flex flex-wrap justify-center items-center gap-x-12 md:gap-x-16 gap-y-4">
-              <span className="text-white/40 font-serif text-2xl md:text-3xl font-bold italic">GQ</span>
-              <span className="text-white/40 font-sans text-xl md:text-2xl font-[900] tracking-tight">Men&rsquo;s Health</span>
-              <span className="text-white/40 font-serif text-2xl md:text-3xl font-bold">Forbes</span>
+            <div className="flex flex-wrap justify-center items-center gap-x-10 md:gap-x-14 gap-y-4">
+              <img src="https://justfloow.com/cdn/shop/files/Forbes_logo_1_medium.svg?v=1729155439" alt="Forbes" className="h-6 md:h-7 opacity-50 brightness-200" />
+              <img src="https://justfloow.com/cdn/shop/files/BBC_Logo_2021_1_medium.svg?v=1729155438" alt="BBC" className="h-6 md:h-7 opacity-50 brightness-200" />
+              <img src="https://justfloow.com/cdn/shop/files/Wired_logo_1_medium.svg?v=1729155439" alt="Wired" className="h-6 md:h-7 opacity-50 brightness-200" />
+              <img src="https://justfloow.com/cdn/shop/files/Fast_Company_logo_1_medium.svg?v=1729155439" alt="Fast Company" className="h-6 md:h-7 opacity-50 brightness-200" />
             </div>
           </div>
 
