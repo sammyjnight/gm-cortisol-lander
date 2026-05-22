@@ -1358,24 +1358,25 @@ export default function Page() {
       <section className="sec-light-alt py-14 md:py-20">
         <div className="max-w-4xl mx-auto px-4">
           <FadeUp>
-            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#f8f9fa] to-[#eef1f5] border border-[rgba(0,0,0,0.06)] p-8 md:p-12 shadow-sm">
-              {/* Decorative background circle */}
-              <div className="absolute -right-20 -top-20 w-60 h-60 rounded-full bg-[rgba(0,166,210,0.04)]" />
-              <div className="absolute -left-10 -bottom-10 w-40 h-40 rounded-full bg-[rgba(245,166,35,0.04)]" />
+            <div className="relative overflow-hidden rounded-2xl border border-[rgba(0,0,0,0.06)] p-8 md:p-14 shadow-md" style={{ background: "linear-gradient(135deg, #0d1117 0%, #141c28 40%, #1a2436 100%)" }}>
+              {/* Decorative elements */}
+              <div className="absolute -right-16 -top-16 w-72 h-72 rounded-full bg-[rgba(245,166,35,0.06)]" />
+              <div className="absolute -left-20 -bottom-20 w-56 h-56 rounded-full bg-[rgba(0,166,210,0.05)]" />
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(245,166,35,0.3)] to-transparent" />
 
-              <div className="relative flex flex-col md:flex-row items-center gap-8">
+              <div className="relative flex flex-col md:flex-row items-center gap-8 md:gap-12">
                 {/* Gold guarantee badge */}
-                <div className="shrink-0 w-[120px] h-[120px] md:w-[140px] md:h-[140px] rounded-full border-[3px] border-[#f5a623] flex items-center justify-center bg-gradient-to-br from-[rgba(245,166,35,0.08)] to-[rgba(245,166,35,0.02)] shadow-[0_0_30px_rgba(245,166,35,0.1)]">
-                  <div className="text-center">
-                    <div className="text-[#f5a623] text-2xl mb-0.5">&#x1F3C6;</div>
-                    <div className={`label-mono text-[11px] leading-tight font-[800] ${h2L}`}>100%<br />Money<br />Back</div>
-                    <div className="text-[#f5a623] label-mono text-[9px] mt-0.5 font-bold">Guarantee</div>
+                <div className="shrink-0 w-[150px] h-[150px] md:w-[170px] md:h-[170px] rounded-full border-[3px] border-[#f5a623] flex items-center justify-center bg-gradient-to-br from-[rgba(245,166,35,0.12)] to-[rgba(245,166,35,0.03)] shadow-[0_0_40px_rgba(245,166,35,0.15)]">
+                  <div className="text-center px-2">
+                    <div className="text-[#f5a623] text-3xl mb-1">&#x1F3C6;</div>
+                    <div className="font-mono text-white text-[13px] md:text-[14px] leading-snug font-[800] tracking-wide uppercase">90-Day<br />Money Back</div>
+                    <div className="text-[#f5a623] font-mono text-[10px] md:text-[11px] mt-1 font-bold uppercase tracking-[0.15em]">Guarantee</div>
                   </div>
                 </div>
 
                 <div>
-                  <h2 className={`text-[clamp(24px,4vw,36px)] font-[900] mb-3 leading-tight ${h2L}`}>Feel a Massive Difference in 90 Days <span className={cyanL}>Or Your Money Back</span></h2>
-                  <p className={`${bodyL} text-[15px] md:text-[17px] leading-relaxed mb-6`}>We make sure every customer actually gets results or we refund you 100% of your investment. We&rsquo;re so confident you&rsquo;ll feel the difference with Genius Mind that we bear all the risk.</p>
+                  <h2 className="text-[clamp(24px,4vw,36px)] font-[900] mb-3 leading-tight text-white">Feel a Massive Difference in 90 Days <span className="text-[var(--color-cyan)]">Or Your Money Back</span></h2>
+                  <p className="text-white/70 text-[15px] md:text-[17px] leading-relaxed mb-6">We make sure every customer actually gets results or we refund you 100% of your investment. We&rsquo;re so confident you&rsquo;ll feel the difference with Genius Mind that we bear all the risk.</p>
                   <PrimaryCTA>TRY IT NOW</PrimaryCTA>
                 </div>
               </div>
