@@ -795,7 +795,7 @@ export default function Page() {
       </section>
 
       {/* ═══ §9 COMPARISON TABLE — DARK (Mars Men style) ═══ */}
-      <section className="sec-dark py-20 md:py-28">
+      <section className="sec-dark pt-4 md:pt-8 pb-20 md:pb-28">
         <div className="max-w-4xl mx-auto px-4">
           <FadeUp>
             <p className={`label-mono text-[11px] tracking-[0.2em] text-center mb-4 ${capD}`}>GENIUS MIND VS CAFFEINE STACKS VS GENERIC NOOTROPICS</p>
