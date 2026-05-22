@@ -264,6 +264,28 @@ function TrustpilotReviewCarousel() {
   );
 }
 
+/* ═══════ STANDALONE FAQ ACCORDION ═══════ */
+function FaqAccordion() {
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
+  return (
+    <div className="space-y-3">
+      {FAQS.map((f, i) => (
+        <div key={i} className="bg-white border border-[rgba(0,0,0,0.08)] rounded-xl overflow-hidden shadow-sm">
+          <button onClick={() => setOpenIdx(openIdx === i ? null : i)} className="w-full text-left px-6 py-5 flex items-center justify-between">
+            <span className={`font-[900] text-[15px] md:text-[17px] uppercase tracking-wide ${h2L}`}>{f.q}</span>
+            <motion.span animate={{ rotate: openIdx === i ? 180 : 0 }} transition={{ duration: 0.2 }}>
+              <ChevronDown size={22} strokeWidth={2.5} className={capL} />
+            </motion.span>
+          </button>
+          <div className={`overflow-hidden transition-all duration-300 ${openIdx === i ? "max-h-[400px]" : "max-h-0"}`}>
+            <div className={`px-6 pb-5 text-[15px] ${bodyL} leading-relaxed`}>{f.a}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 /* ═══════ NUTRITION LABEL MODAL ═══════ */
 function NutritionModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   useEffect(() => {
@@ -1332,25 +1354,47 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ═══ §13 GUARANTEE — LIGHT ═══ */}
-      <section className="sec-light py-20 md:py-28">
-        <div className="max-w-3xl mx-auto px-4">
+      {/* ═══ §13 GUARANTEE — LIGHT with subtle background ═══ */}
+      <section className="sec-light-alt py-14 md:py-20">
+        <div className="max-w-4xl mx-auto px-4">
           <FadeUp>
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="shrink-0 w-28 h-28 rounded-full border-2 border-[var(--color-cyan)] flex items-center justify-center bg-[rgba(8,145,178,0.04)]">
-                <div className={`text-center label-mono text-[10px] leading-tight ${h2L}`}><div>100%</div><div>Money</div><div>Back</div><div className={`text-[8px] mt-1 ${capL}`}>Guarantee</div></div>
-              </div>
-              <div>
-                <h2 className={`text-2xl md:text-3xl font-[800] mb-3 leading-tight ${h2L}`}>Feel a Massive Difference in 90 Days <span className={cyanL}>Or Your Money Back</span></h2>
-                <p className={`${bodyL} leading-relaxed mb-6`}>We make sure every customer actually gets results or we refund you 100% of your investment. No questions asked.</p>
-                <PrimaryCTA>TRY IT NOW</PrimaryCTA>
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#f8f9fa] to-[#eef1f5] border border-[rgba(0,0,0,0.06)] p-8 md:p-12 shadow-sm">
+              {/* Decorative background circle */}
+              <div className="absolute -right-20 -top-20 w-60 h-60 rounded-full bg-[rgba(0,166,210,0.04)]" />
+              <div className="absolute -left-10 -bottom-10 w-40 h-40 rounded-full bg-[rgba(245,166,35,0.04)]" />
+
+              <div className="relative flex flex-col md:flex-row items-center gap-8">
+                {/* Gold guarantee badge */}
+                <div className="shrink-0 w-[120px] h-[120px] md:w-[140px] md:h-[140px] rounded-full border-[3px] border-[#f5a623] flex items-center justify-center bg-gradient-to-br from-[rgba(245,166,35,0.08)] to-[rgba(245,166,35,0.02)] shadow-[0_0_30px_rgba(245,166,35,0.1)]">
+                  <div className="text-center">
+                    <div className="text-[#f5a623] text-2xl mb-0.5">&#x1F3C6;</div>
+                    <div className={`label-mono text-[11px] leading-tight font-[800] ${h2L}`}>100%<br />Money<br />Back</div>
+                    <div className="text-[#f5a623] label-mono text-[9px] mt-0.5 font-bold">Guarantee</div>
+                  </div>
+                </div>
+
+                <div>
+                  <h2 className={`text-[clamp(24px,4vw,36px)] font-[900] mb-3 leading-tight ${h2L}`}>Feel a Massive Difference in 90 Days <span className={cyanL}>Or Your Money Back</span></h2>
+                  <p className={`${bodyL} text-[15px] md:text-[17px] leading-relaxed mb-6`}>We make sure every customer actually gets results or we refund you 100% of your investment. We&rsquo;re so confident you&rsquo;ll feel the difference with Genius Mind that we bear all the risk.</p>
+                  <PrimaryCTA>TRY IT NOW</PrimaryCTA>
+                </div>
               </div>
             </div>
           </FadeUp>
         </div>
       </section>
 
-      {/* FAQ is now inside the combined tabbed section above */}
+      {/* ═══ §14 FAQ — LIGHT ═══ */}
+      <section className="sec-light py-14 md:py-20">
+        <div className="max-w-3xl mx-auto px-4">
+          <FadeUp>
+            <h2 className={`text-[clamp(32px,5vw,52px)] font-[900] leading-[1.05] text-center mb-10 ${h2L}`}>Frequently Asked Questions</h2>
+          </FadeUp>
+          <FadeUp delay={0.1}>
+            <FaqAccordion />
+          </FadeUp>
+        </div>
+      </section>
 
       {/* Mobile bottom spacer — prevents sticky CTA from hiding last content */}
       <div className="mobile-cta-spacer" />
