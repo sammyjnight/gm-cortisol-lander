@@ -715,9 +715,9 @@ function CombinedTabbedSection() {
   return (
     <div className="bg-[var(--color-dark-secondary)] border border-[var(--color-dark-tertiary)] rounded-2xl p-4 md:p-10">
       {/* Tab strip */}
-      <div className="flex mb-6 md:mb-8 bg-[var(--color-dark-tertiary)] rounded-xl overflow-hidden">
+      <div className="flex mb-6 md:mb-8 bg-[#2a3040] rounded-xl p-1.5 gap-1.5">
         {tabs.map((t) => (
-          <button key={t.id} onClick={() => setTab(t.id)} className={`flex-1 py-3.5 md:py-5 text-center text-base md:text-xl font-[900] tracking-wide transition-all ${tab === t.id ? "bg-[var(--color-dark-primary)] text-white border-b-3 border-[var(--color-cyan)]" : "text-[var(--color-dink-secondary)] hover:text-white"}`}>
+          <button key={t.id} onClick={() => setTab(t.id)} className={`flex-1 py-3 md:py-4 text-center text-[15px] md:text-lg font-[800] tracking-wide rounded-lg transition-all ${tab === t.id ? "bg-white text-[var(--color-ink-primary)] shadow-md" : "text-white/60 hover:text-white hover:bg-white/5"}`}>
             {t.label}
           </button>
         ))}
