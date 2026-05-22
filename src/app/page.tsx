@@ -1209,7 +1209,7 @@ export default function Page() {
               <h2 className="text-[clamp(28px,8vw,40px)] font-[900] leading-[1.05] text-white mb-6">Try Genius Mind Risk-Free</h2>
             </FadeUp>
             <FadeUp>
-              <img src="/assets/gm-static-stack.png" alt="Genius Mind product stack" className="w-full h-auto mb-6" />
+              <img src="/assets/gm-static-stack-v2.png" alt="Genius Mind product stack" className="w-full h-auto mb-6" />
             </FadeUp>
             <FadeUp>
               <PrimaryCTA block>SHOP NOW</PrimaryCTA>
@@ -1220,7 +1220,7 @@ export default function Page() {
           {/* Desktop: image left (larger), CTA + reviews right */}
           <div className="hidden md:grid md:grid-cols-[1.3fr_1fr] gap-10 items-center">
             <FadeUp>
-              <img src="/assets/gm-static-stack.png" alt="Genius Mind product stack" className="w-full h-auto" />
+              <img src="/assets/gm-static-stack-v2.png" alt="Genius Mind product stack" className="w-full h-auto" />
             </FadeUp>
 
             <FadeUp delay={0.1}>
