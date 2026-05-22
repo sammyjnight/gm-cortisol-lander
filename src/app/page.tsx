@@ -605,28 +605,23 @@ export default function Page() {
           </FadeUp>
         </div>
 
-        {/* Hand image as background with benefit icons overlaid — Mars Men style */}
-        <div className="relative bg-black">
-          {/* Product image — sits behind the benefit grid */}
-          <img src="/assets/gm-hand-product.png" alt="Hand holding Genius Mind bottle" width={800} height={600} loading="lazy" className="w-full md:w-[55%] mx-auto h-auto object-contain" style={{ maxHeight: 'none' }} />
-
-          {/* Benefit grid overlaid on the lower half of the image */}
-          <div className="absolute bottom-0 left-0 right-0 z-[2]">
-            {/* Gradient so white text is readable over the image */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none" />
-            <div className="relative z-[3] max-w-[900px] mx-auto px-4 pt-6 pb-10 md:pb-14">
-              <Stagger className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-8 md:gap-x-12 md:gap-y-10">
-                {OUTCOME_ICONS.map((o) => (
-                  <motion.div key={o.title} variants={cF} className="text-center">
-                    <div className="flex justify-center mb-2">
-                      <AnimatedIcon icon={o.icon} variants={o.variants} />
-                    </div>
-                    <h3 className="text-white font-[800] text-[14px] md:text-[16px] tracking-[0.05em] uppercase mb-1">{o.title}</h3>
-                    <p className="text-[#c0c8d0] text-[12px] md:text-[14px] leading-[1.4]">{o.desc}</p>
-                  </motion.div>
-                ))}
-              </Stagger>
-            </div>
+        {/* Image as CSS background — benefit icons flow naturally on top */}
+        <div className="relative bg-black bg-[url('/assets/gm-hand-product.png')] bg-[length:90%_auto] md:bg-[length:50%_auto] bg-[position:center_top] bg-no-repeat pt-[75vw] md:pt-[30vw]">
+          {/* Gradient for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black from-40% via-black/70 via-65% to-transparent pointer-events-none" />
+          {/* Benefit grid in normal flow */}
+          <div className="relative z-[2] max-w-[900px] mx-auto px-6 pb-14 md:pb-20">
+            <Stagger className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-8 md:gap-x-12 md:gap-y-10">
+              {OUTCOME_ICONS.map((o) => (
+                <motion.div key={o.title} variants={cF} className="text-center">
+                  <div className="flex justify-center mb-2">
+                    <AnimatedIcon icon={o.icon} variants={o.variants} />
+                  </div>
+                  <h3 className="text-white font-[800] text-[14px] md:text-[16px] tracking-[0.05em] uppercase mb-1">{o.title}</h3>
+                  <p className="text-[#c0c8d0] text-[12px] md:text-[14px] leading-[1.4]">{o.desc}</p>
+                </motion.div>
+              ))}
+            </Stagger>
           </div>
         </div>
       </section>
