@@ -197,22 +197,9 @@ function TrustpilotReviewCarousel() {
   return (
     <section className="sec-light-alt py-14 md:py-20">
       <div className="max-w-3xl mx-auto px-4">
-        {/* Trustpilot badge */}
+        {/* Trustpilot eyebrow */}
         <FadeUp>
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center gap-3 mb-2">
-              <span className={`${h2L} text-2xl md:text-3xl font-[800]`}>Excellent</span>
-              <TrustpilotStars count={5} size={28} />
-            </div>
-            <p className={`${capL} text-sm mb-2`}>
-              Rating <strong className={h2L}>4.8</strong> out of 5 based on{" "}
-              <strong className={`${h2L} underline`}>127 reviews</strong>
-            </p>
-            <div className="flex items-center justify-center gap-1.5 text-[#00b67a] text-sm font-semibold">
-              <svg viewBox="0 0 24 24" width={20} height={20} className="fill-[#00b67a]"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              Trustpilot
-            </div>
-          </div>
+          <div className="flex justify-center mb-8"><TrustpilotEyebrow mode="light" /></div>
         </FadeUp>
 
         {/* Review carousel */}
@@ -220,20 +207,12 @@ function TrustpilotReviewCarousel() {
           <div className="flex">
             {TP_REVIEWS.map((r) => (
               <div key={r.name} className="flex-[0_0_100%] min-w-0 px-1">
-                <div className="bg-white border border-[rgba(0,0,0,0.08)] rounded-2xl p-6 md:p-8 shadow-sm">
-                  {/* Name + verified */}
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className={`${h2L} font-bold text-lg`}>{r.name}</span>
-                    <span className="text-[#00b67a] text-lg">&#x2705;</span>
-                    <span className="inline-flex items-center text-[#00b67a] text-[12px] font-semibold border border-[#00b67a]/40 rounded-full px-3 py-1">Verified buyer</span>
-                  </div>
-
-                  {/* Stars */}
-                  <TrustpilotStars count={5} size={18} />
-
-                  {/* Title + body */}
-                  <p className={`${h2L} font-[800] text-lg md:text-xl mb-3`}>{r.title}</p>
-                  <p className={`${bodyL} text-[15px] md:text-base leading-relaxed`}>&ldquo;{r.body}&rdquo;</p>
+                <div className="bg-white border border-[rgba(0,0,0,0.08)] rounded-xl p-5 md:p-6 shadow-sm">
+                  <div className="flex gap-0.5 mb-2"><TrustpilotStars count={5} size={16} /></div>
+                  <p className={`${capL} text-xs mb-1`}>{r.name} &middot; {r.time}</p>
+                  <p className={`font-bold text-[15px] ${h2L} mb-1.5`}>{r.title}</p>
+                  <p className={`text-[13px] leading-relaxed ${bodyL} mb-2`}>&ldquo;{r.body}&rdquo;</p>
+                  <p className="text-[11px] text-[#00b67a] font-semibold flex items-center gap-1"><Check size={11} strokeWidth={3} />Verified</p>
                 </div>
               </div>
             ))}
@@ -271,6 +250,23 @@ const MINI_REVIEWS = [
   { title: "Sharper than I\u2019ve been in years", body: "At 55, I was worried about my memory declining. After 6 weeks on Genius Mind, I\u2019m sharper than I\u2019ve been in years.", name: "Lucy K." },
 ];
 
+function TrustpilotEyebrow({ mode = "dark" }: { mode?: "dark" | "light" }) {
+  const textCol = mode === "dark" ? "text-white" : h2L;
+  const subCol = mode === "dark" ? "text-white/50" : capL;
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      <span className={`${textCol} font-bold text-sm`}>Excellent</span>
+      <TrustpilotStars count={5} size={16} />
+      <span className={`${subCol} text-xs`}>|</span>
+      <div className="flex items-center gap-1 text-[#00b67a] text-xs font-semibold">
+        <svg viewBox="0 0 24 24" width={14} height={14} className="fill-[#00b67a]"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Trustpilot
+      </div>
+      <span className={`${subCol} text-xs`}>127 reviews</span>
+    </div>
+  );
+}
+
 function MiniReviewScroller() {
   const [ref, api] = useEmblaCarousel({ loop: true, align: "start", slidesToScroll: 1 });
   const [sel, setSel] = useState(0);
@@ -284,35 +280,18 @@ function MiniReviewScroller() {
 
   return (
     <div className="mt-6 text-left">
-      {/* Trustpilot header */}
-      <div className="flex items-center gap-2 mb-3">
-        <span className="text-white font-bold text-sm">Excellent</span>
-        <div className="flex gap-0.5">
-          {[...Array(5)].map((_, i) => (
-            <svg key={i} viewBox="0 0 24 24" width={14} height={14} className="fill-[#00b67a]"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          ))}
-        </div>
-        <span className="text-white/50 text-xs">on</span>
-        <div className="flex items-center gap-1 text-[#00b67a] text-xs font-semibold">
-          <svg viewBox="0 0 24 24" width={12} height={12} className="fill-[#00b67a]"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          Trustpilot
-        </div>
-      </div>
+      <div className="mb-3"><TrustpilotEyebrow mode="dark" /></div>
 
       {/* Carousel */}
       <div className="overflow-hidden rounded-xl" ref={ref}>
         <div className="flex">
           {MINI_REVIEWS.map((r) => (
             <div key={r.name + r.title} className="flex-[0_0_100%] min-w-0 pr-2">
-              <div className="bg-[var(--color-dark-tertiary)] rounded-xl p-5">
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-white font-bold text-sm">{r.name}</span>
-                  <span className="text-[#00b67a] text-sm">&#x2705;</span>
-                  <span className="inline-flex items-center text-[#00b67a] text-[11px] font-semibold border border-[#00b67a]/40 rounded-full px-2.5 py-0.5">Verified buyer</span>
-                </div>
-                <TrustpilotStars count={5} size={14} />
-                <p className="font-bold text-sm text-white mt-2 mb-1.5">{r.title}</p>
-                <p className="text-[13px] leading-relaxed text-white/80">&ldquo;{r.body}&rdquo;</p>
+              <div className="bg-white rounded-xl p-5 text-left">
+                <div className="flex gap-0.5 mb-1.5"><TrustpilotStars count={5} size={14} /></div>
+                <p className={`font-bold text-sm ${h2L} mb-1.5`}>{r.title}</p>
+                <p className={`text-[13px] leading-relaxed ${bodyL} mb-2`}>&ldquo;{r.body}&rdquo;</p>
+                <p className="text-xs"><strong className={h2L}>{r.name}</strong> <span className={capL}>&ndash; Verified Buyer</span></p>
               </div>
             </div>
           ))}
@@ -1217,10 +1196,10 @@ export default function Page() {
             </FadeUp>
           </div>
 
-          {/* Desktop: image left (larger), CTA + reviews right */}
-          <div className="hidden md:grid md:grid-cols-[1.3fr_1fr] gap-10 items-center">
+          {/* Desktop: image left, CTA + reviews right */}
+          <div className="hidden md:grid md:grid-cols-2 gap-10 items-center">
             <FadeUp>
-              <img src="/assets/gm-static-stack-v2.png" alt="Genius Mind product stack" className="w-full h-auto" />
+              <img src="/assets/gm-static-stack-v2.png" alt="Genius Mind product stack" className="w-full h-auto max-w-[500px] mx-auto" />
             </FadeUp>
 
             <FadeUp delay={0.1}>
