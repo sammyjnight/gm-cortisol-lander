@@ -195,18 +195,18 @@ function TrustpilotReviewCarousel() {
   }, [emblaApi2]);
 
   return (
-    <section className="sec-dark py-14 md:py-20">
+    <section className="sec-light-alt py-14 md:py-20">
       <div className="max-w-3xl mx-auto px-4">
         {/* Trustpilot badge */}
         <FadeUp>
           <div className="text-center mb-8">
             <div className="flex items-center justify-center gap-3 mb-2">
-              <span className="text-white text-2xl md:text-3xl font-[800]">Excellent</span>
+              <span className={`${h2L} text-2xl md:text-3xl font-[800]`}>Excellent</span>
               <TrustpilotStars count={5} size={28} />
             </div>
-            <p className="text-white/60 text-sm mb-2">
-              Rating <strong className="text-white">4.8</strong> out of 5 based on{" "}
-              <strong className="text-white underline">127 reviews</strong>
+            <p className={`${capL} text-sm mb-2`}>
+              Rating <strong className={h2L}>4.8</strong> out of 5 based on{" "}
+              <strong className={`${h2L} underline`}>127 reviews</strong>
             </p>
             <div className="flex items-center justify-center gap-1.5 text-[#00b67a] text-sm font-semibold">
               <svg viewBox="0 0 24 24" width={20} height={20} className="fill-[#00b67a]"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -220,10 +220,10 @@ function TrustpilotReviewCarousel() {
           <div className="flex">
             {TP_REVIEWS.map((r) => (
               <div key={r.name} className="flex-[0_0_100%] min-w-0 px-1">
-                <div className="bg-[var(--color-dark-secondary)] border border-[rgba(255,255,255,0.08)] rounded-2xl p-6 md:p-8">
+                <div className="bg-white border border-[rgba(0,0,0,0.08)] rounded-2xl p-6 md:p-8 shadow-sm">
                   {/* Name + verified */}
                   <div className="flex items-center gap-3 mb-3">
-                    <span className="text-white font-bold text-lg">{r.name}</span>
+                    <span className={`${h2L} font-bold text-lg`}>{r.name}</span>
                     <span className="text-[#00b67a] text-lg">&#x2705;</span>
                     <span className="inline-flex items-center text-[var(--color-cyan)] text-[12px] font-semibold border border-[var(--color-cyan)]/40 rounded-full px-3 py-1">Verified buyer</span>
                   </div>
@@ -234,8 +234,8 @@ function TrustpilotReviewCarousel() {
                   </div>
 
                   {/* Title + body */}
-                  <p className="text-white font-[800] text-lg md:text-xl mb-3">{r.title}</p>
-                  <p className="text-white/80 text-[15px] md:text-base leading-relaxed">&ldquo;{r.body}&rdquo;</p>
+                  <p className={`${h2L} font-[800] text-lg md:text-xl mb-3`}>{r.title}</p>
+                  <p className={`${bodyL} text-[15px] md:text-base leading-relaxed`}>&ldquo;{r.body}&rdquo;</p>
                 </div>
               </div>
             ))}
@@ -245,18 +245,18 @@ function TrustpilotReviewCarousel() {
         {/* Dots */}
         <div className="flex justify-center gap-2 mt-5">
           {TP_REVIEWS.map((_, i) => (
-            <button key={i} onClick={() => emblaApi2?.scrollTo(i)} className={`w-2.5 h-2.5 rounded-full transition-all ${i === selRev ? "bg-white" : "bg-white/30"}`} />
+            <button key={i} onClick={() => emblaApi2?.scrollTo(i)} className={`w-2.5 h-2.5 rounded-full transition-all ${i === selRev ? "bg-[var(--color-ink-primary)]" : "bg-[var(--color-ink-tertiary)]/30"}`} />
           ))}
         </div>
 
         {/* Swipe nav */}
         <div className="flex items-center justify-center gap-4 mt-4">
-          <button onClick={scrollPrevR} aria-label="Previous review" className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:border-white/60 transition-colors">
-            <ChevronLeft size={20} className="text-white" />
+          <button onClick={scrollPrevR} aria-label="Previous review" className="w-10 h-10 rounded-full border border-[var(--color-ink-tertiary)]/30 flex items-center justify-center hover:border-[var(--color-ink-tertiary)] transition-colors">
+            <ChevronLeft size={20} className={capL} />
           </button>
-          <span className="label-mono text-white/60 text-[11px] tracking-[0.15em]">SWIPE TO SEE MORE</span>
-          <button onClick={scrollNextR} aria-label="Next review" className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:border-white/60 transition-colors">
-            <ChevronRight size={20} className="text-white" />
+          <span className={`label-mono ${capL} text-[11px] tracking-[0.15em]`}>SWIPE TO SEE MORE</span>
+          <button onClick={scrollNextR} aria-label="Next review" className="w-10 h-10 rounded-full border border-[var(--color-ink-tertiary)]/30 flex items-center justify-center hover:border-[var(--color-ink-tertiary)] transition-colors">
+            <ChevronRight size={20} className={capL} />
           </button>
         </div>
       </div>
@@ -1303,29 +1303,29 @@ export default function Page() {
       {/* ═══ TRUSTPILOT REVIEWS ═══ */}
       <TrustpilotReviewCarousel />
 
-      {/* ═══ §10 MEET OUR NUTRITIONIST — DARK (Mars Men advisory board style) ═══ */}
-      <section className="sec-dark py-14 md:py-20">
+      {/* ═══ §10 MEET OUR NUTRITIONIST — LIGHT ═══ */}
+      <section className="sec-light py-14 md:py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <FadeUp>
-            <h2 className="text-[clamp(32px,5vw,52px)] font-[900] leading-[1.05] mb-12 text-white">Meet Our Nutritionist</h2>
+            <h2 className={`text-[clamp(32px,5vw,52px)] font-[900] leading-[1.05] mb-12 ${h2L}`}>Meet Our Nutritionist</h2>
           </FadeUp>
 
           <FadeUp delay={0.1}>
-            {/* Circular headshot — white ring on dark bg like Mars Men */}
+            {/* Circular headshot */}
             <div className="flex justify-center mb-6">
-              <div className="w-[180px] h-[180px] md:w-[220px] md:h-[220px] rounded-full overflow-hidden border-[5px] border-white/20 bg-white">
+              <div className="w-[180px] h-[180px] md:w-[220px] md:h-[220px] rounded-full overflow-hidden border-[5px] border-[rgba(0,166,210,0.15)] shadow-lg">
                 <img src="/assets/shona-wilkinson.png" alt="Shona Wilkinson, Registered Nutritionist" width={220} height={220} loading="lazy" className="w-full h-full object-cover" />
               </div>
             </div>
 
-            {/* Name — large bold white like Mars Men */}
-            <h3 className="text-white font-[900] text-[28px] md:text-[36px] mb-2">Shona Wilkinson, RNutr</h3>
+            {/* Name */}
+            <h3 className={`${h2L} font-[900] text-[28px] md:text-[36px] mb-2`}>Shona Wilkinson, RNutr</h3>
 
-            {/* Subtitle — cyan mono uppercase like Mars Men orange */}
+            {/* Subtitle */}
             <p className="font-mono text-[var(--color-cyan)] tracking-[0.15em] uppercase text-[13px] md:text-[14px] font-bold mb-8">Lead Nutritionist at JustFloow</p>
 
-            {/* Bio — white readable text */}
-            <p className="text-white/90 text-[16px] md:text-[18px] leading-relaxed max-w-2xl mx-auto mb-0">
+            {/* Bio */}
+            <p className={`${bodyL} text-[16px] md:text-[18px] leading-relaxed max-w-2xl mx-auto mb-0`}>
               Shona is a registered nutritionist with over 15 years of experience in clinical nutrition and supplement formulation. She has worked with elite athletes, executives, and health brands to develop evidence-based solutions for cognitive performance.
             </p>
           </FadeUp>
