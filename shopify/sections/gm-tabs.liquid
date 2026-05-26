@@ -1,0 +1,411 @@
+<!-- ═══ §11 COMBINED TABBED SECTION ═══ -->
+<section class="sec-dark" style="padding: 40px 0 56px;">
+  <div style="max-width: 1136px; margin: 0 auto; padding: 0 16px;">
+    <div style="background: var(--color-dark-secondary); border: 1px solid var(--color-dark-tertiary); border-radius: 16px; padding: 16px;" class="gm-tabs-container">
+
+      <!-- Tab strip -->
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); margin-bottom: 24px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.15);">
+        {%- assign tab_labels = "What to Expect|FAQs|Reviews" | split: "|" -%}
+        {%- assign tab_ids = "expect|faq|reviews" | split: "|" -%}
+        {%- for label in tab_labels -%}
+          <button
+            class="gm-tab{% if forloop.first %} gm-tab--active{% endif %}"
+            data-tab="{{ tab_ids[forloop.index0] }}"
+            onclick="gmSwitchTab('{{ tab_ids[forloop.index0] }}')"
+            style="padding: 16px 0; text-align: center; font-size: 15px; font-weight: 800; letter-spacing: 0.03em; border: none; cursor: pointer; transition: all 0.2s; {% unless forloop.last %}border-right: 1px solid rgba(255,255,255,0.1);{% endunless %} {% if forloop.first %}background: #3a4255; color: #fff; border-bottom: 3px solid var(--color-cyan);{% else %}background: #252b38; color: rgba(255,255,255,0.5); border-bottom: 3px solid transparent;{% endif %}"
+          >
+            {{ label }}
+          </button>
+        {%- endfor -%}
+      </div>
+
+      <!-- ═══ WHAT TO EXPECT PANEL ═══ -->
+      <div class="gm-tab-panel" data-panel="expect" style="display: block;">
+        <h3 style="font-size: clamp(24px,4vw,36px); font-weight: 900; color: var(--color-dink-primary); margin-bottom: 16px;">What Happens After You Start Restoring Cognitive Chemistry</h3>
+
+        <!-- Cyan progress line with dots -->
+        <div style="position: relative; display: flex; align-items: center; justify-content: space-between; margin: 0 16px 24px;">
+          <div style="position: absolute; left: 0; right: 0; top: 50%; height: 3px; background: var(--color-cyan);"></div>
+          <div style="position: relative; width: 12px; height: 12px; border-radius: 50%; background: var(--color-cyan); border: 2px solid var(--color-cyan); z-index: 1;"></div>
+          <div style="position: relative; width: 12px; height: 12px; border-radius: 50%; background: var(--color-cyan); border: 2px solid var(--color-cyan); z-index: 1;"></div>
+          <div style="position: relative; width: 12px; height: 12px; border-radius: 50%; background: var(--color-cyan); border: 2px solid var(--color-cyan); z-index: 1;"></div>
+        </div>
+
+        <!-- 3 stage cards -->
+        <div class="gm-expect-grid">
+          <!-- DAY 1 -->
+          <div style="background: var(--color-dark-tertiary); border-radius: 12px; padding: 20px 24px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--color-cyan)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              <span style="font-family: var(--font-mono); color: var(--color-cyan); font-size: 14px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase;">DAY</span>
+              <span style="font-family: var(--font-mono); color: var(--color-cyan); font-size: 32px; font-weight: 900; line-height: 1;">1</span>
+              <span style="font-weight: 900; font-size: 24px; color: var(--color-dink-primary);">Activation</span>
+            </div>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+              <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-cyan); margin-top: 6px; flex-shrink: 0;"></span>Guarana and B vitamins provide an initial lift</li>
+              <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-cyan); margin-top: 6px; flex-shrink: 0;"></span>L-Tyrosine begins supporting dopamine pathways</li>
+              <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-cyan); margin-top: 6px; flex-shrink: 0;"></span>Most users feel slightly more present</li>
+              <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-cyan); margin-top: 6px; flex-shrink: 0;"></span>The cognitive foundation starts building</li>
+            </ul>
+          </div>
+
+          <!-- DAY 30 -->
+          <div style="background: var(--color-dark-tertiary); border-radius: 12px; padding: 20px 24px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--color-cyan)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              <span style="font-family: var(--font-mono); color: var(--color-cyan); font-size: 14px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase;">DAY</span>
+              <span style="font-family: var(--font-mono); color: var(--color-cyan); font-size: 32px; font-weight: 900; line-height: 1;">30</span>
+              <span style="font-weight: 900; font-size: 24px; color: var(--color-dink-primary);">The Momentum</span>
+            </div>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+              <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-cyan); margin-top: 6px; flex-shrink: 0;"></span>Bacopa and Lion&rsquo;s Mane reach effective levels</li>
+              <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-cyan); margin-top: 6px; flex-shrink: 0;"></span>The afternoon crash flattens</li>
+              <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-cyan); margin-top: 6px; flex-shrink: 0;"></span>Focus extends naturally, less forced</li>
+              <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-cyan); margin-top: 6px; flex-shrink: 0;"></span>Word-finding and recall feel sharper</li>
+            </ul>
+          </div>
+
+          <!-- DAY 90 -->
+          <div style="background: var(--color-dark-tertiary); border-radius: 12px; padding: 20px 24px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--color-cyan)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+              <span style="font-family: var(--font-mono); color: var(--color-cyan); font-size: 14px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase;">DAY</span>
+              <span style="font-family: var(--font-mono); color: var(--color-cyan); font-size: 32px; font-weight: 900; line-height: 1;">90</span>
+              <span style="font-weight: 900; font-size: 24px; color: var(--color-dink-primary);">Lock-In</span>
+            </div>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+              <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-cyan); margin-top: 6px; flex-shrink: 0;"></span>All 16 ingredients working synergistically</li>
+              <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-cyan); margin-top: 6px; flex-shrink: 0;"></span>Cognitive infrastructure, fully built</li>
+              <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-cyan); margin-top: 6px; flex-shrink: 0;"></span>Decision stamina across the full working day</li>
+              <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-cyan); margin-top: 6px; flex-shrink: 0;"></span>This is your new cognitive baseline</li>
+            </ul>
+          </div>
+        </div>
+
+        <p style="color: var(--color-dink-tertiary); font-size: 12px; text-align: center; margin-top: 16px;">*Individual results may vary.</p>
+      </div>
+
+      <!-- ═══ FAQs PANEL ═══ -->
+      <div class="gm-tab-panel" data-panel="faq" style="display: none;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'faq' -%}
+              <div class="gm-faq-item" style="background: var(--color-dark-tertiary); border-radius: 12px; overflow: hidden;" {{ block.shopify_attributes }}>
+                <button
+                  onclick="gmToggleFaq(this)"
+                  style="width: 100%; text-align: left; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; border: none; background: none; cursor: pointer;"
+                >
+                  <span style="font-weight: 900; font-size: 17px; text-transform: uppercase; letter-spacing: 0.03em; color: #fff;">{{ block.settings.question }}</span>
+                  <svg class="gm-faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; transition: transform 0.2s;"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <div class="gm-faq-body" style="overflow: hidden; max-height: 0; transition: max-height 0.3s ease;">
+                  <div style="padding: 0 20px 16px; font-size: 14px; color: var(--color-dink-secondary); line-height: 1.6;">{{ block.settings.answer }}</div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <!-- ═══ REVIEWS PANEL ═══ -->
+      <div class="gm-tab-panel" data-panel="reviews" style="display: none;">
+        <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px;">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'tab_review' -%}
+              <div class="gm-review-accordion" style="background: var(--color-dark-tertiary); border-radius: 12px; overflow: hidden;" {{ block.shopify_attributes }}>
+                <button
+                  onclick="gmToggleReview(this)"
+                  style="width: 100%; text-align: left; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border: none; background: none; cursor: pointer;"
+                >
+                  <div>
+                    <div style="display: flex; gap: 2px; margin-bottom: 6px;">
+                      {%- for s in (1..5) -%}
+                        <svg viewBox="0 0 24 24" width="18" height="18" style="fill: #f5a623; color: #f5a623;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      {%- endfor -%}
+                    </div>
+                    <span style="font-weight: 900; font-size: 17px; text-transform: uppercase; letter-spacing: 0.03em; color: #fff;">&ldquo;{{ block.settings.review_title }}&rdquo;</span>
+                  </div>
+                  <svg class="gm-rev-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; transition: transform 0.2s;"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <div class="gm-rev-body" style="overflow: hidden; max-height: 0; transition: max-height 0.3s ease;">
+                  <div style="padding: 0 20px 16px; font-size: 14px; color: var(--color-dink-secondary); line-height: 1.6;">
+                    &ldquo;{{ block.settings.review_body }}&rdquo;
+                    <br>
+                    <span style="font-size: 12px; color: var(--color-cyan); font-weight: 700; margin-top: 8px; display: inline-block;">&mdash; {{ block.settings.reviewer_name }}, Verified Buyer</span>
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        <div style="text-align: center;">
+          <a href="{{ section.settings.shop_url | default: 'https://justfloow.com/products/genius-mind' }}" class="btn-primary">
+            <span>READ MORE</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .gm-tabs-container {
+    padding: 16px;
+  }
+  @media (min-width: 768px) {
+    .gm-tabs-container {
+      padding: 40px;
+    }
+    .gm-tab {
+      font-size: 18px !important;
+      padding: 20px 0 !important;
+    }
+  }
+  .gm-tab:hover:not(.gm-tab--active) {
+    color: #fff !important;
+    background: #2f3645 !important;
+  }
+  .gm-expect-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 768px) {
+    .gm-expect-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
+
+<script>
+(function() {
+  /* ═══ Tab switching ═══ */
+  window.gmSwitchTab = function(tabId) {
+    /* Update tab buttons */
+    document.querySelectorAll('.gm-tab').forEach(function(btn) {
+      var isActive = btn.getAttribute('data-tab') === tabId;
+      btn.classList.toggle('gm-tab--active', isActive);
+      btn.style.background = isActive ? '#3a4255' : '#252b38';
+      btn.style.color = isActive ? '#fff' : 'rgba(255,255,255,0.5)';
+      btn.style.borderBottomColor = isActive ? 'var(--color-cyan)' : 'transparent';
+    });
+    /* Show/hide panels */
+    document.querySelectorAll('.gm-tab-panel').forEach(function(panel) {
+      panel.style.display = panel.getAttribute('data-panel') === tabId ? 'block' : 'none';
+    });
+  };
+
+  /* ═══ FAQ accordion ═══ */
+  window.gmToggleFaq = function(btn) {
+    var item = btn.closest('.gm-faq-item');
+    var body = item.querySelector('.gm-faq-body');
+    var chevron = item.querySelector('.gm-faq-chevron');
+    var isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
+
+    /* Close all others */
+    document.querySelectorAll('.gm-faq-item').forEach(function(other) {
+      if (other !== item) {
+        other.querySelector('.gm-faq-body').style.maxHeight = '0';
+        other.querySelector('.gm-faq-chevron').style.transform = 'rotate(0deg)';
+      }
+    });
+
+    if (isOpen) {
+      body.style.maxHeight = '0';
+      chevron.style.transform = 'rotate(0deg)';
+    } else {
+      body.style.maxHeight = '300px';
+      chevron.style.transform = 'rotate(180deg)';
+    }
+  };
+
+  /* ═══ Review accordion ═══ */
+  window.gmToggleReview = function(btn) {
+    var item = btn.closest('.gm-review-accordion');
+    var body = item.querySelector('.gm-rev-body');
+    var chevron = item.querySelector('.gm-rev-chevron');
+    var isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
+
+    /* Close all others */
+    document.querySelectorAll('.gm-review-accordion').forEach(function(other) {
+      if (other !== item) {
+        other.querySelector('.gm-rev-body').style.maxHeight = '0';
+        other.querySelector('.gm-rev-chevron').style.transform = 'rotate(0deg)';
+      }
+    });
+
+    if (isOpen) {
+      body.style.maxHeight = '0';
+      chevron.style.transform = 'rotate(0deg)';
+    } else {
+      body.style.maxHeight = '300px';
+      chevron.style.transform = 'rotate(180deg)';
+    }
+  };
+})();
+</script>
+
+{% schema %}
+{
+  "name": "GM Tabs",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "url",
+      "id": "shop_url",
+      "label": "Shop URL",
+      "default": "https://justfloow.com/products/genius-mind"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What is Genius Mind?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "Genius Mind is a cognitive stack with 16 clinically studied ingredients."
+        }
+      ]
+    },
+    {
+      "type": "tab_review",
+      "name": "Review Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "review_title",
+          "label": "Review title",
+          "default": "Fog has completely lifted"
+        },
+        {
+          "type": "textarea",
+          "id": "review_body",
+          "label": "Review body",
+          "default": "Since taking Genius Mind the fog has lifted."
+        },
+        {
+          "type": "text",
+          "id": "reviewer_name",
+          "label": "Reviewer name",
+          "default": "Mark D."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GM Tabs",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What is Genius Mind?",
+            "answer": "Genius Mind is a cognitive stack with 16 clinically studied ingredients — including high-ratio botanical extracts, amino acid precursors, and essential cofactors — designed to support sustained focus throughout the working day. No stimulant dependency, no crashes."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Who is Genius Mind for?",
+            "answer": "Genius Mind is built for operators, founders, and high-performers who need sustained cognitive output across long working days. If you're hitting a wall by mid-afternoon, building caffeine tolerance, or making worse decisions later in the day, this is designed for you."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How do I take Genius Mind?",
+            "answer": "Take 2 capsules daily with breakfast or 30-60 minutes before your most demanding work. Each bottle contains 60 capsules (30 servings). For best results, use consistently for at least 90 days."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How long until I see results?",
+            "answer": "Some users report a subtle lift in clarity within the first 1-2 weeks. Research suggests Bacopa and Lion's Mane may reach optimal levels around weeks 4-8. Month 3 is typically when long-term customers report the most significant changes."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can Genius Mind replace my coffee?",
+            "answer": "Many customers reduce or eliminate their coffee intake. The Guarana provides clean, sustained energy without the tolerance-building and crash cycle of caffeine. However, Genius Mind is designed to work alongside moderate coffee intake too."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can I stack it with creatine, omega-3, magnesium?",
+            "answer": "Yes. Genius Mind is the cognitive chemistry layer on top of an existing operator stack. It doesn't replace creatine, omega-3, or magnesium — those address different systems."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What happens if I stop taking it?",
+            "answer": "Genius Mind isn't habit-forming and doesn't create withdrawal. The supportive effect depends on consistent intake — stop, and the cognitive chemistry support stops. Many long-term customers run it as a permanent part of their stack."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Is it safe for daily, long-term use?",
+            "answer": "Yes. The formula is non-stimulant-dependent, made in a GMP-certified UK facility, third-party tested, and designed for daily intake. The ingredients are at clinical doses with no tolerance pathway."
+          }
+        },
+        {
+          "type": "tab_review",
+          "settings": {
+            "review_title": "Fog has completely lifted",
+            "review_body": "I run a small business on my own. I was putting everything off... Since taking Genius Mind the fog has lifted. I'm actually getting through decisions instead of circling them.",
+            "reviewer_name": "Mark D."
+          }
+        },
+        {
+          "type": "tab_review",
+          "settings": {
+            "review_title": "The 3pm slump is gone",
+            "review_body": "The 3pm slump was killing my output. Two months in and I'm making the same quality decisions at 4pm that I was making at 9.",
+            "reviewer_name": "Sarah K."
+          }
+        },
+        {
+          "type": "tab_review",
+          "settings": {
+            "review_title": "First thing that actually worked",
+            "review_body": "I've tried the usual stack — AG1, caffeine protocols, the whole thing. This is the first supplement that's actually moved the needle on how long I can sustain focus.",
+            "reviewer_name": "James T."
+          }
+        },
+        {
+          "type": "tab_review",
+          "settings": {
+            "review_title": "Best nootropic I've tried",
+            "review_body": "This is the first one where I actually feel a sustained difference rather than a short spike. The ingredient quality is clearly a step above.",
+            "reviewer_name": "Tom R."
+          }
+        },
+        {
+          "type": "tab_review",
+          "settings": {
+            "review_title": "Great product, great company",
+            "review_body": "Ordered the 90-day supply and haven't looked back. Focus is sharper, I'm sleeping better, and the customer service was brilliant.",
+            "reviewer_name": "Emma H."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

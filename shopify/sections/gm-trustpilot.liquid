@@ -1,0 +1,250 @@
+<!-- ═══ TRUSTPILOT REVIEW CAROUSEL ═══ -->
+<section class="sec-light-alt" style="padding: 56px 0;">
+  <div style="max-width: 768px; margin: 0 auto; padding: 0 16px;">
+
+    <!-- Trustpilot eyebrow -->
+    <div class="fade-up" data-animate style="text-align: center; margin-bottom: 32px;">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
+        <span style="color: #191919; font-weight: 700; font-size: clamp(20px, 3vw, 28px);">Excellent</span>
+        <!-- 4.5 green square stars -->
+        <span style="display: inline-flex; gap: 2px;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; background: #00b67a; width: 28px; height: 28px;"><svg viewBox="0 0 24 24" width="15" height="15" style="fill: #fff;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+          <span style="display: inline-flex; align-items: center; justify-content: center; background: #00b67a; width: 28px; height: 28px;"><svg viewBox="0 0 24 24" width="15" height="15" style="fill: #fff;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+          <span style="display: inline-flex; align-items: center; justify-content: center; background: #00b67a; width: 28px; height: 28px;"><svg viewBox="0 0 24 24" width="15" height="15" style="fill: #fff;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+          <span style="display: inline-flex; align-items: center; justify-content: center; background: #00b67a; width: 28px; height: 28px;"><svg viewBox="0 0 24 24" width="15" height="15" style="fill: #fff;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+          <span style="display: inline-flex; align-items: center; justify-content: center; position: relative; overflow: hidden; background: #dcdce6; width: 28px; height: 28px;"><span style="position: absolute; left: 0; top: 0; bottom: 0; width: 60%; background: #00b67a;"></span><svg viewBox="0 0 24 24" width="15" height="15" style="fill: #fff; position: relative; z-index: 1;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+        </span>
+      </div>
+      <p style="color: #191919; font-size: 13px;">
+        Rated <strong>4.3</strong> / 5 based on
+        <a href="https://uk.trustpilot.com/review/justfloow.com" target="_blank" rel="noopener noreferrer" style="color: #191919; font-weight: 700; text-decoration: underline; text-underline-offset: 2px;">141 reviews</a> on
+        <span style="display: inline-flex; align-items: center; gap: 4px; font-weight: 900; letter-spacing: -0.02em;">
+          <svg viewBox="0 0 24 24" width="16" height="16" style="fill: #00b67a; display: inline;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Trustpilot
+        </span>
+      </p>
+    </div>
+
+    <!-- Review carousel -->
+    <div id="tp-carousel" style="overflow: hidden; border-radius: 16px;">
+      <div id="tp-carousel-track" style="display: flex; transition: transform 0.4s ease;">
+        {% for block in section.blocks %}
+          {% if block.type == 'review' %}
+            <div class="tp-slide" style="flex: 0 0 100%; min-width: 0; padding: 0 4px; box-sizing: border-box;">
+              <div style="background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 20px 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+                <!-- Stars -->
+                <div style="display: flex; gap: 2px; margin-bottom: 8px;">
+                  <svg viewBox="0 0 24 24" width="16" height="16" style="fill: #00b67a;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" width="16" height="16" style="fill: #00b67a;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" width="16" height="16" style="fill: #00b67a;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" width="16" height="16" style="fill: #00b67a;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" width="16" height="16" style="fill: #00b67a;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <!-- Name + time -->
+                <p style="color: var(--color-ink-tertiary); font-size: 12px; margin-bottom: 4px;">{{ block.settings.name }} &middot; {{ block.settings.time }}</p>
+                <!-- Title -->
+                <p style="font-weight: 700; font-size: 15px; color: var(--color-ink-primary); margin-bottom: 6px;">{{ block.settings.title }}</p>
+                <!-- Body -->
+                <p style="font-size: 13px; line-height: 1.6; color: var(--color-ink-secondary); margin-bottom: 8px;">&ldquo;{{ block.settings.body }}&rdquo;</p>
+                <!-- Verified -->
+                <p style="font-size: 11px; color: #00b67a; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#00b67a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Verified
+                </p>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Dot pagination -->
+    <div id="tp-dots" style="display: flex; justify-content: center; gap: 8px; margin-top: 20px;"></div>
+
+    <!-- Swipe nav -->
+    <div style="display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 16px;">
+      <button id="tp-prev" aria-label="Previous review" style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.12); background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: border-color 0.2s;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-ink-tertiary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <span style="font-family: monospace; color: var(--color-ink-tertiary); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;">SWIPE TO SEE MORE</span>
+      <button id="tp-next" aria-label="Next review" style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.12); background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: border-color 0.2s;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-ink-tertiary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 768px) {
+    .sec-light-alt { padding: 80px 0 !important; }
+  }
+  #tp-prev:hover, #tp-next:hover { border-color: var(--color-ink-tertiary) !important; }
+</style>
+
+<script>
+  (function() {
+    var wrap = document.getElementById('tp-carousel');
+    var track = document.getElementById('tp-carousel-track');
+    var dots = document.getElementById('tp-dots');
+    var prevBtn = document.getElementById('tp-prev');
+    var nextBtn = document.getElementById('tp-next');
+    if (!wrap || !track) return;
+
+    var slides = track.querySelectorAll('.tp-slide');
+    var total = slides.length;
+    var current = 0;
+
+    /* Build dots */
+    for (var i = 0; i < total; i++) {
+      var dot = document.createElement('button');
+      dot.style.cssText = 'width:10px;height:10px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:background 0.2s;';
+      dot.setAttribute('aria-label', 'Go to review ' + (i + 1));
+      dot.dataset.idx = i;
+      dot.addEventListener('click', function() { goTo(parseInt(this.dataset.idx)); });
+      dots.appendChild(dot);
+    }
+
+    function goTo(idx) {
+      current = ((idx % total) + total) % total;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      updateDots();
+    }
+
+    function updateDots() {
+      var allDots = dots.querySelectorAll('button');
+      for (var j = 0; j < allDots.length; j++) {
+        allDots[j].style.background = j === current ? 'var(--color-ink-primary)' : 'rgba(0,0,0,0.12)';
+      }
+    }
+
+    prevBtn.addEventListener('click', function() { goTo(current - 1); });
+    nextBtn.addEventListener('click', function() { goTo(current + 1); });
+
+    /* Touch / swipe support */
+    var startX = 0, moveX = 0;
+    wrap.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+    wrap.addEventListener('touchmove', function(e) { moveX = e.touches[0].clientX; }, { passive: true });
+    wrap.addEventListener('touchend', function() {
+      var diff = startX - moveX;
+      if (Math.abs(diff) > 50) { diff > 0 ? goTo(current + 1) : goTo(current - 1); }
+    });
+
+    updateDots();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "GM Trustpilot",
+  "tag": "div",
+  "class": "gm-trustpilot-section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Reviewer name"
+        },
+        {
+          "type": "text",
+          "id": "time",
+          "label": "Time ago"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Review title"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Review body"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GM Trustpilot",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "name": "Mark D.",
+            "time": "2 days ago",
+            "title": "Fog has completely lifted",
+            "body": "I run a small business and the mental demands are relentless. Within a week of taking Genius Mind, the brain fog I'd been battling for months completely lifted. I'm sharper in meetings, quicker with decisions, and I actually feel like myself again."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Sarah K.",
+            "time": "4 days ago",
+            "title": "The 3pm slump is gone",
+            "body": "I used to hit a wall every afternoon and reach for another coffee. Since starting Genius Mind, my energy and focus stay consistent throughout the entire day. The quality of my decisions in the afternoon is noticeably better. This stuff actually works."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "James T.",
+            "time": "1 week ago",
+            "title": "First thing that actually worked",
+            "body": "I've tried AG1, excessive caffeine, all sorts of nootropic stacks. Nothing ever made a real difference until Genius Mind. It's subtle but unmistakable \u2014 my recall is better, I can focus for longer, and I don't feel wired or anxious. Just clean, steady mental performance."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Lucy W.",
+            "time": "1 week ago",
+            "title": "Noticed a difference within days",
+            "body": "I was sceptical but gave it a shot. By day three I noticed my energy levels were more stable and I wasn't reaching for sugar to get through the afternoon. A month in and I genuinely feel like a sharper version of myself. Really impressed."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Tom R.",
+            "time": "2 weeks ago",
+            "title": "Best nootropic I've tried",
+            "body": "I've been through a fair few brain supplements over the years and most of them are overhyped nonsense. Genius Mind is the first one where I've noticed a sustained, genuine difference. My focus is sharper, my memory feels more reliable, and I just feel more switched on day to day."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Emma H.",
+            "time": "2 weeks ago",
+            "title": "Great product, great company",
+            "body": "Ordered the 90-day supply and it arrived quickly with lovely packaging. The product itself has been brilliant \u2014 I feel more focused at work and my mood has genuinely improved. Customer service was also really helpful when I had a question. Will definitely be reordering."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Dan P.",
+            "time": "3 weeks ago",
+            "title": "Exactly what I needed",
+            "body": "Running two businesses meant I was mentally drained by midday. A friend recommended Genius Mind and I'm so glad I listened. I can work deeper for longer and I'm making better decisions under pressure. It's become a non-negotiable part of my morning routine."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Rachel M.",
+            "time": "3 weeks ago",
+            "title": "Impressed with the transparency",
+            "body": "What sold me on Genius Mind was the transparency around ingredients and dosing. No proprietary blends, no hidden fillers. And the results have matched the claims \u2014 better focus, more mental clarity, and I sleep well too. It's refreshing to find a supplement company that actually delivers."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,357 @@
+{% comment %}
+  Genius Mind — Sections 03 + 04 + 05 combined
+  "Why Everything Failed" → "Stress Was Short" → "Operators Who Crack The Code"
+  White background throughout
+{% endcomment %}
+
+{%- assign s = section.settings -%}
+
+<!-- ═══ §03 WHY EVERYTHING FAILED ═══ -->
+<section class="sec-light sec-pad-tight">
+  <div class="sec-container">
+
+    <h2 class="h2-mm fade-up" style="color:#000;text-align:center;margin-bottom:40px;">
+      {{ s.sec03_headline | default: "Why Everything You&rsquo;ve Tried Made Logical Sense &ndash; And Still Didn&rsquo;t Work" }}
+    </h2>
+
+    <!-- Desktop: text left, image right -->
+    <div class="desktop-only grid-mm fade-up">
+      <div class="col-text-mm">
+        <p class="body-mm" style="color:#000;font-weight:700;margin-bottom:20px;">
+          {{ s.sec03_bold_intro | default: "You didn&rsquo;t fail. The strategy failed you." }}
+        </p>
+        <p class="body-mm" style="color:rgba(0,0,0,0.7);margin-bottom:24px;">
+          {{ s.sec03_body_1 | default: "Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&rsquo;ve tried attacked the symptom. None of them went after the cause." }}
+        </p>
+        <p class="body-mm" style="color:#000;font-weight:700;margin-bottom:20px;">
+          {{ s.sec03_bold_cause | default: "The cause is cortisol." }}
+        </p>
+        <p class="body-mm" style="color:rgba(0,0,0,0.5);margin-bottom:20px;">
+          {{ s.sec03_reason_line | default: "And the reason is simple:" }}
+        </p>
+        <p class="breakout-line" style="color:var(--color-cyan);">
+          {{ s.sec03_breakout | default: "Your Brain Was Built for a World That No Longer Exists." }}
+        </p>
+      </div>
+      <div>
+        <img
+          src="{{ 'gm-illustration-1.png' | asset_url }}"
+          alt="Operator collapsed on floor of home office"
+          width="380" height="340" loading="lazy"
+          class="rounded-xl"
+        />
+      </div>
+    </div>
+
+    <!-- Mobile: text wraps around floated image -->
+    <div class="mobile-only fade-up">
+      <p class="body-mm" style="color:#000;font-weight:700;margin-bottom:16px;">
+        {{ s.sec03_bold_intro | default: "You didn&rsquo;t fail. The strategy failed you." }}
+      </p>
+      <div>
+        <img
+          src="{{ 'gm-illustration-1.png' | asset_url }}"
+          alt="Operator collapsed on floor of home office"
+          width="150" height="150" loading="lazy"
+          style="float:right;margin-left:16px;margin-bottom:8px;width:150px;height:auto;border-radius:8px;"
+        />
+        <p class="body-mm" style="color:rgba(0,0,0,0.7);margin-bottom:16px;">
+          {{ s.sec03_body_1 | default: "Every nootropic stack, every focus app, every &ldquo;discipline&rdquo; hack you&rsquo;ve tried attacked the symptom. None of them went after the cause." }}
+        </p>
+        <p class="body-mm" style="color:#000;font-weight:700;margin-bottom:8px;">
+          {{ s.sec03_bold_cause | default: "The cause is cortisol." }}
+        </p>
+        <p class="body-mm" style="color:rgba(0,0,0,0.5);margin-bottom:4px;">
+          {{ s.sec03_reason_line | default: "And the reason is simple:" }}
+        </p>
+      </div>
+      <div style="clear:both;"></div>
+      <p class="breakout-line" style="color:var(--color-cyan);margin-top:8px;margin-bottom:8px;">
+        {{ s.sec03_breakout | default: "Your Brain Was Built for a World That No Longer Exists." }}
+      </p>
+    </div>
+
+    <!-- ═══ §04 STRESS WAS SHORT ═══ -->
+
+    <!-- Desktop: image left, text right -->
+    <div class="desktop-only grid-mm fade-up" style="margin-bottom:40px;">
+      <div>
+        <img
+          src="{{ 'gm-illustration-2.png' | asset_url }}"
+          alt="Operator slumped on couch"
+          width="380" height="340" loading="lazy"
+          class="rounded-xl"
+        />
+      </div>
+      <div class="col-text-mm">
+        <p class="body-mm" style="color:#000;margin-bottom:16px;">
+          {{ s.sec04_body_1 | default: "For most of human history, stress was short. A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly." }}
+        </p>
+        <p class="body-mm" style="color:#000;font-weight:700;margin-bottom:16px;">
+          {{ s.sec04_bold_1 | default: "But now the threat never passes." }}
+        </p>
+        <p class="body-mm" style="color:#000;margin-bottom:16px;">
+          {{ s.sec04_body_2 | default: "Investor updates. Cash-flow projections. The Slack ping at 10pm. The decision you&rsquo;ve been putting off. Another notification. Then another." }}
+        </p>
+        <p class="body-mm" style="color:#000;font-weight:700;">
+          {{ s.sec04_bold_2 | default: "None of it is life or death. But your nervous system can&rsquo;t tell the difference&hellip;" }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Mobile: text then small inline image -->
+    <div class="mobile-only fade-up" style="margin-bottom:40px;">
+      <p class="body-mm" style="color:#000;margin-bottom:16px;">
+        {{ s.sec04_body_1 | default: "For most of human history, stress was short. A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly." }}
+      </p>
+      <p class="body-mm" style="color:#000;font-weight:700;margin-bottom:16px;">
+        {{ s.sec04_bold_1 | default: "But now the threat never passes." }}
+      </p>
+      <p class="body-mm" style="color:#000;margin-bottom:16px;">
+        {{ s.sec04_body_2 | default: "Investor updates. Cash-flow projections. The Slack ping at 10pm. The decision you&rsquo;ve been putting off. Another notification. Then another." }}
+      </p>
+      <div style="display:flex;align-items:flex-end;gap:16px;">
+        <p class="body-mm" style="color:#000;font-weight:700;flex:1;">
+          {{ s.sec04_bold_2 | default: "None of it is life or death. But your nervous system can&rsquo;t tell the difference&hellip;" }}
+        </p>
+        <img
+          src="{{ 'gm-illustration-2.png' | asset_url }}"
+          alt="Operator slumped on couch"
+          width="120" height="120" loading="lazy"
+          style="width:120px;height:auto;flex-shrink:0;border-radius:8px;"
+        />
+      </div>
+    </div>
+
+    <!-- Stress transition line -->
+    <p class="body-mm fade-up" style="color:#000;margin-bottom:32px;">
+      {{ s.sec04_transition | default: "And the harder you push your brain without addressing cortisol first, the more you&rsquo;re working against yourself:" }}
+    </p>
+
+    <!-- 3 stress boxes -->
+    <div class="grid-3col fade-up" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'stress_box' -%}
+          <div class="stress-card" style="background:#E8F5F8;border:1px solid rgba(0,166,210,0.25);border-radius:8px;padding:24px;" {{ block.shopify_attributes }}>
+            <p class="body-mm" style="color:#000;line-height:1.65;">
+              <strong><u>{{ block.settings.headline }}</u></strong>{{ block.settings.body }}
+            </p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ §05 OPERATORS WHO CRACK THE CODE ═══ -->
+<section class="sec-light sec-pad-tight">
+  <div class="sec-container">
+
+    <!-- Desktop: text left, image right -->
+    <div class="desktop-only grid-mm fade-up" style="align-items:center;">
+      <div class="col-text-mm">
+        <p class="body-mm" style="color:#000;margin-bottom:24px;">
+          {{ s.sec05_body_1 | default: "The operators who crack the code are the ones who fix the chemistry first." }}
+        </p>
+        <p style="color:#000;font-weight:800;font-size:clamp(22px,2.5vw,26px);line-height:1.3;margin-bottom:20px;">
+          {{ s.sec05_headline | default: "Restore the chemistry. Get the brain back." }}
+        </p>
+        <p class="body-mm" style="color:#000;">
+          {{ s.sec05_body_2 | default: "That&rsquo;s exactly what Genius Mind is built to do." }}
+        </p>
+      </div>
+      <div>
+        <img
+          src="{{ 'gm-operator-compare2.png' | asset_url }}"
+          alt="Before and after comparison of operator – tired vs restored"
+          width="380" height="340" loading="lazy"
+          class="rounded-xl"
+        />
+      </div>
+    </div>
+
+    <!-- Mobile: image first, then text -->
+    <div class="mobile-only fade-up">
+      <img
+        src="{{ 'gm-operator-compare2.png' | asset_url }}"
+        alt="Before and after comparison of operator – tired vs restored"
+        width="380" height="280" loading="lazy"
+        class="rounded-xl"
+        style="max-width:90%;display:block;margin:0 auto 24px;"
+      />
+      <p class="body-mm" style="color:#000;margin-bottom:24px;">
+        {{ s.sec05_body_1 | default: "The operators who crack the code are the ones who fix the chemistry first." }}
+      </p>
+      <p style="color:#000;font-weight:800;font-size:24px;line-height:1.3;margin-bottom:20px;">
+        {{ s.sec05_headline | default: "Restore the chemistry. Get the brain back." }}
+      </p>
+      <p class="body-mm" style="color:#000;">
+        {{ s.sec05_body_2 | default: "That&rsquo;s exactly what Genius Mind is built to do." }}
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @media (max-width: 767px) {
+    .grid-3col {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "GM Why Failed",
+  "tag": "div",
+  "class": "gm-why-failed",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section 03 – Why Everything Failed"
+    },
+    {
+      "type": "text",
+      "id": "sec03_headline",
+      "label": "Headline",
+      "default": "Why Everything You've Tried Made Logical Sense – And Still Didn't Work"
+    },
+    {
+      "type": "text",
+      "id": "sec03_bold_intro",
+      "label": "Bold intro line",
+      "default": "You didn't fail. The strategy failed you."
+    },
+    {
+      "type": "textarea",
+      "id": "sec03_body_1",
+      "label": "Body paragraph 1",
+      "default": "Every nootropic stack, every focus app, every \"discipline\" hack you've tried attacked the symptom. None of them went after the cause."
+    },
+    {
+      "type": "text",
+      "id": "sec03_bold_cause",
+      "label": "Bold cause line",
+      "default": "The cause is cortisol."
+    },
+    {
+      "type": "text",
+      "id": "sec03_reason_line",
+      "label": "Reason line",
+      "default": "And the reason is simple:"
+    },
+    {
+      "type": "text",
+      "id": "sec03_breakout",
+      "label": "Breakout line",
+      "default": "Your Brain Was Built for a World That No Longer Exists."
+    },
+    {
+      "type": "header",
+      "content": "Section 04 – Stress Was Short"
+    },
+    {
+      "type": "textarea",
+      "id": "sec04_body_1",
+      "label": "Body paragraph 1",
+      "default": "For most of human history, stress was short. A threat appeared, cortisol spiked to get you through it, the threat passed, cortisol dropped. Clean cycle. Worked perfectly."
+    },
+    {
+      "type": "text",
+      "id": "sec04_bold_1",
+      "label": "Bold line 1",
+      "default": "But now the threat never passes."
+    },
+    {
+      "type": "textarea",
+      "id": "sec04_body_2",
+      "label": "Body paragraph 2",
+      "default": "Investor updates. Cash-flow projections. The Slack ping at 10pm. The decision you've been putting off. Another notification. Then another."
+    },
+    {
+      "type": "text",
+      "id": "sec04_bold_2",
+      "label": "Bold closing line",
+      "default": "None of it is life or death. But your nervous system can't tell the difference…"
+    },
+    {
+      "type": "textarea",
+      "id": "sec04_transition",
+      "label": "Transition line before stress boxes",
+      "default": "And the harder you push your brain without addressing cortisol first, the more you're working against yourself:"
+    },
+    {
+      "type": "header",
+      "content": "Section 05 – Operators Who Crack The Code"
+    },
+    {
+      "type": "textarea",
+      "id": "sec05_body_1",
+      "label": "Body paragraph 1",
+      "default": "The operators who crack the code are the ones who fix the chemistry first."
+    },
+    {
+      "type": "text",
+      "id": "sec05_headline",
+      "label": "Headline",
+      "default": "Restore the chemistry. Get the brain back."
+    },
+    {
+      "type": "textarea",
+      "id": "sec05_body_2",
+      "label": "Body paragraph 2",
+      "default": "That's exactly what Genius Mind is built to do."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stress_box",
+      "name": "Stress Box",
+      "settings": [
+        {
+          "type": "text",
+          "id": "headline",
+          "label": "Headline (underlined)",
+          "default": "More coffee spikes cortisol further."
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body text",
+          "default": " Caffeine triggers the stress response — the same system that's already overloaded."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GM Why Failed",
+      "blocks": [
+        {
+          "type": "stress_box",
+          "settings": {
+            "headline": "More coffee spikes cortisol further.",
+            "body": " Caffeine triggers the stress response — the same system that's already overloaded."
+          }
+        },
+        {
+          "type": "stress_box",
+          "settings": {
+            "headline": "Pushing harder adds fuel to the fire.",
+            "body": " Grinding through elevated cortisol means worse output the following day, not better."
+          }
+        },
+        {
+          "type": "stress_box",
+          "settings": {
+            "headline": "Stimulant nootropics trigger cortisol.",
+            "body": " You feel sharp for an hour. Then the chemistry your brain needs is depleted further."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,634 @@
+<!-- ═══ §10 THE OFFER — PDP STYLE ═══ -->
+<section id="offer" class="sec-light-alt" style="padding: 56px 0; overflow: hidden;">
+  <div style="max-width: 1136px; margin: 0 auto; padding: 0 16px;">
+    <div class="gm-offer-grid">
+
+      <!-- ═══ LEFT COLUMN: Product Carousel + Review Carousel ═══ -->
+      <div class="gm-offer-left" style="min-width: 0; overflow: hidden;">
+
+        <!-- Product Image Carousel -->
+        <div class="gm-carousel" style="position: relative;">
+          <div class="gm-carousel-viewport" style="overflow: hidden; border-radius: 12px;">
+            <div class="gm-carousel-track" id="gmCarouselTrack" style="display: flex; transition: transform 0.35s ease;">
+              {%- for i in (1..6) -%}
+                <div class="gm-carousel-slide" style="flex: 0 0 100%; min-width: 0;">
+                  <img
+                    src="{{ 'carousel_' | append: i | append: '.webp' | asset_url }}"
+                    alt="Genius Mind product image {{ i }}"
+                    width="800" height="800"
+                    {% if i == 1 %}loading="eager"{% else %}loading="lazy"{% endif %}
+                    style="width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block;"
+                  >
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+          <!-- Prev / Next arrows -->
+          <button onclick="gmCarouselNav(-1)" aria-label="Previous slide" style="position: absolute; left: 8px; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.8); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.12); z-index: 10;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-ink-secondary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button onclick="gmCarouselNav(1)" aria-label="Next slide" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.8); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.12); z-index: 10;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-ink-secondary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <!-- Thumbnail strip -->
+          <div style="display: flex; justify-content: center; gap: 4px; margin-top: 12px; flex-wrap: wrap;" id="gmThumbnails">
+            {%- for i in (1..6) -%}
+              <button
+                onclick="gmCarouselGo({{ i | minus: 1 }})"
+                aria-label="Go to slide {{ i }}"
+                class="gm-thumb{% if i == 1 %} gm-thumb--active{% endif %}"
+                data-slide="{{ i | minus: 1 }}"
+                style="width: 52px; height: 52px; border-radius: 8px; overflow: hidden; border: 2px solid {% if i == 1 %}var(--color-cyan){% else %}transparent{% endif %}; padding: 0; background: none; cursor: pointer; transition: border-color 0.2s;"
+              >
+                <img src="{{ 'carousel_' | append: i | append: '.webp' | asset_url }}" alt="Thumbnail {{ i }}" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+              </button>
+            {%- endfor -%}
+          </div>
+        </div>
+
+        <!-- Review Carousel (Trustpilot style) -->
+        <div style="margin-top: 24px;">
+          <!-- Trustpilot eyebrow -->
+          <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 12px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="color: var(--color-ink-primary); font-weight: 700; font-size: clamp(20px,3vw,28px);">Excellent</span>
+              <span style="display: inline-flex; gap: 2px;">
+                {%- for s in (1..4) -%}
+                  <span style="display: inline-flex; align-items: center; justify-content: center; background: #00b67a; width: 24px; height: 24px;">
+                    <svg viewBox="0 0 24 24" width="13" height="13" style="fill: #fff;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  </span>
+                {%- endfor -%}
+                <span style="display: inline-flex; align-items: center; justify-content: center; background: #dcdce6; position: relative; overflow: hidden; width: 24px; height: 24px;">
+                  <span style="position: absolute; left: 0; top: 0; bottom: 0; width: 60%; background: #00b67a;"></span>
+                  <svg viewBox="0 0 24 24" width="13" height="13" style="fill: #fff; position: relative; z-index: 1;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </span>
+              </span>
+            </div>
+            <p style="color: var(--color-ink-secondary); font-size: 13px;">
+              Rated <strong>4.3</strong> / 5 based on <a href="https://uk.trustpilot.com/review/justfloow.com" target="_blank" rel="noopener noreferrer" style="color: var(--color-ink-secondary); font-weight: 700; text-decoration: underline; text-underline-offset: 2px;">141 reviews</a> on
+              <span style="display: inline-flex; align-items: center; gap: 4px; font-weight: 900; letter-spacing: -0.02em;">
+                <svg viewBox="0 0 24 24" width="16" height="16" style="fill: #00b67a; display: inline;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                Trustpilot
+              </span>
+            </p>
+          </div>
+
+          <!-- Review slides -->
+          <div style="overflow: hidden; border-radius: 12px; position: relative;" id="gmReviewViewport">
+            <div id="gmReviewTrack" style="display: flex; transition: transform 0.35s ease;">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'review' -%}
+                  <div class="gm-review-slide" style="flex: 0 0 100%; min-width: 0; padding-right: 8px; box-sizing: border-box;">
+                    <div style="background: #fff; border-radius: 12px; padding: 20px; text-align: left; border: 1px solid rgba(0,0,0,0.06);">
+                      <div style="display: flex; gap: 2px; margin-bottom: 8px;">
+                        {%- for s in (1..5) -%}
+                          <svg viewBox="0 0 24 24" width="12" height="12" style="fill: #00b67a;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        {%- endfor -%}
+                      </div>
+                      <p style="font-size: 12px; color: var(--color-ink-tertiary); margin-bottom: 4px;">{{ block.settings.reviewer_name }} &middot; {{ block.settings.review_time }}</p>
+                      <p style="font-weight: 700; font-size: 14px; color: var(--color-ink-primary); margin-bottom: 6px;">{{ block.settings.review_title }}</p>
+                      <p style="font-size: 13px; line-height: 1.6; color: var(--color-ink-secondary); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">&ldquo;{{ block.settings.review_body }}&rdquo;</p>
+                      <p style="font-size: 11px; color: #00b67a; font-weight: 600; margin-top: 8px; display: flex; align-items: center; gap: 4px;">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#00b67a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                        Verified
+                      </p>
+                    </div>
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          </div>
+
+          <!-- Review nav -->
+          <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 12px;">
+            <button onclick="gmReviewNav(-1)" aria-label="Previous review" style="width: 28px; height: 28px; border-radius: 50%; background: #fff; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 1px 3px rgba(0,0,0,0.06); cursor: pointer; display: flex; align-items: center; justify-content: center;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <div id="gmReviewDots" style="display: flex; gap: 6px;"></div>
+            <button onclick="gmReviewNav(1)" aria-label="Next review" style="width: 28px; height: 28px; border-radius: 50%; background: #fff; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 1px 3px rgba(0,0,0,0.06); cursor: pointer; display: flex; align-items: center; justify-content: center;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ RIGHT COLUMN: PDP Info + Pricing Accordion ═══ -->
+      <div class="gm-offer-right" style="min-width: 0; overflow: hidden;">
+
+        <!-- Star rating -->
+        <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(0,0,0,0.08);">
+          <span style="color: #f5a623; font-size: 16px; letter-spacing: 0.1em;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span style="font-weight: 700; font-size: 14px; color: var(--color-ink-primary);">4.8</span>
+          <span style="font-size: 13px; color: var(--color-ink-tertiary);">from 127 Reviews</span>
+        </div>
+
+        <!-- Eyebrow -->
+        <p style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-cyan); margin-bottom: 6px;">All-In-One Cognitive Supplement</p>
+
+        <!-- Product name -->
+        <h3 style="font-size: clamp(22px,3vw,28px); font-weight: 700; color: var(--color-ink-primary); margin-bottom: 10px;">Genius Mind</h3>
+
+        <!-- Description -->
+        <p style="font-size: 14px; color: var(--color-ink-secondary); line-height: 1.6; margin-bottom: 16px;">16 clinically-dosed ingredients in one daily capsule. Formulated by leading UK nutritionist Shona Wilkinson for operators who demand more.</p>
+
+        <!-- View Nutrition Label -->
+        <a href="{{ section.settings.nutrition_label_url | default: '#' }}" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: rgba(0,166,210,0.06); border: 1px solid rgba(0,166,210,0.15); border-radius: 100px; font-size: 13px; font-weight: 600; color: var(--color-ink-primary); text-decoration: none; margin-bottom: 20px; transition: background 0.2s;" onmouseover="this.style.background='rgba(0,166,210,0.12)'" onmouseout="this.style.background='rgba(0,166,210,0.06)'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-ink-tertiary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          View Nutrition Label
+        </a>
+
+        <!-- Check pills -->
+        <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px;">
+          {%- assign check_pills = "16 researched ingredients in one capsule|89% felt sharper focus. 76% better recall.|Made in the UK to GMP standard|90 days to feel it. Or your money back." | split: "|" -%}
+          {%- for pill in check_pills -%}
+            <div style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06); border-radius: 100px; font-size: 13px; font-weight: 500; color: var(--color-ink-primary); max-width: 100%;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-cyan)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M20 6L9 17l-5-5"/></svg>
+              {{ pill }}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <!-- Pricing Accordion -->
+        <div>
+          <p style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-ink-tertiary); margin-bottom: 12px;">Subscribe &amp; Save:</p>
+
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'plan' -%}
+              <div
+                class="gm-plan-card{% if forloop.first %} gm-plan-card--active{% endif %}"
+                data-plan-index="{{ forloop.index0 }}"
+                onclick="gmSelectPlan(this)"
+                style="position: relative; border-radius: 12px; border: 2px solid {% if forloop.first %}var(--color-ink-primary){% else %}#e5e7eb{% endif %}; background: #fff; cursor: pointer; transition: border-color 0.2s; margin-bottom: 12px;"
+              >
+                {%- if block.settings.featured -%}
+                  <span style="position: absolute; top: -10px; right: 16px; background: #1bb88a; color: #fff; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 4px 12px; border-radius: 4px;">Best Value</span>
+                {%- endif -%}
+
+                <!-- Plan header — always visible -->
+                <div style="padding: 16px 20px;">
+                  <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 8px;">
+                    <div class="gm-plan-radio" style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid {% if forloop.first %}var(--color-ink-primary){% else %}#d0d0d0{% endif %}; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                      {%- if forloop.first -%}
+                        <div class="gm-plan-radio-dot" style="width: 10px; height: 10px; border-radius: 50%; background: var(--color-ink-primary);"></div>
+                      {%- else -%}
+                        <div class="gm-plan-radio-dot" style="width: 10px; height: 10px; border-radius: 50%; background: var(--color-ink-primary); display: none;"></div>
+                      {%- endif -%}
+                    </div>
+                    <span style="font-weight: 700; font-size: 15px; color: var(--color-ink-primary);">{{ block.settings.plan_title }}</span>
+                    <span style="background: #1bb88a; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.05em;">{{ block.settings.save_pill }}</span>
+                  </div>
+                  <div style="display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap;">
+                    <span style="font-size: 28px; font-weight: 800; line-height: 1; color: var(--color-ink-primary);">&pound;{{ block.settings.price }}</span>
+                    <span style="font-size: 16px; color: var(--color-ink-tertiary);">{{ block.settings.period }}</span>
+                    <span style="font-size: 14px; color: var(--color-ink-tertiary); text-decoration: line-through;">&pound;{{ block.settings.was_price }}</span>
+                  </div>
+                  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin-top: 4px; gap: 8px;">
+                    <span style="font-size: 11px; color: var(--color-ink-tertiary);">{{ block.settings.billing_text }}</span>
+                    <span style="font-size: 11px; font-weight: 600; color: var(--color-ink-tertiary);">{{ block.settings.per_serving }}</span>
+                  </div>
+                </div>
+
+                <!-- Plan body — expands when active -->
+                <div class="gm-plan-body" style="overflow: hidden; transition: max-height 0.4s ease; max-height: {% if forloop.first %}800px{% else %}0{% endif %};">
+                  <div style="padding: 12px 20px 20px; border-top: 1px solid rgba(0,0,0,0.06);">
+                    <ul style="display: grid; gap: 6px; margin-bottom: 16px; list-style: none; padding: 0;">
+                      {%- assign perks = block.settings.perks | split: "|" -%}
+                      {%- for perk in perks -%}
+                        <li style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--color-ink-secondary);">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--color-cyan)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M20 6L9 17l-5-5"/></svg>
+                          {{ perk }}
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+
+                    {%- if block.settings.welcome_kit -%}
+                      <div style="border-top: 1px solid rgba(0,0,0,0.06); padding-top: 12px; margin-bottom: 12px;">
+                        <p style="text-align: center; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-ink-primary); margin-bottom: 12px;">Welcome Kit &ndash; Arrives With First Order</p>
+                        <div style="display: flex; justify-content: center; gap: 16px;">
+                          <div style="text-align: center; width: 90px;">
+                            <div style="width: 90px; height: 90px; background: rgba(0,166,210,0.06); border-radius: 8px; overflow: hidden; margin-bottom: 6px; display: flex; align-items: center; justify-content: center;">
+                              <img src="{{ 'gift-magnesium.png' | asset_url }}" alt="Magnesium 3-in-1" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <p style="font-size: 12px; font-weight: 700; color: var(--color-cyan);"><s style="color: var(--color-ink-tertiary); font-weight: 400; margin-right: 4px;">&pound;15</s>FREE</p>
+                            <p style="font-size: 11px; font-weight: 600; color: var(--color-ink-primary);">Magnesium 3-in-1</p>
+                          </div>
+                          <div style="text-align: center; width: 90px;">
+                            <div style="width: 90px; height: 90px; background: rgba(0,166,210,0.06); border-radius: 8px; overflow: hidden; margin-bottom: 6px; display: flex; align-items: center; justify-content: center;">
+                              <img src="{{ 'gift-welcome-pack.png' | asset_url }}" alt="Brain Performance Guide" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <p style="font-size: 12px; font-weight: 700; color: var(--color-cyan);"><s style="color: var(--color-ink-tertiary); font-weight: 400; margin-right: 4px;">&pound;10</s>FREE</p>
+                            <p style="font-size: 11px; font-weight: 600; color: var(--color-ink-primary);">Brain Performance Guide</p>
+                          </div>
+                        </div>
+                      </div>
+                    {%- endif -%}
+
+                    <a href="{{ section.settings.shop_url | default: 'https://justfloow.com/products/genius-mind' }}" class="btn-primary btn-block">
+                      <span>{{ block.settings.cta_text }}</span>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+
+          <!-- One-time purchase -->
+          <div style="text-align: center; margin-top: 12px;">
+            <a href="{{ section.settings.shop_url | default: 'https://justfloow.com/products/genius-mind' }}" style="color: var(--color-ink-secondary); text-decoration: underline; font-size: 14px; font-weight: 600;">One Time Purchase &pound;24.99</a>
+          </div>
+        </div>
+
+        <!-- Trust badges -->
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; font-size: 11px; margin-top: 24px;">
+          <div style="display: flex; align-items: center; gap: 6px; color: var(--color-ink-tertiary);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            <span>90-day money back guarantee</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px; color: var(--color-ink-tertiary);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg>
+            <span>GMP certified</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px; color: var(--color-ink-tertiary);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/></svg>
+            <span>Made in UK</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px; color: var(--color-ink-tertiary);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span>1000+ five-star reviews</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .gm-offer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  @media (min-width: 1024px) {
+    .gm-offer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+    }
+  }
+  @media (max-width: 639px) {
+    .gm-thumb {
+      width: 40px !important;
+      height: 40px !important;
+    }
+  }
+  .gm-plan-card:hover {
+    border-color: #c0c5cc;
+  }
+  .gm-plan-card--active {
+    border-color: var(--color-ink-primary) !important;
+  }
+</style>
+
+<script>
+(function() {
+  /* ═══ Product Carousel ═══ */
+  var carouselIdx = 0;
+  var totalSlides = 6;
+
+  function updateCarousel() {
+    var track = document.getElementById('gmCarouselTrack');
+    if (track) track.style.transform = 'translateX(-' + (carouselIdx * 100) + '%)';
+    var thumbs = document.querySelectorAll('#gmThumbnails .gm-thumb');
+    thumbs.forEach(function(t, i) {
+      t.style.borderColor = i === carouselIdx ? 'var(--color-cyan)' : 'transparent';
+      t.classList.toggle('gm-thumb--active', i === carouselIdx);
+    });
+  }
+
+  window.gmCarouselNav = function(dir) {
+    carouselIdx = (carouselIdx + dir + totalSlides) % totalSlides;
+    updateCarousel();
+  };
+
+  window.gmCarouselGo = function(idx) {
+    carouselIdx = idx;
+    updateCarousel();
+  };
+
+  /* ═══ Review Carousel ═══ */
+  var reviewIdx = 0;
+  var reviewSlides = document.querySelectorAll('.gm-review-slide');
+  var reviewTotal = reviewSlides.length;
+
+  function buildReviewDots() {
+    var container = document.getElementById('gmReviewDots');
+    if (!container) return;
+    container.innerHTML = '';
+    for (var i = 0; i < reviewTotal; i++) {
+      var dot = document.createElement('button');
+      dot.style.cssText = 'width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:background 0.2s;';
+      dot.style.background = i === reviewIdx ? 'var(--color-cyan)' : 'rgba(0,0,0,0.15)';
+      dot.setAttribute('aria-label', 'Go to review ' + (i + 1));
+      (function(idx) { dot.onclick = function() { reviewIdx = idx; updateReview(); }; })(i);
+      container.appendChild(dot);
+    }
+  }
+
+  function updateReview() {
+    var track = document.getElementById('gmReviewTrack');
+    if (track) track.style.transform = 'translateX(-' + (reviewIdx * 100) + '%)';
+    var dots = document.querySelectorAll('#gmReviewDots button');
+    dots.forEach(function(d, i) {
+      d.style.background = i === reviewIdx ? 'var(--color-cyan)' : 'rgba(0,0,0,0.15)';
+    });
+  }
+
+  window.gmReviewNav = function(dir) {
+    reviewIdx = (reviewIdx + dir + reviewTotal) % reviewTotal;
+    updateReview();
+  };
+
+  /* ═══ Touch / Swipe support for review carousel ═══ */
+  var rvp = document.getElementById('gmReviewViewport');
+  var startX = 0;
+  if (rvp) {
+    rvp.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+    rvp.addEventListener('touchend', function(e) {
+      var diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) { diff > 0 ? gmReviewNav(1) : gmReviewNav(-1); }
+    }, { passive: true });
+  }
+
+  /* ═══ Pricing Accordion ═══ */
+  window.gmSelectPlan = function(el) {
+    var cards = document.querySelectorAll('.gm-plan-card');
+    cards.forEach(function(card) {
+      var body = card.querySelector('.gm-plan-body');
+      var radio = card.querySelector('.gm-plan-radio');
+      var dot = card.querySelector('.gm-plan-radio-dot');
+      if (card === el) {
+        card.classList.add('gm-plan-card--active');
+        card.style.borderColor = 'var(--color-ink-primary)';
+        if (body) body.style.maxHeight = '800px';
+        if (radio) radio.style.borderColor = 'var(--color-ink-primary)';
+        if (dot) dot.style.display = 'block';
+      } else {
+        card.classList.remove('gm-plan-card--active');
+        card.style.borderColor = '#e5e7eb';
+        if (body) body.style.maxHeight = '0';
+        if (radio) radio.style.borderColor = '#d0d0d0';
+        if (dot) dot.style.display = 'none';
+      }
+    });
+  };
+
+  /* Init on DOMContentLoaded */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      reviewSlides = document.querySelectorAll('.gm-review-slide');
+      reviewTotal = reviewSlides.length;
+      buildReviewDots();
+    });
+  } else {
+    buildReviewDots();
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "GM Offer",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "url",
+      "id": "shop_url",
+      "label": "Shop URL",
+      "default": "https://justfloow.com/products/genius-mind"
+    },
+    {
+      "type": "url",
+      "id": "nutrition_label_url",
+      "label": "Nutrition label URL or anchor",
+      "default": "#"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "plan",
+      "name": "Plan Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "plan_title",
+          "label": "Plan title",
+          "default": "90-Day Supply"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "16.99"
+        },
+        {
+          "type": "text",
+          "id": "period",
+          "label": "Period",
+          "default": "/mo"
+        },
+        {
+          "type": "text",
+          "id": "was_price",
+          "label": "Was price",
+          "default": "74.97"
+        },
+        {
+          "type": "text",
+          "id": "billing_text",
+          "label": "Billing description",
+          "default": "Billed £50.99 every 3 months"
+        },
+        {
+          "type": "text",
+          "id": "per_serving",
+          "label": "Per serving text",
+          "default": "£0.57 per serving"
+        },
+        {
+          "type": "text",
+          "id": "save_pill",
+          "label": "Save pill text",
+          "default": "Save 41%"
+        },
+        {
+          "type": "textarea",
+          "id": "perks",
+          "label": "Perks (pipe-separated)",
+          "default": "90 servings, only £0.57 per day|Fast & free shipping|NO CONTRACT – pause, skip & cancel anytime|90-day money back guarantee"
+        },
+        {
+          "type": "checkbox",
+          "id": "welcome_kit",
+          "label": "Show welcome kit",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Featured (Best Value badge)",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "CTA button text",
+          "default": "TRY NOW"
+        }
+      ]
+    },
+    {
+      "type": "review",
+      "name": "Review Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "reviewer_name",
+          "label": "Reviewer name",
+          "default": "Mark D."
+        },
+        {
+          "type": "text",
+          "id": "review_time",
+          "label": "Review time",
+          "default": "2 days ago"
+        },
+        {
+          "type": "text",
+          "id": "review_title",
+          "label": "Review title",
+          "default": "Fog has completely lifted"
+        },
+        {
+          "type": "textarea",
+          "id": "review_body",
+          "label": "Review body",
+          "default": "I run a small business on my own. Since taking Genius Mind the fog has lifted."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GM Offer",
+      "blocks": [
+        {
+          "type": "plan",
+          "settings": {
+            "plan_title": "90-Day Supply",
+            "price": "16.99",
+            "period": "/mo",
+            "was_price": "74.97",
+            "billing_text": "Billed £50.99 every 3 months",
+            "per_serving": "£0.57 per serving",
+            "save_pill": "Save 41%",
+            "perks": "90 servings, only £0.57 per day|Fast & free shipping|NO CONTRACT – pause, skip & cancel anytime|90-day money back guarantee",
+            "welcome_kit": true,
+            "featured": true,
+            "cta_text": "SAVE 41% + FREE GIFTS"
+          }
+        },
+        {
+          "type": "plan",
+          "settings": {
+            "plan_title": "30-Day Supply",
+            "price": "21.24",
+            "period": "/mo",
+            "was_price": "29.99",
+            "billing_text": "Billed £21.24 every month",
+            "per_serving": "£0.71 per serving",
+            "save_pill": "Save 29%",
+            "perks": "30 servings, only £0.71 per day|Fast & free shipping|NO CONTRACT – pause, skip & cancel anytime|90-day money back guarantee",
+            "welcome_kit": false,
+            "featured": false,
+            "cta_text": "TRY FOR 30 DAYS"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "reviewer_name": "Mark D.",
+            "review_time": "2 days ago",
+            "review_title": "Fog has completely lifted",
+            "review_body": "I run a small business on my own. I was putting everything off... Since taking Genius Mind the fog has lifted. I'm actually getting through decisions instead of circling them. Genuinely impressed."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "reviewer_name": "Sarah K.",
+            "review_time": "4 days ago",
+            "review_title": "The 3pm slump is gone",
+            "review_body": "The 3pm slump was killing my output. I'd make solid calls in the morning and then spend the afternoon second-guessing them. Two months in and I'm making the same quality decisions at 4pm."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "reviewer_name": "James T.",
+            "review_time": "1 week ago",
+            "review_title": "First thing that actually worked",
+            "review_body": "I've tried the usual stack — AG1, caffeine protocols, the whole thing. This is the first supplement that's actually moved the needle on how long I can sustain focus in a day."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "reviewer_name": "Lucy W.",
+            "review_time": "1 week ago",
+            "review_title": "Noticed a difference within days",
+            "review_body": "Was sceptical but gave it a go. Within the first week my energy was more consistent and I wasn't reaching for coffee by 2pm. Really good product."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "reviewer_name": "Tom R.",
+            "review_time": "2 weeks ago",
+            "review_title": "Best nootropic I've tried",
+            "review_body": "I've tried a lot of nootropics over the years. This is the first one where I actually feel a sustained difference rather than a short spike. The ingredient quality is clearly a step above."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "reviewer_name": "Emma H.",
+            "review_time": "2 weeks ago",
+            "review_title": "Great product, great company",
+            "review_body": "Ordered the 90-day supply and haven't looked back. Focus is sharper, I'm sleeping better, and the customer service when I had a question was brilliant."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "reviewer_name": "Dan P.",
+            "review_time": "3 weeks ago",
+            "review_title": "Exactly what I needed",
+            "review_body": "Running two businesses and my brain was fried by midweek. Genius Mind has noticeably extended how long I can think clearly each day. The compound effect is real."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "reviewer_name": "Rachel M.",
+            "review_time": "3 weeks ago",
+            "review_title": "Impressed with the transparency",
+            "review_body": "Love that every ingredient and dosage is on the label. No proprietary blends. I can actually see what I'm taking and research it myself. Brilliant for focus and mood."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

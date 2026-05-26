@@ -1,0 +1,132 @@
+<!-- ═══ §8 VIDEO TESTIMONIALS ═══ -->
+<section class="sec-dark" style="padding: 56px 0;">
+  <div style="max-width: 1152px; margin: 0 auto; padding: 0 16px; text-align: center;">
+
+    <!-- Eyebrow + Heading -->
+    <div class="fade-up" data-animate>
+      <p style="font-family: monospace; color: var(--color-cyan); letter-spacing: 0.25em; text-transform: uppercase; font-size: 13px; font-weight: 600; margin-bottom: 16px;">{{ section.settings.eyebrow }}</p>
+      <h2 style="font-size: clamp(32px, 6vw, 56px); font-weight: 900; line-height: 1.0; margin-bottom: 40px; color: #fff;">{{ section.settings.heading }}</h2>
+    </div>
+
+    <!-- Video Grid -->
+    <div class="gm-vid-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+      {% for block in section.blocks %}
+        {% if block.type == 'video' %}
+          <div class="fade-up" data-animate style="aspect-ratio: 9 / 16; position: relative; border-radius: 16px; overflow: hidden; background: var(--color-dark-tertiary); cursor: pointer;" {{ block.shopify_attributes }}>
+
+            <!-- Gradient background placeholder -->
+            <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, #1a2030, #0d1117);"></div>
+
+            <!-- Label tag top-left -->
+            <div style="position: absolute; top: 12px; left: 12px; z-index: 2;">
+              <span style="display: inline-block; background: var(--color-cyan); color: #fff; font-family: monospace; font-weight: 700; font-size: clamp(10px, 1.2vw, 11px); letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 12px; border-radius: 2px;">{{ block.settings.label }}</span>
+            </div>
+
+            <!-- Play button center -->
+            <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2;">
+              <div style="width: 56px; height: 56px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <svg viewBox="0 0 24 24" fill="var(--color-dark-primary)" width="24" height="24" style="margin-left: 3px;"><polygon points="5,3 19,12 5,21" /></svg>
+              </div>
+            </div>
+
+            <!-- Bottom caption -->
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 16px; z-index: 2;">
+              <p style="color: #fff; font-size: clamp(11px, 1.2vw, 12px); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin: 0;">{{ block.settings.caption }}</p>
+            </div>
+
+            <!-- Bottom controls -->
+            <div style="position: absolute; bottom: 12px; left: 12px; right: 12px; display: flex; justify-content: space-between; align-items: center; z-index: 3;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="20" height="20" style="opacity: 0.7;"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.08"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="20" height="20" style="opacity: 0.7;"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 768px) {
+    .gm-vid-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 20px !important; }
+    .gm-vid-grid .fade-up div[style*="width: 56px"] {
+      width: 64px !important;
+      height: 64px !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "GM Testimonials",
+  "tag": "div",
+  "class": "gm-testimonials-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Real Results"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What Operators Are Saying"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label tag"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GM Testimonials",
+      "blocks": [
+        {
+          "type": "video",
+          "settings": {
+            "label": "Fog Has Lifted",
+            "caption": "THE 3PM SLUMP IS COMPLETELY GONE."
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "label": "Sharper Recall",
+            "caption": "WORD-FINDING IS BACK TO WHERE IT WAS."
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "label": "6 Months Strong",
+            "caption": "MY DECISION QUALITY HAS TRANSFORMED."
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "label": "First Thing That Worked",
+            "caption": "TRIED EVERYTHING. THIS IS THE ONE."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

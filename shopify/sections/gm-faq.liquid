@@ -1,0 +1,161 @@
+<!-- ═══ FAQ ACCORDION — LIGHT ═══ -->
+<section class="sec-light" style="padding: 56px 0;">
+  <div style="max-width: 768px; margin: 0 auto; padding: 0 16px;">
+
+    <!-- Heading -->
+    <div class="fade-up" data-animate>
+      <h2 style="font-size: clamp(32px, 5vw, 52px); font-weight: 900; line-height: 1.05; text-align: center; margin-bottom: 40px; color: var(--color-ink-primary);">{{ section.settings.heading }}</h2>
+    </div>
+
+    <!-- Accordion -->
+    <div class="fade-up" data-animate>
+      <div id="faq-accordion" style="display: flex; flex-direction: column; gap: 12px;">
+        {% for block in section.blocks %}
+          {% if block.type == 'faq' %}
+            <div class="faq-item" style="background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+              <button class="faq-trigger" onclick="toggleFaq(this)" style="width: 100%; text-align: left; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; border: none; background: transparent; cursor: pointer; gap: 16px;">
+                <span style="font-weight: 900; font-size: 15px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-ink-primary);">{{ block.settings.question }}</span>
+                <svg class="faq-chevron" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-ink-tertiary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; transition: transform 0.2s ease;"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                <div style="padding: 0 24px 20px; font-size: 15px; color: var(--color-ink-secondary); line-height: 1.7;">{{ block.settings.answer }}</div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 768px) {
+    .gm-faq-section .sec-light { padding: 80px 0 !important; }
+    .faq-trigger span { font-size: 17px !important; }
+  }
+  .faq-trigger:hover { background: rgba(0,0,0,0.01) !important; }
+  .faq-item.active .faq-chevron { transform: rotate(180deg); }
+</style>
+
+<script>
+  function toggleFaq(btn) {
+    var item = btn.closest('.faq-item');
+    var answer = item.querySelector('.faq-answer');
+    var isOpen = item.classList.contains('active');
+
+    /* Close all others */
+    var allItems = document.querySelectorAll('#faq-accordion .faq-item');
+    for (var i = 0; i < allItems.length; i++) {
+      if (allItems[i] !== item) {
+        allItems[i].classList.remove('active');
+        allItems[i].querySelector('.faq-answer').style.maxHeight = '0';
+      }
+    }
+
+    /* Toggle current */
+    if (isOpen) {
+      item.classList.remove('active');
+      answer.style.maxHeight = '0';
+    } else {
+      item.classList.add('active');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "GM FAQ",
+  "tag": "div",
+  "class": "gm-faq-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GM FAQ",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What is Genius Mind?",
+            "answer": "Genius Mind is a cognitive stack with 16 clinically studied ingredients \u2014 including high-ratio botanical extracts, amino acid precursors, and essential cofactors \u2014 designed to support sustained focus throughout the working day. No stimulant dependency, no crashes."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Who is Genius Mind for?",
+            "answer": "Genius Mind is built for operators, founders, and high-performers who need sustained cognitive output across long working days. If you're hitting a wall by mid-afternoon, building caffeine tolerance, or making worse decisions later in the day, this is designed for you."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How do I take Genius Mind?",
+            "answer": "Take 2 capsules daily with breakfast or 30-60 minutes before your most demanding work. Each bottle contains 60 capsules (30 servings). For best results, use consistently for at least 90 days."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How long until I see results?",
+            "answer": "Some users report a subtle lift in clarity within the first 1-2 weeks. Research suggests Bacopa and Lion's Mane may reach optimal levels around weeks 4-8. Month 3 is typically when long-term customers report the most significant changes."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can Genius Mind replace my coffee?",
+            "answer": "Many customers reduce or eliminate their coffee intake. The Guarana provides clean, sustained energy without the tolerance-building and crash cycle of caffeine. However, Genius Mind is designed to work alongside moderate coffee intake too."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can I stack it with creatine, omega-3, magnesium?",
+            "answer": "Yes. Genius Mind is the cognitive chemistry layer on top of an existing operator stack. It doesn't replace creatine, omega-3, or magnesium \u2014 those address different systems."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What happens if I stop taking it?",
+            "answer": "Genius Mind isn't habit-forming and doesn't create withdrawal. The supportive effect depends on consistent intake \u2014 stop, and the cognitive chemistry support stops. Many long-term customers run it as a permanent part of their stack."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Is it safe for daily, long-term use?",
+            "answer": "Yes. The formula is non-stimulant-dependent, made in a GMP-certified UK facility, third-party tested, and designed for daily intake. The ingredients are at clinical doses with no tolerance pathway."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

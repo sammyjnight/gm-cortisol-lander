@@ -1,0 +1,315 @@
+{% comment %}
+  Genius Mind — §9 Comparison Table
+  Dark section: Genius Mind vs Caffeine Stacks vs Generic Nootropics
+{% endcomment %}
+
+{%- assign s = section.settings -%}
+
+<section class="sec-dark gm-section" style="padding-top: 16px; padding-bottom: 80px;" id="gm-comparison-{{ section.id }}">
+  <div style="max-width: 896px; margin: 0 auto; padding: 0 16px;">
+
+    <!-- Header -->
+    <div style="text-align: center; margin-bottom: 48px;">
+      <p class="gm-mono" style="font-size: 11px; letter-spacing: 0.2em; color: rgba(255,255,255,0.5); margin: 0 0 16px;">
+        {{ s.eyebrow | default: "GENIUS MIND VS CAFFEINE STACKS VS GENERIC NOOTROPICS" }}
+      </p>
+      <h2 style="font-size: clamp(32px,5vw,52px); font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 12px;">
+        {{ s.heading | default: "How Genius Mind Compares" }}
+      </h2>
+      <p style="color: rgba(255,255,255,0.6); font-size: 16px; margin: 0;">
+        {{ s.subtitle | default: "Cognitive infrastructure, not a stimulant hit." }}
+      </p>
+    </div>
+
+    <!-- ═══ DESKTOP TABLE ═══ -->
+    <div class="gm-comp-desktop">
+      <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr style="border-bottom: 2px solid rgba(255,255,255,0.2);">
+            <th style="width: 44%; padding: 20px 24px; text-align: left;"></th>
+            <th style="width: 18%; padding: 12px 16px; text-align: center; background: rgba(0,166,210,0.12);">
+              <img
+                src="{{ s.bottle_image | default: 'gm-bottle-cutout.png' | asset_url }}"
+                alt="Genius Mind"
+                width="90"
+                height="120"
+                style="max-height: 120px; object-fit: contain; margin: 0 auto; display: block;"
+              >
+            </th>
+            <th style="width: 19%; padding: 20px 16px; text-align: center; font-weight: 800; font-size: 16px; color: #fff;">Caffeine Stacks</th>
+            <th style="width: 19%; padding: 20px 16px; text-align: center; font-weight: 800; font-size: 16px; color: #fff;">Generic Nootropics</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for block in section.blocks %}
+            {% if block.type == 'comparison_row' %}
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.15);" {{ block.shopify_attributes }}>
+                <td style="padding: 20px 24px; font-weight: 800; font-size: 15px; letter-spacing: 0.05em; color: #fff; text-transform: uppercase;">{{ block.settings.label }}</td>
+                <td style="padding: 20px 16px; text-align: center; background: rgba(0,166,210,0.06);">
+                  {% if block.settings.genius_mind == 'check' %}
+                    <span style="font-size: 22px;" title="Yes">&#x2705;</span>
+                  {% elsif block.settings.genius_mind == 'x' %}
+                    <span style="font-size: 22px;" title="No">&#x274C;</span>
+                  {% else %}
+                    <span style="font-size: 22px;" title="Uncertain">&#x2753;</span>
+                  {% endif %}
+                </td>
+                <td style="padding: 20px 16px; text-align: center;">
+                  {% if block.settings.caffeine == 'check' %}
+                    <span style="font-size: 22px;" title="Yes">&#x2705;</span>
+                  {% elsif block.settings.caffeine == 'x' %}
+                    <span style="font-size: 22px;" title="No">&#x274C;</span>
+                  {% else %}
+                    <span style="font-size: 22px;" title="Uncertain">&#x2753;</span>
+                  {% endif %}
+                </td>
+                <td style="padding: 20px 16px; text-align: center;">
+                  {% if block.settings.generic == 'check' %}
+                    <span style="font-size: 22px;" title="Yes">&#x2705;</span>
+                  {% elsif block.settings.generic == 'x' %}
+                    <span style="font-size: 22px;" title="No">&#x274C;</span>
+                  {% else %}
+                    <span style="font-size: 22px;" title="Uncertain">&#x2753;</span>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ═══ MOBILE TABLE ═══ -->
+    <div class="gm-comp-mobile">
+      <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
+        <thead>
+          <tr style="border-bottom: 2px solid rgba(255,255,255,0.2);">
+            <th style="width: 40%; padding: 12px 8px; text-align: left;"></th>
+            <th style="width: 20%; padding: 8px 4px; text-align: center; background: rgba(0,166,210,0.12);">
+              <img
+                src="{{ s.bottle_image | default: 'gm-bottle-cutout.png' | asset_url }}"
+                alt="Genius Mind"
+                width="56"
+                height="75"
+                style="max-height: 75px; object-fit: contain; margin: 0 auto; display: block;"
+              >
+            </th>
+            <th style="width: 20%; padding: 12px 4px; text-align: center; font-weight: 800; font-size: 11px; line-height: 1.3; color: #fff;">Caffeine Stacks</th>
+            <th style="width: 20%; padding: 12px 4px; text-align: center; font-weight: 800; font-size: 11px; line-height: 1.3; color: #fff;">Generic Nootropics</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for block in section.blocks %}
+            {% if block.type == 'comparison_row' %}
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.15);" {{ block.shopify_attributes }}>
+                <td style="padding: 16px 8px; font-weight: 800; font-size: 11px; line-height: 1.3; letter-spacing: 0.05em; color: #fff; text-transform: uppercase;">{{ block.settings.label }}</td>
+                <td style="padding: 16px 4px; text-align: center; background: rgba(0,166,210,0.06);">
+                  {% if block.settings.genius_mind == 'check' %}
+                    <span style="font-size: 16px;">&#x2705;</span>
+                  {% elsif block.settings.genius_mind == 'x' %}
+                    <span style="font-size: 16px;">&#x274C;</span>
+                  {% else %}
+                    <span style="font-size: 16px;">&#x2753;</span>
+                  {% endif %}
+                </td>
+                <td style="padding: 16px 4px; text-align: center;">
+                  {% if block.settings.caffeine == 'check' %}
+                    <span style="font-size: 16px;">&#x2705;</span>
+                  {% elsif block.settings.caffeine == 'x' %}
+                    <span style="font-size: 16px;">&#x274C;</span>
+                  {% else %}
+                    <span style="font-size: 16px;">&#x2753;</span>
+                  {% endif %}
+                </td>
+                <td style="padding: 16px 4px; text-align: center;">
+                  {% if block.settings.generic == 'check' %}
+                    <span style="font-size: 16px;">&#x2705;</span>
+                  {% elsif block.settings.generic == 'x' %}
+                    <span style="font-size: 16px;">&#x274C;</span>
+                  {% else %}
+                    <span style="font-size: 16px;">&#x2753;</span>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Bottom line -->
+    <p style="color: #fff; font-size: clamp(16px,2.5vw,20px); font-weight: 700; line-height: 1.6; text-align: center; margin: 40px auto 0; max-width: 640px;">
+      {{ s.bottom_line | default: "Bottom Line: Genius Mind delivers real cognitive support through clinically dosed ingredients &ndash; without the crashes, jitters, or underdosed proprietary blend nonsense." }}
+    </p>
+
+  </div>
+</section>
+
+<style>
+  /* Desktop / Mobile visibility */
+  #gm-comparison-{{ section.id }} .gm-comp-desktop { display: none; }
+  #gm-comparison-{{ section.id }} .gm-comp-mobile { display: block; }
+
+  @media (min-width: 769px) {
+    #gm-comparison-{{ section.id }} { padding-top: 32px !important; padding-bottom: 112px !important; }
+    #gm-comparison-{{ section.id }} .gm-comp-desktop { display: block; }
+    #gm-comparison-{{ section.id }} .gm-comp-mobile { display: none; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "GM Comparison Table",
+  "tag": "section",
+  "class": "gm-comparison-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "GENIUS MIND VS CAFFEINE STACKS VS GENERIC NOOTROPICS"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "How Genius Mind Compares"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Cognitive infrastructure, not a stimulant hit."
+    },
+    {
+      "type": "text",
+      "id": "bottle_image",
+      "label": "Bottle image filename",
+      "default": "gm-bottle-cutout.png"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_line",
+      "label": "Bottom line quote",
+      "default": "Bottom Line: Genius Mind delivers real cognitive support through clinically dosed ingredients &ndash; without the crashes, jitters, or underdosed proprietary blend nonsense."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "comparison_row",
+      "name": "Comparison Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Feature label",
+          "default": "Feature"
+        },
+        {
+          "type": "select",
+          "id": "genius_mind",
+          "label": "Genius Mind",
+          "options": [
+            { "value": "check", "label": "Check" },
+            { "value": "x", "label": "X" },
+            { "value": "q", "label": "Question mark" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "select",
+          "id": "caffeine",
+          "label": "Caffeine Stacks",
+          "options": [
+            { "value": "check", "label": "Check" },
+            { "value": "x", "label": "X" },
+            { "value": "q", "label": "Question mark" }
+          ],
+          "default": "x"
+        },
+        {
+          "type": "select",
+          "id": "generic",
+          "label": "Generic Nootropics",
+          "options": [
+            { "value": "check", "label": "Check" },
+            { "value": "x", "label": "X" },
+            { "value": "q", "label": "Question mark" }
+          ],
+          "default": "q"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GM Comparison Table",
+      "blocks": [
+        {
+          "type": "comparison_row",
+          "settings": {
+            "label": "Supports Dopamine Pathways",
+            "genius_mind": "check",
+            "caffeine": "x",
+            "generic": "q"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "label": "No Crash or Withdrawal",
+            "genius_mind": "check",
+            "caffeine": "x",
+            "generic": "q"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "label": "Supports Sustained Focus",
+            "genius_mind": "check",
+            "caffeine": "x",
+            "generic": "x"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "label": "Multi-Mechanism Neural Support",
+            "genius_mind": "check",
+            "caffeine": "x",
+            "generic": "q"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "label": "Tolerance Doesn't Build",
+            "genius_mind": "check",
+            "caffeine": "x",
+            "generic": "q"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "label": "Clinically Dosed Extracts",
+            "genius_mind": "check",
+            "caffeine": "x",
+            "generic": "x"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "label": "16 Synergistic Ingredients",
+            "genius_mind": "check",
+            "caffeine": "x",
+            "generic": "x"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

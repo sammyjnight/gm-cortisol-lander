@@ -1,0 +1,244 @@
+{% comment %}
+  Genius Mind — Section 07
+  "Product Reveal" — Dark, black background
+  Product image as CSS background with benefit icons overlaid
+{% endcomment %}
+
+{%- assign s = section.settings -%}
+
+<!-- ═══ §07 PRODUCT REVEAL — DARK, MARS MEN STYLE ═══ -->
+<section id="mechanism" class="sec-dark" style="overflow:hidden;background:#000;">
+
+  <!-- Text block -->
+  <div style="max-width:1200px;margin:0 auto;padding:64px 16px 0;text-align:center;" class="fade-up">
+    <p class="label-mono" style="color:var(--color-cyan);font-size:14px;margin-bottom:16px;">
+      {{ s.eyebrow | default: "Make The Smart Choice" }}
+    </p>
+    <h2 style="font-size:clamp(32px,5vw,52px);font-weight:800;line-height:1.05;margin-bottom:20px;color:#fff;">
+      {{ s.headline | default: "Natural Cognitive Support<br>+ Real Output" }}
+    </h2>
+    <p style="color:#fff;font-size:17px;line-height:1.5;max-width:700px;margin:0 auto 12px;">
+      &#128073; {{ s.body | default: "Genius Mind isn&rsquo;t another nootropic stack &ndash; it&rsquo;s a complete cortisol-aware formula that works on FOUR levels: <u>clear the chemistry, restore the precursors, sustain the focus, and protect the output.</u>" }}
+    </p>
+    <p style="color:rgba(255,255,255,0.7);font-style:italic;font-size:14px;margin-bottom:0;">
+      {{ s.disclaimer | default: "No needles, prescriptions, or dependency." }}
+    </p>
+  </div>
+
+  <!-- Image as CSS background — benefit icons flow on top -->
+  <div class="gm-reveal-hero" style="
+    position:relative;
+    background:#000;
+    background-image:url({{ s.product_image | default: 'gm-hand-product.png' | asset_url }});
+    background-size:120% auto;
+    background-position:center top;
+    background-repeat:no-repeat;
+    padding-top:75vw;
+  ">
+    <!-- Gradient overlay -->
+    <div style="
+      position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(to top, #000 25%, rgba(0,0,0,0.5) 50%, transparent 100%);
+    " class="gm-reveal-gradient"></div>
+
+    <!-- Benefit grid -->
+    <div class="fade-up" style="position:relative;z-index:2;max-width:900px;margin:0 auto;padding:0 24px 56px;">
+      <div class="gm-reveal-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px 24px;">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'benefit' -%}
+            <div style="text-align:center;" {{ block.shopify_attributes }}>
+              <div style="display:flex;justify-content:center;margin-bottom:8px;">
+                {%- case block.settings.icon -%}
+                  {%- when 'zap' -%}
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00A6D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  {%- when 'brain' -%}
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00A6D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 3 2 5.5 4 7l3 3.5L15 16c2-1.5 4-4 4-7a7 7 0 0 0-7-7z"/><path d="M9 10h.01M15 10h.01M9.5 15a3.5 3.5 0 0 0 5 0"/></svg>
+                  {%- when 'target' -%}
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00A6D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                  {%- when 'waves' -%}
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00A6D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
+                  {%- when 'battery' -%}
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00A6D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="18" height="12" rx="2" ry="2"/><line x1="23" y1="10" x2="23" y2="14"/><line x1="5" y1="10" x2="5" y2="14"/><line x1="9" y1="10" x2="9" y2="14"/><line x1="13" y1="10" x2="13" y2="14"/></svg>
+                  {%- when 'shield' -%}
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00A6D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  {%- else -%}
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00A6D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+                {%- endcase -%}
+              </div>
+              <h3 style="color:#fff;font-weight:800;font-size:14px;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:4px;">
+                {{ block.settings.title }}
+              </h3>
+              <p style="color:rgba(255,255,255,0.8);font-size:12px;line-height:1.4;">
+                {{ block.settings.description }}
+              </p>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<style>
+  /* Desktop overrides */
+  @media (min-width: 768px) {
+    .gm-reveal-hero {
+      background-size: 60% auto !important;
+      padding-top: 30vw !important;
+    }
+    .gm-reveal-gradient {
+      background: linear-gradient(to top, #000 20%, rgba(0,0,0,0.3) 45%, transparent 100%) !important;
+    }
+    .gm-reveal-grid {
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 40px 48px !important;
+    }
+    .gm-reveal-grid h3 {
+      font-size: 16px !important;
+    }
+    .gm-reveal-grid p {
+      font-size: 14px !important;
+    }
+    .gm-reveal-hero + style + div,
+    div[style*="padding:64px"] {
+      padding-top: 80px !important;
+    }
+  }
+  @media (min-width: 768px) {
+    .gm-reveal-hero ~ .fade-up,
+    section[id="mechanism"] > div:first-child {
+      padding-top: 80px;
+      padding-bottom: 0;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "GM Product Reveal",
+  "tag": "div",
+  "class": "gm-product-reveal",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Make The Smart Choice"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline (supports HTML)",
+      "default": "Natural Cognitive Support<br>+ Real Output"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body text (supports HTML)",
+      "default": "Genius Mind isn't another nootropic stack – it's a complete cortisol-aware formula that works on FOUR levels: <u>clear the chemistry, restore the precursors, sustain the focus, and protect the output.</u>"
+    },
+    {
+      "type": "text",
+      "id": "disclaimer",
+      "label": "Disclaimer line",
+      "default": "No needles, prescriptions, or dependency."
+    },
+    {
+      "type": "text",
+      "id": "product_image",
+      "label": "Product image filename (in assets)",
+      "default": "gm-hand-product.png"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit Icon",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "zap", "label": "Zap (bolt)" },
+            { "value": "brain", "label": "Brain" },
+            { "value": "target", "label": "Target" },
+            { "value": "waves", "label": "Waves" },
+            { "value": "battery", "label": "Battery" },
+            { "value": "shield", "label": "Shield" }
+          ],
+          "default": "zap"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "SUSTAINED FOCUS"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "The 4-6hr decision window high-output work demands. No 2pm cliff."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GM Product Reveal",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "zap",
+            "title": "SUSTAINED FOCUS",
+            "description": "The 4-6hr decision window high-output work demands. No 2pm cliff."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "brain",
+            "title": "MENTAL CLARITY",
+            "description": "Brain fog gone. Reading and writing land cleanly first time."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "target",
+            "title": "EASIER TO TAKE ACTION",
+            "description": "The hard calls stop stalling. Decisions get made."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "waves",
+            "title": "REDUCED OVERWHELM",
+            "description": "Cognitive load handled. Calm under pressure, not flooded by it."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "battery",
+            "title": "STAMINA & RECOVERY",
+            "description": "Brain output sustained across the working day. Sleep restores you."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "shield",
+            "title": "STRESS RESILIENCE",
+            "description": "Cortisol-aware formulation. Built for the operator's chemistry."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,279 @@
+{% comment %}
+  Genius Mind — Section 06
+  "Say No to Caffeine Loops & Underdosed Nootropic Stacks"
+  Dark background, fail items with red borders
+{% endcomment %}
+
+{%- assign s = section.settings -%}
+
+<!-- ═══ §06 SAY NO TO CAFFEINE — DARK ═══ -->
+<section class="sec-dark sec-pad">
+  <div class="sec-container">
+
+    <!-- Desktop: text+boxes LEFT, video+caption RIGHT -->
+    <div class="desktop-only grid-mm fade-up" style="align-items:start;">
+      <div>
+        <p class="eyebrow-mm" style="margin-bottom:16px;text-align:left;">
+          <span style="color:var(--color-coral);">&#10067;</span>
+          <span style="color:#fff;">{{ s.eyebrow | default: "And What About Other Options?" }}</span>
+        </p>
+        <h2 class="h2-mm" style="margin-bottom:24px;color:#fff;text-align:left;">
+          {{ s.headline_prefix | default: "Say No to Caffeine Loops &amp;" }}
+          <span style="display:inline-block;background:#00A6D2;color:#fff;padding:0 0.2em;line-height:0.95;">{{ s.headline_highlight | default: "Underdosed" }}</span>
+          {{ s.headline_suffix | default: "Nootropic Stacks" }}
+        </h2>
+
+        <h3 class="h3-mm" style="color:#fff;font-weight:800;margin-bottom:12px;">{{ s.caffeine_heading | default: "Caffeine &amp; Stimulant Stacks:" }}</h3>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'caffeine_fail' -%}
+              <div style="border:1px solid #E8283B;border-radius:4px;padding:7px 9px;display:flex;align-items:flex-start;gap:8px;" {{ block.shopify_attributes }}>
+                <span style="font-size:12px;margin-top:1px;flex-shrink:0;">&#10060;</span>
+                <p style="font-size:15px;line-height:1.4;">
+                  <strong style="color:#fff;">{{ block.settings.bold_text }}</strong>
+                  {%- if block.settings.rest_text != blank -%}
+                    <span style="color:#B0B0B0;"> &ndash; {{ block.settings.rest_text }}</span>
+                  {%- endif -%}
+                </p>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        <h3 class="h3-mm" style="color:#fff;font-weight:800;margin-bottom:12px;">{{ s.nootropic_heading | default: "Underdosed Nootropic Stacks:" }}</h3>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'nootropic_fail' -%}
+              <div style="border:1px solid #E8283B;border-radius:4px;padding:7px 9px;display:flex;align-items:flex-start;gap:8px;" {{ block.shopify_attributes }}>
+                <span style="font-size:12px;margin-top:1px;flex-shrink:0;">&#10060;</span>
+                <p style="font-size:15px;line-height:1.4;">
+                  <strong style="color:#fff;">{{ block.settings.bold_text }}</strong>
+                  {%- if block.settings.rest_text != blank -%}
+                    <span style="color:#B0B0B0;"> &ndash; {{ block.settings.rest_text }}</span>
+                  {%- endif -%}
+                </p>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <div class="fade-up">
+        <video
+          src="{{ s.video_file | default: 'section-6-coffee-loop-operator.mp4' | asset_url }}"
+          autoplay muted loop playsinline preload="metadata"
+          aria-label="Operator reaching for a fourth coffee, defeated"
+          style="width:100%;border-radius:12px;object-fit:cover;margin-bottom:16px;"
+        ></video>
+        <p class="body-mm" style="color:#fff;font-size:14px;">
+          &#128073; {{ s.caption | default: "You deserve better than frying your nervous system with caffeine or wasting money on underdosed stacks." }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Mobile: headline -> video -> boxes -->
+    <div class="mobile-only">
+      <p class="eyebrow-mm fade-up" style="margin-bottom:16px;text-align:center;">
+        <span style="color:var(--color-coral);">&#10067;</span>
+        <span style="color:#fff;">{{ s.eyebrow | default: "And What About Other Options?" }}</span>
+      </p>
+      <h2 class="h2-mm fade-up" style="margin-bottom:24px;color:#fff;text-align:center;">
+        {{ s.headline_prefix | default: "Say No to Caffeine Loops &amp;" }}
+        <span style="display:inline-block;background:#00A6D2;color:#fff;padding:0 0.2em;line-height:0.95;">{{ s.headline_highlight | default: "Underdosed" }}</span>
+        {{ s.headline_suffix | default: "Nootropic Stacks" }}
+      </h2>
+
+      <div class="img-bleed" style="margin-bottom:24px;">
+        <video
+          src="{{ s.video_file | default: 'section-6-coffee-loop-operator.mp4' | asset_url }}"
+          autoplay muted loop playsinline preload="metadata"
+          aria-label="Operator reaching for a fourth coffee, defeated"
+          style="width:100%;object-fit:cover;"
+        ></video>
+      </div>
+
+      <h3 class="h3-mm" style="color:#fff;font-weight:800;margin-bottom:12px;">{{ s.caffeine_heading | default: "Caffeine &amp; Stimulant Stacks:" }}</h3>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'caffeine_fail' -%}
+            <div style="border:1px solid #E8283B;border-radius:4px;padding:7px 9px;display:flex;align-items:flex-start;gap:8px;" {{ block.shopify_attributes }}>
+              <span style="font-size:12px;margin-top:1px;flex-shrink:0;">&#10060;</span>
+              <p style="font-size:15px;line-height:1.4;">
+                <strong style="color:#fff;">{{ block.settings.bold_text }}</strong>
+                {%- if block.settings.rest_text != blank -%}
+                  <span style="color:#B0B0B0;"> &ndash; {{ block.settings.rest_text }}</span>
+                {%- endif -%}
+              </p>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <h3 class="h3-mm" style="color:#fff;font-weight:800;margin-bottom:12px;">{{ s.nootropic_heading | default: "Underdosed Nootropic Stacks:" }}</h3>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'nootropic_fail' -%}
+            <div style="border:1px solid #E8283B;border-radius:4px;padding:7px 9px;display:flex;align-items:flex-start;gap:8px;" {{ block.shopify_attributes }}>
+              <span style="font-size:12px;margin-top:1px;flex-shrink:0;">&#10060;</span>
+              <p style="font-size:15px;line-height:1.4;">
+                <strong style="color:#fff;">{{ block.settings.bold_text }}</strong>
+                {%- if block.settings.rest_text != blank -%}
+                  <span style="color:#B0B0B0;"> &ndash; {{ block.settings.rest_text }}</span>
+                {%- endif -%}
+              </p>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <p class="body-mm" style="color:#fff;font-size:14px;text-align:center;padding:0 16px;">
+        &#128073; {{ s.caption | default: "You deserve better than frying your nervous system with caffeine or wasting money on underdosed stacks." }}
+      </p>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GM Caffeine",
+  "tag": "div",
+  "class": "gm-caffeine",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "And What About Other Options?"
+    },
+    {
+      "type": "text",
+      "id": "headline_prefix",
+      "label": "Headline prefix",
+      "default": "Say No to Caffeine Loops &amp;"
+    },
+    {
+      "type": "text",
+      "id": "headline_highlight",
+      "label": "Headline highlight (cyan box)",
+      "default": "Underdosed"
+    },
+    {
+      "type": "text",
+      "id": "headline_suffix",
+      "label": "Headline suffix",
+      "default": "Nootropic Stacks"
+    },
+    {
+      "type": "text",
+      "id": "caffeine_heading",
+      "label": "Caffeine sub-heading",
+      "default": "Caffeine & Stimulant Stacks:"
+    },
+    {
+      "type": "text",
+      "id": "nootropic_heading",
+      "label": "Nootropic sub-heading",
+      "default": "Underdosed Nootropic Stacks:"
+    },
+    {
+      "type": "text",
+      "id": "video_file",
+      "label": "Video filename (in assets)",
+      "default": "section-6-coffee-loop-operator.mp4"
+    },
+    {
+      "type": "textarea",
+      "id": "caption",
+      "label": "Video caption",
+      "default": "You deserve better than frying your nervous system with caffeine or wasting money on underdosed stacks."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "caffeine_fail",
+      "name": "Caffeine Fail Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "bold_text",
+          "label": "Bold text",
+          "default": "Heart racing, jitters, anxiety"
+        },
+        {
+          "type": "text",
+          "id": "rest_text",
+          "label": "Rest text (after dash)",
+          "default": "then a brutal crash by 3pm"
+        }
+      ]
+    },
+    {
+      "type": "nootropic_fail",
+      "name": "Nootropic Fail Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "bold_text",
+          "label": "Bold text",
+          "default": "Proprietary blends hide worthless dosages"
+        },
+        {
+          "type": "text",
+          "id": "rest_text",
+          "label": "Rest text (after dash)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GM Caffeine",
+      "blocks": [
+        {
+          "type": "caffeine_fail",
+          "settings": {
+            "bold_text": "Heart racing, jitters, anxiety",
+            "rest_text": "then a brutal crash by 3pm"
+          }
+        },
+        {
+          "type": "caffeine_fail",
+          "settings": {
+            "bold_text": "Only work while you're taking them",
+            "rest_text": "stop and the brain fog comes back worse"
+          }
+        },
+        {
+          "type": "caffeine_fail",
+          "settings": {
+            "bold_text": "Spike cortisol with every dose",
+            "rest_text": "the exact thing destroying your chemistry"
+          }
+        },
+        {
+          "type": "nootropic_fail",
+          "settings": {
+            "bold_text": "Proprietary blends hide worthless dosages",
+            "rest_text": ""
+          }
+        },
+        {
+          "type": "nootropic_fail",
+          "settings": {
+            "bold_text": "Dated formulas with single ingredients that don't reach therapeutic levels",
+            "rest_text": ""
+          }
+        },
+        {
+          "type": "nootropic_fail",
+          "settings": {
+            "bold_text": "Just expensive pee",
+            "rest_text": "no actual mechanism, no real cognitive impact"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,9 +1,91 @@
 {
   "sections": {
-    "cortisol-lander": {
-      "type": "cortisol-lander",
+    "hero": {
+      "type": "gm-hero",
+      "settings": {}
+    },
+    "why_failed": {
+      "type": "gm-why-failed",
+      "settings": {}
+    },
+    "caffeine": {
+      "type": "gm-caffeine",
+      "settings": {}
+    },
+    "product_reveal": {
+      "type": "gm-product-reveal",
+      "settings": {}
+    },
+    "ingredients": {
+      "type": "gm-ingredients",
+      "settings": {}
+    },
+    "testimonials": {
+      "type": "gm-testimonials",
+      "settings": {}
+    },
+    "cta": {
+      "type": "gm-cta",
+      "settings": {}
+    },
+    "comparison": {
+      "type": "gm-comparison",
+      "settings": {}
+    },
+    "offer": {
+      "type": "gm-offer",
+      "settings": {}
+    },
+    "tabs": {
+      "type": "gm-tabs",
+      "settings": {}
+    },
+    "ingredients_repeat": {
+      "type": "gm-ingredients-repeat",
+      "settings": {}
+    },
+    "trustpilot": {
+      "type": "gm-trustpilot",
+      "settings": {}
+    },
+    "nutritionist": {
+      "type": "gm-nutritionist",
+      "settings": {}
+    },
+    "guarantee": {
+      "type": "gm-guarantee",
+      "settings": {}
+    },
+    "faq": {
+      "type": "gm-faq",
+      "settings": {}
+    },
+    "footer": {
+      "type": "gm-footer",
+      "settings": {}
+    },
+    "scroll_animations": {
+      "type": "gm-scroll-animations",
       "settings": {}
     }
   },
-  "order": ["cortisol-lander"]
+  "order": [
+    "hero",
+    "why_failed",
+    "caffeine",
+    "product_reveal",
+    "ingredients",
+    "testimonials",
+    "cta",
+    "comparison",
+    "offer",
+    "tabs",
+    "ingredients_repeat",
+    "trustpilot",
+    "nutritionist",
+    "guarantee",
+    "faq",
+    "footer",
+    "scroll_animations"
+  ]
 }
