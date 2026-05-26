@@ -1142,10 +1142,10 @@ export default function Page() {
             {INGS.map((ing) => (
               <motion.div key={ing.name} variants={cF} className="ing-card" style={{ backgroundImage: `url(/assets/${ing.img})` }}>
                 {/* Dose pill top-right */}
-                <span className="absolute top-2 right-2 md:top-3 md:right-3 z-[2] bg-white/90 text-[var(--color-ink-primary)] font-mono font-semibold text-[9px] md:text-[10px] px-1.5 py-0.5 md:px-2 md:py-1 rounded">{ing.dose}</span>
-                <div className="ing-inner !justify-end">
-                  <h4 className="text-white font-[900] text-[12px] sm:text-[14px] md:text-xl uppercase tracking-wide mb-0.5 leading-tight break-words">{ing.name}</h4>
-                  <p className="text-white/85 text-[10px] sm:text-[11px] md:text-[13px] leading-snug font-medium">{ing.desc}</p>
+                <div className="ing-inner">
+                  <h4 className="text-white font-[900] text-[15px] md:text-xl uppercase tracking-wide leading-tight">{ing.name}</h4>
+                  <span className="inline-block bg-white/90 text-[var(--color-ink-primary)] font-mono font-semibold text-[10px] md:text-[11px] px-2 py-0.5 rounded mt-1 mb-1 w-fit">{ing.dose}</span>
+                  <p className="text-white/85 text-[11px] md:text-[13px] leading-snug font-medium">{ing.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -1337,10 +1337,10 @@ export default function Page() {
           <Stagger className="grid grid-cols-2 md:grid-cols-4 gap-3" s={0.04}>
             {INGS.map((ing) => (
               <motion.div key={ing.name} variants={cF} className="ing-card" style={{ backgroundImage: `url(/assets/${ing.img})` }}>
-                <span className="absolute top-2 right-2 md:top-3 md:right-3 z-[2] bg-white/90 text-[var(--color-ink-primary)] font-mono font-semibold text-[9px] md:text-[10px] px-1.5 py-0.5 md:px-2 md:py-1 rounded">{ing.dose}</span>
-                <div className="ing-inner !justify-end">
-                  <h4 className="text-white font-[900] text-[12px] sm:text-[14px] md:text-xl uppercase tracking-wide mb-0.5 leading-tight break-words">{ing.name}</h4>
-                  <p className="text-white/85 text-[10px] sm:text-[11px] md:text-[13px] leading-snug font-medium">{ing.desc}</p>
+                <div className="ing-inner">
+                  <h4 className="text-white font-[900] text-[15px] md:text-xl uppercase tracking-wide leading-tight">{ing.name}</h4>
+                  <span className="inline-block bg-white/90 text-[var(--color-ink-primary)] font-mono font-semibold text-[10px] md:text-[11px] px-2 py-0.5 rounded mt-1 mb-1 w-fit">{ing.dose}</span>
+                  <p className="text-white/85 text-[11px] md:text-[13px] leading-snug font-medium">{ing.desc}</p>
                 </div>
               </motion.div>
             ))}
