@@ -281,7 +281,7 @@ function TrustpilotEyebrow({ mode = "dark", centered = false }: { mode?: "dark" 
         <TpSquareStars size={28} halfStar />
       </div>
       <p className={`${subCol} text-[13px]`}>
-        Rated <strong>4.3</strong> / 5 based on <a href="https://uk.trustpilot.com/review/justfloow.com" target="_blank" rel="noopener noreferrer" className={`${subCol} font-bold underline underline-offset-2`}>141 reviews</a> on{" "}
+        Rated <strong>4.5</strong> / 5 based on <a href="https://uk.trustpilot.com/review/justfloow.com" target="_blank" rel="noopener noreferrer" className={`${subCol} font-bold underline underline-offset-2`}>141 reviews</a> on{" "}
         <span className="inline-flex items-center gap-1 font-[900] tracking-[-0.02em]">
           <svg viewBox="0 0 24 24" width={16} height={16} className="fill-[#00b67a] inline"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           Trustpilot
@@ -1142,10 +1142,10 @@ export default function Page() {
             {INGS.map((ing) => (
               <motion.div key={ing.name} variants={cF} className="ing-card" style={{ backgroundImage: `url(/assets/${ing.img})` }}>
                 {/* Dose pill top-right */}
-                <span className="absolute top-3 right-3 z-[2] bg-white/90 text-[var(--color-ink-primary)] font-mono font-semibold text-[10px] px-2 py-1 rounded">{ing.dose}</span>
+                <span className="absolute top-2 right-2 md:top-3 md:right-3 z-[2] bg-white/90 text-[var(--color-ink-primary)] font-mono font-semibold text-[9px] md:text-[10px] px-1.5 py-0.5 md:px-2 md:py-1 rounded">{ing.dose}</span>
                 <div className="ing-inner !justify-end">
-                  <h4 className="text-white font-[900] text-lg md:text-xl uppercase tracking-wide mb-0.5">{ing.name}</h4>
-                  <p className="text-white/85 text-[12px] md:text-[13px] leading-snug font-medium">{ing.desc}</p>
+                  <h4 className="text-white font-[900] text-[14px] md:text-xl uppercase tracking-wide mb-0.5 leading-tight">{ing.name}</h4>
+                  <p className="text-white/85 text-[11px] md:text-[13px] leading-snug font-medium">{ing.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -1337,10 +1337,10 @@ export default function Page() {
           <Stagger className="grid grid-cols-2 md:grid-cols-4 gap-3" s={0.04}>
             {INGS.map((ing) => (
               <motion.div key={ing.name} variants={cF} className="ing-card" style={{ backgroundImage: `url(/assets/${ing.img})` }}>
-                <span className="absolute top-3 right-3 z-[2] bg-white/90 text-[var(--color-ink-primary)] font-mono font-semibold text-[10px] px-2 py-1 rounded">{ing.dose}</span>
+                <span className="absolute top-2 right-2 md:top-3 md:right-3 z-[2] bg-white/90 text-[var(--color-ink-primary)] font-mono font-semibold text-[9px] md:text-[10px] px-1.5 py-0.5 md:px-2 md:py-1 rounded">{ing.dose}</span>
                 <div className="ing-inner !justify-end">
-                  <h4 className="text-white font-[900] text-lg md:text-xl uppercase tracking-wide mb-0.5">{ing.name}</h4>
-                  <p className="text-white/85 text-[12px] md:text-[13px] leading-snug font-medium">{ing.desc}</p>
+                  <h4 className="text-white font-[900] text-[14px] md:text-xl uppercase tracking-wide mb-0.5 leading-tight">{ing.name}</h4>
+                  <p className="text-white/85 text-[11px] md:text-[13px] leading-snug font-medium">{ing.desc}</p>
                 </div>
               </motion.div>
             ))}
