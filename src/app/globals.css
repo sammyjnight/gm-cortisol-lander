@@ -126,7 +126,8 @@ body { background: var(--color-light-primary); color: var(--color-ink-primary); 
 .icon-box { width: 56px; height: 56px; background: rgba(0,166,210,0.1); border: 1px solid rgba(0,166,210,0.3); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
 
 /* ══════ INGREDIENT CARD ══════ */
-.ing-card { position: relative; aspect-ratio: 4/3; border-radius: 12px; overflow: hidden; background-size: cover; background-position: center; transition: all 200ms ease-out; }
+.ing-card { position: relative; aspect-ratio: 3/4; border-radius: 12px; overflow: hidden; background-size: cover; background-position: center; transition: all 200ms ease-out; }
+@media (min-width: 768px) { .ing-card { aspect-ratio: 4/3; } }
 .ing-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
 .ing-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.88) 100%); z-index: 1; }
 .ing-card .ing-inner { position: relative; z-index: 2; padding: 20px; color: white; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
