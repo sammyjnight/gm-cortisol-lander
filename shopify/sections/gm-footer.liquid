@@ -65,7 +65,7 @@
   box-shadow: 0 -4px 12px rgba(0,0,0,0.3);
 " role="complementary" aria-label="Buy Genius Mind">
   <p style="color: #999; font-size: 12px; text-align: center; margin-bottom: 8px;">90-day money back guarantee</p>
-  <a href="#offer" style="
+  <a href="{{ section.settings.mobile_cta_url | default: 'https://justfloow.com/products/genius-mind' }}" style="
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,9 +118,15 @@
   "name": "GM Footer",
   "settings": [
     {
-      "type": "text",
+      "type": "url",
       "id": "shop_url",
-      "label": "Shop URL",
+      "label": "Shop URL (desktop sticky)",
+      "default": "https://justfloow.com/products/genius-mind"
+    },
+    {
+      "type": "url",
+      "id": "mobile_cta_url",
+      "label": "Mobile sticky CTA URL",
       "default": "https://justfloow.com/products/genius-mind"
     }
   ],

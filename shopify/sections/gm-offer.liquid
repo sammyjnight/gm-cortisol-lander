@@ -223,7 +223,7 @@
                       </div>
                     {%- endif -%}
 
-                    <a href="{{ section.settings.shop_url | default: 'https://justfloow.com/products/genius-mind' }}" class="btn-primary btn-block">
+                    <a href="{{ block.settings.url | default: section.settings.shop_url | default: 'https://justfloow.com/products/genius-mind' }}" class="btn-primary btn-block">
                       <span>{{ block.settings.cta_text }}</span>
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
                     </a>
@@ -235,7 +235,7 @@
 
           <!-- One-time purchase -->
           <div style="text-align: center; margin-top: 12px;">
-            <a href="{{ section.settings.shop_url | default: 'https://justfloow.com/products/genius-mind' }}" style="color: var(--color-ink-secondary); text-decoration: underline; font-size: 14px; font-weight: 600;">One Time Purchase &pound;24.99</a>
+            <a href="{{ section.settings.one_time_url | default: section.settings.shop_url | default: 'https://justfloow.com/products/genius-mind' }}" style="color: var(--color-ink-secondary); text-decoration: underline; font-size: 14px; font-weight: 600;">One Time Purchase &pound;24.99</a>
           </div>
         </div>
 
@@ -410,6 +410,12 @@
     },
     {
       "type": "url",
+      "id": "one_time_url",
+      "label": "One-time purchase URL",
+      "default": "https://justfloow.com/products/genius-mind"
+    },
+    {
+      "type": "url",
       "id": "nutrition_label_url",
       "label": "Nutrition label URL or anchor",
       "default": "#"
@@ -485,6 +491,12 @@
           "id": "cta_text",
           "label": "CTA button text",
           "default": "TRY NOW"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "CTA button URL",
+          "default": "https://justfloow.com/products/genius-mind"
         }
       ]
     },
